@@ -15,6 +15,20 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# To read secrets.json
+import json
+from django.core.exceptions import ImproperlyConfigured
+
+with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
+    secrets = json.load(secrets_file)
+
+
+def get_secret(setting, secrets=secrets):
+    """Get secret setting or fail with ImproperlyConfigured"""
+    try:
+        return secrets[setting]
+    except KeyError:
+        raise ImproperlyConfigured("Set the {} setting".format(setting))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -85,7 +99,7 @@ DATABASES_MSSQL = {
         'ENGINE': 'sql_server.pyodbc',
         'NAME': 'T21',
         'USER': 'jimmy_lin',
-        'PASSWORD': '',
+        'PASSWORD': get_secret('DATABASES_MSSQL_PASSWORD'),
         'HOST': '150.117.123.35',
         'PORT': '',
         'OPTIONS': {

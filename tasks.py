@@ -27,6 +27,9 @@ PATHONPATHS_ABS = {
     'linux': REPO_ROOT.resolve() / VENV_DIRNAME / 'bin' / 'python',
     'darwin': REPO_ROOT.resolve() / VENV_DIRNAME / 'bin' / 'python',
 }
+SETCRETS = {
+    'DATABASES_MSSQL_PASSWORD': '',
+}
 
 
 # VSCode
@@ -39,5 +42,13 @@ def vscode(c):
     except FileExistsError:
         pass
     with open(REPO_ROOT / '.vscode' / 'settings.json', 'w', encoding='utf-8') as f:
+        f.write(s)
+    print('Done!')
+
+
+@task
+def secrets(c):
+    s = json.dumps(SETCRETS, indent=4)
+    with open(REPO_ROOT / 'secrets.json', 'w', encoding='utf-8') as f:
         f.write(s)
     print('Done!')

@@ -18,6 +18,7 @@ db.sqlite3
 
 # Credential things
 /secrets/
+/secrets.json
 
 # Deployment things
 /nginx/
