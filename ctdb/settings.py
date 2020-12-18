@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'telecom.apps.TelecomConfig',
+    'diary.apps.DiaryConfig',
 ]
 
 MIDDLEWARE = [
