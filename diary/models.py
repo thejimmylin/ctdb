@@ -1,6 +1,22 @@
 from django.db import models
 
 
+class Person(models.Model):
+
+    name = models.CharField(max_length=63)
+
+    def __str__(self):
+        return self.name
+
+
 class Diary(models.Model):
 
-    subject = models.CharField(max_length=63)
+    date = models.DateField(null=True)
+    todo = models.TextField(null=True)
+    daily_record = models.TextField(null=True)
+    daily_check = models.BooleanField(default=False)
+    remark = models.TextField(null=True, blank=True)
+    created_by = models.ForeignKey(to='diary.Person', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.daily_record[:8] + '..'
