@@ -1,0 +1,43 @@
+{% extends 'registration/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid max-w-24u">
+    <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
+      <div class="col max-w-8u border rounded p-5">
+        <h1 class="text-center mb-5">{% trans 'Sign up' %}</h1>
+        <p class="mx-1 text-secondary">
+          {% trans 'Choose a way you prefer. Join us and enjoy all the amazing features with us.' %}
+        </p>
+        <a class="btn btn-block text-secondary border" href="{% url 'accounts:signup_with_google_email' %}" style="line-height: 2rem;">
+          <img width="24px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>
+          {% trans 'Continue with Google Email' %}
+        </a>
+        <br>
+        <a class="btn btn-block text-secondary border" href="{% url 'accounts:signup_with_account_and_password' %}"
+          style="line-height: 2rem;">{% trans 'Continue with invitation code' %}</a>
+        <br>
+        <p class="mx-1 text-secondary">
+          {% trans 'Already have an account?' %}&nbsp;<a href="{% url 'accounts:login' %}" class="text-decoration-none">{% trans 'Login' %}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+<footer class="footer footer-foot mt-n-footer-foot">
+  <div class="container-fluid max-w-24u">
+    <div class="row justify-content-center">
+      <div class="col text-center text-secondary small">
+        {% trans '© 2020 Chief Telecom Inc. All rights reserved.' %}
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}

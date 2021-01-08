@@ -1,0 +1,171 @@
+/* Variable things */
+:root {
+  /* Width */
+  --width-unit: 60px;
+  --w-1u: calc(var(--width-unit) * 1);
+  --w-2u: calc(var(--width-unit) * 2);
+  --w-3u: calc(var(--width-unit) * 3);
+  --w-4u: calc(var(--width-unit) * 4);
+  --w-5u: calc(var(--width-unit) * 5);
+  --w-6u: calc(var(--width-unit) * 6);
+  --w-7u: calc(var(--width-unit) * 7);
+  --w-8u: calc(var(--width-unit) * 8);
+  --w-9u: calc(var(--width-unit) * 9);
+  --w-10u: calc(var(--width-unit) * 10);
+  --w-11u: calc(var(--width-unit) * 11);
+  --w-12u: calc(var(--width-unit) * 12);
+  --w-13u: calc(var(--width-unit) * 13);
+  --w-14u: calc(var(--width-unit) * 14);
+  --w-15u: calc(var(--width-unit) * 15);
+  --w-16u: calc(var(--width-unit) * 16);
+  --w-17u: calc(var(--width-unit) * 17);
+  --w-18u: calc(var(--width-unit) * 18);
+  --w-19u: calc(var(--width-unit) * 19);
+  --w-20u: calc(var(--width-unit) * 20);
+  --w-21u: calc(var(--width-unit) * 21);
+  --w-22u: calc(var(--width-unit) * 22);
+  --w-23u: calc(var(--width-unit) * 23);
+  --w-24u: calc(var(--width-unit) * 24);
+  /* Navbar and footer */
+  --height-navbar: 56px;
+  --height-footer-foot: 28px;
+  /* Theme and color */
+  --rgb-bluedark: 43, 49, 55;
+  --rgb-bluelightgray: 170, 173, 175;
+}
+
+/* Theme */
+
+.bg-bluedark {
+  background-color: rgb(var(--rgb-bluedark));
+}
+
+.text-bluelightgray {
+  color: rgb(var(--rgb-bluelightgray));
+}
+
+/* Global */
+
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  color: rgb(var(--rgb-bluedark));
+}
+
+th {
+  font-weight: normal;
+}
+
+/* Layout things */
+
+.max-w-24u {
+  max-width: var(--w-24u);
+}
+
+.max-w-18u {
+  max-width: var(--w-18u);
+}
+
+.max-w-12u {
+  max-width: var(--w-12u);
+}
+
+.max-w-8u {
+  max-width: var(--w-8u);
+}
+
+.max-w-7u {
+  max-width: var(--w-7u);
+}
+
+.max-w-6u {
+  max-width: var(--w-6u);
+}
+
+.w-5u {
+  width: var(--w-5u);
+}
+
+/* Navbar */
+
+.mb-n-navbar {
+  margin-bottom: calc(-1 * var(--height-navbar));
+}
+
+.pt-navbar {
+  padding-top: var(--height-navbar);
+}
+
+.footer.footer-foot {
+  height: var(--height-footer-foot);
+}
+
+.mt-n-footer-foot {
+  margin-top: calc(-1 * var(--height-footer-foot));
+}
+
+.pb-footer-foot {
+  padding-bottom: var(--height-footer-foot);
+}
+
+/* .navbar */
+
+.navbar.scrolled {
+  background-color: var(--light) !important;
+  transition: 400ms ease-out;
+  box-shadow: 0px 2px 8px 4px rgba(var(--rgb-bluedark), 0.5);
+}
+
+/* Table */
+
+table.table-striped-hover tbody tr:nth-of-type(even) {
+  background-color: rgba(var(--rgb-bluedark), 0.1);
+}
+
+table.table-striped-hover tbody tr:hover:nth-of-type(odd) {
+  background-color: rgba(var(--rgb-bluedark), 0.2);
+}
+
+table.table-striped-hover tbody tr:hover:nth-of-type(even) {
+  background-color: rgba(var(--rgb-bluedark), 0.3);
+}
+
+/* Floating label things */
+
+.label-floating {
+  font-size: 1rem;
+  position: absolute;
+  pointer-events: none;
+  top: 0.5rem;
+  left: 1rem;
+  transition: 0.2s ease all;
+}
+
+form input:focus+.label-floating,
+form input:valid+.label-floating {
+  top: -0.5rem;
+  left: 0.8rem;
+  font-size: 0.6rem;
+  padding: 0 0.3rem;
+}
+
+.focus-shadow-none:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.focus-primary:focus {
+  border: 1px solid var(--primary);
+}
+
+form input:focus+.label-floating.label-floating-primary {
+  color: var(--primary) !important;
+}
+
+.focus-danger:focus {
+  border: 1px solid var(--danger);
+}
+
+form input:focus+.label-floating.label-floating-danger {
+  color: var(--danger) !important;
+}
