@@ -16,8 +16,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # To read secrets.json
-import json
-from django.core.exceptions import ImproperlyConfigured
+import json  # noqa
+from django.core.exceptions import ImproperlyConfigured  # noqa
 
 with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
     secrets = json.load(secrets_file)
@@ -28,7 +28,7 @@ def get_secret(setting, secrets=secrets):
     try:
         return secrets[setting]
     except KeyError:
-        raise ImproperlyConfigured("Set the {} setting".format(setting))
+        raise ImproperlyConfigured(f'Please set the "{setting}" setting in secrets_file.')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -111,7 +111,7 @@ DATABASES_MSSQL = {
     },
 }
 
-DATABASES = DATABASES_MSSQL
+DATABASES = DATABASES_SQLITE
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
