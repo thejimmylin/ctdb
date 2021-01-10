@@ -1,0 +1,20 @@
+{% extends 'diary/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<section class="content">
+    <div class="container-fluid max-w-24u">
+        <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
+            <ul>
+                {% for diary in object_list %}
+                <li>{{ diary.todo }}</li>
+                {% empty %}
+                <li>No diaries yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}
