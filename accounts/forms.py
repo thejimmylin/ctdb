@@ -119,6 +119,24 @@ class LoginForm(AuthenticationForm):
 
 class ProfileForm(forms.ModelForm):
 
+    staff_code = forms.CharField(
+        label=_('Staff code'),
+        max_length=63,
+        required=False,
+    )
+
+    job_title = forms.CharField(
+        label=_('Job title'),
+        max_length=63,
+        required=False,
+    )
+
+    phone_number = forms.CharField(
+        label=_('Phone number'),
+        max_length=31,
+        required=False,
+    )
+
     email = forms.EmailField(
         label=_('Email'),
         required=False,
@@ -128,24 +146,21 @@ class ProfileForm(forms.ModelForm):
                 'placeholder': _('Email'),
             }
         ),
-        help_text=_('Email cannot be changed after setting.'),
-    )
-
-    phone_number = forms.CharField(
-        label=_('Phone number'),
-        max_length=32,
-        required=False,
     )
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', ]
+        fields = ['first_name', 'last_name', 'email']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.instance.email:
             self.fields['email'].disabled = True
         self.fields['phone_number'].initial = self.instance.profile.phone_number
+        self.fields['staff_code'].initial = self.instance.profile.staff_code
+        self.fields['staff_code'].disabled = True
+        self.fields['job_title'].initial = self.instance.profile.job_title
+        self.fields['job_title'].disabled = True
 
     def save(self, commit=True):
         instance = super().save(commit=False)

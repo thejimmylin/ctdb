@@ -10,9 +10,11 @@ class Profile(models.Model):
         to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
+    staff_code = models.CharField(max_length=63, blank=True)
+    job_title = models.CharField(max_length=63, blank=True)
     phone_number = models.CharField(
         verbose_name=_('Phone number'),
-        max_length=32,
+        max_length=31,
         blank=True,
     )
 
