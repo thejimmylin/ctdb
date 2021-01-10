@@ -190,5 +190,5 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'j3ycode@gmail.com'
 EMAIL_HOST_PASSWORD = get_secret('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = 'Chief Firewall Admin <j3ycode@gmail.com>'
-SERVER_EMAIL = 'Chief Firewall Admin <j3ycode@gmail.com>'
+DEFAULT_FROM_EMAIL = 'TDB <j3ycode@gmail.com>'
+SERVER_EMAIL = 'TDB <j3ycode@gmail.com>'

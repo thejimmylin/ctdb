@@ -415,7 +415,7 @@ msgstr "介面"
 
 #: fwportal/templates/base.html:34 fwportal/templates/base.html:47
 #: fwportal/templates/base.html:112 fwportal/templates/index.html:16
-msgid "Chief Firewall Admin"
+msgid "TDB"
 msgstr ""
 
 #: fwportal/templates/base.html:58
@@ -598,11 +598,11 @@ msgstr "適合所有人"
 
 #: fwportal/templates/index.html:57
 msgid ""
-"Chief Firewall Admin is a platform for managing your own firewall "
+"TDB is a platform for managing your own firewall "
 "configuration. From policies to NAT, you can have your own setup easily and "
 "quickly."
 msgstr ""
-"Chief Firewall Admin 是一個管理你自己的防火牆配置的平台。從防火牆規則到 NAT，"
+"TDB 是一個管理你自己的防火牆配置的平台。從防火牆規則到 NAT，"
 "你都能輕易且快速的完成所有設定。"
 
 #: fwportal/templates/index.html:61

@@ -85,18 +85,18 @@ class SignUpWithEmailForm(forms.ModelForm):
         user.set_password(random_uuid_password)
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')
-        subject = '[Chief Firewall Admin] You have created an account.'
+        subject = '[TDB] You have created an account.'
         message = (
             f'Hi {username},\n'
             '\n'
-            'You have created a new account on Chief Firewall Admin.\n'
-            'You could login and change it on Chief Firewall Admin later.\n'
+            'You have created a new account on TDB.\n'
+            'You could login and change it on TDB later.\n'
             '\n'
             f'Your account: {username}\n'
             f'Your password: {random_uuid_password}\n'
             '\n'
             'Sincerely,\n'
-            'Chief Firewall Admin\n'
+            'TDB\n'
         )
         send_mail(
             subject=subject,
