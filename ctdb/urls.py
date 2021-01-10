@@ -7,7 +7,8 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('accounts/', include('accounts.urls')),
-    path('', RedirectView.as_view(url='accounts/login/'), name='index'),
+    path('diaries/', include('diary.urls')),
+    path('', RedirectView.as_view(url='diaries/'), name='index'),
 ]
 
 if settings.DEBUG:

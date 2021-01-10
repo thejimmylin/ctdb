@@ -1,0 +1,26 @@
+{% extends 'diary/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid max-w-24u">
+    <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
+      <div class="col max-w-8u border rounded p-5">
+        <h1 class="text-center mb-5">{% trans 'Diaries' %}</h1>
+        <p class="mx-1 text-secondary">
+          {% trans 'Record things.' %}
+        </p>
+        <a class="btn btn-block text-secondary border" href="{% url 'accounts:signup_with_chief_email' %}" style="line-height: 2rem;">
+          {% trans 'Get started.' %}
+        </a>
+        <br>
+        <p class="mx-1 text-secondary">
+          {% trans 'Do not know how to do?' %}&nbsp;<a href="{% url 'accounts:login' %}" class="text-decoration-none">{% trans 'Example' %}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
