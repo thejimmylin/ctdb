@@ -47,15 +47,15 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'widget_tweaks',  # this package makes it easier to integrate django templates with bootstrap
+    'accounts.apps.AccountsConfig',
+    'telecom.apps.TelecomConfig',
+    'diary.apps.DiaryConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts.apps.AccountsConfig',
-    'telecom.apps.TelecomConfig',
-    'diary.apps.DiaryConfig',
 ]
 
 MIDDLEWARE = [
