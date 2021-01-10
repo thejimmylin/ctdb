@@ -58,9 +58,9 @@
                             {% trans 'Diaries' %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">{% trans 'List' %}</a>
+                            <a class="dropdown-item" href="{% url 'diary:list' %}">{% trans 'List' %}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">{% trans 'Add' %}</a>
+                            <a class="dropdown-item" href="{% url 'diary:add' %}">{% trans 'Add' %}</a>
                         </div>
                     </li>
                     <a class="nav-item nav-link" href="#">
