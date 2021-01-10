@@ -10,10 +10,42 @@
   <div class="container-fluid max-w-24u">
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col max-w-8u border rounded p-5">
-        <form method="post">{% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Save">
+        <h3 class="mb-5">{% trans 'Dairies' %}</h3>
+        <form method="post" novalidate>
+          {% csrf_token %}
+          {% if form.errors|length == 1 %}
+          <p class="text-danger">{% trans "Please correct the error below." %}</p>
+          {% elif form.errors|length > 1 %}
+          <p class="text-danger">{% trans "Please correct the errors below." %}</p>
+          {% endif %}
+          {% for error in form.non_field_errors %}
+          <p class="text-danger">{{ error }}</p>
+          {% endfor %}
+          {% for field in form %}
+          <div class="form-row">
+            <div class="form-group col">
+              {{ field.label_tag }}
+              {% if field.errors %}
+              {% render_field field class+='form-control border-danger' placeholder=field.label %}
+              {% else %}
+              {% render_field field class+='form-control' placeholder=field.label %}
+              {% endif %}
+              {% if field.help_text %}
+              <small class="text-muted d-block px-1">{{ field.help_text }}</small>
+              {% endif %}
+              {% for error in field.errors %}
+              <small class="text-danger d-block px-1">{{ error }}</small>
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+          <div class="form-row">
+            <div class="form-group col">
+              <button type="submit" class="btn btn-success btn-block">{% trans 'Change' %}</button>
+            </div>
+          </div>
         </form>
+      </div>
     </div>
   </div>
 </section>

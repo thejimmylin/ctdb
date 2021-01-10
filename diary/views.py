@@ -16,4 +16,5 @@ class DiaryListView(LoginRequiredMixin, ListView):
 
 class DiaryCreateView(CreateView):
     model = Diary
-    fields = ['todo']
+    fields = ['date', 'todo', 'daily_record', 'daily_check', 'remark', 'created_by']
+    success_url = reverse_lazy('diary:list')
