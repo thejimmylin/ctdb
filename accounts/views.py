@@ -17,6 +17,7 @@ def signup(request):
     return render(request, 'registration/signup.html')
 
 
+# This view doesn't be used in urls.py.
 def signup_with_account_and_password(request):
     """
     A standard signup view.

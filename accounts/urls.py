@@ -32,18 +32,11 @@ urlpatterns = [
 # Custom views about signup.
 urlpatterns += [
     path('signup/', signup, name='signup'),
-    path('signup/with-account-and-password/', signup_with_account_and_password, name='signup_with_account_and_password'),
     path(
-        'signup/with-google-email/',
+        'signup/with-chief-email/',
         signup_with_email,
-        kwargs={'email_endswith_strings': ['@gmail.com']},
-        name='signup_with_google_email'
-    ),
-    path(
-        'signup/with-other-email/',
-        signup_with_email,
-        kwargs={'email_cant_endswith_strings': ['@gmail.com']},
-        name='signup_with_other_email'
+        kwargs={'email_endswith_strings': ['@chief.com.tw']},
+        name='signup_with_chief_email'
     ),
 ]
 
