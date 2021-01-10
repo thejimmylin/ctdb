@@ -1,0 +1,729 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-07 16:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: accounts/forms.py:18 accounts/forms.py:23 accounts/forms.py:124
+#: accounts/forms.py:129
+msgid "Email"
+msgstr "電子信箱"
+
+#: accounts/forms.py:26 accounts/forms.py:132
+msgid "Email cannot be changed after setting."
+msgstr "Email 設定後將無法變更"
+
+#: accounts/forms.py:54
+#, python-format
+msgid "The Email address must end with %(join_email_endswith_strings)s."
+msgstr "電子信箱必須以 %(join_email_endswith_strings)s 結尾。"
+
+#: accounts/forms.py:68
+#, python-format
+msgid ""
+"The Email address must not end with %(join_email_cant_endswith_strings)s."
+msgstr "電子信箱不能以 %(join_email_cant_endswith_strings)s 結尾。"
+
+#: accounts/forms.py:77
+msgid "A user with this Email already exists."
+msgstr "使用此 Email 的使用者已存在"
+
+#: accounts/forms.py:136 accounts/models.py:15
+msgid "Phone number"
+msgstr "電話號碼"
+
+#: accounts/forms.py:167
+msgid "No user registering with this Email."
+msgstr "沒有以這個電子信箱註冊的使用者"
+
+#: accounts/models.py:9
+msgid "User"
+msgstr "使用者"
+
+#: accounts/templates/registration/login.html:11
+#: accounts/templates/registration/login.html:45
+#: accounts/templates/registration/password_change_done.html:23
+#: accounts/templates/registration/password_reset_complete.html:16
+#: accounts/templates/registration/password_reset_done.html:16
+#: accounts/templates/registration/signup.html:25
+#: accounts/templates/registration/signup_with_account_and_password.html:13
+#: accounts/templates/registration/signup_with_email.html:13
+#: fwportal/templates/base.html:142 fwportal/templates/index.html:90
+msgid "Login"
+msgstr "登入"
+
+#: accounts/templates/registration/login.html:13
+msgid "Don't have an account?"
+msgstr "沒有帳號嗎？"
+
+#: accounts/templates/registration/login.html:13
+#: fwportal/templates/index.html:61
+msgid "Create one"
+msgstr "建立"
+
+#: accounts/templates/registration/login.html:19
+#: accounts/templates/registration/password_change_form.html:15
+#: accounts/templates/registration/password_reset_confirm.html:20
+#: accounts/templates/registration/password_reset_form.html:15
+#: accounts/templates/registration/profile_change.html:15
+#: accounts/templates/registration/signup_with_account_and_password.html:18
+#: accounts/templates/registration/signup_with_email.html:18
+#: forti/templates/forti/form.html:26 fwportal/templates/index.html:65
+msgid "Please correct the error below."
+msgstr ""
+
+#: accounts/templates/registration/login.html:21
+#: accounts/templates/registration/password_change_form.html:17
+#: accounts/templates/registration/password_reset_confirm.html:22
+#: accounts/templates/registration/password_reset_form.html:17
+#: accounts/templates/registration/profile_change.html:17
+#: accounts/templates/registration/signup_with_account_and_password.html:20
+#: accounts/templates/registration/signup_with_email.html:20
+#: forti/templates/forti/form.html:28 fwportal/templates/index.html:67
+msgid "Please correct the errors below."
+msgstr ""
+
+#: accounts/templates/registration/login.html:51
+#: fwportal/templates/index.html:94
+msgid "Forgot your password?"
+msgstr "忘記密碼？"
+
+#: accounts/templates/registration/login.html:64
+#: accounts/templates/registration/password_change_form.html:54
+#: accounts/templates/registration/password_reset_complete.html:29
+#: accounts/templates/registration/password_reset_confirm.html:61
+#: accounts/templates/registration/password_reset_done.html:30
+#: accounts/templates/registration/password_reset_form.html:54
+#: accounts/templates/registration/profile_change.html:57
+#: accounts/templates/registration/signup.html:38
+#: accounts/templates/registration/signup_with_account_and_password.html:56
+#: accounts/templates/registration/signup_with_email.html:59
+#: fwportal/templates/base.html:356
+msgid "© 2020 Chief Telecom Inc. All rights reserved."
+msgstr "© 2020 是方電訊股份有限公司，保留所有權利。"
+
+#: accounts/templates/registration/password_change_done.html:14
+#: accounts/templates/registration/password_reset_complete.html:14
+msgid "Done"
+msgstr "完成"
+
+#: accounts/templates/registration/password_change_done.html:22
+msgid "Your password was successfully changed."
+msgstr "你的密碼已成功變更"
+
+#: accounts/templates/registration/password_change_done.html:24
+#: accounts/templates/registration/password_reset_complete.html:17
+#: accounts/templates/registration/password_reset_done.html:18
+msgid "Back to the homepage."
+msgstr "返回首頁"
+
+#: accounts/templates/registration/password_change_form.html:11
+#: fwportal/templates/base.html:87
+msgid "Password change"
+msgstr "密碼變更"
+
+#: accounts/templates/registration/password_change_form.html:39
+msgid "Change my password"
+msgstr "變更我的密碼"
+
+#: accounts/templates/registration/password_reset_complete.html:15
+msgid "Your password has been set."
+msgstr "你的密碼已設定完成"
+
+#: accounts/templates/registration/password_reset_confirm.html:14
+msgid "Set a new password"
+msgstr "設置一個新密碼"
+
+#: accounts/templates/registration/password_reset_confirm.html:16
+msgid "Enter your new password."
+msgstr "輸入你的新密碼"
+
+#: accounts/templates/registration/password_reset_confirm.html:43
+msgid "Change password"
+msgstr "變更密碼"
+
+#: accounts/templates/registration/password_reset_confirm.html:48
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used. Please request a new password reset."
+msgstr "密碼重置連結已失效，可能是因為已經被使用，請重新執行密碼重置。"
+
+#: accounts/templates/registration/password_reset_done.html:14
+msgid "Check your inbox."
+msgstr "檢查你的收件箱"
+
+#: accounts/templates/registration/password_reset_done.html:15
+msgid "We've emailed you instructions."
+msgstr "我們已將指示寄送到你的電子信箱"
+
+#: accounts/templates/registration/password_reset_done.html:15
+msgid "You may check them for following setting."
+msgstr "可供你作為接下來的設定的參考"
+
+#: accounts/templates/registration/password_reset_done.html:17
+msgid "I didn't recieve it."
+msgstr "我沒有收到"
+
+#: accounts/templates/registration/password_reset_form.html:11
+#: fwportal/templates/base.html:89 fwportal/templates/base.html:145
+msgid "Password reset"
+msgstr "密碼重置"
+
+#: accounts/templates/registration/password_reset_form.html:39
+msgid "Reset"
+msgstr "重置"
+
+#: accounts/templates/registration/profile_change.html:11
+#: fwportal/templates/base.html:86
+msgid "Profile"
+msgstr "個人檔案"
+
+#: accounts/templates/registration/profile_change.html:42
+msgid "Change"
+msgstr "變更"
+
+#: accounts/templates/registration/signup.html:11
+#: accounts/templates/registration/signup_with_account_and_password.html:11
+#: accounts/templates/registration/signup_with_account_and_password.html:41
+#: accounts/templates/registration/signup_with_email.html:11
+#: accounts/templates/registration/signup_with_email.html:44
+#: fwportal/templates/base.html:143
+msgid "Sign up"
+msgstr "註冊"
+
+#: accounts/templates/registration/signup.html:13
+msgid ""
+"Choose a way you prefer. Join us and enjoy all the amazing features with us."
+msgstr ""
+
+#: accounts/templates/registration/signup.html:18
+msgid "Continue with Google Email"
+msgstr "以 Google 電子信箱繼續"
+
+#: accounts/templates/registration/signup.html:22
+msgid "Continue with invitation code"
+msgstr "以邀請碼繼續"
+
+#: accounts/templates/registration/signup.html:25
+#: accounts/templates/registration/signup_with_account_and_password.html:13
+#: accounts/templates/registration/signup_with_email.html:13
+msgid "Already have an account?"
+msgstr "已經有帳號了嗎？"
+
+#: accounts/views.py:75
+msgid "Changed successfully."
+msgstr "成功變更"
+
+#: forti/forms.py:136
+msgid "Enable"
+msgstr "啟用"
+
+#: forti/forms.py:137
+msgid "Disable"
+msgstr "不啟用"
+
+#: forti/forms.py:142 forti/templates/forti/firewallpolicy/list.html:39
+msgid "NAT Pool"
+msgstr "NAT 池"
+
+#: forti/forms.py:143
+msgid "If NAT is set to disable, this field won't work."
+msgstr "如果 NAT 不啟用，這個欄位將沒有作用。"
+
+#: forti/templates/forti/delete.html:15
+msgid "Are you sure?"
+msgstr "你確定嗎？"
+
+#: forti/templates/forti/delete.html:22
+#: forti/templates/forti/firewalladdress/list.html:50
+#: forti/templates/forti/firewallippool/list.html:51
+#: forti/templates/forti/firewallpolicy/list.html:54
+#: forti/templates/forti/firewallservicecustom/list.html:52
+#: forti/templates/forti/firewallvip/list.html:51
+#: forti/templates/forti/systeminterface/list.html:51
+msgid "Delete"
+msgstr "刪除"
+
+#: forti/templates/forti/firewalladdress/list.html:16 forti/views.py:45
+#: forti/views.py:139 forti/views.py:298 fwportal/templates/base.html:63
+#: fwportal/templates/base.html:124
+msgid "Address"
+msgstr "位址"
+
+#: forti/templates/forti/firewalladdress/list.html:26
+#: forti/templates/forti/firewallippool/list.html:26
+#: forti/templates/forti/firewallpolicy/list.html:26
+#: forti/templates/forti/firewallservicecustom/list.html:26
+#: forti/templates/forti/firewallvip/list.html:26
+#: forti/templates/forti/systeminterface/list.html:26
+msgid "Add"
+msgstr "新增"
+
+#: forti/templates/forti/firewalladdress/list.html:26
+#: forti/templates/forti/firewallippool/list.html:26
+#: forti/templates/forti/firewallpolicy/list.html:26
+#: forti/templates/forti/firewallservicecustom/list.html:26
+#: forti/templates/forti/firewallvip/list.html:26
+#: forti/templates/forti/systeminterface/list.html:26
+msgid "+"
+msgstr ""
+
+#: forti/templates/forti/firewalladdress/list.html:32
+#: forti/templates/forti/firewallippool/list.html:32
+#: forti/templates/forti/firewallpolicy/list.html:32
+#: forti/templates/forti/firewallservicecustom/list.html:32
+#: forti/templates/forti/firewallvip/list.html:32
+#: forti/templates/forti/systeminterface/list.html:32
+msgid "Action"
+msgstr "動作"
+
+#: forti/templates/forti/firewalladdress/list.html:33
+#: forti/templates/forti/firewallippool/list.html:33
+#: forti/templates/forti/firewallservicecustom/list.html:33
+#: forti/templates/forti/firewallvip/list.html:33
+#: forti/templates/forti/systeminterface/list.html:33
+msgid "Name"
+msgstr "名稱"
+
+#: forti/templates/forti/firewalladdress/list.html:34
+#: forti/templates/forti/systeminterface/list.html:35
+msgid "IP/Mask"
+msgstr "IP/遮罩"
+
+#: forti/templates/forti/firewalladdress/list.html:35
+#: forti/templates/forti/firewallippool/list.html:36
+#: forti/templates/forti/firewallpolicy/list.html:40
+#: forti/templates/forti/firewallservicecustom/list.html:38
+#: forti/templates/forti/firewallvip/list.html:36
+#: forti/templates/forti/systeminterface/list.html:36
+msgid "Remark"
+msgstr "註解"
+
+#: forti/templates/forti/firewalladdress/list.html:46
+#: forti/templates/forti/firewallippool/list.html:47
+#: forti/templates/forti/firewallpolicy/list.html:51
+#: forti/templates/forti/firewallservicecustom/list.html:49
+#: forti/templates/forti/firewallvip/list.html:47
+#: forti/templates/forti/systeminterface/list.html:47
+msgid "Choose"
+msgstr "選擇"
+
+#: forti/templates/forti/firewallippool/list.html:16 forti/views.py:71
+#: forti/views.py:193 forti/views.py:344 fwportal/templates/base.html:67
+msgid "IP Pool"
+msgstr "IP 資源池"
+
+#: forti/templates/forti/firewallippool/list.html:34
+msgid "Start IP"
+msgstr "起始 IP"
+
+#: forti/templates/forti/firewallippool/list.html:35
+msgid "End IP"
+msgstr "終止 IP"
+
+#: forti/templates/forti/firewallpolicy/list.html:33
+msgid "Source Interface"
+msgstr "來源介面"
+
+#: forti/templates/forti/firewallpolicy/list.html:34
+msgid "Destination Interface"
+msgstr "目的介面"
+
+#: forti/templates/forti/firewallpolicy/list.html:35
+msgid "Source Address"
+msgstr "來源位址"
+
+#: forti/templates/forti/firewallpolicy/list.html:36
+msgid "Destination Address"
+msgstr "目的位址"
+
+#: forti/templates/forti/firewallpolicy/list.html:37
+#: forti/templates/forti/firewallservicecustom/list.html:16 forti/views.py:58
+#: forti/views.py:165 forti/views.py:321 fwportal/templates/base.html:64
+#: fwportal/templates/base.html:125
+msgid "Service"
+msgstr "服務"
+
+#: forti/templates/forti/firewallpolicy/list.html:38
+msgid "NAT"
+msgstr ""
+
+#: forti/templates/forti/firewallservicecustom/list.html:34
+msgid "TCP port range start"
+msgstr "TCP 埠起始"
+
+#: forti/templates/forti/firewallservicecustom/list.html:35
+msgid "TCP port range end"
+msgstr "TCP 埠終止"
+
+#: forti/templates/forti/firewallservicecustom/list.html:36
+msgid "UDP port range start"
+msgstr "UDP 埠起始"
+
+#: forti/templates/forti/firewallservicecustom/list.html:37
+msgid "UDP port range end"
+msgstr "UDP 埠終止"
+
+#: forti/templates/forti/firewallvip/list.html:16 forti/views.py:84
+#: forti/views.py:219 forti/views.py:367 fwportal/templates/base.html:68
+msgid "VIP"
+msgstr "虛擬 IP"
+
+#: forti/templates/forti/firewallvip/list.html:34
+msgid "External IP"
+msgstr "外部 IP"
+
+#: forti/templates/forti/firewallvip/list.html:35
+msgid "Mapped IP"
+msgstr "對應 IP"
+
+#: forti/templates/forti/form.html:53
+msgid "Submit"
+msgstr "提交"
+
+#: forti/templates/forti/systeminterface/list.html:16 forti/views.py:32
+#: forti/views.py:112 fwportal/templates/base.html:66
+msgid "Interface"
+msgstr "介面"
+
+#: forti/templates/forti/systeminterface/list.html:34
+msgid "Vlan"
+msgstr ""
+
+#: forti/views.py:97 forti/views.py:245 forti/views.py:390
+#: fwportal/templates/base.html:61 fwportal/templates/base.html:122
+msgid "Policy"
+msgstr "政策"
+
+#: forti/views.py:275
+#, fuzzy
+#| msgid "Interface"
+msgid "Inteface"
+msgstr "介面"
+
+#: fwportal/templates/base.html:34 fwportal/templates/base.html:47
+#: fwportal/templates/base.html:112 fwportal/templates/index.html:16
+msgid "Chief Firewall Admin"
+msgstr ""
+
+#: fwportal/templates/base.html:58
+msgid "Dashboard"
+msgstr "主控台"
+
+#: fwportal/templates/base.html:72 fwportal/templates/base.html:129
+msgid "Documentation"
+msgstr "文檔"
+
+#: fwportal/templates/base.html:75 fwportal/templates/base.html:132
+#: fwportal/templates/index.html:160
+msgid "Examples"
+msgstr "範例"
+
+#: fwportal/templates/base.html:85
+msgid "Logout"
+msgstr "登出"
+
+#: fwportal/templates/base.html:139
+msgid "Guest"
+msgstr "訪客"
+
+#: fwportal/templates/base.html:208
+msgid "Chief Telecom Inc."
+msgstr "是方電訊股份有限公司"
+
+#: fwportal/templates/base.html:212
+msgid "service@chief.com.tw"
+msgstr ""
+
+#: fwportal/templates/base.html:215
+msgid "+886 2-2657-6688"
+msgstr ""
+
+#: fwportal/templates/base.html:218
+msgid "2F., No. 68, Ruiguang Rd., Neihu Dist., Taipei City 114"
+msgstr "台北市 114 內湖區瑞光路 68 號 2 樓"
+
+#: fwportal/templates/base.html:225
+msgid "About Us"
+msgstr "關於我們"
+
+#: fwportal/templates/base.html:229
+msgid ""
+"The leading brand of telecommunication service in Greater China – Chief "
+"Telecom, is a subsidiary of Chunghwa Telecom. By integration of resources "
+"from Chunghwa Telecom and global telecom partners, Chief has a seamless "
+"network service platform across Asia.Chief Telecom is now moving steadily "
+"towards it’s goal of becoming the telecom and cloud service hub in East Asia."
+msgstr ""
+"是方電訊透過數據網路服務、IDC機房服務、語音通信服務、雲端應用服務等四大產品線"
+"為主軸之基本服務，成為台灣地區深耕兩岸三地的二類電信業者，並以本身中立的電信"
+"中心角色，以及「專業、正直、確實、創新、熱情」的核心價值，朝向東亞地區電信樞"
+"紐及企業雲端商務應用服務中心的市場定位邁進。"
+
+#: fwportal/templates/base.html:237
+msgid "Cloud Services"
+msgstr "雲端服務"
+
+#: fwportal/templates/base.html:241
+msgid "Cloud Computing Platform"
+msgstr "雲端運算平台服務"
+
+#: fwportal/templates/base.html:244 fwportal/templates/base.html:303
+msgid "Chief Cloud eXchange"
+msgstr "是方雲端交換中心 (CCX)"
+
+#: fwportal/templates/base.html:247
+msgid "Cloud Security"
+msgstr "雲端資安應用"
+
+#: fwportal/templates/base.html:250
+msgid "Chief APP Cloud"
+msgstr "雲端應用平台"
+
+#: fwportal/templates/base.html:253
+msgid "AWS Direct Connect"
+msgstr "AWS 解決方案"
+
+#: fwportal/templates/base.html:256
+msgid "Microsoft Azure ExpressRoute"
+msgstr "Microsoft Azure 解決方案"
+
+#: fwportal/templates/base.html:259
+msgid "Google Cloud Interconnect"
+msgstr "Google Cloud 解決方案"
+
+#: fwportal/templates/base.html:262
+msgid "IBM Cloud Direct Link"
+msgstr "IBM Cloud 解決方案"
+
+#: fwportal/templates/base.html:268
+msgid "IDC Serives"
+msgstr "機房服務"
+
+#: fwportal/templates/base.html:272
+msgid "About Chief IDC"
+msgstr "關於是方電信機房"
+
+#: fwportal/templates/base.html:275
+msgid "POP Sites"
+msgstr "機房據點"
+
+#: fwportal/templates/base.html:278
+msgid "IDC Services"
+msgstr "機房服務"
+
+#: fwportal/templates/base.html:281
+msgid "IDC Value-added"
+msgstr "機房加值服務"
+
+#: fwportal/templates/base.html:284
+msgid "Online IDC Tour"
+msgstr "線上機房導覽"
+
+#: fwportal/templates/base.html:290
+msgid "Data Services"
+msgstr "數據服務"
+
+#: fwportal/templates/base.html:294
+msgid "Enterprise Networking Solution"
+msgstr "企業私有網路服務"
+
+#: fwportal/templates/base.html:297
+msgid "Internet Access Solutions"
+msgstr "網際網路接取服務"
+
+#: fwportal/templates/base.html:300
+msgid "Taipei Internet eXchange"
+msgstr "台北網際網路交換中心 (TPIX)"
+
+#: fwportal/templates/base.html:309
+msgid "Voice Services"
+msgstr "Chief 070網路電話"
+
+#: fwportal/templates/base.html:313
+msgid "ISR Wholesale Voice"
+msgstr "國際語音批發轉售"
+
+#: fwportal/templates/base.html:316
+msgid "VoIP services"
+msgstr "Chief 070網路電話"
+
+#: fwportal/templates/base.html:319
+msgid "Enterprise Voice"
+msgstr "企業語音節費"
+
+#: fwportal/templates/base.html:325
+msgid "Stay In Touch"
+msgstr "保持聯繫"
+
+#: fwportal/templates/base.html:335
+msgid "Recommended Browser"
+msgstr "建議使用瀏覽器"
+
+#: fwportal/templates/index.html:18
+msgid "— Admin for your own firewall configuration."
+msgstr "— 屬於你的防火牆配置管理者。"
+
+#: fwportal/templates/index.html:31
+msgid "Go to dashboard."
+msgstr "前往主控台"
+
+#: fwportal/templates/index.html:34 fwportal/templates/index.html:227
+msgid "— Start building your own configuration."
+msgstr "— 開始配置屬於你的設定。"
+
+#: fwportal/templates/index.html:40
+msgid "Go to dashboard"
+msgstr "前往主控台"
+
+#: fwportal/templates/index.html:41 fwportal/templates/index.html:235
+msgid "See examples"
+msgstr "查看範例"
+
+#: fwportal/templates/index.html:54
+msgid "Built for everyone"
+msgstr "適合所有人"
+
+#: fwportal/templates/index.html:57
+msgid ""
+"Chief Firewall Admin is a platform for managing your own firewall "
+"configuration. From policies to NAT, you can have your own setup easily and "
+"quickly."
+msgstr ""
+"Chief Firewall Admin 是一個管理你自己的防火牆配置的平台。從防火牆規則到 NAT，"
+"你都能輕易且快速的完成所有設定。"
+
+#: fwportal/templates/index.html:61
+msgid "No account? "
+msgstr "沒有帳號？ "
+
+#: fwportal/templates/index.html:107
+msgid "Independent,"
+msgstr "獨立，"
+
+#: fwportal/templates/index.html:108
+msgid "No server loading."
+msgstr "不存在伺服器負載。"
+
+#: fwportal/templates/index.html:110
+msgid "All the things are done without your OS, no server loading."
+msgstr "所有事在來到你的作業系統前就已經完成，沒有伺服器負載。"
+
+#: fwportal/templates/index.html:121
+msgid "Less loading on server"
+msgstr "更少伺服器負載"
+
+#: fwportal/templates/index.html:129
+msgid "Less coupling between systems"
+msgstr "更少系統間的干擾"
+
+#: fwportal/templates/index.html:137
+msgid "More conentration on services"
+msgstr "更多服務上的專注"
+
+#: fwportal/templates/index.html:145
+msgid "More stabiliy of security"
+msgstr "更多安全穩定性"
+
+#: fwportal/templates/index.html:154
+msgid "Solid & Efficient."
+msgstr "硬派、效率。"
+
+#: fwportal/templates/index.html:156
+msgid "Rule is rule. No ambiguity, no exception."
+msgstr "規則就是規則，沒有曖昧、沒有例外。"
+
+#: fwportal/templates/index.html:165
+msgid "Type"
+msgstr "類型"
+
+#: fwportal/templates/index.html:166
+msgid "Source"
+msgstr "來源"
+
+#: fwportal/templates/index.html:167
+msgid "Destination"
+msgstr "目的"
+
+#: fwportal/templates/index.html:168
+msgid "Ports"
+msgstr ""
+
+#: fwportal/templates/index.html:169 fwportal/templates/index.html:180
+#: fwportal/templates/index.html:189 fwportal/templates/index.html:198
+#: fwportal/templates/index.html:202 fwportal/templates/index.html:203
+#: fwportal/templates/index.html:204 fwportal/templates/index.html:205
+#: fwportal/templates/index.html:206 fwportal/templates/index.html:207
+#: fwportal/templates/index.html:208
+msgid ".."
+msgstr ""
+
+#: fwportal/templates/index.html:170
+msgid "Comments"
+msgstr "註解"
+
+#: fwportal/templates/index.html:175
+msgid "1"
+msgstr ""
+
+#: fwportal/templates/index.html:176
+msgid "Outgress"
+msgstr "流出"
+
+#: fwportal/templates/index.html:177 fwportal/templates/index.html:178
+#: fwportal/templates/index.html:186 fwportal/templates/index.html:187
+#: fwportal/templates/index.html:196
+msgid "0.0.0.0/0"
+msgstr ""
+
+#: fwportal/templates/index.html:179
+msgid "All"
+msgstr ""
+
+#: fwportal/templates/index.html:184
+msgid "2"
+msgstr ""
+
+#: fwportal/templates/index.html:185 fwportal/templates/index.html:194
+msgid "Ingress"
+msgstr "流入"
+
+#: fwportal/templates/index.html:188
+msgid "TCP:80, TCP:443"
+msgstr ""
+
+#: fwportal/templates/index.html:190
+msgid "For web service"
+msgstr "供 Web service 使用"
+
+#: fwportal/templates/index.html:193
+msgid "3"
+msgstr ""
+
+#: fwportal/templates/index.html:195
+msgid "65.61.168.0/24"
+msgstr ""
+
+#: fwportal/templates/index.html:197
+msgid "TCP:22"
+msgstr ""
+
+#: fwportal/templates/index.html:199
+msgid "For remote access"
+msgstr "供遠端連線使用"
+
+#: fwportal/templates/index.html:224 fwportal/templates/index.html:232
+msgid "Get started now"
+msgstr "現在開始"
