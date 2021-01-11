@@ -2,6 +2,8 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -14,31 +16,30 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: .\accounts\forms.py:17 .\accounts\forms.py:22 .\accounts\forms.py:141
 #: .\accounts\forms.py:146
 msgid "Email"
-msgstr "電子信箱"
+msgstr ""
 
 #: .\accounts\forms.py:25
 msgid "Email cannot be changed after setting."
-msgstr "Email 設定後將無法變更"
+msgstr ""
 
 #: .\accounts\forms.py:53
 #, python-format
 msgid "The Email address must end with %(join_email_endswith_strings)s."
-msgstr "電子信箱必須以 %(join_email_endswith_strings)s 結尾。"
+msgstr ""
 
 #: .\accounts\forms.py:67
 #, python-format
 msgid ""
 "The Email address must not end with %(join_email_cant_endswith_strings)s."
-msgstr "電子信箱不能以 %(join_email_cant_endswith_strings)s 結尾。"
+msgstr ""
 
 #: .\accounts\forms.py:76
 msgid "A user with this Email already exists."
-msgstr "使用此 Email 的使用者已存在"
+msgstr ""
 
 #: .\accounts\forms.py:123
 msgid "Staff code"
@@ -50,30 +51,30 @@ msgstr ""
 
 #: .\accounts\forms.py:135 .\accounts\models.py:16
 msgid "Phone number"
-msgstr "電話號碼"
+msgstr ""
 
 #: .\accounts\forms.py:181
 msgid "No user registering with this Email."
-msgstr "沒有以這個電子信箱註冊的使用者"
+msgstr ""
 
 #: .\accounts\models.py:9
 msgid "User"
-msgstr "使用者"
+msgstr ""
 
 #: .\accounts\models.py:22
 #: .\accounts\templates\registration\profile_change.html:11
 #: .\ctdb\templates\base.html:78
 msgid "Profile"
-msgstr "個人檔案"
+msgstr ""
 
 #: .\accounts\models.py:23
 msgid "Profiles"
-msgstr "個人檔案"
+msgstr ""
 
 #: .\accounts\templates\registration\base.html:10
 #: .\diary\templates\diary\base.html:10
 msgid "© 2020 Chief Telecom Inc. All rights reserved."
-msgstr "© 2020 是方電訊股份有限公司，保留所有權利。"
+msgstr ""
 
 #: .\accounts\templates\registration\login.html:11
 #: .\accounts\templates\registration\login.html:45
@@ -85,15 +86,15 @@ msgstr "© 2020 是方電訊股份有限公司，保留所有權利。"
 #: .\accounts\templates\registration\signup_with_email.html:13
 #: .\ctdb\templates\base.html:123
 msgid "Login"
-msgstr "登入"
+msgstr ""
 
 #: .\accounts\templates\registration\login.html:13
 msgid "Don't have an account?"
-msgstr "沒有帳號嗎？"
+msgstr ""
 
 #: .\accounts\templates\registration\login.html:13
 msgid "Create one"
-msgstr "建立"
+msgstr ""
 
 #: .\accounts\templates\registration\login.html:19
 #: .\accounts\templates\registration\password_change_form.html:15
@@ -119,84 +120,84 @@ msgstr ""
 
 #: .\accounts\templates\registration\login.html:51
 msgid "Forgot your password?"
-msgstr "忘記密碼？"
+msgstr ""
 
 #: .\accounts\templates\registration\password_change_done.html:14
 #: .\accounts\templates\registration\password_reset_complete.html:14
 msgid "Done"
-msgstr "完成"
+msgstr ""
 
 #: .\accounts\templates\registration\password_change_done.html:17
 msgid "Your password was successfully changed."
-msgstr "你的密碼已成功變更"
+msgstr ""
 
 #: .\accounts\templates\registration\password_change_done.html:19
 #: .\accounts\templates\registration\password_reset_complete.html:17
 #: .\accounts\templates\registration\password_reset_done.html:18
 msgid "Back to the homepage."
-msgstr "返回首頁"
+msgstr ""
 
 #: .\accounts\templates\registration\password_change_form.html:11
 #: .\ctdb\templates\base.html:79
 msgid "Password change"
-msgstr "密碼變更"
+msgstr ""
 
 #: .\accounts\templates\registration\password_change_form.html:39
 msgid "Change my password"
-msgstr "變更我的密碼"
+msgstr ""
 
 #: .\accounts\templates\registration\password_reset_complete.html:15
 msgid "Your password has been set."
-msgstr "你的密碼已設定完成"
+msgstr ""
 
 #: .\accounts\templates\registration\password_reset_confirm.html:14
 msgid "Set a new password"
-msgstr "設置一個新密碼"
+msgstr ""
 
 #: .\accounts\templates\registration\password_reset_confirm.html:16
 msgid "Enter your new password."
-msgstr "輸入你的新密碼"
+msgstr ""
 
 #: .\accounts\templates\registration\password_reset_confirm.html:43
 msgid "Change password"
-msgstr "變更密碼"
+msgstr ""
 
 #: .\accounts\templates\registration\password_reset_confirm.html:48
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
-msgstr "密碼重置連結已失效，可能是因為已經被使用，請重新執行密碼重置。"
+msgstr ""
 
 #: .\accounts\templates\registration\password_reset_done.html:14
 msgid "Check your inbox."
-msgstr "檢查你的收件箱"
+msgstr ""
 
 #: .\accounts\templates\registration\password_reset_done.html:15
 msgid "We've emailed you instructions."
-msgstr "我們已將指示寄送到你的電子信箱"
+msgstr ""
 
 #: .\accounts\templates\registration\password_reset_done.html:15
 msgid "You may check them for following setting."
-msgstr "可供你作為接下來的設定的參考"
+msgstr ""
 
 #: .\accounts\templates\registration\password_reset_done.html:17
 msgid "I didn't recieve it."
-msgstr "我沒有收到"
+msgstr ""
 
 #: .\accounts\templates\registration\password_reset_form.html:11
 #: .\ctdb\templates\base.html:81 .\ctdb\templates\base.html:126
 msgid "Password reset"
-msgstr "密碼重置"
+msgstr ""
 
 #: .\accounts\templates\registration\password_reset_form.html:39
 msgid "Reset"
-msgstr "重置"
+msgstr ""
 
 #: .\accounts\templates\registration\profile_change.html:42
 #: .\diary\templates\diary\diary_form.html:44
 #: .\diary\templates\diary\diary_list.html:31
 msgid "Change"
-msgstr "變更"
+msgstr ""
 
 #: .\accounts\templates\registration\signup.html:11
 #: .\accounts\templates\registration\signup_with_account_and_password.html:11
@@ -205,25 +206,25 @@ msgstr "變更"
 #: .\accounts\templates\registration\signup_with_email.html:44
 #: .\ctdb\templates\base.html:124
 msgid "Sign up"
-msgstr "註冊"
+msgstr ""
 
 #: .\accounts\templates\registration\signup.html:13
 msgid "Join us and enjoy all the amazing features with us."
-msgstr "加入我們以使用更多功能"
+msgstr ""
 
 #: .\accounts\templates\registration\signup.html:16
 msgid "Continue with Chief Email"
-msgstr "以 Chief 電子信箱繼續"
+msgstr ""
 
 #: .\accounts\templates\registration\signup.html:20
 #: .\accounts\templates\registration\signup_with_account_and_password.html:13
 #: .\accounts\templates\registration\signup_with_email.html:13
 msgid "Already have an account?"
-msgstr "已經有帳號了嗎？"
+msgstr ""
 
 #: .\accounts\views.py:76
 msgid "Changed successfully."
-msgstr "成功變更"
+msgstr ""
 
 #: .\ctdb\templates\base.html:34 .\ctdb\templates\base.html:47
 #: .\ctdb\templates\base.html:104
@@ -233,78 +234,78 @@ msgstr ""
 #: .\ctdb\templates\base.html:58 .\diary\templates\diary\diary_form.html:13
 #: .\diary\templates\diary\index.html:11
 msgid "Diaries"
-msgstr "日誌"
+msgstr ""
 
 #: .\ctdb\templates\base.html:61
 msgid "List"
-msgstr "列表"
+msgstr ""
 
 #: .\ctdb\templates\base.html:63
 msgid "Add"
-msgstr "新增"
+msgstr ""
 
 #: .\ctdb\templates\base.html:67 .\ctdb\templates\base.html:113
 msgid "About"
-msgstr "關於"
+msgstr ""
 
 #: .\ctdb\templates\base.html:77
 msgid "Logout"
-msgstr "登出"
+msgstr ""
 
 #: .\ctdb\templates\base.html:120
 msgid "Guest"
-msgstr "訪客"
+msgstr ""
 
 #: .\diary\templates\diary\diary_list.html:13
 msgid "Action"
-msgstr "動作"
+msgstr ""
 
 #: .\diary\templates\diary\diary_list.html:14
 msgid "Date"
-msgstr "日期"
+msgstr ""
 
 #: .\diary\templates\diary\diary_list.html:15
 msgid "To do"
-msgstr "代辦事項"
+msgstr ""
 
 #: .\diary\templates\diary\diary_list.html:16
 msgid "Daily check"
-msgstr "日檢"
+msgstr ""
 
 #: .\diary\templates\diary\diary_list.html:27
 msgid "Choose"
-msgstr "選擇"
+msgstr ""
 
 #: .\diary\templates\diary\diary_list.html:33
 msgid "Delete"
-msgstr "刪除"
+msgstr ""
 
 #: .\diary\templates\diary\diary_list.html:43
 msgid "No diary."
-msgstr "沒有日誌"
+msgstr ""
 
 #: .\diary\templates\diary\diary_list.html:53
 #: .\diary\templates\diary\diary_list.html:57
 msgid "Previous"
-msgstr "上一個"
+msgstr ""
 
 #: .\diary\templates\diary\diary_list.html:62
 #: .\diary\templates\diary\diary_list.html:66
 msgid "Next"
-msgstr "下一個"
+msgstr ""
 
 #: .\diary\templates\diary\index.html:13
 msgid "Record things."
-msgstr "紀錄事情"
+msgstr ""
 
 #: .\diary\templates\diary\index.html:16
 msgid "Get started."
-msgstr "開始"
+msgstr ""
 
 #: .\diary\templates\diary\index.html:20
 msgid "Do not know how to do?"
-msgstr "不知道怎麼做嗎？"
+msgstr ""
 
 #: .\diary\templates\diary\index.html:20
 msgid "Example"
-msgstr "範例"
+msgstr ""
