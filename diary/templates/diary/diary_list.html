@@ -37,7 +37,7 @@
                         </td>
                             <td>{{ diary.date|date:"Y-m-d" }}</td>
                             <td>{{ diary.todo }}</td>
-                            <td>{{ diary.daily_check }}</td>
+                            <td>{% if diary.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td>
                         </tr>
                         {% empty %}
                         <tr>

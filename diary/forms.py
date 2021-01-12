@@ -37,9 +37,10 @@ class DiaryForm(forms.ModelForm):
         ),
         label=_('Daily record'),
     )
-    daily_check = forms.BooleanField(
-        widget=forms.CheckboxInput(
-            attrs={'class': 'text-left'},
+    daily_check = forms.ChoiceField(
+        choices=(
+            ('yes', _('Yes')),
+            ('no', _('No')),
         ),
         label=_('Daily check'),
     )
