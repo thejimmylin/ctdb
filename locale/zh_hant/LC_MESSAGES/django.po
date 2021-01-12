@@ -286,12 +286,12 @@ msgstr "沒有日誌"
 #: .\diary\templates\diary\diary_list.html:53
 #: .\diary\templates\diary\diary_list.html:57
 msgid "Previous"
-msgstr "上一個"
+msgstr "上一頁"
 
 #: .\diary\templates\diary\diary_list.html:62
 #: .\diary\templates\diary\diary_list.html:66
 msgid "Next"
-msgstr "下一個"
+msgstr "下一頁"
 
 #: .\diary\templates\diary\index.html:13
 msgid "Record things."
