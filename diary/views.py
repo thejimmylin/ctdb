@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Diary
+from .forms import DiaryForm
 
 
 class DiaryListView(LoginRequiredMixin, ListView):
@@ -17,7 +18,7 @@ class DiaryListView(LoginRequiredMixin, ListView):
 
 class DiaryCreateView(LoginRequiredMixin, CreateView):
     model = Diary
-    fields = ['date', 'todo', 'daily_record', 'daily_check', 'remark']
+    form_class = DiaryForm
     success_url = reverse_lazy('diary:list')
 
     def form_valid(self, form):
@@ -27,7 +28,7 @@ class DiaryCreateView(LoginRequiredMixin, CreateView):
 
 class DiaryUpdateView(LoginRequiredMixin, UpdateView):
     model = Diary
-    fields = ['date', 'todo', 'daily_record', 'daily_check', 'remark']
+    form_class = DiaryForm
     success_url = reverse_lazy('diary:list')
 
     def form_valid(self, form):
