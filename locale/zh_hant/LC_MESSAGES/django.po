@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-11 13:53+0800\n"
+"POT-Creation-Date: 2021-01-12 14:17+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -194,7 +194,7 @@ msgstr "重置"
 
 #: .\accounts\templates\registration\profile_change.html:42
 #: .\diary\templates\diary\diary_form.html:44
-#: .\diary\templates\diary\diary_list.html:31
+#: .\diary\templates\diary\diary_list.html:32
 msgid "Change"
 msgstr "變更"
 
@@ -255,41 +255,53 @@ msgstr "登出"
 msgid "Guest"
 msgstr "訪客"
 
-#: .\diary\templates\diary\diary_list.html:13
-msgid "Action"
-msgstr "動作"
-
-#: .\diary\templates\diary\diary_list.html:14
+#: .\diary\models.py:8 .\diary\templates\diary\diary_list.html:15
 msgid "Date"
 msgstr "日期"
 
-#: .\diary\templates\diary\diary_list.html:15
+#: .\diary\models.py:9 .\diary\templates\diary\diary_list.html:16
 msgid "To do"
-msgstr "代辦事項"
+msgstr "待辦事項"
 
-#: .\diary\templates\diary\diary_list.html:16
+#: .\diary\models.py:10
+msgid "Daily record"
+msgstr "日常紀錄"
+
+#: .\diary\models.py:12
+msgid "Remark"
+msgstr "備註"
+
+#: .\diary\models.py:13
+msgid "Created by"
+msgstr "建立者"
+
+#: .\diary\templates\diary\diary_list.html:14
+msgid "Action"
+msgstr "動作"
+
+#: .\diary\templates\diary\diary_list.html:17
 msgid "Daily check"
-msgstr "日檢"
+msgstr "日檢核"
 
-#: .\diary\templates\diary\diary_list.html:27
+#: .\diary\templates\diary\diary_list.html:28
 msgid "Choose"
 msgstr "選擇"
 
-#: .\diary\templates\diary\diary_list.html:33
+#: .\diary\templates\diary\diary_list.html:34
 msgid "Delete"
 msgstr "刪除"
 
-#: .\diary\templates\diary\diary_list.html:43
+#: .\diary\templates\diary\diary_list.html:44
 msgid "No diary."
 msgstr "沒有日誌"
 
-#: .\diary\templates\diary\diary_list.html:53
-#: .\diary\templates\diary\diary_list.html:57
+#: .\diary\templates\diary\diary_list.html:54
+#: .\diary\templates\diary\diary_list.html:58
 msgid "Previous"
 msgstr "上一頁"
 
-#: .\diary\templates\diary\diary_list.html:62
-#: .\diary\templates\diary\diary_list.html:66
+#: .\diary\templates\diary\diary_list.html:63
+#: .\diary\templates\diary\diary_list.html:67
 msgid "Next"
 msgstr "下一頁"
 
