@@ -7,67 +7,69 @@
 <section class="content">
     <div class="container-fluid max-w-24u">
         <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th style="width: 120px;">{% trans 'Action' %}</th>
-                        <th style="width: 120px;">{% trans 'Date' %}</th>
-                        <th>{% trans 'To do' %}</th>
-                        <th style="width: 120px;">{% trans 'Daily check' %}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for diary in object_list %}
-                    <tr>
-                    <td>
-                        <div class="dropdown show">
-                            <button class="btn btn-light bg-light dropdown-toggle" href="#" role="button"
-                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                {% trans 'Choose' %}
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item"
-                                    href="#{{ diary.pk }}">{% trans 'Change' %}</a>
-                                <a class="dropdown-item"
-                                    href="#{{ diary.pk }}">{% trans 'Delete' %}</a>
+            <div class="col">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 120px;">{% trans 'Action' %}</th>
+                            <th style="width: 120px;">{% trans 'Date' %}</th>
+                            <th>{% trans 'To do' %}</th>
+                            <th style="width: 120px;">{% trans 'Daily check' %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for diary in object_list %}
+                        <tr>
+                        <td>
+                            <div class="dropdown show">
+                                <button class="btn btn-light bg-light dropdown-toggle" href="#" role="button"
+                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    {% trans 'Choose' %}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item"
+                                        href="#{{ diary.pk }}">{% trans 'Change' %}</a>
+                                    <a class="dropdown-item"
+                                        href="#{{ diary.pk }}">{% trans 'Delete' %}</a>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                        <td>{{ diary.date|date:"Y-m-d" }}</td>
-                        <td>{{ diary.todo }}</td>
-                        <td>{{ diary.daily_check }}</td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td class='text-center text-secondary' colspan="4">{% trans 'No diary.' %}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-
-            {% if is_paginated %}
-            <ul class="pagination">
-                {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans 'Previous' %}</a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#">{% trans 'Previous' %}</a>
-                </li>
+                        </td>
+                            <td>{{ diary.date|date:"Y-m-d" }}</td>
+                            <td>{{ diary.todo }}</td>
+                            <td>{{ diary.daily_check }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td class='text-center text-secondary' colspan="4">{% trans 'No diary.' %}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+    
+                {% if is_paginated %}
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans 'Previous' %}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">{% trans 'Previous' %}</a>
+                    </li>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans 'Next' %}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">{% trans 'Next' %}</a>
+                    </li>
+                    {% endif %}
+                </ul>
                 {% endif %}
-                {% if page_obj.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans 'Next' %}</a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#">{% trans 'Next' %}</a>
-                </li>
-                {% endif %}
-            </ul>
-            {% endif %}
+            </div>
 
         </div>
     </div>
