@@ -1,5 +1,5 @@
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Diary
@@ -34,3 +34,8 @@ class DiaryUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
+
+
+class DiaryDeleteView(LoginRequiredMixin, DeleteView):
+    model = Diary
+    success_url = reverse_lazy('diary:list')
