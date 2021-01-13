@@ -19,14 +19,13 @@ class DiaryForm(forms.ModelForm):
         label=_('Date'),
         initial=today,
     )
-    todo = forms.CharField(
-        widget=forms.Textarea(
-            attrs={
-                'placeholder': _('To do'),
-                'rows': 4,
-            },
+    daily_check = forms.ChoiceField(
+        choices=(
+            ('yes', _('Yes')),
+            ('no', _('No')),
         ),
-        label=_('To do'),
+        label=_('Daily check'),
+        initial='no',
     )
     daily_record = forms.CharField(
         widget=forms.Textarea(
@@ -37,12 +36,15 @@ class DiaryForm(forms.ModelForm):
         ),
         label=_('Daily record'),
     )
-    daily_check = forms.ChoiceField(
-        choices=(
-            ('yes', _('Yes')),
-            ('no', _('No')),
+    todo = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': _('To do'),
+                'rows': 4,
+            },
         ),
-        label=_('Daily check'),
+        label=_('To do'),
+        required=False,
     )
     remark = forms.CharField(
         widget=forms.Textarea(

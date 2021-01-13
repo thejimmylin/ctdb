@@ -11,10 +11,10 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th style="width: 120px;">{% trans 'Action' %}</th>
-                            <th style="width: 120px;">{% trans 'Date' %}</th>
-                            <th>{% trans 'To do' %}</th>
-                            <th style="width: 120px;">{% trans 'Daily check' %}</th>
+                            <th style="width: 6rem;">{% trans 'Action' %}</th>
+                            <th style="width: 7rem;">{% trans 'Date' %}</th>
+                            <th style="width: 6rem;">{% trans 'Daily check' %}</th>
+                            <th>{% trans 'Daily record' %}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,8 +36,8 @@
                             </div>
                         </td>
                             <td>{{ diary.date|date:"Y-m-d" }}</td>
-                            <td>{{ diary.todo }}</td>
                             <td>{% if diary.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td>
+                            <td>{{ diary.daily_record }}</td>
                         </tr>
                         {% empty %}
                         <tr>
