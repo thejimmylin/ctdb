@@ -15,7 +15,6 @@ class Diary(models.Model):
     class Meta():
         verbose_name = _('Diary')
         verbose_name_plural = _('Diaries')
-        unique_together = ('date', 'created_by')
 
     def __str__(self):
         return self.todo[:8] + '..'
