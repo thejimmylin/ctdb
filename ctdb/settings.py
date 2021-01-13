@@ -114,7 +114,11 @@ DATABASES_MSSQL = {
     },
 }
 
-DATABASES = DATABASES_MSSQL
+IS_PRODUCTION = (get_secret('IS_PRODUCTION') == 'true')
+if IS_PRODUCTION:
+    DATABASES = DATABASES_MSSQL
+else:
+    DATABASES = DATABASES_SQLITE
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
