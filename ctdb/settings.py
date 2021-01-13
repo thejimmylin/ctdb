@@ -106,7 +106,7 @@ DATABASES_MSSQL = {
         'NAME': 'T21',
         'USER': 'jimmy_lin',
         'PASSWORD': get_secret('DATABASES_MSSQL_PASSWORD'),
-        'HOST': '150.117.123.35',
+        'HOST': '10.210.31.15',
         'PORT': '',
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',
@@ -114,7 +114,7 @@ DATABASES_MSSQL = {
     },
 }
 
-DATABASES = DATABASES_SQLITE
+DATABASES = DATABASES_MSSQL
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -139,7 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
         'OPTIONS': {
-            'min_length': 8,
+            'min_length': 6,
         }
     },
 ]
