@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Diary(models.Model):
 
-    date = models.DateField(verbose_name=_('Date'), null=True, unique=True)
+    date = models.DateField(verbose_name=_('Date'), null=True)
     daily_check = models.CharField(verbose_name=_('Daily check'), max_length=15)
     daily_record = models.TextField(verbose_name=_('Daily record'), null=True)
     todo = models.TextField(verbose_name=_('To do'), null=True, blank=True)
@@ -15,6 +15,7 @@ class Diary(models.Model):
     class Meta():
         verbose_name = _('Diary')
         verbose_name_plural = _('Diaries')
+        unique_together = ('date', 'created_by')
 
     def __str__(self):
         return self.todo[:8] + '..'
