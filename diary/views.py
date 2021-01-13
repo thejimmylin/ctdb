@@ -12,7 +12,7 @@ class DiaryListView(LoginRequiredMixin, ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        queryset = super().get_queryset().filter(created_by=self.request.user).order_by('date', 'id')
+        queryset = super().get_queryset().filter(created_by=self.request.user).order_by('-date', '-id')
         return queryset
 
 
