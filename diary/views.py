@@ -2,6 +2,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+# from django.shortcuts import render, redirect
 from .models import Diary
 from .forms import DiaryForm
 
@@ -24,6 +25,25 @@ class DiaryCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
+
+
+# def diary_create(request):
+#     template = 'diary/diary_form.html'
+#     form_class = DiaryForm
+#     success_url = reverse_lazy('diary:list')
+#     if not request.user.is_authenticated:
+#         return redirect('accounts:login')
+#     if request.method == 'POST':
+#         diary = Diary(created_by=request.user)
+#         form = form_class(request.POST, instance=diary)
+#         if form.is_valid():
+#             form.save()
+#             return redirect(success_url)
+#     form = form_class()
+#     context = {
+#         'form': form
+#     }
+#     return render(request, template, context)
 
 
 class DiaryUpdateView(LoginRequiredMixin, UpdateView):
