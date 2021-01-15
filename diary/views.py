@@ -18,7 +18,7 @@ class DiaryListView(LoginRequiredMixin, ListView):
 
 
 class DiaryCreateView(LoginRequiredMixin, CreateView):
-    model = Diary
+    template_name = 'diary/diary_form.html'
     form_class = DiaryForm
     success_url = reverse_lazy('diary:list')
 
