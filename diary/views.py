@@ -1,10 +1,11 @@
-from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.list import ListView
+
+from .forms import DiaryModelForm
 # from django.shortcuts import render, redirect
 from .models import Diary
-from .forms import DiaryModelForm
 
 
 class DiaryListView(LoginRequiredMixin, ListView):

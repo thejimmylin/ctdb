@@ -1,10 +1,9 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
 class Diary(models.Model):
-
     date = models.DateField(verbose_name=_('Date'), null=True)
     daily_check = models.CharField(verbose_name=_('Daily check'), max_length=15)
     daily_record = models.TextField(verbose_name=_('Daily record'), null=True)
