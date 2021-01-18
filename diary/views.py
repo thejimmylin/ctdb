@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 # from django.shortcuts import render, redirect
 from .models import Diary
-from .forms import DiaryForm
+from .forms import DiaryModelForm
 
 
 class DiaryListView(LoginRequiredMixin, ListView):
@@ -19,7 +19,7 @@ class DiaryListView(LoginRequiredMixin, ListView):
 
 class DiaryCreateView(LoginRequiredMixin, CreateView):
     template_name = 'diary/diary_form.html'
-    form_class = DiaryForm
+    form_class = DiaryModelForm
     success_url = reverse_lazy('diary:list')
 
     def form_valid(self, form):
@@ -29,7 +29,7 @@ class DiaryCreateView(LoginRequiredMixin, CreateView):
 
 # def diary_create(request):
 #     template = 'diary/diary_form.html'
-#     form_class = DiaryForm
+#     form_class = DiaryModelForm
 #     success_url = reverse_lazy('diary:list')
 #     if not request.user.is_authenticated:
 #         return redirect('accounts:login')
@@ -48,7 +48,7 @@ class DiaryCreateView(LoginRequiredMixin, CreateView):
 
 class DiaryUpdateView(LoginRequiredMixin, UpdateView):
     model = Diary
-    form_class = DiaryForm
+    form_class = DiaryModelForm
     success_url = reverse_lazy('diary:list')
 
     def form_valid(self, form):

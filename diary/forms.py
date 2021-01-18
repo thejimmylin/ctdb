@@ -8,7 +8,7 @@ def today():
     return timezone.localtime(timezone.now()).date()
 
 
-class DiaryForm(forms.ModelForm):
+class DiaryModelForm(forms.ModelForm):
 
     date = forms.DateField(
         widget=forms.DateInput(
