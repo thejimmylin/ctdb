@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-13 13:41+0800\n"
+"POT-Creation-Date: 2021-01-19 14:19+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -232,7 +232,7 @@ msgstr "成功變更"
 msgid "TDB"
 msgstr ""
 
-#: .\ctdb\templates\base.html:58 .\diary\models.py:17
+#: .\ctdb\templates\base.html:58 .\diary\models.py:16
 #: .\diary\templates\diary\diary_confirm_delete.html:11
 #: .\diary\templates\diary\diary_form.html:11
 #: .\diary\templates\diary\index.html:11
@@ -259,42 +259,46 @@ msgstr "登出"
 msgid "Guest"
 msgstr "訪客"
 
-#: .\diary\forms.py:19 .\diary\models.py:8
+#: .\diary\forms.py:15 .\diary\models.py:7
 #: .\diary\templates\diary\diary_list.html:15
 msgid "Date"
 msgstr "日期"
 
-#: .\diary\forms.py:24 .\diary\templates\diary\diary_list.html:39
+#: .\diary\forms.py:19 .\diary\templates\diary\diary_list.html:39
 msgid "Yes"
 msgstr ""
 
-#: .\diary\forms.py:25 .\diary\templates\diary\diary_list.html:39
+#: .\diary\forms.py:20 .\diary\templates\diary\diary_list.html:39
 msgid "No"
 msgstr ""
 
-#: .\diary\forms.py:27 .\diary\models.py:9
+#: .\diary\forms.py:22 .\diary\models.py:8
 #: .\diary\templates\diary\diary_list.html:16
 msgid "Daily check"
 msgstr "日檢核"
 
-#: .\diary\forms.py:33 .\diary\forms.py:37 .\diary\models.py:10
+#: .\diary\forms.py:28 .\diary\forms.py:32 .\diary\models.py:9
 #: .\diary\templates\diary\diary_list.html:17
 msgid "Daily record"
 msgstr "日常紀錄"
 
-#: .\diary\forms.py:42 .\diary\forms.py:46 .\diary\models.py:11
+#: .\diary\forms.py:37 .\diary\forms.py:41 .\diary\models.py:10
 msgid "To do"
 msgstr "待辦事項"
 
-#: .\diary\forms.py:52 .\diary\forms.py:56 .\diary\models.py:12
+#: .\diary\forms.py:47 .\diary\forms.py:51 .\diary\models.py:11
 msgid "Remark"
 msgstr "備註"
 
-#: .\diary\models.py:13
+#: .\diary\forms.py:64
+msgid "The diary with this date has already existed."
+msgstr "這個日期的日誌已經存在。"
+
+#: .\diary\models.py:12
 msgid "Created by"
 msgstr "建立者"
 
-#: .\diary\models.py:16
+#: .\diary\models.py:15
 msgid "Diary"
 msgstr "日誌"
 

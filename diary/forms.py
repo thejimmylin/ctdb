@@ -61,4 +61,4 @@ class DiaryModelForm(forms.ModelForm):
         try:
             self.instance.validate_unique()
         except forms.ValidationError:
-            self.add_error(field=None, error=_('The diary with this date has already existed.'))
+            self.add_error(field='date', error=_('The diary with this date has already existed.'))
