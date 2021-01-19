@@ -1,12 +1,7 @@
 from django import forms
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from .models import Diary
-
-
-def today():
-    return timezone.localtime(timezone.now()).date()
 
 
 class DiaryModelForm(forms.ModelForm):
@@ -18,7 +13,6 @@ class DiaryModelForm(forms.ModelForm):
             },
         ),
         label=_('Date'),
-        initial=today,
     )
     daily_check = forms.ChoiceField(
         choices=(
@@ -61,3 +55,10 @@ class DiaryModelForm(forms.ModelForm):
     class Meta():
         model = Diary
         exclude = ['created_by']
+
+    def full_clean(self):
+        super().full_clean()
+        try:
+            self.instance.validate_unique()
+        except forms.ValidationError:
+            self.add_error(field=None, error=_('The diary with this date has already existed.'))

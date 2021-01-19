@@ -4,8 +4,12 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
 from .forms import DiaryModelForm
-# from django.shortcuts import render, redirect
 from .models import Diary
+from django.utils import timezone
+
+
+def today():
+    return timezone.localtime(timezone.now()).date()
 
 
 class DiaryListView(LoginRequiredMixin, ListView):
@@ -22,28 +26,10 @@ class DiaryCreateView(LoginRequiredMixin, CreateView):
     form_class = DiaryModelForm
     success_url = reverse_lazy('diary:list')
 
-    def form_valid(self, form):
-        form.instance.created_by = self.request.user
-        return super().form_valid(form)
-
-
-# def diary_create(request):
-#     template = 'diary/diary_form.html'
-#     form_class = DiaryModelForm
-#     success_url = reverse_lazy('diary:list')
-#     if not request.user.is_authenticated:
-#         return redirect('accounts:login')
-#     if request.method == 'POST':
-#         diary = Diary(created_by=request.user)
-#         form = form_class(request.POST, instance=diary)
-#         if form.is_valid():
-#             form.save()
-#             return redirect(success_url)
-#     form = form_class()
-#     context = {
-#         'form': form
-#     }
-#     return render(request, template, context)
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['instance'] = Diary(created_by=self.request.user, date=today())
+        return kwargs
 
 
 class DiaryUpdateView(LoginRequiredMixin, UpdateView):
