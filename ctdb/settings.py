@@ -198,14 +198,26 @@ LOGOUT_REDIRECT_URL = '/'
 
 
 # SMTP things
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'j3ycode@gmail.com'
-EMAIL_HOST_PASSWORD = get_secret('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = 'TDB <j3ycode@gmail.com>'
-SERVER_EMAIL = 'TDB <j3ycode@gmail.com>'
+USE_GMAIL = False
+
+if USE_GMAIL:
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST_USER = 'j3ycode@gmail.com'
+    EMAIL_HOST_PASSWORD = get_secret('EMAIL_HOST_PASSWORD')
+    DEFAULT_FROM_EMAIL = 'TDB <j3ycode@gmail.com>'
+    SERVER_EMAIL = 'TDB <j3ycode@gmail.com>'
+else:
+    EMAIL_HOST = '223.26.68.17'
+    EMAIL_USE_TLS = False
+    EMAIL_PORT = 25
+    EMAIL_HOST_USER = ''
+    EMAIL_HOST_PASSWORD = ''
+    DEFAULT_FROM_EMAIL = 'TDB <TDB@chief.com.tw>'
+    SERVER_EMAIL = 'TDB <TDB@chief.com.tw>'
 
 
 # Authentication things
