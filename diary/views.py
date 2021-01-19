@@ -9,7 +9,6 @@ from .models import Diary
 
 
 class DiaryListView(LoginRequiredMixin, ListView):
-    login_url = reverse_lazy('accounts:login')
     model = Diary
     paginate_by = 5
 
