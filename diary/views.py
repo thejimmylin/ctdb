@@ -37,10 +37,6 @@ class DiaryUpdateView(LoginRequiredMixin, UpdateView):
     form_class = DiaryModelForm
     success_url = reverse_lazy('diary:list')
 
-    def form_valid(self, form):
-        form.instance.created_by = self.request.user
-        return super().form_valid(form)
-
 
 class DiaryDeleteView(LoginRequiredMixin, DeleteView):
     model = Diary
