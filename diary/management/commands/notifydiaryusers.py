@@ -24,7 +24,7 @@ class Command(BaseCommand):
         users = User.objects.all()
         for user in users:
             print(f'username = "{user.username}", email = "{user.email}"')
-            diarys = Diary.objects.filter(created_by=user, date__week_day__lte=5)  # https://docs.djangoproject.com/en/3.1/ref/models/querysets/#week-day
+            diarys = Diary.objects.filter(created_by=user, date__week_day__lte=4)  # https://docs.djangoproject.com/en/3.1/ref/models/querysets/#week-day
             for diary in diarys:
                 """
                 This may helps:
