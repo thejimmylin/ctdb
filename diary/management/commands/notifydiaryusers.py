@@ -26,6 +26,10 @@ class Command(BaseCommand):
             print(f'username = "{user.username}", email = "{user.email}"')
             diarys = Diary.objects.filter(created_by=user, date__week_day__lte=5)  # https://docs.djangoproject.com/en/3.1/ref/models/querysets/#week-day
             for diary in diarys:
+                """
+                This may helps:
+                https://docs.djangoproject.com/en/3.1/ref/models/querysets/#week-day
+                """
                 print('Diarys:\n')
                 print(f'id = {diary.id}, daily_record = "{diary.daily_record}", weekday() = "{diary.date.weekday()}"')  # Monday = 0, Sunday = 6
                 """
