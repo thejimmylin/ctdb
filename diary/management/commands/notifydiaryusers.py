@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 from django.conf import settings
@@ -6,15 +7,20 @@ from django.core.mail import send_mail
 from diary.models import Diary
 
 
+START_DAY = datetime(year=2021, month=1, day=1).date()
+
+
 def today():
     return timezone.localtime(timezone.now()).date()
+
+
+User = get_user_model()
 
 
 class Command(BaseCommand):
     help = 'Commands of notifying users of the diary app.'
 
     def handle(self, *args, **options):
-        User = get_user_model()
         users = User.objects.all()
         for user in users:
             print(f'username = "{user.username}", email = "{user.email}"')
