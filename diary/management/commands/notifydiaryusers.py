@@ -7,7 +7,8 @@ from django.core.mail import send_mail
 from diary.models import Diary
 
 
-START_DAY = datetime(year=2021, month=1, day=1).date()
+def startday(year=2021, month=1, day=1):
+    return datetime(year=year, month=month, day=day).date()
 
 
 def today():
@@ -21,6 +22,10 @@ class Command(BaseCommand):
     help = 'Commands of notifying users of the diary app.'
 
     def handle(self, *args, **options):
+        """
+        Create a checklist.
+        """
+
         users = User.objects.all()
         for user in users:
             print(f'username = "{user.username}", email = "{user.email}"')
