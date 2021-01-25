@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 from diary.models import Diary
 
 
-def startday(year=2021, month=1, day=1):
+def startday(year=2021, month=1, day=20):
     return datetime(year=year, month=month, day=day).date()
 
 
@@ -65,8 +65,8 @@ class Command(BaseCommand):
             username = user.username
             email = user.email
             datestrings = [str(date) for date in dates]
-            subject = '[TDB]工程師日誌-通知'
-            message = f'Hi {username},\n\n您有部分工程師日誌還未填寫，以下為缺漏的日期：\n\n' + '\n'.join(datestrings) + '\n\n[TDB]工程師日誌系統'
+            subject = f'[TDB]工程師日誌-您有 {len(dates)} 筆日誌還沒有紀錄'
+            message = f'Hi {username},\n\n您有 {len(dates)} 筆工程師日誌還沒有紀錄，以下為日期：\n\n' + '\n'.join(datestrings) + '\n\nSincerely,\nTDB'
             send_mail(
                 subject=subject,
                 message=message,
