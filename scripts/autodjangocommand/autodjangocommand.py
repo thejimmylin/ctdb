@@ -20,7 +20,7 @@ def calld_django_send_diary_user_email():
     os.system(cmd)
 
 
-schedule.every().day.at('11:17').do(calld_django_send_diary_user_email)
+schedule.every().day.at('11:25').do(calld_django_send_diary_user_email)
 
 while True:
     schedule.run_pending()
