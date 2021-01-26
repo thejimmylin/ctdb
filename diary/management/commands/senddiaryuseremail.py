@@ -62,15 +62,19 @@ class Command(BaseCommand):
         """
         for user_id, dates in results_dict.items():
             user = User.objects.get(id=user_id)
-            username = user.username
-            email = user.email
-            datestrings = [str(date) for date in dates]
-            subject = f'[TDB]工程師日誌-您有 {len(dates)} 筆日誌還沒有紀錄'
-            message = f'Hi {username},\n\n您有 {len(dates)} 筆工程師日誌還沒有紀錄，以下為日期：\n\n' + '\n'.join(datestrings) + '\n\nSincerely,\nTDB'
-            send_mail(
-                subject=subject,
-                message=message,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[email],
-                fail_silently=False,
-            )
+            """
+            T32 testing users filter
+            """
+            if user.groups.filter(name='T32').exists():
+                username = user.username
+                email = user.email
+                datestrings = [str(date) for date in dates]
+                subject = f'[TDB]工程師日誌-您有 {len(dates)} 筆日誌還沒有紀錄'
+                message = f'Hi {username},\n\n您有 {len(dates)} 筆工程師日誌還沒有紀錄，以下為日期：\n\n' + '\n'.join(datestrings) + '\n\nSincerely,\nTDB'
+                send_mail(
+                    subject=subject,
+                    message=message,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[email],
+                    fail_silently=False,
+                )
