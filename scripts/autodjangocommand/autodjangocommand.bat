@@ -1,3 +1,2 @@
-call C:\Users\jimmy_lin\repos\ctdb\.venv\Scripts\activate
-python C:\Users\jimmy_lin\repos\ctdb\scripts\autodjangocommand\autodjangocommand.py
+"C:\Users\Administrator\repos\ctdb\.venv\Scripts\python.exe" "C:\Users\Administrator\repos\ctdb\scripts\autodjangocommand\autodjangocommand.py"
 pause

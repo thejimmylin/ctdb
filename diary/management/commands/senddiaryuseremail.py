@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 from diary.models import Diary
 
 
-def startday(year=2021, month=1, day=20):
+def startday(year=2021, month=1, day=1):
     return datetime(year=year, month=month, day=day).date()
 
 
@@ -78,3 +78,4 @@ class Command(BaseCommand):
                     recipient_list=[email],
                     fail_silently=False,
                 )
+                print(f'An Email has been sent to user {username}.')
