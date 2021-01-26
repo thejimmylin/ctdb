@@ -14,8 +14,8 @@ REPO_ROOT = d['REPO_ROOT']
 
 def calld_django_send_diary_user_email():
     time_string = time.strftime('%Y%m%d%H%M%S')
-    print(time_string)  # This would not show on windows 10 cmd, to be fixed.
-    print('start..')  # This would not show on windows 10 cmd, to be fixed.
+    print(time_string)
+    print('start..')
     cmd = f'{PYTHONPATH_ABS} {REPO_ROOT}\\manage.py senddiaryuseremail'
     os.system(cmd)
 
