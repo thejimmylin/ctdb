@@ -38,7 +38,7 @@ def get_secret(setting, secrets=secrets):
 SECRET_KEY = 'va8k29j1o_=rs9bw!ym@s#b8zz3=9cmj_o731i$^6)9+z_9ob#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = get_secret('IS_PRODUCTION')
+DEBUG = not get_secret('IS_PRODUCTION')
 
 ALLOWED_HOSTS = ['*']
 
