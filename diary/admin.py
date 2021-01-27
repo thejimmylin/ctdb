@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import Permission
 
 from .models import Diary
 
@@ -9,3 +10,4 @@ class DiaryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Diary, DiaryAdmin)
+admin.site.register(Permission)
