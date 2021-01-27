@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
@@ -43,7 +43,7 @@ def diary_update(request, pk):
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     instance = get_object_or_404(klass=model, pk=pk)
     if instance.created_by != request.user:
-        return HttpResponseForbidden('')
+        return HttpResponseNotFound('')
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -62,7 +62,7 @@ def diary_delete(request, pk):
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     instance = get_object_or_404(klass=model, pk=pk)
     if instance.created_by != request.user:
-        return HttpResponseForbidden('')
+        return HttpResponseNotFound('')
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)
