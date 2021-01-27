@@ -16,7 +16,7 @@ class Diary(models.Model):
         verbose_name_plural = _('Diaries')
         unique_together = (('date', 'created_by'), )
         permissions = [
-            ('view_department_diary', 'Can view other diaries created by those users in the same department.'),
+            ('view_department_diary', "Can view the diaries of other people in the same department."),
         ]
 
     def __str__(self):
