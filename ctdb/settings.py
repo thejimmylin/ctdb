@@ -114,7 +114,7 @@ DATABASES_MSSQL = {
     },
 }
 
-IS_PRODUCTION = (get_secret('IS_PRODUCTION') == 'true')
+IS_PRODUCTION = get_secret('IS_PRODUCTION')
 if IS_PRODUCTION:
     DATABASES = DATABASES_MSSQL
 else:

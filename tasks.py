@@ -28,9 +28,9 @@ PATHONPATHS_ABS = {
     'darwin': REPO_ROOT.resolve() / VENV_DIRNAME / 'bin' / 'python',
 }
 SETCRETS = {
+    'IS_PRODUCTION': False,
     'PYTHONPATH_ABS': str(PATHONPATHS_ABS[OS]),
     'REPO_ROOT': str(Path(__file__).parent),
-    'IS_PRODUCTION': '',
     'DATABASES_MSSQL_PASSWORD': '',
     'EMAIL_HOST_PASSWORD': ''
 }
