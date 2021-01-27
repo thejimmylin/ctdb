@@ -1,11 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.http import HttpResponseForbidden
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
+from django.utils import timezone
+from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 
 from .forms import DiaryModelForm
 from .models import Diary
-from django.utils import timezone
 
 
 def today():
@@ -32,12 +34,36 @@ class DiaryCreateView(LoginRequiredMixin, CreateView):
         return kwargs
 
 
-class DiaryUpdateView(LoginRequiredMixin, UpdateView):
+def diary_update(request, pk):
     model = Diary
     form_class = DiaryModelForm
-    success_url = reverse_lazy('diary:list')
+    template_name = 'diary/diary_form.html'
+    success_url = reverse('diary:list')
+    if not request.user.is_authenticated:
+        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+    instance = get_object_or_404(klass=model, pk=pk)
+    if instance.created_by != request.user:
+        return HttpResponseForbidden('')
+    if request.method == 'POST':
+        form = form_class(data=request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect(success_url)
+    form = form_class(instance=instance)
+    context = {'form': form}
+    return render(request, template_name, context)
 
 
-class DiaryDeleteView(LoginRequiredMixin, DeleteView):
+def diary_delete(request, pk):
     model = Diary
-    success_url = reverse_lazy('diary:list')
+    template_name = 'diary/diary_confirm_delete.html'
+    success_url = reverse('diary:list')
+    if not request.user.is_authenticated:
+        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+    instance = get_object_or_404(klass=model, pk=pk)
+    if instance.created_by != request.user:
+        return HttpResponseForbidden('')
+    if request.method == 'POST':
+        instance.delete()
+        return redirect(success_url)
+    return render(request, template_name)
