@@ -9,9 +9,5 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('diary/', include('diary.urls')),
     path('', RedirectView.as_view(url='diary/diaries/'), name='index'),
+    path('admin/', admin.site.urls),
 ]
-
-if settings.DEBUG:
-    urlpatterns += [
-        path('admin/', admin.site.urls),
-    ]
