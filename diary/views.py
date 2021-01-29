@@ -42,11 +42,10 @@ def diary_create(request):
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     if request.method == 'POST':
-        form = form_class(data=request.POST)
+        instance = Diary(created_by=request.user)
+        form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
-            instance = form.save(commit=False)
-            instance.created_by = request.user
-            instance.save()
+            instance = form.save()
             return redirect(success_url)
         context = {'form': form, 'action': action}
         return render(request, template_name, context)
