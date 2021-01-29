@@ -17,10 +17,16 @@ class Profile(models.Model):
         max_length=31,
         blank=True,
     )
+    department = models.ManyToManyField(
+        to='Department',
+        max_length=64,
+        blank=True,
+    )
     boss = models.ForeignKey(
         verbose_name=_('Boss'),
         to=settings.AUTH_USER_MODEL,
         null=True,
+        blank=True,
         on_delete=models.SET_NULL,
         related_name='underling',
     )
@@ -28,3 +34,15 @@ class Profile(models.Model):
     class Meta():
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
+
+
+class Department(models.Model):
+
+    name = models.CharField(
+        verbose_name=_('Name'),
+        blank=True,
+        max_length=32,
+    )
+
+    def __str__(self):
+        return self.name

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile
+from .models import Profile, Department
 
 
 class ProfileAdmin(admin.ModelAdmin):
@@ -7,3 +7,10 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Profile, ProfileAdmin)
+
+
+class DepartmentAdmin(admin.ModelAdmin):
+    list_display = ['name', ]
+
+
+admin.site.register(Department, DepartmentAdmin)

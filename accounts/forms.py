@@ -148,6 +148,7 @@ class ProfileForm(forms.ModelForm):
         label=_('Boss'),
         required=False,
         queryset=User.objects.all(),
+        to_field_name='username',
     )
 
     class Meta:
@@ -167,6 +168,7 @@ class ProfileForm(forms.ModelForm):
 
     def save(self, commit=True):
         instance = super().save(commit=False)
+        instance.email = self.cleaned_data['email']
         instance.profile.phone_number = self.cleaned_data['phone_number']
         instance.profile.job_title = self.cleaned_data['job_title']
         instance.profile.boss = self.cleaned_data['boss']
