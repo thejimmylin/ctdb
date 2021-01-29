@@ -124,19 +124,16 @@ class ProfileForm(forms.ModelForm):
         max_length=63,
         required=False,
     )
-
     job_title = forms.CharField(
         label=_('Job title'),
         max_length=63,
         required=False,
     )
-
     phone_number = forms.CharField(
         label=_('Phone number'),
         max_length=31,
         required=False,
     )
-
     email = forms.EmailField(
         label=_('Email'),
         required=False,
@@ -146,6 +143,11 @@ class ProfileForm(forms.ModelForm):
                 'placeholder': _('Email'),
             }
         ),
+    )
+    boss = forms.ModelChoiceField(
+        label=_('Boss'),
+        required=False,
+        queryset=User.objects.all(),
     )
 
     class Meta:
@@ -160,11 +162,14 @@ class ProfileForm(forms.ModelForm):
         self.fields['staff_code'].initial = self.instance.profile.staff_code
         self.fields['staff_code'].disabled = True
         self.fields['job_title'].initial = self.instance.profile.job_title
+        self.fields['boss'].initial = self.instance.profile.boss
+        self.fields['boss'].disabled = True
 
     def save(self, commit=True):
         instance = super().save(commit=False)
         instance.profile.phone_number = self.cleaned_data['phone_number']
         instance.profile.job_title = self.cleaned_data['job_title']
+        instance.profile.boss = self.cleaned_data['boss']
         if commit:
             instance.save()
         return instance

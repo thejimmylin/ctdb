@@ -17,6 +17,13 @@ class Profile(models.Model):
         max_length=31,
         blank=True,
     )
+    boss = models.ForeignKey(
+        verbose_name=_('Boss'),
+        to=settings.AUTH_USER_MODEL,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='underling',
+    )
 
     class Meta():
         verbose_name = _('Profile')

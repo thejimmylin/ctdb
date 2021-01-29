@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-29 14:15+0800\n"
+"POT-Creation-Date: 2021-01-29 17:09+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\accounts\forms.py:17 .\accounts\forms.py:22 .\accounts\forms.py:141
-#: .\accounts\forms.py:146
+#: .\accounts\forms.py:17 .\accounts\forms.py:22 .\accounts\forms.py:138
+#: .\accounts\forms.py:143
 msgid "Email"
 msgstr "電子信箱"
 
@@ -44,15 +44,19 @@ msgstr "使用此 Email 的使用者已存在"
 msgid "Staff code"
 msgstr "員工編號"
 
-#: .\accounts\forms.py:129
+#: .\accounts\forms.py:128
 msgid "Job title"
 msgstr "職稱"
 
-#: .\accounts\forms.py:135 .\accounts\models.py:16
+#: .\accounts\forms.py:133 .\accounts\models.py:16
 msgid "Phone number"
 msgstr "電話號碼"
 
-#: .\accounts\forms.py:181
+#: .\accounts\forms.py:148 .\accounts\models.py:21
+msgid "Boss"
+msgstr "主管"
+
+#: .\accounts\forms.py:185
 msgid "No user registering with this Email."
 msgstr "沒有以這個電子信箱註冊的使用者"
 
@@ -60,13 +64,13 @@ msgstr "沒有以這個電子信箱註冊的使用者"
 msgid "User"
 msgstr "使用者"
 
-#: .\accounts\models.py:22
+#: .\accounts\models.py:29
 #: .\accounts\templates\registration\profile_change.html:11
 #: .\ctdb\templates\base.html:78
 msgid "Profile"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:23
+#: .\accounts\models.py:30
 msgid "Profiles"
 msgstr "個人檔案"
 
@@ -195,7 +199,7 @@ msgid "Reset"
 msgstr "重置"
 
 #: .\accounts\templates\registration\profile_change.html:42
-#: .\diary\templates\diary\diary_form.html:42
+#: .\diary\templates\diary\diary_form.html:46
 #: .\diary\templates\diary\diary_list.html:32
 msgid "Change"
 msgstr "變更"
@@ -223,10 +227,6 @@ msgstr "以 Chief 電子信箱繼續"
 msgid "Already have an account?"
 msgstr "已經有帳號了嗎？"
 
-#: .\accounts\views.py:76
-msgid "Changed successfully."
-msgstr "成功變更"
-
 #: .\ctdb\templates\base.html:34 .\ctdb\templates\base.html:47
 #: .\ctdb\templates\base.html:104
 msgid "TDB"
@@ -243,7 +243,7 @@ msgstr "日誌"
 msgid "List"
 msgstr "列表"
 
-#: .\ctdb\templates\base.html:63
+#: .\ctdb\templates\base.html:63 .\diary\templates\diary\diary_form.html:43
 msgid "Add"
 msgstr "新增"
 
@@ -259,38 +259,38 @@ msgstr "登出"
 msgid "Guest"
 msgstr "訪客"
 
-#: .\diary\forms.py:15 .\diary\models.py:7
+#: .\diary\forms.py:20 .\diary\models.py:7
 #: .\diary\templates\diary\diary_list.html:15
 msgid "Date"
 msgstr "日期"
 
-#: .\diary\forms.py:19 .\diary\templates\diary\diary_list.html:39
+#: .\diary\forms.py:25 .\diary\templates\diary\diary_list.html:39
 msgid "Yes"
 msgstr ""
 
-#: .\diary\forms.py:20 .\diary\templates\diary\diary_list.html:39
+#: .\diary\forms.py:26 .\diary\templates\diary\diary_list.html:39
 msgid "No"
 msgstr ""
 
-#: .\diary\forms.py:22 .\diary\models.py:8
+#: .\diary\forms.py:28 .\diary\models.py:8
 #: .\diary\templates\diary\diary_list.html:16
 msgid "Daily check"
 msgstr "日檢核"
 
-#: .\diary\forms.py:28 .\diary\forms.py:32 .\diary\models.py:9
+#: .\diary\forms.py:34 .\diary\forms.py:38 .\diary\models.py:9
 #: .\diary\templates\diary\diary_list.html:17
 msgid "Daily record"
 msgstr "日常紀錄"
 
-#: .\diary\forms.py:37 .\diary\forms.py:41 .\diary\models.py:10
+#: .\diary\forms.py:43 .\diary\forms.py:47 .\diary\models.py:10
 msgid "To do"
 msgstr "待辦事項"
 
-#: .\diary\forms.py:47 .\diary\forms.py:51 .\diary\models.py:11
+#: .\diary\forms.py:53 .\diary\forms.py:57 .\diary\models.py:11
 msgid "Remark"
 msgstr "備註"
 
-#: .\diary\forms.py:64
+#: .\diary\forms.py:70
 msgid "The diary with this date has already existed."
 msgstr "這個日期的日誌已經存在。"
 
@@ -348,3 +348,6 @@ msgstr "不知道怎麼做嗎？"
 #: .\diary\templates\diary\index.html:20
 msgid "Example"
 msgstr "範例"
+
+#~ msgid "Changed successfully."
+#~ msgstr "成功變更"
