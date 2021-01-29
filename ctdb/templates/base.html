@@ -82,6 +82,27 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
+                        {% with deps=request.user.profile.department.all %}
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            {% if deps %}
+                            {{ request.session.role|default:deps.0 }}
+                            {% else %}
+                            {% trans 'Departments' %}
+                            {% endif %}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            {% if deps %}
+                            {% for dep in deps %}
+                            <a class="dropdown-item" href="#">{{ dep.name }}</a>
+                            {% endfor %}
+                            {% else %}
+                            <a class="dropdown-item" href="#">{% trans 'No departments' %}</a>
+                            {% endif %}
+                        </div>
+                        {% endwith %}
+                    </li>
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="true">
                             {{ LANGUAGE_CODE }}
