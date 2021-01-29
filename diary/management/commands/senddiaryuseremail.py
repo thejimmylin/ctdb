@@ -73,11 +73,18 @@ class Command(BaseCommand):
                 datestrings = [str(date) for date in dates]
                 subject = f'[TDB]工程師日誌-您有 {len(dates)} 筆日誌還沒有紀錄'
                 message = f'Hi {username},\n\n您有 {len(dates)} 筆工程師日誌還沒有紀錄，以下為日期：\n\n' + '\n'.join(datestrings) + '\n\nSincerely,\nTDB'
+                recipient_list = [email]
+                has_to_notify_supervisor = False
+                for date in dates:
+                    if (today() - date).days >= 3:
+                        has_to_notify_supervisor = True
+                if has_to_notify_supervisor:
+                    recipient_list += ['jimmy_lin@chief.com.tw']  # need to be placed as supervisor's email
                 send_mail(
                     subject=subject,
                     message=message,
                     from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=[email],
+                    recipient_list=recipient_list,
                     fail_silently=False,
                 )
                 print(f'An Email has been sent to user {username}.')
