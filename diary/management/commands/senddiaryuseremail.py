@@ -65,9 +65,9 @@ class Command(BaseCommand):
         for user_id, dates in results_dict.items():
             user = User.objects.get(id=user_id)
             """
-            T32 testing users filter
+            Diarists filter. (If you are a diarist, you have to write diary every day.)
             """
-            if user.groups.filter(name='T32').exists():
+            if user.groups.filter(name='Diarists').exists():
                 username = user.username
                 email = user.email
                 datestrings = [str(date) for date in dates]
