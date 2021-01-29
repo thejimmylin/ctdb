@@ -73,7 +73,7 @@ def profile_change(request):
         form = ProfileForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            messages.success(request, _('Changed successfully.'))
+            # messages.success(request, _('Changed successfully.'))  The template is not ready (message div covered.)
             return redirect(reverse('accounts:profile_change'))
     else:
         form = ProfileForm(instance=instance)

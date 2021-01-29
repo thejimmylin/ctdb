@@ -1,7 +1,12 @@
 from django import forms
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from .models import Diary
+
+
+def today():
+    return timezone.localtime(timezone.now()).date()
 
 
 class DiaryModelForm(forms.ModelForm):
@@ -13,6 +18,7 @@ class DiaryModelForm(forms.ModelForm):
             },
         ),
         label=_('Date'),
+        initial=today,
     )
     daily_check = forms.ChoiceField(
         choices=(

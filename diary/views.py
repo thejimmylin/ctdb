@@ -34,11 +34,33 @@ class DiaryCreateView(LoginRequiredMixin, CreateView):
         return kwargs
 
 
+def diary_create(request):
+    form_class = DiaryModelForm
+    template_name = 'diary/diary_form.html'
+    success_url = reverse('diary:list')
+    action = 'create'
+    if not request.user.is_authenticated:
+        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+    if request.method == 'POST':
+        form = form_class(data=request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.created_by = request.user
+            instance.save()
+            return redirect(success_url)
+        context = {'form': form, 'action': action}
+        return render(request, template_name, context)
+    form = form_class()
+    context = {'form': form, 'action': action}
+    return render(request, template_name, context)
+
+
 def diary_update(request, pk):
     model = Diary
     form_class = DiaryModelForm
     template_name = 'diary/diary_form.html'
     success_url = reverse('diary:list')
+    action = 'update'
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     instance = get_object_or_404(klass=model, pk=pk)
@@ -49,8 +71,10 @@ def diary_update(request, pk):
         if form.is_valid():
             form.save()
             return redirect(success_url)
+        context = {'form': form, 'action': action}
+        return render(request, template_name, context)
     form = form_class(instance=instance)
-    context = {'form': form}
+    context = {'form': form, 'action': action}
     return render(request, template_name, context)
 
 
