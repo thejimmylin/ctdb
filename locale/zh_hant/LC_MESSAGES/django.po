@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-19 14:19+0800\n"
+"POT-Creation-Date: 2021-01-29 14:15+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,11 +42,11 @@ msgstr "使用此 Email 的使用者已存在"
 
 #: .\accounts\forms.py:123
 msgid "Staff code"
-msgstr ""
+msgstr "員工編號"
 
 #: .\accounts\forms.py:129
 msgid "Job title"
-msgstr ""
+msgstr "職稱"
 
 #: .\accounts\forms.py:135 .\accounts\models.py:16
 msgid "Phone number"

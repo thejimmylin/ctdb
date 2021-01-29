@@ -160,11 +160,11 @@ class ProfileForm(forms.ModelForm):
         self.fields['staff_code'].initial = self.instance.profile.staff_code
         self.fields['staff_code'].disabled = True
         self.fields['job_title'].initial = self.instance.profile.job_title
-        self.fields['job_title'].disabled = True
 
     def save(self, commit=True):
         instance = super().save(commit=False)
         instance.profile.phone_number = self.cleaned_data['phone_number']
+        instance.profile.job_title = self.cleaned_data['job_title']
         if commit:
             instance.save()
         return instance
