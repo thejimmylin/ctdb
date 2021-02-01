@@ -1,8 +1,6 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from django.views.generic.list import ListView
 from django.core.paginator import Paginator
 
 from .forms import DiaryModelForm
@@ -10,26 +8,21 @@ from .models import Diary
 from accounts.views import get_role
 
 
-class DiaryListView(LoginRequiredMixin, ListView):
-    model = Diary
-    paginate_by = 5
-
-    def get_queryset(self):
-        queryset = super().get_queryset().filter(created_by=self.request.user).order_by('-date', '-id')
-        return queryset
-
-
 def diary_list(request):
+    use_pagination = True
+    paginate_by = 5
     template_name = 'diary/diary_list.html'
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     role = get_role(request)
-    print(role)
+    print(role)  # to be updated
     diaries = Diary.objects.filter(created_by=request.user).order_by('-date', '-id')
-    paginator = Paginator(diaries, 5)
+    paginator = Paginator(diaries, paginate_by)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context = {'page_obj': page_obj, 'object_list': page_obj, 'is_paginated': True, }
+    is_paginated = use_pagination and page_obj.has_other_pages()
+    object_list = page_obj if is_paginated else diaries
+    context = {'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, }
     return render(request, template_name, context)
 
 
