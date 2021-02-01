@@ -43,9 +43,5 @@ urlpatterns += [
 # Custom views about user extending model - profile.
 urlpatterns += [
     path('profile/', profile_change, name='profile_change'),
-]
-
-# Role/department
-urlpatterns += [
-    path('set-role/<str:role>/', set_role, name='set_role')
+    path('set-role/<str:role>/', set_role, name='set_role'),  # Role/department
 ]
