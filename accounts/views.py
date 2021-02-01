@@ -102,6 +102,8 @@ def get_role(request):
     It detects the role set in session of the request. If there's not one,
     use the first result of profile-department of user.
     """
-    default_role = request.user.profile.department.all()[0].name
+    user = request.user
+    departments = user.profile.department.all()
+    default_role = departments.first().name if departments.exists() else ''
     role = request.session.get('role', default_role)
     return role

@@ -1,37 +1,26 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse, reverse_lazy
-from django.utils import timezone
-from django.views.generic.edit import CreateView
-from django.views.generic.list import ListView
+from django.urls import reverse
+
 
 from .forms import DiaryModelForm
 from .models import Diary
+from accounts.views import get_role
 
 
-def today():
-    return timezone.localtime(timezone.now()).date()
-
-
-class DiaryListView(LoginRequiredMixin, ListView):
-    model = Diary
-    paginate_by = 5
-
-    def get_queryset(self):
-        queryset = super().get_queryset().filter(created_by=self.request.user).order_by('-date', '-id')
-        return queryset
-
-
-class DiaryCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'diary/diary_form.html'
-    form_class = DiaryModelForm
-    success_url = reverse_lazy('diary:list')
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['instance'] = Diary(created_by=self.request.user, date=today())
-        return kwargs
+def diary_list(request):
+    template_name = 'diary/diary_list.html'
+    if not request.user.is_authenticated:
+        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+    role = get_role(request)
+    print(role)
+    diaries = Diary.objects.filter(created_by=request.user).order_by('-date', '-id')
+    paginator = Paginator(diaries, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'page_obj': page_obj, 'object_list': page_obj, 'is_paginated': True, }
+    return render(request, template_name, context)
 
 
 def diary_create(request):
