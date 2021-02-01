@@ -5,7 +5,7 @@ from django.contrib.auth.views import (
     PasswordResetView, PasswordResetDoneView,
     PasswordResetConfirmView, PasswordResetCompleteView
 )
-from .views import signup, signup_with_account_and_password, signup_with_email, profile_change
+from .views import signup, signup_with_email, profile_change, set_role
 from .forms import EmailValidationOnForgotPasswordForm, LoginForm
 
 
@@ -43,4 +43,9 @@ urlpatterns += [
 # Custom views about user extending model - profile.
 urlpatterns += [
     path('profile/', profile_change, name='profile_change'),
+]
+
+# Role/department
+urlpatterns += [
+    path('set-role/<str:role>/', set_role, name='set_role')
 ]

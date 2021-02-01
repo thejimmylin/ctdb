@@ -88,16 +88,16 @@
                             {% if deps %}
                             {{ request.session.role|default:deps.0 }}
                             {% else %}
-                            {% trans 'Departments' %}
+                            {% trans '------' %}
                             {% endif %}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             {% if deps %}
                             {% for dep in deps %}
-                            <a class="dropdown-item" href="#">{{ dep.name }}</a>
+                            <a class="dropdown-item" href="{% url 'accounts:set_role' role=dep.name %}">{{ dep.name }}</a>
                             {% endfor %}
                             {% else %}
-                            <a class="dropdown-item" href="#">{% trans 'No departments' %}</a>
+                            <a class="dropdown-item" href="#">{% trans 'No available departments' %}</a>
                             {% endif %}
                         </div>
                         {% endwith %}

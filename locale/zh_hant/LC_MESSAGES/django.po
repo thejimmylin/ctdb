@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-29 17:09+0800\n"
+"POT-Creation-Date: 2021-02-01 10:10+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,11 +52,11 @@ msgstr "職稱"
 msgid "Phone number"
 msgstr "電話號碼"
 
-#: .\accounts\forms.py:148 .\accounts\models.py:21
+#: .\accounts\forms.py:148 .\accounts\models.py:26
 msgid "Boss"
 msgstr "主管"
 
-#: .\accounts\forms.py:185
+#: .\accounts\forms.py:188
 msgid "No user registering with this Email."
 msgstr "沒有以這個電子信箱註冊的使用者"
 
@@ -64,15 +64,19 @@ msgstr "沒有以這個電子信箱註冊的使用者"
 msgid "User"
 msgstr "使用者"
 
-#: .\accounts\models.py:29
+#: .\accounts\models.py:35
 #: .\accounts\templates\registration\profile_change.html:11
 #: .\ctdb\templates\base.html:78
 msgid "Profile"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:30
+#: .\accounts\models.py:36
 msgid "Profiles"
 msgstr "個人檔案"
+
+#: .\accounts\models.py:42
+msgid "Name"
+msgstr ""
 
 #: .\accounts\templates\registration\base.html:10
 #: .\diary\templates\diary\base.html:10
@@ -87,7 +91,7 @@ msgstr "© 2020 是方電訊股份有限公司，保留所有權利。"
 #: .\accounts\templates\registration\signup.html:20
 #: .\accounts\templates\registration\signup_with_account_and_password.html:13
 #: .\accounts\templates\registration\signup_with_email.html:13
-#: .\ctdb\templates\base.html:123
+#: .\ctdb\templates\base.html:144
 msgid "Login"
 msgstr "登入"
 
@@ -190,7 +194,7 @@ msgid "I didn't recieve it."
 msgstr "我沒有收到"
 
 #: .\accounts\templates\registration\password_reset_form.html:11
-#: .\ctdb\templates\base.html:81 .\ctdb\templates\base.html:126
+#: .\ctdb\templates\base.html:81 .\ctdb\templates\base.html:147
 msgid "Password reset"
 msgstr "密碼重置"
 
@@ -209,7 +213,7 @@ msgstr "變更"
 #: .\accounts\templates\registration\signup_with_account_and_password.html:41
 #: .\accounts\templates\registration\signup_with_email.html:11
 #: .\accounts\templates\registration\signup_with_email.html:44
-#: .\ctdb\templates\base.html:124
+#: .\ctdb\templates\base.html:145
 msgid "Sign up"
 msgstr "註冊"
 
@@ -228,7 +232,7 @@ msgid "Already have an account?"
 msgstr "已經有帳號了嗎？"
 
 #: .\ctdb\templates\base.html:34 .\ctdb\templates\base.html:47
-#: .\ctdb\templates\base.html:104
+#: .\ctdb\templates\base.html:125
 msgid "TDB"
 msgstr ""
 
@@ -247,7 +251,7 @@ msgstr "列表"
 msgid "Add"
 msgstr "新增"
 
-#: .\ctdb\templates\base.html:67 .\ctdb\templates\base.html:113
+#: .\ctdb\templates\base.html:67 .\ctdb\templates\base.html:134
 msgid "About"
 msgstr "關於"
 
@@ -255,7 +259,15 @@ msgstr "關於"
 msgid "Logout"
 msgstr "登出"
 
-#: .\ctdb\templates\base.html:120
+#: .\ctdb\templates\base.html:91
+msgid "------"
+msgstr ""
+
+#: .\ctdb\templates\base.html:100
+msgid "No available departments"
+msgstr "沒有可用的部門"
+
+#: .\ctdb\templates\base.html:141
 msgid "Guest"
 msgstr "訪客"
 
@@ -348,6 +360,3 @@ msgstr "不知道怎麼做嗎？"
 #: .\diary\templates\diary\index.html:20
 msgid "Example"
 msgstr "範例"
-
-#~ msgid "Changed successfully."
-#~ msgstr "成功變更"

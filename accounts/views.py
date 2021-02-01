@@ -81,3 +81,27 @@ def profile_change(request):
         'form': form,
     }
     return render(request, 'registration/profile_change.html', context)
+
+
+def set_role(request, role):
+    """
+    A set role view.
+    """
+    if not request.user.is_authenticated:
+        return redirect(reverse('login'))
+    if role not in [dep.name for dep in request.user.profile.department.all()]:
+        messages.add_message(request, messages.ERROR, _('You have no access to this role.'))
+        return redirect(reverse('index'))
+    request.session['role'] = role
+    return redirect(reverse('index'))
+
+
+def get_role(request):
+    """
+    Not a view. This function get the role for a given request.
+    It detects the role set in session of the request. If there's not one,
+    use the first result of profile-department of user.
+    """
+    default_role = request.user.profile.department.all()[0].name
+    role = request.session.get('role', default_role)
+    return role
