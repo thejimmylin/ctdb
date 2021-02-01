@@ -8,36 +8,42 @@
     <div class="container-fluid max-w-24u">
         <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
             <div class="col">
-                <table class="table table-bordered">
+                <table class="table table-bordered j3y-table">
                     <thead>
                         <tr>
-                            <th style="width: 6rem;">{% trans 'Action' %}</th>
-                            <th style="width: 7rem;">{% trans 'Date' %}</th>
-                            <th style="width: 6rem;">{% trans 'Daily check' %}</th>
+                            <th>{% trans 'Action' %}</th>
+                            <th>{% trans 'Date' %}</th>
+                            <th>{% trans 'Daily check' %}</th>
                             <th>{% trans 'Daily record' %}</th>
+                            <th>{% trans 'To do' %}</th>
+                            <th>{% trans 'Remark' %}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for diary in object_list %}
                         <tr>
-                        <td>
-                            <div class="dropdown show">
-                                <button class="btn btn-light bg-light dropdown-toggle" href="#" role="button"
-                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    {% trans 'Choose' %}
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item"
-                                        href="{% url 'diary:change' pk=diary.pk %}">{% trans 'Change' %}</a>
-                                    <a class="dropdown-item"
-                                        href="{% url 'diary:delete' pk=diary.pk %}">{% trans 'Delete' %}</a>
+                            <td class="text-nowrap">
+                                <div class="dropdown show">
+                                    <button class="btn btn-light bg-light dropdown-toggle" href="#" role="button"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        {% trans 'Choose' %}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item"
+                                            href="{% url 'diary:change' pk=diary.pk %}">{% trans 'Change' %}</a>
+                                        <a class="dropdown-item"
+                                            href="{% url 'diary:delete' pk=diary.pk %}">{% trans 'Delete' %}</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                            <td>{{ diary.date|date:"Y-m-d" }}</td>
-                            <td>{% if diary.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td>
-                            <td>{{ diary.daily_record }}</td>
+                            </td>
+                            <td class="text-nowrap">{{ diary.date|date:"Y-m-d" }}</td>
+                            <td class="text-nowrap">
+                                {% if diary.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
+                            </td>
+                            <td style="width: 40%;">{{ diary.daily_record }}</td>
+                            <td style="width: 40%;">{{ diary.todo }}</td>
+                            <td style="width: 20%;">{{ diary.remark }}</td>
                         </tr>
                         {% empty %}
                         <tr>
@@ -46,7 +52,7 @@
                         {% endfor %}
                     </tbody>
                 </table>
-    
+
                 {% if is_paginated %}
                 <ul class="pagination">
                     {% if page_obj.has_previous %}

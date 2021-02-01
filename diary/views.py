@@ -14,8 +14,7 @@ def diary_list(request):
     template_name = 'diary/diary_list.html'
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
-    role = get_role(request)
-    print(role)  # to be updated
+    role = get_role(request)  # NOQA, to be used
     diaries = Diary.objects.filter(created_by=request.user).order_by('-date', '-id')
     paginator = Paginator(diaries, paginate_by)
     page_number = request.GET.get('page')
