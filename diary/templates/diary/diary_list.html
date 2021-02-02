@@ -41,9 +41,9 @@
                             <td class="text-nowrap">
                                 {% if diary.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
                             </td>
-                            <td style="width: 40%;">{{ diary.daily_record }}</td>
-                            <td style="width: 40%;">{{ diary.todo }}</td>
-                            <td style="width: 20%;">{{ diary.remark }}</td>
+                            <td style="width: 40%;">{{ diary.daily_record|linebreaks }}</td>
+                            <td style="width: 40%;">{{ diary.todo|linebreaks }}</td>
+                            <td style="width: 20%;">{{ diary.remark|linebreaks }}</td>
                         </tr>
                         {% empty %}
                         <tr>
