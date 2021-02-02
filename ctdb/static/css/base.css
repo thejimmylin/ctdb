@@ -59,8 +59,8 @@ table {
 
 th {
   font-weight: normal;
-  vertical-align: top !important;
   white-space: nowrap;
+  vertical-align: top !important;
 }
 
 td {

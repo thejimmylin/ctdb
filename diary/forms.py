@@ -48,12 +48,6 @@ class DiaryModelForm(forms.ModelForm):
         required=False,
     )
     remark = forms.CharField(
-        widget=forms.Textarea(
-            attrs={
-                'placeholder': _('Remark'),
-                'rows': 4,
-            },
-        ),
         label=_('Remark'),
         required=False,
     )
