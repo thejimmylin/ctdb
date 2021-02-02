@@ -51,7 +51,7 @@
                                 {% if is_supervisor %}
                                 <td class="text-nowrap">{{ diary.created_by }}</td>
                                 {% endif %}
-                                <td>{{ diary.date|date:"Y-m-d" }}</td>
+                                <td class="text-nowrap">{{ diary.date|date:"Y-m-d" }}</td>
                                 <td class="text-nowrap">
                                     {% if diary.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
                                 </td>
