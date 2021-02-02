@@ -14,14 +14,20 @@ def diary_list(request):
     template_name = 'diary/diary_list.html'
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
+    user = request.user
     role = get_role(request)  # NOQA, to be used
-    diaries = Diary.objects.filter(created_by=request.user).order_by('-date', '-id')
+    is_supervisor = user.groups.filter(name='Supervisors').exists()
+    if is_supervisor:
+        diaries = Diary.objects.filter(created_by__profile__department__name__in=[role])
+    else:
+        diaries = Diary.objects.filter(created_by=user)
+    diaries = diaries.distinct().order_by('-date', '-id')
     paginator = Paginator(diaries, paginate_by)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     is_paginated = use_pagination and page_obj.has_other_pages()
     object_list = page_obj if is_paginated else diaries
-    context = {'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, }
+    context = {'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, 'is_supervisor': is_supervisor, }
     return render(request, template_name, context)
 
 

@@ -40,7 +40,7 @@ class Department(models.Model):
 
     name = models.CharField(
         verbose_name=_('Name'),
-        blank=True,
+        unique=True,
         max_length=32,
     )
 

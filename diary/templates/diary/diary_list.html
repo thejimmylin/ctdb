@@ -13,11 +13,14 @@
                         <thead>
                             <tr>
                                 <th>{% trans 'Action' %}</th>
+                                {% if is_supervisor %}
+                                <th>{% trans 'Created by' %}</th>
+                                {% endif %}
                                 <th>{% trans 'Date' %}</th>
                                 <th>{% trans 'Daily check' %}</th>
-                                <th>{% trans 'Daily record' %}</th>
-                                <th>{% trans 'To do' %}</th>
-                                <th>{% trans 'Remark' %}</th>
+                                <th style="min-width: 400px;">{% trans 'Daily record' %}</th>
+                                <th style="min-width: 400px;">{% trans 'To do' %}</th>
+                                <th style="min-width: 250px;">{% trans 'Remark' %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,25 +33,35 @@
                                             aria-expanded="false">
                                             {% trans 'Choose' %}
                                         </button>
+                                        {% if request.user == diary.created_by %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                             <a class="dropdown-item"
-                                                href="{% url 'diary:change' pk=diary.pk %}">{% trans 'Change' %}</a>
+                                                href="{% url 'diary:change' pk=diary.id %}">{% trans 'Change' %}</a>
                                             <a class="dropdown-item"
-                                                href="{% url 'diary:delete' pk=diary.pk %}">{% trans 'Delete' %}</a>
+                                                href="{% url 'diary:delete' pk=diary.id %}">{% trans 'Delete' %}</a>
                                         </div>
+                                        {% else %}
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item"
+                                                href="{% url 'diary:change' pk=diary.id %}">{% trans 'No available options' %}</a>
+                                        </div>
+                                        {% endif %}
                                     </div>
                                 </td>
-                                <td class="text-nowrap">{{ diary.date|date:"Y-m-d" }}</td>
+                                {% if is_supervisor %}
+                                <td class="text-nowrap">{{ diary.created_by }}</td>
+                                {% endif %}
+                                <td>{{ diary.date|date:"Y-m-d" }}</td>
                                 <td class="text-nowrap">
                                     {% if diary.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
                                 </td>
-                                <td style="min-width: 400px;">{{ diary.daily_record|linebreaks }}</td>
-                                <td style="min-width: 400px;">{{ diary.todo|linebreaks }}</td>
-                                <td style="min-width: 250px;">{{ diary.remark|linebreaks }}</td>
+                                <td>{{ diary.daily_record|linebreaks }}</td>
+                                <td>{{ diary.todo|linebreaks }}</td>
+                                <td>{{ diary.remark|linebreaks }}</td>
                             </tr>
                             {% empty %}
                             <tr>
-                                <td class='text-center text-secondary' colspan="4">{% trans 'No diary.' %}</td>
+                                <td class='text-center text-secondary' colspan="100%">{% trans 'No diaries.' %}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
