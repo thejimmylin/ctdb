@@ -21,3 +21,7 @@ class Diary(models.Model):
 
     def __str__(self):
         return self.todo[:8] + '..'
+
+
+class Preference(models.Model):
+    pass
