@@ -99,7 +99,6 @@ class Command(BaseCommand):
                         has_to_notify_supervisor = True
                 if has_to_notify_supervisor:
                     supervisors = get_supervisors(user)
-                    print(supervisors)
                     for supervisor in supervisors:
                         if supervisor.email not in recipient_list:
                             recipient_list.append(supervisor.email)
