@@ -9,15 +9,34 @@ from django.utils import timezone
 from diary.models import Diary
 
 
-def startday(year=2021, month=1, day=1):
+START_YEAR = 2021
+START_MONTH = 1
+START_DAY = 1
+SUPERVISOR_GROUP_NAME = 'Supervisors'
+WRITING_DIARY_DEPS = ['T32', ]
+
+User = get_user_model()
+
+
+def startday(year=START_YEAR, month=START_MONTH, day=START_DAY):
     return datetime(year=year, month=month, day=day).date()
+
+
+def is_diarist(user):
+    if user.groups.filter(name=SUPERVISOR_GROUP_NAME).exists():
+        return False
+    return user.profile.department.filter(name__in=WRITING_DIARY_DEPS).exists()
+
+
+def get_supervisors(user):
+    user_deps = user.profile.department.all()
+    all_supervisors = User.objects.filter(groups__name__in=[SUPERVISOR_GROUP_NAME])
+    user_supervisors = all_supervisors.filter(profile__department__in=user_deps)
+    return user_supervisors
 
 
 def today():
     return timezone.localtime(timezone.now()).date()
-
-
-User = get_user_model()
 
 
 class Command(BaseCommand):
@@ -67,7 +86,7 @@ class Command(BaseCommand):
             """
             Diarists filter. (If you are a diarist, you have to write diary every day.)
             """
-            if user.groups.filter(name='Diarists').exists():
+            if is_diarist(user):
                 username = user.username
                 email = user.email
                 datestrings = [str(date) for date in dates]
@@ -79,7 +98,11 @@ class Command(BaseCommand):
                     if (today() - date).days >= 3:
                         has_to_notify_supervisor = True
                 if has_to_notify_supervisor:
-                    recipient_list += ['jimmy_lin@chief.com.tw']  # need to be placed as supervisor's email
+                    supervisors = get_supervisors(user)
+                    print(supervisors)
+                    for supervisor in supervisors:
+                        if supervisor.email not in recipient_list:
+                            recipient_list.append(supervisor.email)
                 send_mail(
                     subject=subject,
                     message=message,
@@ -87,4 +110,4 @@ class Command(BaseCommand):
                     recipient_list=recipient_list,
                     fail_silently=False,
                 )
-                print(f'An Email has been sent to user {username}.')
+                print(f'An Email about {username} has been sent to {recipient_list}.')
