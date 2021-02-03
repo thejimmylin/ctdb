@@ -15,7 +15,7 @@ START_DAY = 1
 SUPERVISOR_GROUP_NAME = 'Supervisors'
 WRITING_DIARY_DEPS = ['T32', ]
 SECOND_STEP_SUPERVISORS = ['cathy_sung']
-THIRD_STEP_SUPERVISORS = ['felix_chou']
+THIRD_STEP_SUPERVISORS = ['felix_chou', 'j3y']
 
 
 User = get_user_model()
