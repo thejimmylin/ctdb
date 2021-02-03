@@ -14,6 +14,9 @@ START_MONTH = 1
 START_DAY = 1
 SUPERVISOR_GROUP_NAME = 'Supervisors'
 WRITING_DIARY_DEPS = ['T32', ]
+SECOND_STEP_SUPERVISORS = ['cathy_sung']
+THIRD_STEP_SUPERVISORS = ['felix_chou']
+
 
 User = get_user_model()
 
@@ -28,9 +31,9 @@ def is_diarist(user):
     return user.profile.department.filter(name__in=WRITING_DIARY_DEPS).exists()
 
 
-def get_supervisors(user):
+def get_first_step_supervisors(user):
     user_deps = user.profile.department.all()
-    all_supervisors = User.objects.filter(groups__name__in=[SUPERVISOR_GROUP_NAME])
+    all_supervisors = User.objects.filter(groups__name__in=[SUPERVISOR_GROUP_NAME]).exclude(username__in=SECOND_STEP_SUPERVISORS + THIRD_STEP_SUPERVISORS)
     user_supervisors = all_supervisors.filter(profile__department__in=user_deps)
     return user_supervisors
 
@@ -93,12 +96,12 @@ class Command(BaseCommand):
                 subject = f'[TDB]工程師日誌-您有 {len(dates)} 筆日誌還沒有紀錄'
                 message = f'Hi {username},\n\n您有 {len(dates)} 筆工程師日誌還沒有紀錄，以下為日期：\n\n' + '\n'.join(datestrings) + '\n\nSincerely,\nTDB'
                 recipient_list = [email]
-                has_to_notify_supervisor = False
+                has_to_notify_first_step_supervisor = False
                 for date in dates:
                     if (today() - date).days >= 3:
-                        has_to_notify_supervisor = True
-                if has_to_notify_supervisor:
-                    supervisors = get_supervisors(user)
+                        has_to_notify_first_step_supervisor = True
+                if has_to_notify_first_step_supervisor:
+                    supervisors = get_first_step_supervisors(user)
                     for supervisor in supervisors:
                         if supervisor.email not in recipient_list:
                             recipient_list.append(supervisor.email)
