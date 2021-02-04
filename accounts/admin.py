@@ -8,7 +8,7 @@ class ProfileAdmin(admin.ModelAdmin):
     def departments(self, obj):
         return ', '.join(dep.name for dep in obj.department.all())
 
-    list_display = ['user', 'staff_code', 'job_title', 'phone_number', 'departments', 'boss']
+    list_display = ['user', 'staff_code', 'job_title', 'phone_number', 'departments', 'boss', 'keep_diary', 'diary_starting_date', ]
 
 
 admin.site.register(Profile, ProfileAdmin)

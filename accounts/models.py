@@ -1,6 +1,11 @@
 from django.db import models
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
+
+
+def today():
+    return timezone.localtime(timezone.now()).date()
 
 
 class Profile(models.Model):
@@ -10,8 +15,16 @@ class Profile(models.Model):
         to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    staff_code = models.CharField(max_length=63, blank=True)
-    job_title = models.CharField(max_length=63, blank=True)
+    staff_code = models.CharField(
+        verbose_name=_('Staff code'),
+        max_length=63,
+        blank=True,
+    )
+    job_title = models.CharField(
+        verbose_name=_('Job title'),
+        max_length=63,
+        blank=True,
+    )
     phone_number = models.CharField(
         verbose_name=_('Phone number'),
         max_length=31,
@@ -29,6 +42,14 @@ class Profile(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='underling',
+    )
+    keep_diary = models.BooleanField(
+        verbose_name=_('Keep diary'),
+        default=False,
+    )
+    diary_starting_date = models.DateField(
+        verbose_name=_('Diary starting date'),
+        default=today,
     )
 
     class Meta():
