@@ -12,10 +12,6 @@ from diary.models import Diary
 START_YEAR = 2021
 START_MONTH = 2
 START_DAY = 1
-SUPERVISOR_GROUP_NAME = 'Supervisors'
-WRITING_DIARY_DEPS = ['T31', 'T32', ]
-SECOND_STEP_SUPERVISORS = ['cathy_sung']
-THIRD_STEP_SUPERVISORS = ['felix_chou', 'j3y']
 
 
 User = get_user_model()
@@ -83,11 +79,11 @@ class Command(BaseCommand):
                 subject = f'[TDB]工程師日誌-{username}，您有 {len(dates)} 筆日誌還沒有紀錄。'
                 message = f'Hi {username},\n\n您有 {len(dates)} 筆工程師日誌還沒有紀錄，以下為日期：\n\n' + '\n'.join(datestrings) + '\n\nSincerely,\nTDB'
                 recipient_list = [email]
-                has_to_notify_first_step_supervisor = False
+                has_to_notify_first_order_supervisor = False
                 for date in dates:
                     if (today() - date).days >= 3:
-                        has_to_notify_first_step_supervisor = True
-                if has_to_notify_first_step_supervisor:
+                        has_to_notify_first_order_supervisor = True
+                if has_to_notify_first_order_supervisor:
                     supervisor = user.profile.boss
                     if supervisor.email not in recipient_list:
                         recipient_list.append(supervisor.email)
