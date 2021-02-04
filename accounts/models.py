@@ -52,5 +52,9 @@ class Department(models.Model):
         related_name='managing',
     )
 
+    class Meta():
+        verbose_name = _('Department')
+        verbose_name_plural = _('Departments')
+
     def __str__(self):
         return self.name

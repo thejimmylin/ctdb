@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-02 17:58+0800\n"
+"POT-Creation-Date: 2021-02-04 14:38+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgstr "職稱"
 msgid "Phone number"
 msgstr "電話號碼"
 
-#: .\accounts\forms.py:148 .\accounts\models.py:26
+#: .\accounts\forms.py:148 .\accounts\models.py:26 .\accounts\models.py:47
 msgid "Boss"
 msgstr "主管"
 
@@ -77,6 +77,14 @@ msgstr "個人檔案"
 #: .\accounts\models.py:42
 msgid "Name"
 msgstr ""
+
+#: .\accounts\models.py:56
+msgid "Department"
+msgstr "部門"
+
+#: .\accounts\models.py:57
+msgid "Departments"
+msgstr "部門"
 
 #: .\accounts\templates\registration\base.html:10
 #: .\diary\templates\diary\base.html:10
