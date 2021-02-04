@@ -25,12 +25,6 @@ def startday(year=START_YEAR, month=START_MONTH, day=START_DAY):
     return datetime(year=year, month=month, day=day).date()
 
 
-def is_diarist(user):
-    if user.groups.filter(name=SUPERVISOR_GROUP_NAME).exists():
-        return False
-    return user.profile.department.filter(name__in=WRITING_DIARY_DEPS).exists()
-
-
 def get_first_step_supervisors(user):
     user_deps = user.profile.department.all()
     all_supervisors = User.objects.filter(groups__name__in=[SUPERVISOR_GROUP_NAME]).exclude(username__in=SECOND_STEP_SUPERVISORS + THIRD_STEP_SUPERVISORS)
@@ -89,7 +83,7 @@ class Command(BaseCommand):
             """
             Diarists filter. (If you are a diarist, you have to write diary every day.)
             """
-            if is_diarist(user):
+            if user.profile.keep_diary:
                 username = user.username
                 email = user.email
                 datestrings = [str(date) for date in dates]
