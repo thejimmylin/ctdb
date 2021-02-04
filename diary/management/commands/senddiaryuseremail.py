@@ -47,16 +47,17 @@ class Command(BaseCommand):
         Note that in Django Sunday = 1, in python datetime Sunday = 6.
         """
         diarys = Diary.objects.filter(date__week_day__gte=2).filter(date__week_day__lte=7)  # weekday
-        values = diarys.values()
-        existed = {
-            (value['date'], value['created_by_id']): True for value in values
-        }
+        existed = diarys.values('date', 'created_by_id')
         """
         Compare them.
         """
         wanted.update(existed)
         """
-        Formatting
+        Formatting, create a dict like this:
+        {
+            'user_id_1': ['date1', 'date2', 'date3'],
+            'user_id_2': ['date1', 'date2', 'date3'],
+        }
         """
         results = [(key[1], key[0]) for key, value in wanted.items() if value is False]
         results_dict = {}
@@ -69,9 +70,6 @@ class Command(BaseCommand):
         """
         for user_id, dates in results_dict.items():
             user = User.objects.get(id=user_id)
-            """
-            Diarists filter. (If you are a diarist, you have to write diary every day.)
-            """
             if user.profile.keep_diary:
                 username = user.username
                 email = user.email
