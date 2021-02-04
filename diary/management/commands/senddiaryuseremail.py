@@ -25,13 +25,6 @@ def startday(year=START_YEAR, month=START_MONTH, day=START_DAY):
     return datetime(year=year, month=month, day=day).date()
 
 
-def get_first_step_supervisors(user):
-    user_deps = user.profile.department.all()
-    all_supervisors = User.objects.filter(groups__name__in=[SUPERVISOR_GROUP_NAME]).exclude(username__in=SECOND_STEP_SUPERVISORS + THIRD_STEP_SUPERVISORS)
-    user_supervisors = all_supervisors.filter(profile__department__in=user_deps)
-    return user_supervisors
-
-
 def today():
     return timezone.localtime(timezone.now()).date()
 
@@ -95,10 +88,9 @@ class Command(BaseCommand):
                     if (today() - date).days >= 3:
                         has_to_notify_first_step_supervisor = True
                 if has_to_notify_first_step_supervisor:
-                    supervisors = get_first_step_supervisors(user)
-                    for supervisor in supervisors:
-                        if supervisor.email not in recipient_list:
-                            recipient_list.append(supervisor.email)
+                    supervisor = user.profile.boss
+                    if supervisor.email not in recipient_list:
+                        recipient_list.append(supervisor.email)
                 send_mail(
                     subject=subject,
                     message=message,
