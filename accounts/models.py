@@ -43,6 +43,14 @@ class Department(models.Model):
         unique=True,
         max_length=32,
     )
+    managed_by = models.ForeignKey(
+        verbose_name=_('Boss'),
+        to=settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='managing',
+    )
 
     def __str__(self):
         return self.name

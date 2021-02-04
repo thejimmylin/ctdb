@@ -15,7 +15,7 @@ admin.site.register(Profile, ProfileAdmin)
 
 
 class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ['name', ]
+    list_display = ['name', 'managed_by', ]
 
 
 admin.site.register(Department, DepartmentAdmin)
