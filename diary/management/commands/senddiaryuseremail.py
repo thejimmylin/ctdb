@@ -47,7 +47,7 @@ class Command(BaseCommand):
         Note that in Django Sunday = 1, in python datetime Sunday = 6.
         """
         diarys = Diary.objects.filter(date__week_day__gte=2).filter(date__week_day__lte=7)  # weekday
-        values = diarys.values()
+        values = diarys.values('date', 'created_by_id')
         existed = {
             (value['date'], value['created_by_id']): True for value in values
         }
