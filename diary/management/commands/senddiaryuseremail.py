@@ -86,4 +86,4 @@ class Command(BaseCommand):
                 recipient_list=recipient_list,
                 fail_silently=False,
             )
-            print(f'An Email about {username} has been sent to {recipient_list}.')
+            print(f'An Email for user {username} has been sent to {recipient_list}.')
