@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -67,31 +67,23 @@ class Command(BaseCommand):
             subject = f'[TDB]工程師日誌-{username}，您有 {len(dates)} 筆日誌還沒有紀錄。'
             message = f'Hi {username},\n\n您有 {len(dates)} 筆工程師日誌還沒有紀錄，以下為日期：\n\n' + '\n'.join(datestrings) + '\n\nSincerely,\nTDB'
             recipient_list = [email]
-            # has_to_notify_first_order_supervisor = False
-            # for date in dates:
-            #     if (today() - date).days >= 3:
-            #         has_to_notify_first_order_supervisor = True
-            # if has_to_notify_first_order_supervisor:
-            #     supervisor = user.profile.boss
-            #     if supervisor.email not in recipient_list:
-            #         recipient_list.append(supervisor.email)
-            notification_level = 0
+            notification_level = 1
             for date in dates:
                 late_days = (today() - date).days
                 while late_days >= 3:
                     late_days -= 3
                     notification_level += 1
-                supervisor = user.profile.boss
-                while notification_level > 0 and supervisor:
+                person_notified = user
+                while notification_level >= 1 and person_notified:
                     notification_level -= 1
-                    if supervisor.email not in recipient_list:
-                        recipient_list.append(supervisor.email)
-                    supervisor = supervisor.profile.boss
-            # send_mail(
-            #     subject=subject,
-            #     message=message,
-            #     from_email=settings.DEFAULT_FROM_EMAIL,
-            #     recipient_list=recipient_list,
-            #     fail_silently=False,
-            # )
+                    if person_notified.email not in recipient_list:
+                        recipient_list.append(person_notified.email)
+                    person_notified = person_notified.profile.boss
+            send_mail(
+                subject=subject,
+                message=message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=recipient_list,
+                fail_silently=False,
+            )
             print(f'An Email about {username} has been sent to {recipient_list}.')
