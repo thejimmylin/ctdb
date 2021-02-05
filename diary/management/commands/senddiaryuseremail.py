@@ -36,35 +36,14 @@ class Command(BaseCommand):
         """
         Create a checklist.
         """
-        day_passed = (today() - startday()).days
-        past_dates = [startday() + timedelta(n) for n in range(day_passed)]
-        past_weekday_dates = [date for date in past_dates if date.weekday() <= 4]
-        user_ids = [user.id for user in User.objects.all()]
-        wanted = {
-            (date, created_by_id): False
-            for created_by_id in user_ids
-            for date in past_weekday_dates
-        }
-        print(wanted)
-        users = User.objects.filter()  # To be filter
-        wanted2 = {}
+        users = User.objects.filter(profile__keep_diary=True)
+        wanted = {}
         for user in users:
             starting_date = user.profile.diary_starting_date
             past_date_list = [starting_date + timedelta(n) for n in range((today() - starting_date).days)]
             past_weekday_date_list = [date for date in past_date_list if is_weekday(date)]
             for date in past_weekday_date_list:
-                wanted2.update({(date, user.id): False})
-        print(wanted2)
-        print(wanted == wanted2)
-        for k, v in wanted.items():
-            if k in wanted2:
-                if v == wanted2[k]:
-                    print('passed')
-                    pass
-                else:
-                    print(k)
-            else:
-                print('not exists')
+                wanted.update({(date, user.id): False})
         """
         Create a dictionary using a tuple ``date`` and ``created_by_id`` as key,
         Because we only need these two fields to check if there is lack of diary.
