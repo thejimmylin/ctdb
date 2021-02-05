@@ -68,22 +68,22 @@ class Command(BaseCommand):
             message = f'Hi {username},\n\n您有 {len(dates)} 筆工程師日誌還沒有紀錄，以下為日期：\n\n' + '\n'.join(datestrings) + '\n\nSincerely,\nTDB'
             recipient_list = [email]
             notification_level = 1
-            for date in dates:
-                late_days = (today() - date).days
-                while late_days >= 3:
-                    late_days -= 3
-                    notification_level += 1
-                person_notified = user
-                while notification_level >= 1 and person_notified:
-                    notification_level -= 1
-                    if person_notified.email not in recipient_list:
-                        recipient_list.append(person_notified.email)
-                    person_notified = person_notified.profile.boss
-            send_mail(
-                subject=subject,
-                message=message,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=recipient_list,
-                fail_silently=False,
-            )
+            oldest_date = sorted(dates)[0]
+            late_days = (today() - oldest_date).days
+            while late_days >= 3:
+                late_days -= 3
+                notification_level += 1
+            person_notified = user
+            while notification_level >= 1 and person_notified:
+                notification_level -= 1
+                if person_notified.email not in recipient_list:
+                    recipient_list.append(person_notified.email)
+                person_notified = person_notified.profile.boss
+            # send_mail(
+            #     subject=subject,
+            #     message=message,
+            #     from_email=settings.DEFAULT_FROM_EMAIL,
+            #     recipient_list=recipient_list,
+            #     fail_silently=False,
+            # )
             print(f'An Email for user {username} has been sent to {recipient_list}.')
