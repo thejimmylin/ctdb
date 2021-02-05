@@ -40,7 +40,7 @@ class Command(BaseCommand):
         Because we only need these two fields to check if there is lack of diary.
         Note that in Django Sunday = 1, in python datetime Sunday = 6.
         """
-        diarys = Diary.objects.filter(date__week_day__gte=2).filter(date__week_day__lte=7)  # weekday
+        diarys = Diary.objects.filter(date__week_day__gte=2).filter(date__week_day__lte=7)  # Monday to Friday
         values_list = diarys.values_list('date', 'created_by_id')
         existed = {(values): True for values in values_list}
         """
@@ -67,14 +67,26 @@ class Command(BaseCommand):
             subject = f'[TDB]工程師日誌-{username}，您有 {len(dates)} 筆日誌還沒有紀錄。'
             message = f'Hi {username},\n\n您有 {len(dates)} 筆工程師日誌還沒有紀錄，以下為日期：\n\n' + '\n'.join(datestrings) + '\n\nSincerely,\nTDB'
             recipient_list = [email]
-            has_to_notify_first_order_supervisor = False
+            # has_to_notify_first_order_supervisor = False
+            # for date in dates:
+            #     if (today() - date).days >= 3:
+            #         has_to_notify_first_order_supervisor = True
+            # if has_to_notify_first_order_supervisor:
+            #     supervisor = user.profile.boss
+            #     if supervisor.email not in recipient_list:
+            #         recipient_list.append(supervisor.email)
+            notification_level = 0
             for date in dates:
-                if (today() - date).days >= 3:
-                    has_to_notify_first_order_supervisor = True
-            if has_to_notify_first_order_supervisor:
+                late_days = (today() - date).days
+                while late_days >= 3:
+                    late_days -= 3
+                    notification_level += 1
                 supervisor = user.profile.boss
-                if supervisor.email not in recipient_list:
-                    recipient_list.append(supervisor.email)
+                while notification_level > 0 and supervisor:
+                    notification_level -= 1
+                    if supervisor.email not in recipient_list:
+                        recipient_list.append(supervisor.email)
+                    supervisor = supervisor.profile.boss
             # send_mail(
             #     subject=subject,
             #     message=message,
