@@ -9,6 +9,9 @@ from django.utils import timezone
 from diary.models import Diary
 
 
+THRESHOLD_LIST = [3, 7, 30]
+
+
 User = get_user_model()
 
 
@@ -70,9 +73,11 @@ class Command(BaseCommand):
             notification_level = 1
             oldest_date = sorted(dates)[0]
             late_days = (today() - oldest_date).days
-            while late_days >= 3:
-                late_days -= 3
-                notification_level += 1
+            for threshlod in THRESHOLD_LIST:
+                if late_days >= threshlod:
+                    notification_level += 1
+                else:
+                    break
             person_notified = user
             while notification_level >= 1 and person_notified:
                 notification_level -= 1
