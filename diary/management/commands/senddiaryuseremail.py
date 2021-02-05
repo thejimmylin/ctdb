@@ -25,6 +25,10 @@ def today():
     return timezone.localtime(timezone.now()).date()
 
 
+def is_weekday(date):
+    return (date.weekday() <= 4)
+
+
 class Command(BaseCommand):
     help = 'Commands of notifying users of the diary app.'
 
@@ -41,6 +45,26 @@ class Command(BaseCommand):
             for created_by_id in user_ids
             for date in past_weekday_dates
         }
+        print(wanted)
+        users = User.objects.filter()  # To be filter
+        wanted2 = {}
+        for user in users:
+            starting_date = user.profile.diary_starting_date
+            past_date_list = [starting_date + timedelta(n) for n in range((today() - starting_date).days)]
+            past_weekday_date_list = [date for date in past_date_list if is_weekday(date)]
+            for date in past_weekday_date_list:
+                wanted2.update({(date, user.id): False})
+        print(wanted2)
+        print(wanted == wanted2)
+        for k, v in wanted.items():
+            if k in wanted2:
+                if v == wanted2[k]:
+                    print('passed')
+                    pass
+                else:
+                    print(k)
+            else:
+                print('not exists')
         """
         Create a dictionary using a tuple ``date`` and ``created_by_id`` as key,
         Because we only need these two fields to check if there is lack of diary.
@@ -87,11 +111,11 @@ class Command(BaseCommand):
                     supervisor = user.profile.boss
                     if supervisor.email not in recipient_list:
                         recipient_list.append(supervisor.email)
-                send_mail(
-                    subject=subject,
-                    message=message,
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=recipient_list,
-                    fail_silently=False,
-                )
+                # send_mail(
+                #     subject=subject,
+                #     message=message,
+                #     from_email=settings.DEFAULT_FROM_EMAIL,
+                #     recipient_list=recipient_list,
+                #     fail_silently=False,
+                # )
                 print(f'An Email about {username} has been sent to {recipient_list}.')
