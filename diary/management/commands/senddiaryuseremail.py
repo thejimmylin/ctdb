@@ -84,11 +84,11 @@ class Command(BaseCommand):
                 if person_notified.email not in recipient_list:
                     recipient_list.append(person_notified.email)
                 person_notified = person_notified.profile.boss
-            # send_mail(
-            #     subject=subject,
-            #     message=message,
-            #     from_email=settings.DEFAULT_FROM_EMAIL,
-            #     recipient_list=recipient_list,
-            #     fail_silently=False,
-            # )
+            send_mail(
+                subject=subject,
+                message=message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=recipient_list,
+                fail_silently=False,
+            )
             print(f'An Email for user {username} has been sent to {recipient_list}.')
