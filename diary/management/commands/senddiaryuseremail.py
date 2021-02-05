@@ -9,16 +9,7 @@ from django.utils import timezone
 from diary.models import Diary
 
 
-START_YEAR = 2021
-START_MONTH = 2
-START_DAY = 1
-
-
 User = get_user_model()
-
-
-def startday(year=START_YEAR, month=START_MONTH, day=START_DAY):
-    return datetime(year=year, month=month, day=day).date()
 
 
 def today():
@@ -51,9 +42,7 @@ class Command(BaseCommand):
         """
         diarys = Diary.objects.filter(date__week_day__gte=2).filter(date__week_day__lte=7)  # weekday
         values_list = diarys.values_list('date', 'created_by_id')
-        existed = {
-            (values): True for values in values_list
-        }
+        existed = {(values): True for values in values_list}
         """
         Compare them.
         """
@@ -72,29 +61,25 @@ class Command(BaseCommand):
         """
         for user_id, dates in results_dict.items():
             user = User.objects.get(id=user_id)
-            """
-            Diarists filter. (If you are a diarist, you have to write diary every day.)
-            """
-            if user.profile.keep_diary:
-                username = user.username
-                email = user.email
-                datestrings = [str(date) for date in dates]
-                subject = f'[TDB]工程師日誌-{username}，您有 {len(dates)} 筆日誌還沒有紀錄。'
-                message = f'Hi {username},\n\n您有 {len(dates)} 筆工程師日誌還沒有紀錄，以下為日期：\n\n' + '\n'.join(datestrings) + '\n\nSincerely,\nTDB'
-                recipient_list = [email]
-                has_to_notify_first_order_supervisor = False
-                for date in dates:
-                    if (today() - date).days >= 3:
-                        has_to_notify_first_order_supervisor = True
-                if has_to_notify_first_order_supervisor:
-                    supervisor = user.profile.boss
-                    if supervisor.email not in recipient_list:
-                        recipient_list.append(supervisor.email)
-                # send_mail(
-                #     subject=subject,
-                #     message=message,
-                #     from_email=settings.DEFAULT_FROM_EMAIL,
-                #     recipient_list=recipient_list,
-                #     fail_silently=False,
-                # )
-                print(f'An Email about {username} has been sent to {recipient_list}.')
+            username = user.username
+            email = user.email
+            datestrings = [str(date) for date in dates]
+            subject = f'[TDB]工程師日誌-{username}，您有 {len(dates)} 筆日誌還沒有紀錄。'
+            message = f'Hi {username},\n\n您有 {len(dates)} 筆工程師日誌還沒有紀錄，以下為日期：\n\n' + '\n'.join(datestrings) + '\n\nSincerely,\nTDB'
+            recipient_list = [email]
+            has_to_notify_first_order_supervisor = False
+            for date in dates:
+                if (today() - date).days >= 3:
+                    has_to_notify_first_order_supervisor = True
+            if has_to_notify_first_order_supervisor:
+                supervisor = user.profile.boss
+                if supervisor.email not in recipient_list:
+                    recipient_list.append(supervisor.email)
+            # send_mail(
+            #     subject=subject,
+            #     message=message,
+            #     from_email=settings.DEFAULT_FROM_EMAIL,
+            #     recipient_list=recipient_list,
+            #     fail_silently=False,
+            # )
+            print(f'An Email about {username} has been sent to {recipient_list}.')
