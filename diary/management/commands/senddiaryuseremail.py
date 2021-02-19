@@ -16,10 +16,8 @@ Just a temp solution for holiday exception.
 """
 
 days = Day.objects.all()
-dates = [day.date for day in days if day.is_holiday]
-HOLIDAYS = dates + [
-    datetime_date(2021, 2, 10) + timedelta(n) for n in range(7)
-]
+holiday_dates = [day.date for day in days if day.is_holiday]
+HOLIDAYS = holiday_dates
 THRESHOLD_LIST = [3, 7, 30]
 
 
