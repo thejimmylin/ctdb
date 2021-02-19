@@ -11,6 +11,7 @@ class Day(models.Model):
     )
     is_holiday = models.BooleanField(
         verbose_name=_('Is holiday'),
+        default=False,
     )
 
     def __str__(self):
