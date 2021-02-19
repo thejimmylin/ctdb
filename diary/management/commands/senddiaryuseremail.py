@@ -7,6 +7,7 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 
 from diary.models import Diary
+from day.models import Day
 
 
 User = get_user_model()
@@ -14,7 +15,9 @@ User = get_user_model()
 Just a temp solution for holiday exception.
 """
 
-NEW_YEAR_HOLIDAYS = [
+days = Day.objects.all()
+dates = [day.date for day in days if day.is_holiday]
+HOLIDAYS = dates + [
     datetime_date(2021, 2, 10) + timedelta(n) for n in range(7)
 ]
 THRESHOLD_LIST = [3, 7, 30]
@@ -40,7 +43,7 @@ class Command(BaseCommand):
         for user in users:
             starting_date = user.profile.diary_starting_date
             past_date_list = [starting_date + timedelta(n) for n in range((today() - starting_date).days)]
-            past_weekday_date_list = [date for date in past_date_list if is_weekday(date) and date not in NEW_YEAR_HOLIDAYS]  # Temp solution
+            past_weekday_date_list = [date for date in past_date_list if is_weekday(date) and date not in HOLIDAYS]  # Temp solution
             for date in past_weekday_date_list:
                 wanted.update({(date, user.id): False})
         """
