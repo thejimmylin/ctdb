@@ -7,6 +7,7 @@ class Day(models.Model):
     date = models.DateField(
         verbose_name=_('Date'),
         blank=True,
+        null=True,
     )
     is_holiday = models.BooleanField(
         verbose_name=_('Is holiday'),
