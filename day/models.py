@@ -14,6 +14,9 @@ class Day(models.Model):
         default=False,
     )
 
+    class Meta():
+        ordering = ['-date']
+
     def __str__(self):
         day_type_string = '"H"' if self.is_holiday else '"W"'
         return f'{self.date} {day_type_string}'
