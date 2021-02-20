@@ -8,8 +8,9 @@
     <div class="container-fluid max-w-24u">
         <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
             <div class="col">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder={% trans 'Search..' %}>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-responsive">
+                    <table id="myTable" class="table table-bordered table-responsive">
                         <thead>
                             <tr>
                                 <th>{% trans 'Action' %}</th>
@@ -42,8 +43,7 @@
                                         </div>
                                         {% else %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item"
-                                                href="#">{% trans 'No available options' %}</a>
+                                            <a class="dropdown-item" href="#">{% trans 'No available options' %}</a>
                                         </div>
                                         {% endif %}
                                     </div>
@@ -94,4 +94,34 @@
         </div>
     </div>
 </section>
+<style>
+    #myInput {
+        width: 250px;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+</style>
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[4];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+
+    }
+</script>
 {% endblock %}
