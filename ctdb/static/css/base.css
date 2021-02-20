@@ -180,3 +180,9 @@ form input:focus+.label-floating.label-floating-primary {
 form input:focus+.label-floating.label-floating-danger {
   color: var(--danger) !important;
 }
+
+/* Cursor things */
+
+.cursor-pointer{
+  cursor: pointer;
+}
