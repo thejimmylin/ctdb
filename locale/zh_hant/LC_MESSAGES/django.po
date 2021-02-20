@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-04 14:38+0800\n"
+"POT-Creation-Date: 2021-02-20 14:22+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,19 +40,19 @@ msgstr "電子信箱不能以 %(join_email_cant_endswith_strings)s 結尾。"
 msgid "A user with this Email already exists."
 msgstr "使用此 Email 的使用者已存在"
 
-#: .\accounts\forms.py:123
+#: .\accounts\forms.py:123 .\accounts\models.py:19
 msgid "Staff code"
 msgstr "員工編號"
 
-#: .\accounts\forms.py:128
+#: .\accounts\forms.py:128 .\accounts\models.py:24
 msgid "Job title"
 msgstr "職稱"
 
-#: .\accounts\forms.py:133 .\accounts\models.py:16
+#: .\accounts\forms.py:133 .\accounts\models.py:29
 msgid "Phone number"
 msgstr "電話號碼"
 
-#: .\accounts\forms.py:148 .\accounts\models.py:26 .\accounts\models.py:47
+#: .\accounts\forms.py:148 .\accounts\models.py:39 .\accounts\models.py:68
 msgid "Boss"
 msgstr "主管"
 
@@ -60,29 +60,37 @@ msgstr "主管"
 msgid "No user registering with this Email."
 msgstr "沒有以這個電子信箱註冊的使用者"
 
-#: .\accounts\models.py:9
+#: .\accounts\models.py:14
 msgid "User"
 msgstr "使用者"
 
-#: .\accounts\models.py:35
+#: .\accounts\models.py:47
+msgid "Keep diary"
+msgstr "寫日記"
+
+#: .\accounts\models.py:51
+msgid "Diary starting date"
+msgstr "日誌起始日"
+
+#: .\accounts\models.py:56
 #: .\accounts\templates\registration\profile_change.html:11
 #: .\ctdb\templates\base.html:78
 msgid "Profile"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:36
+#: .\accounts\models.py:57
 msgid "Profiles"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:42
+#: .\accounts\models.py:63
 msgid "Name"
 msgstr ""
 
-#: .\accounts\models.py:56
+#: .\accounts\models.py:77
 msgid "Department"
 msgstr "部門"
 
-#: .\accounts\models.py:57
+#: .\accounts\models.py:78
 msgid "Departments"
 msgstr "部門"
 
@@ -212,7 +220,7 @@ msgstr "重置"
 
 #: .\accounts\templates\registration\profile_change.html:42
 #: .\diary\templates\diary\diary_form.html:46
-#: .\diary\templates\diary\diary_list.html:39
+#: .\diary\templates\diary\diary_list.html:40
 msgid "Change"
 msgstr "變更"
 
@@ -283,10 +291,14 @@ msgstr "沒有可用的部門"
 msgid "Guest"
 msgstr "訪客"
 
-#: .\diary\forms.py:20 .\diary\models.py:7
-#: .\diary\templates\diary\diary_list.html:19
+#: .\day\models.py:8 .\diary\forms.py:20 .\diary\models.py:7
+#: .\diary\templates\diary\diary_list.html:20
 msgid "Date"
 msgstr "日期"
+
+#: .\day\models.py:13
+msgid "Is holiday"
+msgstr "是假日"
 
 #: .\diary\forms.py:25 .\diary\templates\diary\diary_list.html:56
 msgid "Yes"
@@ -297,22 +309,22 @@ msgid "No"
 msgstr ""
 
 #: .\diary\forms.py:28 .\diary\models.py:8
-#: .\diary\templates\diary\diary_list.html:20
+#: .\diary\templates\diary\diary_list.html:21
 msgid "Daily check"
 msgstr "日檢核"
 
 #: .\diary\forms.py:34 .\diary\forms.py:38 .\diary\models.py:9
-#: .\diary\templates\diary\diary_list.html:21
+#: .\diary\templates\diary\diary_list.html:22
 msgid "Daily record"
 msgstr "日常紀錄"
 
 #: .\diary\forms.py:43 .\diary\forms.py:47 .\diary\models.py:10
-#: .\diary\templates\diary\diary_list.html:22
+#: .\diary\templates\diary\diary_list.html:23
 msgid "To do"
 msgstr "待辦事項"
 
 #: .\diary\forms.py:51 .\diary\models.py:11
-#: .\diary\templates\diary\diary_list.html:23
+#: .\diary\templates\diary\diary_list.html:24
 msgid "Remark"
 msgstr "備註"
 
@@ -320,7 +332,7 @@ msgstr "備註"
 msgid "The diary with this date has already existed."
 msgstr "這個日期的日誌已經存在。"
 
-#: .\diary\models.py:12 .\diary\templates\diary\diary_list.html:17
+#: .\diary\models.py:12 .\diary\templates\diary\diary_list.html:18
 msgid "Created by"
 msgstr "建立者"
 
@@ -333,15 +345,19 @@ msgid "Are you sure you want to delete this diary?"
 msgstr "你確定要刪除這個日誌嗎？"
 
 #: .\diary\templates\diary\diary_confirm_delete.html:43
-#: .\diary\templates\diary\diary_list.html:41
+#: .\diary\templates\diary\diary_list.html:42
 msgid "Delete"
 msgstr "刪除"
 
-#: .\diary\templates\diary\diary_list.html:15
+#: .\diary\templates\diary\diary_list.html:11
+msgid "Search.."
+msgstr "搜尋.."
+
+#: .\diary\templates\diary\diary_list.html:16
 msgid "Action"
 msgstr "動作"
 
-#: .\diary\templates\diary\diary_list.html:34
+#: .\diary\templates\diary\diary_list.html:35
 msgid "Choose"
 msgstr "選擇"
 
