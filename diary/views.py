@@ -25,7 +25,11 @@ def diary_list(request):
     paginator = Paginator(diaries, paginate_by)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    is_paginated = use_pagination and page_obj.has_other_pages()
+    # temp solution for "all pages" view.
+    if str(page_number).lower() == 'all':
+        is_paginated = False
+    else:
+        is_paginated = use_pagination and page_obj.has_other_pages()
     object_list = page_obj if is_paginated else diaries
     context = {'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, 'is_supervisor': is_supervisor, }
     return render(request, template_name, context)
