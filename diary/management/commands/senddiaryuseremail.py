@@ -16,8 +16,8 @@ Just a temp solution for holiday exception.
 """
 
 days = Day.objects.all()
-holiday_dates = [day.date for day in days if day.is_holiday]
-HOLIDAYS = holiday_dates
+HOLIDAYS = [day.date for day in days if day.is_holiday]
+EXTRA_WORKDAY = [day.date for day in days if not day.is_holiday]
 THRESHOLD_LIST = [3, 7, 30]
 
 
@@ -40,9 +40,11 @@ class Command(BaseCommand):
         wanted = {}
         for user in users:
             starting_date = user.profile.diary_starting_date
-            past_date_list = [starting_date + timedelta(n) for n in range((today() - starting_date).days)]
-            past_weekday_date_list = [date for date in past_date_list if is_weekday(date) and date not in HOLIDAYS]  # Temp solution
-            for date in past_weekday_date_list:
+            past_dates = [starting_date + timedelta(n) for n in range((today() - starting_date).days)]
+            past_weekday_dates = [date for date in past_dates if is_weekday(date) and date not in HOLIDAYS]  # Temp solution
+            past_work_dates = past_weekday_dates + EXTRA_WORKDAY
+            past_work_dates = sorted(past_work_dates)
+            for date in past_work_dates:
                 wanted.update({(date, user.id): False})
         """
         Create a dictionary using a tuple ``date`` and ``created_by_id`` as key,
