@@ -4,3 +4,9 @@
     border: 1px solid #ddd;
     margin-bottom: 12px;
 }
+#addButton {
+    font-weight: bold;
+    width: 80px;
+    padding: 8px 10px;
+    margin-bottom: 4.5px;
+}
