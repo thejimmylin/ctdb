@@ -1,5 +1,4 @@
 from django.db.models.signals import post_save, post_delete
-from django.forms.models import model_to_dict
 from django.dispatch import receiver
 from django.utils import timezone
 from .models import Log
@@ -21,9 +20,8 @@ class DiarySerializer(serializers.ModelSerializer):
 @receiver(post_save, sender=Diary, dispatch_uid='post_save_diary')
 def post_save_diary(sender, instance, created, **kwargs):
     action = 'create' if created else 'update'
-    instance_dict = model_to_dict(instance)
-    app_label = instance._meta.app_label
-    model_name = instance._meta.model_name
+    app_label = sender._meta.app_label
+    model_name = sender._meta.model_name
     Log.objects.create(
         action=action,
         app_label=app_label,
@@ -36,9 +34,8 @@ def post_save_diary(sender, instance, created, **kwargs):
 @receiver(post_delete, sender=Diary, dispatch_uid='post_delete_diary')
 def post_delete_diary(sender, instance, **kwargs):
     action = 'delete'
-    instance_dict = model_to_dict(instance)
-    app_label = instance._meta.app_label
-    model_name = instance._meta.model_name
+    app_label = sender._meta.app_label
+    model_name = sender._meta.model_name
     Log.objects.create(
         action=action,
         app_label=app_label,
