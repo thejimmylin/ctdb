@@ -12,6 +12,7 @@
     <div class="container-fluid max-w-24u">
         <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
             <div class="col">
+                <div id="blankTop"></div>
                 <div id="toolBar" class="d-flex justify-content-between">
                     <input type="text" id="searchInput" placeholder={% trans 'Search..' %}>
                     <a id="addButton" class="btn btn-light border" href="{% url 'diary:add' %}">{% trans 'Add' %}</a>
@@ -99,8 +100,8 @@
                     </li>
                 </ul>
                 {% endif %}
+                <div id="blankButtom"></div>
             </div>
-
         </div>
     </div>
 </section>

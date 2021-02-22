@@ -1,3 +1,6 @@
+#blankTop, #blankButtom {
+    height: 48px;
+}
 #toolBar{
     margin-bottom: 10px;
 }
