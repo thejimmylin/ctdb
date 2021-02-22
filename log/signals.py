@@ -10,7 +10,9 @@ def now():
     return timezone.localtime(timezone.now())
 
 
-def create_log(action, instance):
+@receiver(post_save, sender=Diary, dispatch_uid='post_save_diary')
+def post_save_diary(sender, instance, created, **kwargs):
+    action = 'create' if created else 'update'
     instance_dict = model_to_dict(instance)
     app_label = instance._meta.app_label
     model_name = instance._meta.model_name
@@ -25,13 +27,18 @@ def create_log(action, instance):
     )
 
 
-@receiver(post_save, sender=Diary, dispatch_uid='post_save_diary')
-def post_save_diary(sender, instance, created, **kwargs):
-    action = 'create' if created else 'update'
-    create_log(action=action, instance=instance)
-
-
 @receiver(post_delete, sender=Diary, dispatch_uid='post_delete_diary')
 def post_delete_diary(sender, instance, **kwargs):
     action = 'delete'
-    create_log(action=action, instance=instance)
+    instance_dict = model_to_dict(instance)
+    app_label = instance._meta.app_label
+    model_name = instance._meta.model_name
+    primary_key = instance_dict.pop('id')
+    Log.objects.create(
+        action=action,
+        app_label=app_label,
+        model_name=model_name,
+        primary_key=primary_key,
+        body='',
+        created_at=now(),
+    )
