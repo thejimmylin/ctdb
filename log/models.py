@@ -19,10 +19,9 @@ class Log(models.Model):
     primary_key = models.IntegerField(
         verbose_name=_('Primary key'),
     )
-    data = models.TextField(
-        verbose_name=_('Data'),
+    body = models.TextField(
+        verbose_name=_('Body'),
     )
-    created_by_username = models.CharField(
-        verbose_name=_('Created by username'),
-        max_length=63,
+    created_at = models.DateTimeField(
+        verbose_name=_('Created at'),
     )

@@ -18,7 +18,3 @@ class Diary(models.Model):
 
     def __str__(self):
         return self.daily_record[:8] + '..'
-
-
-class Preference(models.Model):
-    pass
