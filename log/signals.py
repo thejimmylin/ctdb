@@ -10,11 +10,11 @@ def now():
     return timezone.localtime(timezone.now())
 
 
-# Using django-rest-framework's serializers is better than json.dumps with custom encoder.
 class DiarySerializer(serializers.ModelSerializer):
+    """Using django-rest-framework's serializers is better than json.dumps with custom encoder."""
     class Meta:
         model = Diary
-        fields = "__all__"
+        fields = '__all__'
 
 
 @receiver(post_save, sender=Diary, dispatch_uid='post_save_diary')
