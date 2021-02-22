@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'telecom.apps.TelecomConfig',
     'diary.apps.DiaryConfig',
     'day.apps.DayConfig',
+    'log.apps.LogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
