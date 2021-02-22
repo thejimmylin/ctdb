@@ -24,12 +24,10 @@ def post_save_diary(sender, instance, created, **kwargs):
     instance_dict = model_to_dict(instance)
     app_label = instance._meta.app_label
     model_name = instance._meta.model_name
-    primary_key = instance_dict.pop('id')
     Log.objects.create(
         action=action,
         app_label=app_label,
         model_name=model_name,
-        primary_key=primary_key,
         data=DiarySerializer(instance).data,
         created_at=now(),
     )
@@ -41,12 +39,10 @@ def post_delete_diary(sender, instance, **kwargs):
     instance_dict = model_to_dict(instance)
     app_label = instance._meta.app_label
     model_name = instance._meta.model_name
-    primary_key = instance_dict.pop('id')
     Log.objects.create(
         action=action,
         app_label=app_label,
         model_name=model_name,
-        primary_key=primary_key,
         data='',
         created_at=now(),
     )
