@@ -103,6 +103,17 @@ DATABASES_SQLITE = {
     }
 }
 
+DATABASES_MYSQL = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ctdbdb',
+        'USER': 'admin',
+        'PASSWORD': '20180105',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+
 DATABASES_MSSQL = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
@@ -121,7 +132,7 @@ IS_PRODUCTION = get_secret('IS_PRODUCTION')
 if IS_PRODUCTION:
     DATABASES = DATABASES_MSSQL
 else:
-    DATABASES = DATABASES_SQLITE
+    DATABASES = DATABASES_MYSQL
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
