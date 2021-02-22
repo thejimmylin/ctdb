@@ -4,10 +4,18 @@ from django.dispatch import receiver
 from django.utils import timezone
 from .models import Log
 from diary.models import Diary
+from rest_framework import serializers
 
 
 def now():
     return timezone.localtime(timezone.now())
+
+
+# Using django-rest-framework's serializers is better than json.dumps with custom encoder.
+class DiarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Diary
+        fields = "__all__"
 
 
 @receiver(post_save, sender=Diary, dispatch_uid='post_save_diary')
@@ -22,7 +30,7 @@ def post_save_diary(sender, instance, created, **kwargs):
         app_label=app_label,
         model_name=model_name,
         primary_key=primary_key,
-        body=str(instance_dict),
+        data=DiarySerializer(instance).data,
         created_at=now(),
     )
 
@@ -39,6 +47,6 @@ def post_delete_diary(sender, instance, **kwargs):
         app_label=app_label,
         model_name=model_name,
         primary_key=primary_key,
-        body='',
+        data='',
         created_at=now(),
     )
