@@ -93,7 +93,7 @@ def set_role(request, role):
         messages.add_message(request, messages.ERROR, _('You have no access to this role.'))
         return redirect(reverse('index'))
     request.session['role'] = role
-    return redirect(reverse('index'))
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 def get_role(request):
