@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-20 14:22+0800\n"
+"POT-Creation-Date: 2021-02-23 14:39+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,7 +74,7 @@ msgstr "日誌起始日"
 
 #: .\accounts\models.py:56
 #: .\accounts\templates\registration\profile_change.html:11
-#: .\ctdb\templates\base.html:78
+#: .\ctdb\templates\base.html:87
 msgid "Profile"
 msgstr "個人檔案"
 
@@ -95,7 +95,7 @@ msgid "Departments"
 msgstr "部門"
 
 #: .\accounts\templates\registration\base.html:10
-#: .\diary\templates\diary\base.html:10
+#: .\diary\templates\diary\base.html:10 .\log\templates\log\base.html:10
 msgid "© 2020 Chief Telecom Inc. All rights reserved."
 msgstr "© 2020 是方電訊股份有限公司，保留所有權利。"
 
@@ -107,7 +107,7 @@ msgstr "© 2020 是方電訊股份有限公司，保留所有權利。"
 #: .\accounts\templates\registration\signup.html:20
 #: .\accounts\templates\registration\signup_with_account_and_password.html:13
 #: .\accounts\templates\registration\signup_with_email.html:13
-#: .\ctdb\templates\base.html:144
+#: .\ctdb\templates\base.html:153
 msgid "Login"
 msgstr "登入"
 
@@ -163,7 +163,7 @@ msgid "Back to the homepage."
 msgstr "返回首頁"
 
 #: .\accounts\templates\registration\password_change_form.html:11
-#: .\ctdb\templates\base.html:79
+#: .\ctdb\templates\base.html:88
 msgid "Password change"
 msgstr "密碼變更"
 
@@ -210,7 +210,7 @@ msgid "I didn't recieve it."
 msgstr "我沒有收到"
 
 #: .\accounts\templates\registration\password_reset_form.html:11
-#: .\ctdb\templates\base.html:81 .\ctdb\templates\base.html:147
+#: .\ctdb\templates\base.html:90 .\ctdb\templates\base.html:156
 msgid "Password reset"
 msgstr "密碼重置"
 
@@ -220,7 +220,7 @@ msgstr "重置"
 
 #: .\accounts\templates\registration\profile_change.html:42
 #: .\diary\templates\diary\diary_form.html:46
-#: .\diary\templates\diary\diary_list.html:40
+#: .\diary\templates\diary\diary_list.html:48
 msgid "Change"
 msgstr "變更"
 
@@ -229,7 +229,7 @@ msgstr "變更"
 #: .\accounts\templates\registration\signup_with_account_and_password.html:41
 #: .\accounts\templates\registration\signup_with_email.html:11
 #: .\accounts\templates\registration\signup_with_email.html:44
-#: .\ctdb\templates\base.html:145
+#: .\ctdb\templates\base.html:154
 msgid "Sign up"
 msgstr "註冊"
 
@@ -249,10 +249,10 @@ msgstr "已經有帳號了嗎？"
 
 #: .\accounts\views.py:93
 msgid "You have no access to this role."
-msgstr ""
+msgstr "你沒有此角色的存取權"
 
 #: .\ctdb\templates\base.html:34 .\ctdb\templates\base.html:47
-#: .\ctdb\templates\base.html:125
+#: .\ctdb\templates\base.html:134
 msgid "TDB"
 msgstr ""
 
@@ -268,31 +268,40 @@ msgid "List"
 msgstr "列表"
 
 #: .\ctdb\templates\base.html:63 .\diary\templates\diary\diary_form.html:43
+#: .\diary\templates\diary\diary_list.html:18
 msgid "Add"
 msgstr "新增"
 
-#: .\ctdb\templates\base.html:67 .\ctdb\templates\base.html:134
+#: .\ctdb\templates\base.html:69
+msgid "Log"
+msgstr ""
+
+#: .\ctdb\templates\base.html:72
+msgid "Diary log"
+msgstr "日誌 log"
+
+#: .\ctdb\templates\base.html:76 .\ctdb\templates\base.html:143
 msgid "About"
 msgstr "關於"
 
-#: .\ctdb\templates\base.html:77
+#: .\ctdb\templates\base.html:86
 msgid "Logout"
 msgstr "登出"
 
-#: .\ctdb\templates\base.html:91
+#: .\ctdb\templates\base.html:100
 msgid "------"
 msgstr ""
 
-#: .\ctdb\templates\base.html:100
+#: .\ctdb\templates\base.html:109
 msgid "No available departments"
 msgstr "沒有可用的部門"
 
-#: .\ctdb\templates\base.html:141
+#: .\ctdb\templates\base.html:150
 msgid "Guest"
 msgstr "訪客"
 
 #: .\day\models.py:8 .\diary\forms.py:20 .\diary\models.py:7
-#: .\diary\templates\diary\diary_list.html:20
+#: .\diary\templates\diary\diary_list.html:28
 msgid "Date"
 msgstr "日期"
 
@@ -300,31 +309,31 @@ msgstr "日期"
 msgid "Is holiday"
 msgstr "是假日"
 
-#: .\diary\forms.py:25 .\diary\templates\diary\diary_list.html:56
+#: .\diary\forms.py:25 .\diary\templates\diary\diary_list.html:64
 msgid "Yes"
 msgstr ""
 
-#: .\diary\forms.py:26 .\diary\templates\diary\diary_list.html:56
+#: .\diary\forms.py:26 .\diary\templates\diary\diary_list.html:64
 msgid "No"
 msgstr ""
 
 #: .\diary\forms.py:28 .\diary\models.py:8
-#: .\diary\templates\diary\diary_list.html:21
+#: .\diary\templates\diary\diary_list.html:29
 msgid "Daily check"
 msgstr "日檢核"
 
 #: .\diary\forms.py:34 .\diary\forms.py:38 .\diary\models.py:9
-#: .\diary\templates\diary\diary_list.html:22
+#: .\diary\templates\diary\diary_list.html:30
 msgid "Daily record"
 msgstr "日常紀錄"
 
 #: .\diary\forms.py:43 .\diary\forms.py:47 .\diary\models.py:10
-#: .\diary\templates\diary\diary_list.html:23
+#: .\diary\templates\diary\diary_list.html:31
 msgid "To do"
 msgstr "待辦事項"
 
 #: .\diary\forms.py:51 .\diary\models.py:11
-#: .\diary\templates\diary\diary_list.html:24
+#: .\diary\templates\diary\diary_list.html:32
 msgid "Remark"
 msgstr "備註"
 
@@ -332,7 +341,7 @@ msgstr "備註"
 msgid "The diary with this date has already existed."
 msgstr "這個日期的日誌已經存在。"
 
-#: .\diary\models.py:12 .\diary\templates\diary\diary_list.html:18
+#: .\diary\models.py:12 .\diary\templates\diary\diary_list.html:26
 msgid "Created by"
 msgstr "建立者"
 
@@ -345,39 +354,51 @@ msgid "Are you sure you want to delete this diary?"
 msgstr "你確定要刪除這個日誌嗎？"
 
 #: .\diary\templates\diary\diary_confirm_delete.html:43
-#: .\diary\templates\diary\diary_list.html:42
+#: .\diary\templates\diary\diary_list.html:50
 msgid "Delete"
 msgstr "刪除"
 
-#: .\diary\templates\diary\diary_list.html:11
+#: .\diary\templates\diary\diary_list.html:17
+#: .\log\templates\log\diary_log_list.html:17
 msgid "Search.."
 msgstr "搜尋.."
 
-#: .\diary\templates\diary\diary_list.html:16
+#: .\diary\templates\diary\diary_list.html:24 .\log\models.py:7
+#: .\log\templates\log\diary_log_list.html:23
 msgid "Action"
 msgstr "動作"
 
-#: .\diary\templates\diary\diary_list.html:35
+#: .\diary\templates\diary\diary_list.html:43
 msgid "Choose"
 msgstr "選擇"
 
-#: .\diary\templates\diary\diary_list.html:46
+#: .\diary\templates\diary\diary_list.html:54
 msgid "No available options"
 msgstr "沒有可用的選項"
 
-#: .\diary\templates\diary\diary_list.html:64
+#: .\diary\templates\diary\diary_list.html:72
+#: .\log\templates\log\diary_log_list.html:37
 msgid "No diaries."
 msgstr "沒有日誌"
 
-#: .\diary\templates\diary\diary_list.html:74
-#: .\diary\templates\diary\diary_list.html:78
+#: .\diary\templates\diary\diary_list.html:82
+#: .\diary\templates\diary\diary_list.html:86
+#: .\log\templates\log\diary_log_list.html:47
+#: .\log\templates\log\diary_log_list.html:51
 msgid "Previous"
 msgstr "上一頁"
 
-#: .\diary\templates\diary\diary_list.html:83
-#: .\diary\templates\diary\diary_list.html:87
+#: .\diary\templates\diary\diary_list.html:91
+#: .\diary\templates\diary\diary_list.html:95
+#: .\log\templates\log\diary_log_list.html:56
+#: .\log\templates\log\diary_log_list.html:60
 msgid "Next"
 msgstr "下一頁"
+
+#: .\diary\templates\diary\diary_list.html:99
+#: .\log\templates\log\diary_log_list.html:64
+msgid "All"
+msgstr ""
 
 #: .\diary\templates\diary\index.html:13
 msgid "Record things."
@@ -394,3 +415,19 @@ msgstr "不知道怎麼做嗎？"
 #: .\diary\templates\diary\index.html:20
 msgid "Example"
 msgstr "範例"
+
+#: .\log\models.py:8
+msgid "APP label"
+msgstr "APP 名稱"
+
+#: .\log\models.py:9
+msgid "Model name"
+msgstr "Model 名稱"
+
+#: .\log\models.py:10 .\log\templates\log\diary_log_list.html:24
+msgid "Data"
+msgstr "資料"
+
+#: .\log\models.py:11 .\log\templates\log\diary_log_list.html:25
+msgid "Created at"
+msgstr "建立於"

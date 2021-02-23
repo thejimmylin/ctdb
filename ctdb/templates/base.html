@@ -63,6 +63,15 @@
                             <a class="dropdown-item" href="{% url 'diary:add' %}">{% trans 'Add' %}</a>
                         </div>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="true">
+                            {% trans 'Log' %}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'log:diary_log_list' %}">{% trans 'Diary log' %}</a>
+                        </div>
+                    </li>
                     <a class="nav-item nav-link" href="#">
                         {% trans 'About' %}
                     </a>
