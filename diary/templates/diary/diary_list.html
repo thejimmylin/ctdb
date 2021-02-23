@@ -63,8 +63,8 @@
                                 <td class="text-nowrap">
                                     {% if diary.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
                                 </td>
-                                <td>{{ diary.daily_record|linebreaks }}</td>
-                                <td>{{ diary.todo|linebreaks }}</td>
+                                <td>{{ diary.daily_record|safe|linebreaks }}</td>
+                                <td>{{ diary.todo|safe|linebreaks }}</td>
                                 <td>{{ diary.remark|linebreaks }}</td>
                             </tr>
                             {% empty %}

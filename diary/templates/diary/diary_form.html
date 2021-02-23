@@ -37,6 +37,11 @@
             </div>
           </div>
           {% endfor %}
+          <!-- For CKeditor4 -->
+          <script>
+            CKEDITOR.replace('id_daily_record');
+            CKEDITOR.replace('id_todo');
+          </script>
           <div class="form-row">
             <div class="form-group col">
               {% if action == 'create' %}
@@ -44,7 +49,7 @@
               {% endif %}
               {% if action == 'update' %}
               <button type="submit" class="btn btn-success btn-block">{% trans 'Change' %}</button>
-              {% endif %}              
+              {% endif %}
             </div>
           </div>
         </form>
