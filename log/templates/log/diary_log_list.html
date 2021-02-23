@@ -32,7 +32,7 @@
                             {% for log in object_list %}
                             <tr>
                                 <td class="text-nowrap">{{ log.action }}</td>
-                                <td class="text-nowrap">{{ log.data.date }}</td>
+                                <td class="text-nowrap">{{ log.data }}</td>
                                 <td class="text-nowrap">
                                     {% if log.data.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
                                 </td>
