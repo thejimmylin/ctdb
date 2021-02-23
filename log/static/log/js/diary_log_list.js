@@ -6,13 +6,13 @@ searchInput.addEventListener("keyup", event => {
     table = document.querySelector("#diaryLogListTable");
     tbody = table.querySelector("tbody");
     tr = tbody.querySelectorAll("tr");
-    var tds, textCreatedBy, textDailyRecord, textTodo;
+    var tds, textAction, textData, textCreatedAt;
     for (i = 0; i < tr.length; i++) {
         tds = tr[i].querySelectorAll("td");
-        textCreatedBy = tds[1].textContent;
-        textDailyRecord = tds[4].textContent;
-        textTodo = tds[5].textContent;
-        textValue = textCreatedBy + textDailyRecord + textTodo;
+        textAction = tds[0].textContent;
+        textData = tds[1].textContent;
+        textCreatedAt = tds[2].textContent;
+        textValue = textAction + textData + textCreatedAt;
         if (textValue.toLowerCase().indexOf(filter) > -1) {
             tr[i].style.display = "";
         } else {

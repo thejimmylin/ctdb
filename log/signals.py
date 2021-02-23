@@ -20,27 +20,27 @@ class DiarySerializer(serializers.ModelSerializer):
 
 @receiver(post_save, sender=Diary, dispatch_uid='post_save_diary')
 def post_save_diary(sender, instance, created, **kwargs):
-    action = 'create' if created else 'update'
+    action = 'CREATE' if created else 'UPDATE'
     app_label = sender._meta.app_label
     model_name = sender._meta.model_name
     Log.objects.create(
         action=action,
         app_label=app_label,
         model_name=model_name,
-        data=json.dumps(DiarySerializer(instance).data),
+        data=json.dumps(DiarySerializer(instance).data, ensure_ascii=False),
         created_at=now(),
     )
 
 
 @receiver(post_delete, sender=Diary, dispatch_uid='post_delete_diary')
 def post_delete_diary(sender, instance, **kwargs):
-    action = 'delete'
+    action = 'DELETE'
     app_label = sender._meta.app_label
     model_name = sender._meta.model_name
     Log.objects.create(
         action=action,
         app_label=app_label,
         model_name=model_name,
-        data='',
+        data=json.dumps(DiarySerializer(instance).data, ensure_ascii=False),
         created_at=now(),
     )

@@ -3,7 +3,6 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.core.paginator import Paginator
 
-from diary.models import Diary
 from .models import Log
 from accounts.views import get_role
 
@@ -17,8 +16,13 @@ def diary_log_list(request):
     user = request.user
     role = get_role(request)  # NOQA, to be used
     is_supervisor = user.groups.filter(name='Supervisors').exists()
-    diary_logs = Log.objects.all().order_by('-created_at')
-    diary_logs = [diary_log for diary_log in diary_logs if json.loads(diary_log.data).get('created_by') == request.user.id]
+    diary_logs = Log.objects.all().order_by('-created_at').values()
+    available_diary_logs = []
+    for diary_log in diary_logs:
+        data_as_dict = json.loads(diary_log['data'])
+        if data_as_dict.get('created_by', '') == request.user.id:
+            diary_log['data_as_dict'] = data_as_dict
+            available_diary_logs.append(diary_log)
     paginator = Paginator(diary_logs, paginate_by)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

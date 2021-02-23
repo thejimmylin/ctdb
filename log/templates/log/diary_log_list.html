@@ -21,24 +21,16 @@
                         <thead>
                             <tr>
                                 <th>{% trans 'Action' %}</th>
-                                <th>{% trans 'Date' %}</th>
-                                <th>{% trans 'Daily check' %}</th>
-                                <th style="min-width: 400px;">{% trans 'Daily record' %}</th>
-                                <th style="min-width: 400px;">{% trans 'To do' %}</th>
-                                <th style="min-width: 250px;">{% trans 'Remark' %}</th>
+                                <th>{% trans 'Data' %}</th>
+                                <th>{% trans 'Created at' %}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for log in object_list %}
                             <tr>
                                 <td class="text-nowrap">{{ log.action }}</td>
-                                <td class="text-nowrap">{{ log.data }}</td>
-                                <td class="text-nowrap">
-                                    {% if log.data.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
-                                </td>
-                                <td>{{ log.data.daily_record|linebreaks }}</td>
-                                <td>{{ log.data.todo|linebreaks }}</td>
-                                <td>{{ log.data.remark|linebreaks }}</td>
+                                <td>{{ log.data }}</td>
+                                <td class="text-nowrap">{{ log.created_at|date:"Y-m-d H:m:s" }}</td>
                             </tr>
                             {% empty %}
                             <tr>

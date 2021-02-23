@@ -1,6 +1,6 @@
 searchInput = document.querySelector("#searchInput");
 searchInput.addEventListener("keyup", event => {
-    var input, filter, table, tr, td, i, textValue;
+    var input, filter, table, tr, i, textValue;
     input = document.querySelector("#searchInput");
     filter = input.value.toLowerCase();
     table = document.querySelector("#diaryListTable");
