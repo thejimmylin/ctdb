@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-23 14:39+0800\n"
+"POT-Creation-Date: 2021-02-23 14:46+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -378,8 +378,8 @@ msgstr "沒有可用的選項"
 
 #: .\diary\templates\diary\diary_list.html:72
 #: .\log\templates\log\diary_log_list.html:37
-msgid "No diaries."
-msgstr "沒有日誌"
+msgid "No entries."
+msgstr "沒有條目"
 
 #: .\diary\templates\diary\diary_list.html:82
 #: .\diary\templates\diary\diary_list.html:86
