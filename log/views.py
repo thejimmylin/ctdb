@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.core.paginator import Paginator
@@ -16,8 +17,9 @@ def diary_log_list(request):
     user = request.user
     role = get_role(request)  # NOQA, to be used
     is_supervisor = user.groups.filter(name='Supervisors').exists()
-    diary_logs = Log.objects.filter(data__created_by=user.id)
-    diary_logs = diary_logs.distinct().order_by('-created_at')
+    diary_logs = Log.objects.all().order_by('-created_at')
+    print(diary_logs)
+    diary_logs = [diary_log for diary_log in diary_logs if json.loads(diary_log.data).get('created_by') == request.user.id]
     paginator = Paginator(diary_logs, paginate_by)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

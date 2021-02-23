@@ -1,3 +1,4 @@
+import json
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
@@ -26,7 +27,7 @@ def post_save_diary(sender, instance, created, **kwargs):
         action=action,
         app_label=app_label,
         model_name=model_name,
-        data=DiarySerializer(instance).data,
+        data=json.dumps(DiarySerializer(instance).data),
         created_at=now(),
     )
 
