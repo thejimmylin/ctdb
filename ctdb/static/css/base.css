@@ -67,6 +67,10 @@ body {
   max-width: var(--w-12u);
 }
 
+.max-w-10u {
+  max-width: var(--w-10u);
+}
+
 .max-w-8u {
   max-width: var(--w-8u);
 }

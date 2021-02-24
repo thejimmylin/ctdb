@@ -33,6 +33,7 @@ class DiaryModelForm(forms.ModelForm):
             attrs={
                 'placeholder': _('Daily record'),
                 'rows': 4,
+                'class': 'ckeditor4',
             },
         ),
         label=_('Daily record'),
@@ -42,12 +43,20 @@ class DiaryModelForm(forms.ModelForm):
             attrs={
                 'placeholder': _('To do'),
                 'rows': 4,
+                'class': 'ckeditor4',
             },
         ),
         label=_('To do'),
         required=False,
     )
     remark = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': _('Remark'),
+                'rows': 4,
+                'class': 'ckeditor4',
+            },
+        ),
         label=_('Remark'),
         required=False,
     )

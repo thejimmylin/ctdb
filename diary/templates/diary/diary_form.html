@@ -7,7 +7,8 @@
 <section class="content">
   <div class="container-fluid max-w-24u">
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
-      <div class="col max-w-8u border rounded p-5">
+      <div class="col-12" style="height: 60px;"></div>
+      <div class="col-12 max-w-10u border rounded shadow" style="padding: 2rem;">
         <h3 class="mb-5">{% trans 'Diaries' %}</h3>
         <form method="post" novalidate>
           {% csrf_token %}
@@ -37,11 +38,6 @@
             </div>
           </div>
           {% endfor %}
-          <!-- For CKeditor -->
-          <script>
-            CKEDITOR.replace('id_daily_record');
-            CKEDITOR.replace('id_todo');
-          </script>
           <div class="form-row">
             <div class="form-group col">
               {% if action == 'create' %}
@@ -54,7 +50,18 @@
           </div>
         </form>
       </div>
+      <div class="col-12" style="height: 90px;"></div>
     </div>
   </div>
 </section>
+{% endblock %}
+
+{% block extrajs %}
+<!-- For CKeditor4 -->
+<script>
+  const textareas = document.querySelectorAll('textarea.ckeditor4');
+  for (const textarea of textareas) {
+    CKEDITOR.replace(textarea.id);
+  }
+</script>
 {% endblock %}
