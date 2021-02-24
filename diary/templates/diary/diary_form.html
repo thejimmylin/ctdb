@@ -57,11 +57,5 @@
 {% endblock %}
 
 {% block extrajs %}
-<!-- For CKeditor4 -->
-<script>
-  const textareas = document.querySelectorAll('textarea.ckeditor4');
-  for (const textarea of textareas) {
-    CKEDITOR.replace(textarea.id);
-  }
-</script>
+<script src="{% static 'diary/js/diary_form.js' %}"></script>
 {% endblock %}
