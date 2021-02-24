@@ -53,20 +53,6 @@ body {
   font-size: 15px;
 }
 
-table {
-  width: 100%;
-}
-
-th {
-  font-weight: normal;
-  white-space: nowrap;
-  vertical-align: top !important;
-}
-
-td {
-  overflow-wrap: break-word;
-}
-
 /* Layout things */
 
 .max-w-24u {
@@ -129,16 +115,25 @@ td {
 
 /* Table */
 
-table.table-striped-hover tbody tr:nth-of-type(even) {
-  background-color: rgba(var(--rgb-bluedark), 0.1);
+table {
+  width: 100%;
 }
 
-table.table-striped-hover tbody tr:hover:nth-of-type(odd) {
-  background-color: rgba(var(--rgb-bluedark), 0.2);
+th {
+  font-weight: normal;
+  white-space: nowrap;
+  vertical-align: top !important;
 }
 
-table.table-striped-hover tbody tr:hover:nth-of-type(even) {
-  background-color: rgba(var(--rgb-bluedark), 0.3);
+td {
+  overflow-wrap: break-word;
+}
+
+/* Custom styled table */
+
+.table-solid {
+  font-size: 0.95rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
 /* Floating label things */

@@ -14,11 +14,11 @@
             <div class="col">
                 <div id="blankTop"></div>
                 <div id="toolBar" class="d-flex justify-content-between">
-                    <input type="text" id="searchInput" placeholder={% trans 'Search..' %}>
-                    <a id="addButton" class="btn btn-light border" href="{% url 'diary:add' %}">{% trans 'Add' %}</a>
+                    <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
+                    <a id="addButton" class="btn btn-light border shadow-sm" href="{% url 'diary:add' %}">{% trans 'Add' %}</a>
                 </div>
                 <div class="table-responsive">
-                    <table id="diaryListTable" class="table table-bordered">
+                    <table id="diaryListTable" class="table table-bordered table-solid">
                         <thead>
                             <tr>
                                 <th>{% trans 'Action' %}</th>
