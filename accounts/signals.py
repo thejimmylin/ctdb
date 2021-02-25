@@ -8,6 +8,8 @@ User = get_user_model()
 
 @receiver(post_save, sender=User, dispatch_uid='put_profile')
 def put_profile(sender, instance, created, **kwargs):
+    if kwargs.get('raw', False):
+        return
     if created:
         Profile.objects.create(user=instance)
     instance.profile.save()
