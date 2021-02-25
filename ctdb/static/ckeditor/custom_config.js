@@ -9,6 +9,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html
 
 	// The toolbar groups arrangement, optimized for a single toolbar row.
+	// Change the order
 	config.toolbarGroups = [
 		{ name: 'colors' },
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
@@ -22,7 +23,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'tools' },
 		{ name: 'others' },
 		{ name: 'about' },
-        { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] }
+		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] }
 	];
 
 	// The default plugins included in the basic setup define some buttons that
@@ -31,4 +32,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Dialog windows are also simplified.
 	config.removeDialogTabs = 'link:advanced';
+
+	// Set UI color
+	config.uiColor = '#FEFFFF';
 };
