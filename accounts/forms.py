@@ -82,7 +82,7 @@ class SignUpWithEmailForm(forms.ModelForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         random_uuid_password = uuid.uuid4()
-        user.set_password(random_uuid_password)
+        user.set_password(str(random_uuid_password))
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')
         subject = '[TDB] You have created an account.'
