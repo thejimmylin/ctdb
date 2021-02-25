@@ -65,7 +65,7 @@
                                 </td>
                                 <td>{{ diary.daily_record|safe|linebreaks }}</td>
                                 <td>{{ diary.todo|safe|linebreaks }}</td>
-                                <td>{{ diary.remark|linebreaks }}</td>
+                                <td>{{ diary.remark|safe|linebreaks }}</td>
                             </tr>
                             {% empty %}
                             <tr>
