@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'diary.apps.DiaryConfig',
     'day.apps.DayConfig',
     'log.apps.LogConfig',
+    'core.apps.CoreConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,7 +78,7 @@ ROOT_URLCONF = 'ctdb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates/'), ],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -190,10 +191,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
-STATICFILES_DIRS = [
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static/'),
-]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
