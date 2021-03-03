@@ -1,20 +1,15 @@
 searchInput = document.querySelector("#searchInput");
-searchInput.addEventListener("keyup", event => {
-    var input, filter, table, tr, i, j, tds, textValue;
-    input = document.querySelector("#searchInput");
-    filter = input.value.toLowerCase();
-    table = document.querySelector("#diaryListTable");
-    tbody = table.querySelector("tbody");
-    tr = tbody.querySelectorAll("tr");
-    for (i = 0; i < tr.length; i++) {
-        tds = tr[i].querySelectorAll("td");
-        for (j = 0; j <tds.length; j++) {
-            textValue += tds[j].textContent;
+searchInput.addEventListener("keyup", function () {
+    let inputValue, trs, tds, textValue, includeText;
+    inputValue = document.querySelector("#searchInput").value;
+    trs = document.querySelectorAll("#diaryListTable tbody tr");
+    for (tr of trs) {
+        tds = tr.querySelectorAll("td");
+        textValue = ""
+        for (td of tds) {
+            textValue += td.textContent;
         }
-        if (textValue.toLowerCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-        } else {
-            tr[i].style.display = "none";
-        }
+        includeText = (textValue.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
+        tr.style.display = includeText ? "" : "none";
     }
 })
