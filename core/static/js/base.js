@@ -1,4 +1,4 @@
-// Django i18n/setlang
+// Function definition
 const setLanguage = function (language) {
     $.ajax({
         type: "POST",
@@ -12,19 +12,18 @@ const setLanguage = function (language) {
         },
     });
 };
+// Load these codes after DOM loaded
 document.addEventListener("DOMContentLoaded", function () {
+    // Django i18n/setlang
     const btns = document.querySelectorAll("a.set-language-item");
     for (const btn of btns) {
         btn.addEventListener("click", function (event) {
             setLanguage(event.currentTarget.textContent);
         });
     }
-});
-
-// scroll-sensitive things
-$(function () {
-    $(document).scroll(function () {
-        var scrollSensitive = $(".scroll-sensitive");
-        scrollSensitive.toggleClass('scrolled', $(this).scrollTop() > scrollSensitive.height());
-    });
+    // Scroll-sensitive things
+    document.addEventListener("scroll", function () {
+        let scrollSensitive = document.querySelector(".scroll-sensitive");
+        scrollSensitive.classList.toggle('scrolled', window.scrollY > 0);
+    })
 });
