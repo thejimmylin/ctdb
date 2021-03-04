@@ -12,6 +12,22 @@ const setLanguage = function (language) {
         },
     });
 };
+
+// Working..
+
+// const setLanguage = function (language) {
+//     fetch(url, {
+//         method: "POST",
+//         body: JSON.stringify({
+//             csrfmiddlewaretoken: csrfmiddlewaretoken,
+//             language: language,
+//         }),
+//         headers: new Headers({
+//             "X-CSRFToken": csrfmiddlewaretoken,
+//         })
+//     }).then(location.reload())
+// };
+
 // Load these codes after DOM loaded
 document.addEventListener("DOMContentLoaded", function () {
     // Django i18n/setlang
