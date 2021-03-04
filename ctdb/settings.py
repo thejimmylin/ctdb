@@ -112,6 +112,7 @@ DATABASES_MYSQL = {
         'PASSWORD': '20180105',
         'HOST': 'localhost',
         'PORT': '3306',
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
 
