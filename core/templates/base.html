@@ -86,7 +86,7 @@
                             <a class="dropdown-item" href="{% url 'log:diary_log_list' %}">{% trans 'Diary' %}</a>
                         </div>
                     </li>
-                    <a class="nav-item nav-link" href="#">
+                    <a class="nav-item nav-link" href="{% url 'about' %}">
                         {% trans 'About' %}
                     </a>
                 </ul>
@@ -156,7 +156,7 @@
             </button>
             <div class="collapse navbar-collapse" id="togglerTarget">
                 <ul class="navbar-nav mr-auto" style="padding-left: 2.875rem;">
-                    <a class="nav-item nav-link" href="#">
+                    <a class="nav-item nav-link" href="{% url 'about' %}">
                         {% trans 'About' %}
                     </a>
                 </ul>
