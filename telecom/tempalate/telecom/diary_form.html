@@ -1,0 +1,61 @@
+{% extends 'diary/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid max-w-24u">
+    <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
+      <div class="col-12" style="height: 60px;"></div>
+      <div class="col-12 max-w-10u border rounded shadow" style="padding: 2rem;">
+        <h3 class="mb-5">{% trans 'Diaries' %}</h3>
+        <form method="post" novalidate>
+          {% csrf_token %}
+          {% if form.errors|length == 1 %}
+          <p class="text-danger">{% trans "Please correct the error below." %}</p>
+          {% elif form.errors|length > 1 %}
+          <p class="text-danger">{% trans "Please correct the errors below." %}</p>
+          {% endif %}
+          {% for error in form.non_field_errors %}
+          <p class="text-danger">{{ error }}</p>
+          {% endfor %}
+          {% for field in form %}
+          <div class="form-row">
+            <div class="form-group col">
+              {{ field.label_tag }}
+              {% if field.errors %}
+              {% render_field field class+='form-control form-check border-danger' placeholder=field.label %}
+              {% else %}
+              {% render_field field class+='form-control' placeholder=field.label %}
+              {% endif %}
+              {% if field.help_text %}
+              <small class="text-muted d-block px-1">{{ field.help_text }}</small>
+              {% endif %}
+              {% for error in field.errors %}
+              <small class="text-danger d-block px-1">{{ error }}</small>
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+          <div class="form-row">
+            <div class="form-group col">
+              {% if action == 'create' %}
+              <button type="submit" class="btn btn-primary btn-block">{% trans 'Add' %}</button>
+              {% endif %}
+              {% if action == 'update' %}
+              <button type="submit" class="btn btn-success btn-block">{% trans 'Change' %}</button>
+              {% endif %}
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-12" style="height: 90px;"></div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extrajs %}
+<script src="{% static 'diary/js/diary_form.js' %}"></script>
+{% endblock %}
