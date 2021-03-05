@@ -18,7 +18,7 @@
                     <a id="addButton" class="btn btn-light border shadow-sm" href="#">{% trans 'Add' %}</a>
                 </div>
                 <div class="table-responsive">
-                    <table id="contacttaskListTable" class="table table-bordered table-solid">
+                    <table id="objListTable" class="table table-bordered table-solid">
                         <thead>
                             <tr>
                                 <th>{% trans 'Action' %}</th>
@@ -33,7 +33,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for contacttask in object_list %}
+                            {% for obj in object_list %}
                             <tr>
                                 <td class="text-nowrap">
                                     <div class="dropdown show">
@@ -42,7 +42,7 @@
                                             aria-expanded="false">
                                             {% trans 'Choose' %}
                                         </button>
-                                        {% if request.user == contacttask.created_by %}
+                                        {% if request.user == obj.created_by %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                             <a class="dropdown-item"
                                                 href="#">{% trans 'Change' %}</a>
@@ -57,15 +57,15 @@
                                     </div>
                                 </td>
                                 {% if is_supervisor %}
-                                <td class="text-nowrap">{{ contacttask.created_by }}</td>
+                                <td class="text-nowrap">{{ obj.created_by }}</td>
                                 {% endif %}
-                                <td class="text-nowrap">{{ contacttask.date|date:"Y-m-d" }}</td>
+                                <td class="text-nowrap">{{ obj.date|date:"Y-m-d" }}</td>
                                 <td class="text-nowrap">
-                                    {% if contacttask.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
+                                    {% if obj.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
                                 </td>
-                                <td>{{ contacttask.daily_record|safe|linebreaks }}</td>
-                                <td>{{ contacttask.todo|safe|linebreaks }}</td>
-                                <td>{{ contacttask.remark|safe|linebreaks }}</td>
+                                <td>{{ obj.daily_record|safe|linebreaks }}</td>
+                                <td>{{ obj.todo|safe|linebreaks }}</td>
+                                <td>{{ obj.remark|safe|linebreaks }}</td>
                             </tr>
                             {% empty %}
                             <tr>

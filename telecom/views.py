@@ -9,7 +9,7 @@ from accounts.views import get_role
 def contacttask_list(request):
     use_pagination = True
     paginate_by = 5
-    template_name = 'telecom/contacttasklist.html'
+    template_name = 'telecom/contacttask_list.html'
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     role = get_role(request)  # NOQA, to be used

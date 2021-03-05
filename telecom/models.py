@@ -1,4 +1,5 @@
 from django.db import models
+from .validators import validate_comma_separated_ipv46_address_string
 
 
 class Email(models.Model):
@@ -50,13 +51,11 @@ class ContactTask(models.Model):
     bcc = models.ManyToManyField(to='telecom.Email', related_name='contacttask_bcc', blank=True)
     to_isp = models.ManyToManyField(to='telecom.Isp', related_name='contacttask_to_isp', blank=True)
     to_isp_group = models.ManyToManyField(to='telecom.IspGroup', related_name='contacttask_to_isp_group', blank=True)
-    has_ipv4 = models.BooleanField(default=False)
-    ipv4 = models.GenericIPAddressField(protocol='ipv4', blank=True, null=True)
-    has_ipv6 = models.BooleanField(default=False)
-    ipv6 = models.GenericIPAddressField(protocol='ipv6', blank=True, null=True)
+    ip = models.GenericIPAddressField(null=True)
+    ipv46 = models.TextField(blank=True, null=True, validators=[validate_comma_separated_ipv46_address_string, ])
     original_as = models.IntegerField()
     as_path = models.IntegerField()
     remark = models.CharField(max_length=63, blank=True)
 
     def __str__(self):
-        return self.name
+        return f'{self.contact_type} {self.as_path}'
