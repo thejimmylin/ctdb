@@ -15,10 +15,10 @@
                 <div id="blankTop"></div>
                 <div id="toolBar" class="d-flex justify-content-between">
                     <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
-                    <a id="addButton" class="btn btn-light border shadow-sm" href="{% url 'telecom:contacttask-add' %}">{% trans 'Add' %}</a>
+                    <a id="addButton" class="btn btn-light border shadow-sm" href="#">{% trans 'Add' %}</a>
                 </div>
                 <div class="table-responsive">
-                    <table id="diaryListTable" class="table table-bordered table-solid">
+                    <table id="contacttaskListTable" class="table table-bordered table-solid">
                         <thead>
                             <tr>
                                 <th>{% trans 'Action' %}</th>
@@ -33,7 +33,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for diary in object_list %}
+                            {% for contacttask in object_list %}
                             <tr>
                                 <td class="text-nowrap">
                                     <div class="dropdown show">
@@ -42,12 +42,12 @@
                                             aria-expanded="false">
                                             {% trans 'Choose' %}
                                         </button>
-                                        {% if request.user == diary.created_by %}
+                                        {% if request.user == contacttask.created_by %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                             <a class="dropdown-item"
-                                                href="{% url 'diary:change' pk=diary.id %}">{% trans 'Change' %}</a>
+                                                href="#">{% trans 'Change' %}</a>
                                             <a class="dropdown-item"
-                                                href="{% url 'diary:delete' pk=diary.id %}">{% trans 'Delete' %}</a>
+                                                href="#">{% trans 'Delete' %}</a>
                                         </div>
                                         {% else %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -57,15 +57,15 @@
                                     </div>
                                 </td>
                                 {% if is_supervisor %}
-                                <td class="text-nowrap">{{ diary.created_by }}</td>
+                                <td class="text-nowrap">{{ contacttask.created_by }}</td>
                                 {% endif %}
-                                <td class="text-nowrap">{{ diary.date|date:"Y-m-d" }}</td>
+                                <td class="text-nowrap">{{ contacttask.date|date:"Y-m-d" }}</td>
                                 <td class="text-nowrap">
-                                    {% if diary.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
+                                    {% if contacttask.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
                                 </td>
-                                <td>{{ diary.daily_record|safe|linebreaks }}</td>
-                                <td>{{ diary.todo|safe|linebreaks }}</td>
-                                <td>{{ diary.remark|safe|linebreaks }}</td>
+                                <td>{{ contacttask.daily_record|safe|linebreaks }}</td>
+                                <td>{{ contacttask.todo|safe|linebreaks }}</td>
+                                <td>{{ contacttask.remark|safe|linebreaks }}</td>
                             </tr>
                             {% empty %}
                             <tr>

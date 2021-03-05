@@ -5,6 +5,7 @@ urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('accounts/', include('accounts.urls')),
     path('diary/', include('diary.urls')),
+    path('telecom/', include('telecom.urls')),
     path('log/', include('log.urls')),
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
