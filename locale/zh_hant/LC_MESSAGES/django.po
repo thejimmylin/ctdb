@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-23 14:46+0800\n"
+"POT-Creation-Date: 2021-03-07 23:13+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,7 +74,7 @@ msgstr "日誌起始日"
 
 #: .\accounts\models.py:56
 #: .\accounts\templates\registration\profile_change.html:11
-#: .\ctdb\templates\base.html:87
+#: .\core\templates\base.html:101
 msgid "Profile"
 msgstr "個人檔案"
 
@@ -95,9 +95,10 @@ msgid "Departments"
 msgstr "部門"
 
 #: .\accounts\templates\registration\base.html:10
-#: .\diary\templates\diary\base.html:10 .\log\templates\log\base.html:10
-msgid "© 2020 Chief Telecom Inc. All rights reserved."
-msgstr "© 2020 是方電訊股份有限公司，保留所有權利。"
+#: .\core\templates\about.html:27 .\diary\templates\diary\base.html:10
+#: .\log\templates\log\base.html:10 .\telecom\templates\telecom\base.html:10
+msgid "© 2020 All rights reserved."
+msgstr "© 2020 保留所有權利。"
 
 #: .\accounts\templates\registration\login.html:11
 #: .\accounts\templates\registration\login.html:45
@@ -107,7 +108,7 @@ msgstr "© 2020 是方電訊股份有限公司，保留所有權利。"
 #: .\accounts\templates\registration\signup.html:20
 #: .\accounts\templates\registration\signup_with_account_and_password.html:13
 #: .\accounts\templates\registration\signup_with_email.html:13
-#: .\ctdb\templates\base.html:153
+#: .\core\templates\base.html:169
 msgid "Login"
 msgstr "登入"
 
@@ -127,7 +128,9 @@ msgstr "建立"
 #: .\accounts\templates\registration\signup_with_account_and_password.html:18
 #: .\accounts\templates\registration\signup_with_email.html:18
 #: .\diary\templates\diary\diary_confirm_delete.html:16
-#: .\diary\templates\diary\diary_form.html:15
+#: .\diary\templates\diary\diary_form.html:16
+#: .\telecom\templates\telecom\contacttask_confirm_delete.html:16
+#: .\telecom\templates\telecom\contacttask_form.html:16
 msgid "Please correct the error below."
 msgstr ""
 
@@ -139,7 +142,9 @@ msgstr ""
 #: .\accounts\templates\registration\signup_with_account_and_password.html:20
 #: .\accounts\templates\registration\signup_with_email.html:20
 #: .\diary\templates\diary\diary_confirm_delete.html:18
-#: .\diary\templates\diary\diary_form.html:17
+#: .\diary\templates\diary\diary_form.html:18
+#: .\telecom\templates\telecom\contacttask_confirm_delete.html:18
+#: .\telecom\templates\telecom\contacttask_form.html:18
 msgid "Please correct the errors below."
 msgstr ""
 
@@ -163,7 +168,7 @@ msgid "Back to the homepage."
 msgstr "返回首頁"
 
 #: .\accounts\templates\registration\password_change_form.html:11
-#: .\ctdb\templates\base.html:88
+#: .\core\templates\base.html:103
 msgid "Password change"
 msgstr "密碼變更"
 
@@ -210,7 +215,7 @@ msgid "I didn't recieve it."
 msgstr "我沒有收到"
 
 #: .\accounts\templates\registration\password_reset_form.html:11
-#: .\ctdb\templates\base.html:90 .\ctdb\templates\base.html:156
+#: .\core\templates\base.html:106 .\core\templates\base.html:173
 msgid "Password reset"
 msgstr "密碼重置"
 
@@ -219,8 +224,10 @@ msgid "Reset"
 msgstr "重置"
 
 #: .\accounts\templates\registration\profile_change.html:42
-#: .\diary\templates\diary\diary_form.html:46
+#: .\diary\templates\diary\diary_form.html:47
 #: .\diary\templates\diary\diary_list.html:48
+#: .\telecom\templates\telecom\contacttask_form.html:47
+#: .\telecom\templates\telecom\contacttask_list.html:48
 msgid "Change"
 msgstr "變更"
 
@@ -229,7 +236,7 @@ msgstr "變更"
 #: .\accounts\templates\registration\signup_with_account_and_password.html:41
 #: .\accounts\templates\registration\signup_with_email.html:11
 #: .\accounts\templates\registration\signup_with_email.html:44
-#: .\ctdb\templates\base.html:154
+#: .\core\templates\base.html:170
 msgid "Sign up"
 msgstr "註冊"
 
@@ -251,57 +258,66 @@ msgstr "已經有帳號了嗎？"
 msgid "You have no access to this role."
 msgstr "你沒有此角色的存取權"
 
-#: .\ctdb\templates\base.html:34 .\ctdb\templates\base.html:47
-#: .\ctdb\templates\base.html:134
-msgid "TDB"
-msgstr ""
-
-#: .\ctdb\templates\base.html:58 .\diary\models.py:16
-#: .\diary\templates\diary\diary_confirm_delete.html:11
-#: .\diary\templates\diary\diary_form.html:11
-#: .\diary\templates\diary\index.html:11
-msgid "Diaries"
-msgstr "日誌"
-
-#: .\ctdb\templates\base.html:61
-msgid "List"
-msgstr "列表"
-
-#: .\ctdb\templates\base.html:63 .\diary\templates\diary\diary_form.html:43
-#: .\diary\templates\diary\diary_list.html:18
-msgid "Add"
-msgstr "新增"
-
-#: .\ctdb\templates\base.html:69
-msgid "Log"
-msgstr ""
-
-#: .\ctdb\templates\base.html:72
-msgid "Diary log"
-msgstr "日誌 log"
-
-#: .\ctdb\templates\base.html:76 .\ctdb\templates\base.html:143
+#: .\core\templates\about.html:11 .\core\templates\base.html:89
+#: .\core\templates\base.html:159
 msgid "About"
 msgstr "關於"
 
-#: .\ctdb\templates\base.html:86
+#: .\core\templates\about.html:14
+msgid "To be done.."
+msgstr ""
+
+#: .\core\templates\base.html:37
+msgid "TDB"
+msgstr ""
+
+#: .\core\templates\base.html:71 .\diary\models.py:16
+#: .\diary\templates\diary\diary_confirm_delete.html:11
+#: .\diary\templates\diary\diary_form.html:12
+#: .\diary\templates\diary\index.html:11
+#: .\telecom\templates\telecom\contacttask_confirm_delete.html:11
+#: .\telecom\templates\telecom\contacttask_form.html:12
+msgid "Diaries"
+msgstr "日誌"
+
+#: .\core\templates\base.html:74
+msgid "List"
+msgstr "列表"
+
+#: .\core\templates\base.html:76 .\diary\templates\diary\diary_form.html:44
+#: .\diary\templates\diary\diary_list.html:18
+#: .\telecom\templates\telecom\contacttask_form.html:44
+#: .\telecom\templates\telecom\contacttask_list.html:18
+msgid "Add"
+msgstr "新增"
+
+#: .\core\templates\base.html:82
+msgid "Log"
+msgstr ""
+
+#: .\core\templates\base.html:85 .\diary\models.py:15
+msgid "Diary"
+msgstr "日誌"
+
+#: .\core\templates\base.html:99
 msgid "Logout"
 msgstr "登出"
 
-#: .\ctdb\templates\base.html:100
+#: .\core\templates\base.html:116
 msgid "------"
 msgstr ""
 
-#: .\ctdb\templates\base.html:109
+#: .\core\templates\base.html:126
 msgid "No available departments"
 msgstr "沒有可用的部門"
 
-#: .\ctdb\templates\base.html:150
+#: .\core\templates\base.html:166
 msgid "Guest"
 msgstr "訪客"
 
 #: .\day\models.py:8 .\diary\forms.py:20 .\diary\models.py:7
 #: .\diary\templates\diary\diary_list.html:28
+#: .\telecom\templates\telecom\contacttask_list.html:28
 msgid "Date"
 msgstr "日期"
 
@@ -310,74 +326,85 @@ msgid "Is holiday"
 msgstr "是假日"
 
 #: .\diary\forms.py:25 .\diary\templates\diary\diary_list.html:64
+#: .\telecom\templates\telecom\contacttask_list.html:64
 msgid "Yes"
 msgstr ""
 
 #: .\diary\forms.py:26 .\diary\templates\diary\diary_list.html:64
+#: .\telecom\templates\telecom\contacttask_list.html:64
 msgid "No"
 msgstr ""
 
 #: .\diary\forms.py:28 .\diary\models.py:8
 #: .\diary\templates\diary\diary_list.html:29
+#: .\telecom\templates\telecom\contacttask_list.html:29
 msgid "Daily check"
 msgstr "日檢核"
 
-#: .\diary\forms.py:34 .\diary\forms.py:38 .\diary\models.py:9
+#: .\diary\forms.py:34 .\diary\forms.py:39 .\diary\models.py:9
 #: .\diary\templates\diary\diary_list.html:30
+#: .\telecom\templates\telecom\contacttask_list.html:30
 msgid "Daily record"
 msgstr "日常紀錄"
 
-#: .\diary\forms.py:43 .\diary\forms.py:47 .\diary\models.py:10
+#: .\diary\forms.py:44 .\diary\forms.py:49 .\diary\models.py:10
 #: .\diary\templates\diary\diary_list.html:31
+#: .\telecom\templates\telecom\contacttask_list.html:31
 msgid "To do"
 msgstr "待辦事項"
 
-#: .\diary\forms.py:51 .\diary\models.py:11
+#: .\diary\forms.py:55 .\diary\forms.py:60 .\diary\models.py:11
 #: .\diary\templates\diary\diary_list.html:32
+#: .\telecom\templates\telecom\contacttask_list.html:32
 msgid "Remark"
 msgstr "備註"
 
-#: .\diary\forms.py:64
+#: .\diary\forms.py:73
 msgid "The diary with this date has already existed."
 msgstr "這個日期的日誌已經存在。"
 
 #: .\diary\models.py:12 .\diary\templates\diary\diary_list.html:26
+#: .\telecom\templates\telecom\contacttask_list.html:26
 msgid "Created by"
 msgstr "建立者"
 
-#: .\diary\models.py:15
-msgid "Diary"
-msgstr "日誌"
-
 #: .\diary\templates\diary\diary_confirm_delete.html:12
+#: .\telecom\templates\telecom\contacttask_confirm_delete.html:12
 msgid "Are you sure you want to delete this diary?"
 msgstr "你確定要刪除這個日誌嗎？"
 
 #: .\diary\templates\diary\diary_confirm_delete.html:43
 #: .\diary\templates\diary\diary_list.html:50
+#: .\telecom\templates\telecom\contacttask_confirm_delete.html:43
+#: .\telecom\templates\telecom\contacttask_list.html:50
 msgid "Delete"
 msgstr "刪除"
 
 #: .\diary\templates\diary\diary_list.html:17
 #: .\log\templates\log\diary_log_list.html:17
+#: .\telecom\templates\telecom\contacttask_list.html:17
 msgid "Search.."
 msgstr "搜尋.."
 
 #: .\diary\templates\diary\diary_list.html:24 .\log\models.py:7
 #: .\log\templates\log\diary_log_list.html:23
+#: .\telecom\templates\telecom\contacttask_list.html:24
 msgid "Action"
 msgstr "動作"
 
 #: .\diary\templates\diary\diary_list.html:43
+#: .\telecom\templates\telecom\contacttask_list.html:43
 msgid "Choose"
 msgstr "選擇"
 
 #: .\diary\templates\diary\diary_list.html:54
+#: .\telecom\templates\telecom\contacttask_list.html:54
 msgid "No available options"
 msgstr "沒有可用的選項"
 
 #: .\diary\templates\diary\diary_list.html:72
 #: .\log\templates\log\diary_log_list.html:37
+#: .\telecom\templates\telecom\contacttask_list.html:72
 msgid "No entries."
 msgstr "沒有條目"
 
@@ -385,6 +412,8 @@ msgstr "沒有條目"
 #: .\diary\templates\diary\diary_list.html:86
 #: .\log\templates\log\diary_log_list.html:47
 #: .\log\templates\log\diary_log_list.html:51
+#: .\telecom\templates\telecom\contacttask_list.html:82
+#: .\telecom\templates\telecom\contacttask_list.html:86
 msgid "Previous"
 msgstr "上一頁"
 
@@ -392,11 +421,14 @@ msgstr "上一頁"
 #: .\diary\templates\diary\diary_list.html:95
 #: .\log\templates\log\diary_log_list.html:56
 #: .\log\templates\log\diary_log_list.html:60
+#: .\telecom\templates\telecom\contacttask_list.html:91
+#: .\telecom\templates\telecom\contacttask_list.html:95
 msgid "Next"
 msgstr "下一頁"
 
 #: .\diary\templates\diary\diary_list.html:99
 #: .\log\templates\log\diary_log_list.html:64
+#: .\telecom\templates\telecom\contacttask_list.html:99
 msgid "All"
 msgstr ""
 
@@ -431,3 +463,8 @@ msgstr "資料"
 #: .\log\models.py:11 .\log\templates\log\diary_log_list.html:25
 msgid "Created at"
 msgstr "建立於"
+
+#: .\telecom\validators.py:12
+msgid ""
+"Enter a valid IP address, or multiple valid IP addresses separated by comma."
+msgstr ""
