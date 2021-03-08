@@ -71,12 +71,20 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            {% trans 'Diaries' %}
+                            {% trans 'Diary' %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{% url 'diary:list' %}">{% trans 'List' %}</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'diary:add' %}">{% trans 'Add' %}</a>
+                            <a class="dropdown-item" href="{% url 'diary:diary_list' %}">{% trans 'Diary list' %}</a>
+                            <a class="dropdown-item" href="{% url 'diary:diary_create' %}">{% trans 'Add a diary' %}</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            {% trans 'Telecom' %}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'telecom:email_list' %}">{% trans 'Email list' %}</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">

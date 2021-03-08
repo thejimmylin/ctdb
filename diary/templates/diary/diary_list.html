@@ -15,7 +15,7 @@
                 <div id="blankTop"></div>
                 <div id="toolBar" class="d-flex justify-content-between">
                     <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
-                    <a id="addButton" class="btn btn-light border shadow-sm" href="{% url 'diary:add' %}">{% trans 'Add' %}</a>
+                    <a id="addButton" class="btn btn-light border shadow-sm" href="{% url 'diary:diary_create' %}">{% trans 'Add' %}</a>
                 </div>
                 <div class="table-responsive">
                     <table id="searchTable" class="table table-light table-borderless table-solid">
@@ -45,9 +45,9 @@
                                         {% if request.user == diary.created_by %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                             <a class="dropdown-item"
-                                                href="{% url 'diary:change' pk=diary.id %}">{% trans 'Change' %}</a>
+                                                href="{% url 'diary:diary_update' pk=diary.id %}">{% trans 'Change' %}</a>
                                             <a class="dropdown-item"
-                                                href="{% url 'diary:delete' pk=diary.id %}">{% trans 'Delete' %}</a>
+                                                href="{% url 'diary:diary_delete' pk=diary.id %}">{% trans 'Delete' %}</a>
                                         </div>
                                         {% else %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">

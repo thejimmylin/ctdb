@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-07 23:13+0800\n"
+"POT-Creation-Date: 2021-03-08 15:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: .\accounts\forms.py:17 .\accounts\forms.py:22 .\accounts\forms.py:138
-#: .\accounts\forms.py:143
+#: .\accounts\forms.py:143 .\telecom\templates\telecom\email_list.html:25
 msgid "Email"
 msgstr "電子信箱"
 
@@ -74,7 +74,7 @@ msgstr "日誌起始日"
 
 #: .\accounts\models.py:56
 #: .\accounts\templates\registration\profile_change.html:11
-#: .\core\templates\base.html:101
+#: .\core\templates\base.html:112
 msgid "Profile"
 msgstr "個人檔案"
 
@@ -108,7 +108,7 @@ msgstr "© 2020 保留所有權利。"
 #: .\accounts\templates\registration\signup.html:20
 #: .\accounts\templates\registration\signup_with_account_and_password.html:13
 #: .\accounts\templates\registration\signup_with_email.html:13
-#: .\core\templates\base.html:169
+#: .\core\templates\base.html:180
 msgid "Login"
 msgstr "登入"
 
@@ -168,7 +168,7 @@ msgid "Back to the homepage."
 msgstr "返回首頁"
 
 #: .\accounts\templates\registration\password_change_form.html:11
-#: .\core\templates\base.html:103
+#: .\core\templates\base.html:114
 msgid "Password change"
 msgstr "密碼變更"
 
@@ -215,7 +215,7 @@ msgid "I didn't recieve it."
 msgstr "我沒有收到"
 
 #: .\accounts\templates\registration\password_reset_form.html:11
-#: .\core\templates\base.html:106 .\core\templates\base.html:173
+#: .\core\templates\base.html:117 .\core\templates\base.html:184
 msgid "Password reset"
 msgstr "密碼重置"
 
@@ -228,6 +228,7 @@ msgstr "重置"
 #: .\diary\templates\diary\diary_list.html:48
 #: .\telecom\templates\telecom\contacttask_form.html:47
 #: .\telecom\templates\telecom\contacttask_list.html:48
+#: .\telecom\templates\telecom\email_list.html:42
 msgid "Change"
 msgstr "變更"
 
@@ -236,7 +237,7 @@ msgstr "變更"
 #: .\accounts\templates\registration\signup_with_account_and_password.html:41
 #: .\accounts\templates\registration\signup_with_email.html:11
 #: .\accounts\templates\registration\signup_with_email.html:44
-#: .\core\templates\base.html:170
+#: .\core\templates\base.html:181
 msgid "Sign up"
 msgstr "註冊"
 
@@ -258,8 +259,8 @@ msgstr "已經有帳號了嗎？"
 msgid "You have no access to this role."
 msgstr "你沒有此角色的存取權"
 
-#: .\core\templates\about.html:11 .\core\templates\base.html:89
-#: .\core\templates\base.html:159
+#: .\core\templates\about.html:11 .\core\templates\base.html:100
+#: .\core\templates\base.html:170
 msgid "About"
 msgstr "關於"
 
@@ -267,51 +268,48 @@ msgstr "關於"
 msgid "To be done.."
 msgstr ""
 
-#: .\core\templates\base.html:37
+#: .\core\templates\base.html:37 .\core\templates\base.html:63
 msgid "TDB"
 msgstr ""
 
-#: .\core\templates\base.html:71 .\diary\models.py:16
-#: .\diary\templates\diary\diary_confirm_delete.html:11
-#: .\diary\templates\diary\diary_form.html:12
-#: .\diary\templates\diary\index.html:11
-#: .\telecom\templates\telecom\contacttask_confirm_delete.html:11
-#: .\telecom\templates\telecom\contacttask_form.html:12
-msgid "Diaries"
-msgstr "日誌"
-
-#: .\core\templates\base.html:74
-msgid "List"
-msgstr "列表"
-
-#: .\core\templates\base.html:76 .\diary\templates\diary\diary_form.html:44
-#: .\diary\templates\diary\diary_list.html:18
-#: .\telecom\templates\telecom\contacttask_form.html:44
-#: .\telecom\templates\telecom\contacttask_list.html:18
-msgid "Add"
-msgstr "新增"
-
-#: .\core\templates\base.html:82
-msgid "Log"
-msgstr ""
-
-#: .\core\templates\base.html:85 .\diary\models.py:15
+#: .\core\templates\base.html:74 .\core\templates\base.html:96
+#: .\diary\models.py:15
 msgid "Diary"
 msgstr "日誌"
 
-#: .\core\templates\base.html:99
+#: .\core\templates\base.html:77
+msgid "Diary list"
+msgstr "日誌列表"
+
+#: .\core\templates\base.html:78
+msgid "Add a diary"
+msgstr "新增日誌"
+
+#: .\core\templates\base.html:84
+msgid "Telecom"
+msgstr "電信"
+
+#: .\core\templates\base.html:87
+msgid "Email list"
+msgstr "Email 列表"
+
+#: .\core\templates\base.html:93
+msgid "Log"
+msgstr ""
+
+#: .\core\templates\base.html:110
 msgid "Logout"
 msgstr "登出"
 
-#: .\core\templates\base.html:116
+#: .\core\templates\base.html:127
 msgid "------"
 msgstr ""
 
-#: .\core\templates\base.html:126
+#: .\core\templates\base.html:137
 msgid "No available departments"
 msgstr "沒有可用的部門"
 
-#: .\core\templates\base.html:166
+#: .\core\templates\base.html:177
 msgid "Guest"
 msgstr "訪客"
 
@@ -356,6 +354,7 @@ msgstr "待辦事項"
 #: .\diary\forms.py:55 .\diary\forms.py:60 .\diary\models.py:11
 #: .\diary\templates\diary\diary_list.html:32
 #: .\telecom\templates\telecom\contacttask_list.html:32
+#: .\telecom\templates\telecom\email_list.html:26
 msgid "Remark"
 msgstr "備註"
 
@@ -364,9 +363,18 @@ msgid "The diary with this date has already existed."
 msgstr "這個日期的日誌已經存在。"
 
 #: .\diary\models.py:12 .\diary\templates\diary\diary_list.html:26
-#: .\telecom\templates\telecom\contacttask_list.html:26
+#: .\telecom\models.py:11 .\telecom\models.py:31 .\telecom\models.py:41
+#: .\telecom\models.py:77 .\telecom\templates\telecom\contacttask_list.html:26
 msgid "Created by"
 msgstr "建立者"
+
+#: .\diary\models.py:16 .\diary\templates\diary\diary_confirm_delete.html:11
+#: .\diary\templates\diary\diary_form.html:12
+#: .\diary\templates\diary\index.html:11
+#: .\telecom\templates\telecom\contacttask_confirm_delete.html:11
+#: .\telecom\templates\telecom\contacttask_form.html:12
+msgid "Diaries"
+msgstr "日誌"
 
 #: .\diary\templates\diary\diary_confirm_delete.html:12
 #: .\telecom\templates\telecom\contacttask_confirm_delete.html:12
@@ -377,34 +385,48 @@ msgstr "你確定要刪除這個日誌嗎？"
 #: .\diary\templates\diary\diary_list.html:50
 #: .\telecom\templates\telecom\contacttask_confirm_delete.html:43
 #: .\telecom\templates\telecom\contacttask_list.html:50
+#: .\telecom\templates\telecom\email_list.html:44
 msgid "Delete"
 msgstr "刪除"
+
+#: .\diary\templates\diary\diary_form.html:44
+#: .\diary\templates\diary\diary_list.html:18
+#: .\telecom\templates\telecom\contacttask_form.html:44
+#: .\telecom\templates\telecom\contacttask_list.html:18
+#: .\telecom\templates\telecom\email_list.html:18
+msgid "Add"
+msgstr "新增"
 
 #: .\diary\templates\diary\diary_list.html:17
 #: .\log\templates\log\diary_log_list.html:17
 #: .\telecom\templates\telecom\contacttask_list.html:17
+#: .\telecom\templates\telecom\email_list.html:17
 msgid "Search.."
 msgstr "搜尋.."
 
 #: .\diary\templates\diary\diary_list.html:24 .\log\models.py:7
 #: .\log\templates\log\diary_log_list.html:23
 #: .\telecom\templates\telecom\contacttask_list.html:24
+#: .\telecom\templates\telecom\email_list.html:24
 msgid "Action"
 msgstr "動作"
 
 #: .\diary\templates\diary\diary_list.html:43
 #: .\telecom\templates\telecom\contacttask_list.html:43
+#: .\telecom\templates\telecom\email_list.html:37
 msgid "Choose"
 msgstr "選擇"
 
 #: .\diary\templates\diary\diary_list.html:54
 #: .\telecom\templates\telecom\contacttask_list.html:54
+#: .\telecom\templates\telecom\email_list.html:48
 msgid "No available options"
 msgstr "沒有可用的選項"
 
 #: .\diary\templates\diary\diary_list.html:72
 #: .\log\templates\log\diary_log_list.html:37
 #: .\telecom\templates\telecom\contacttask_list.html:72
+#: .\telecom\templates\telecom\email_list.html:58
 msgid "No entries."
 msgstr "沒有條目"
 
@@ -414,6 +436,8 @@ msgstr "沒有條目"
 #: .\log\templates\log\diary_log_list.html:51
 #: .\telecom\templates\telecom\contacttask_list.html:82
 #: .\telecom\templates\telecom\contacttask_list.html:86
+#: .\telecom\templates\telecom\email_list.html:68
+#: .\telecom\templates\telecom\email_list.html:72
 msgid "Previous"
 msgstr "上一頁"
 
@@ -423,12 +447,15 @@ msgstr "上一頁"
 #: .\log\templates\log\diary_log_list.html:60
 #: .\telecom\templates\telecom\contacttask_list.html:91
 #: .\telecom\templates\telecom\contacttask_list.html:95
+#: .\telecom\templates\telecom\email_list.html:77
+#: .\telecom\templates\telecom\email_list.html:81
 msgid "Next"
 msgstr "下一頁"
 
 #: .\diary\templates\diary\diary_list.html:99
 #: .\log\templates\log\diary_log_list.html:64
 #: .\telecom\templates\telecom\contacttask_list.html:99
+#: .\telecom\templates\telecom\email_list.html:85
 msgid "All"
 msgstr ""
 

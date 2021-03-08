@@ -10,7 +10,6 @@ class Email(models.Model):
     remark = models.TextField(blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='email_created_by')
 
-
     def __str__(self):
         return self.email
 
