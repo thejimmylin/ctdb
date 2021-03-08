@@ -46,15 +46,15 @@ class ContactTask(models.Model):
             ('add route', 'Add Route'),
         )
     )
+    to_isp = models.ManyToManyField(to='telecom.Isp', related_name='contacttask_to_isp', blank=True)
+    to_isp_group = models.ManyToManyField(to='telecom.IspGroup', related_name='contacttask_to_isp_group', blank=True)
     to = models.ManyToManyField(to='telecom.Email', related_name='contacttask_email', blank=True)
     cc = models.ManyToManyField(to='telecom.Email', related_name='contacttask_cc', blank=True)
     bcc = models.ManyToManyField(to='telecom.Email', related_name='contacttask_bcc', blank=True)
-    to_isp = models.ManyToManyField(to='telecom.Isp', related_name='contacttask_to_isp', blank=True)
-    to_isp_group = models.ManyToManyField(to='telecom.IspGroup', related_name='contacttask_to_isp_group', blank=True)
-    ip = models.GenericIPAddressField(null=True)
-    ipv46 = models.TextField(blank=True, null=True, validators=[validate_comma_separated_ipv46_address_string, ])
+    ip_network = models.JSONField(default=dict)
     original_as = models.IntegerField()
     as_path = models.IntegerField()
+    customer_no = models.TextField(blank=True)
     remark = models.CharField(max_length=63, blank=True)
 
     def __str__(self):
