@@ -15,25 +15,19 @@
                 <div id="blankTop"></div>
                 <div id="toolBar" class="d-flex justify-content-between">
                     <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
-                    <a id="addButton" class="btn btn-light border shadow-sm" href="{% url 'diary:add' %}">{% trans 'Add' %}</a>
+                    <a id="addButton" class="btn btn-light border shadow-sm" href="#">{% trans 'Add' %}</a>
                 </div>
                 <div class="table-responsive">
-                    <table id="searchTable" class="table table-light table-borderless table-solid">
+                    <table id="searchTable" class="table table-bordered table-solid">
                         <thead>
                             <tr>
-                                <th>{% trans 'Action' %}</th>
-                                {% if is_supervisor %}
-                                <th>{% trans 'Created by' %}</th>
-                                {% endif %}
-                                <th>{% trans 'Date' %}</th>
-                                <th>{% trans 'Daily check' %}</th>
-                                <th style="min-width: 400px;">{% trans 'Daily record' %}</th>
-                                <th style="min-width: 400px;">{% trans 'To do' %}</th>
-                                <th style="min-width: 250px;">{% trans 'Remark' %}</th>
+                                <th style="width: 1px;">{% trans 'Action' %}</th>
+                                <th style="width: 30%">{% trans 'Email' %}</th>
+                                <th style="width: 70%">{% trans 'Remark' %}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for diary in object_list %}
+                            {% for obj in object_list %}
                             <tr>
                                 <td class="text-nowrap">
                                     <div class="dropdown show">
@@ -42,12 +36,12 @@
                                             aria-expanded="false">
                                             {% trans 'Choose' %}
                                         </button>
-                                        {% if request.user == diary.created_by %}
+                                        {% if request.user == obj.created_by %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                             <a class="dropdown-item"
-                                                href="{% url 'diary:change' pk=diary.id %}">{% trans 'Change' %}</a>
+                                                href="#">{% trans 'Change' %}</a>
                                             <a class="dropdown-item"
-                                                href="{% url 'diary:delete' pk=diary.id %}">{% trans 'Delete' %}</a>
+                                                href="#">{% trans 'Delete' %}</a>
                                         </div>
                                         {% else %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -56,16 +50,8 @@
                                         {% endif %}
                                     </div>
                                 </td>
-                                {% if is_supervisor %}
-                                <td class="text-nowrap">{{ diary.created_by }}</td>
-                                {% endif %}
-                                <td class="text-nowrap">{{ diary.date|date:"Y-m-d" }}</td>
-                                <td class="text-nowrap">
-                                    {% if diary.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
-                                </td>
-                                <td>{{ diary.daily_record|safe|linebreaks }}</td>
-                                <td>{{ diary.todo|safe|linebreaks }}</td>
-                                <td>{{ diary.remark|safe|linebreaks }}</td>
+                                <td class="text-nowrap">{{ obj.email }}</td>
+                                <td>{{ obj.remark }}</td>
                             </tr>
                             {% empty %}
                             <tr>
