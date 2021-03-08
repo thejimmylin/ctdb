@@ -12,15 +12,21 @@ User = get_user_model()
 
 
 def diary_log_list(request):
+    model = Log
     use_pagination = True
     paginate_by = 5
     template_name = 'log/diary_log_list.html'
+    order_by = ('-id', )
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
-    user = request.user
     role = get_role(request)  # NOQA, to be used
-    is_supervisor = user.groups.filter(name='Supervisors').exists()
-    diary_logs = Log.objects.all().order_by('-created_at').values()
+    is_supervisor = request.user.groups.filter(name='Supervisors').exists()
+    qs = model.objects.all()
+    qs_ordered = qs.order_by(*order_by)
+    """
+    To be refactored.
+    """
+    diary_logs = qs_ordered.values()
     available_diary_logs = []
     if is_supervisor:
         for diary_log in diary_logs:
@@ -41,6 +47,9 @@ def diary_log_list(request):
     for diary_log in available_diary_logs:
         data_as_dict = json.loads(diary_log['data'])
         diary_log['data_as_dict'] = data_as_dict
+    """
+    To be refactored.
+    """
     paginator = Paginator(available_diary_logs, paginate_by)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

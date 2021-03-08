@@ -4,7 +4,7 @@
 {% load widget_tweaks %}
 
 {% block extracss %}
-<link rel="stylesheet" href="{% static 'log/css/diary_log_list.css' %}">
+<link rel="stylesheet" href="{% static 'css/table_list_view.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
                     <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
                 </div>
                 <div class="table-responsive">
-                    <table id="diaryLogListTable" class="table table-bordered table-solid">
+                    <table id="searchTable" class="table table-bordered table-solid">
                         <thead>
                             <tr>
                                 <th>{% trans 'Action' %}</th>
@@ -26,11 +26,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for log in object_list %}
+                            {% for obj in object_list %}
                             <tr>
-                                <td class="text-nowrap">{{ log.action }}</td>
-                                <td>{{ log.data }}</td>
-                                <td class="text-nowrap">{{ log.created_at|date:"Y-m-d H:m:s" }}</td>
+                                <td class="text-nowrap">{{ obj.action }}</td>
+                                <td>{{ obj.data }}</td>
+                                <td class="text-nowrap">{{ obj.created_at|date:"Y-m-d H:m:s" }}</td>
                             </tr>
                             {% empty %}
                             <tr>
@@ -72,7 +72,7 @@
 </section>
 
 {% block extrajs %}
-<script src="{% static 'log/js/diary_log_list.js' %}"></script>
+<script src="{% static 'js/table_list_view.js' %}"></script>
 {% endblock %}
 
 {% endblock %}
