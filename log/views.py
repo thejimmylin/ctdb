@@ -11,6 +11,13 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+def filter_jsonfield(qs, jsonfield_name, *args, **kwargs):
+    """
+    Filtering..
+    """
+    return qs
+
+
 def diary_log_list(request):
     model = Log
     use_pagination = True
