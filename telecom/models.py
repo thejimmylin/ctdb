@@ -55,7 +55,7 @@ class ContactTask(models.Model):
     )
     to_isp = models.ManyToManyField(to='telecom.Isp', blank=True)
     to_isp_group = models.ManyToManyField(to='telecom.IspGroup', blank=True)
-    ip_network = models.JSONField(default=dict, blank=True)
+    ip_network = models.TextField()
     """
     example:
 
