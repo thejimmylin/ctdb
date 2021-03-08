@@ -140,6 +140,10 @@ td {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
+.table-solid th, .table-solid td {
+  border: 1px solid #dddddd !important;
+}
+
 /* Floating label things */
 
 .label-floating {
