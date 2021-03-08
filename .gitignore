@@ -17,7 +17,7 @@ db.sqlite3
 !**/migrations/__init__.py
 
 # Django manage.py dumpdata & loaddata directory
-/dbbackup/
+/dumpdata/
 
 # Django static & media
 /static/
