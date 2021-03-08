@@ -22,8 +22,9 @@
                         <thead>
                             <tr>
                                 <th style="width: 1px;">{% trans 'Action' %}</th>
-                                <th style="width: 30%">{% trans 'Email' %}</th>
-                                <th style="width: 70%">{% trans 'Remark' %}</th>
+                                <th style="width: 1px;">{% trans 'Created by' %}</th>
+                                <th style="width: 1px">{% trans 'Email' %}</th>
+                                <th style="width: 100%">{% trans 'Remark' %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,6 +51,7 @@
                                         {% endif %}
                                     </div>
                                 </td>
+                                <td class="text-nowrap">{{ obj.created_by }}</td>
                                 <td class="text-nowrap">{{ obj.email }}</td>
                                 <td>{{ obj.remark }}</td>
                             </tr>
