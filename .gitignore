@@ -1,30 +1,30 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
+# VSCode things
+/.vscode/settings.json
 
 # Mac things
 .DS_Store
 
+# Credential things
+/secrets.json
+
 # Python
 /.venv/
+__pycache__/
 
 # Django things
 db.sqlite3
 **/migrations/*
 !**/migrations/__init__.py
+
+# Django manage.py dumpdata & loaddata directory
 /dbbackup/
 
-# Static & media
+# Django static & media
 /static/
 /media/
 
-# Credential things
-/secrets/
-/secrets.json
-
-# Deployment things
+# Nginx things
 /nginx/
-/uwsgi/
-web.config
 
-# VSCode things
-.vscode/settings.json
+# UWSGI things
+/uwsgi/
