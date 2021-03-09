@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
+{% load nbsp %}
 
 {% block extracss %}
 <link rel="stylesheet" href="{% static 'css/table_list_view.css' %}">
@@ -55,7 +56,7 @@
                                 <td class="text-nowrap">{{ obj.created_by }}</td>
                                 <td class="text-nowrap">{{ obj.to_isps_as_str|linebreaks }}</td>
                                 <td class="text-nowrap">{{ obj.to_isp_group_as_str|linebreaks }}</td>
-                                <td class="text-nowrap">{{ obj.configs|linebreaks }}</td>
+                                <td class="text-nowrap">{{ obj.configs|linebreaks|nbsp }}</td>
                             </tr>
                             {% empty %}
                             <tr>
