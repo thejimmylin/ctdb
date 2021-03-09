@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Email, Isp, IspGroup, ContactTask
+from .models import Email, Isp, IspGroup, PrefixListUpdateTask
 
 
 class EmailModelForm(forms.ModelForm):
@@ -21,7 +21,7 @@ class IspGroupModelForm(forms.ModelForm):
         exclude = ['created_by', ]
 
 
-class ContactTaskModelForm(forms.ModelForm):
+class PrefixListUpdateTaskModelForm(forms.ModelForm):
     class Meta():
-        model = ContactTask
+        model = PrefixListUpdateTask
         exclude = ['created_by', ]

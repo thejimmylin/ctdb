@@ -7,9 +7,9 @@
 <section class="content">
   <div class="container-fluid max-w-24u">
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
-      <div class="col max-w-8u border rounded p-5">
-        <h3 class="mb-5">{% trans 'Emails' %}</h3>
-        <p>{% trans 'Are you sure you want to delete this Email?' %}</p>
+      <div class="col-12" style="height: 60px;"></div>
+      <div class="col-12 max-w-10u border rounded shadow" style="padding: 2rem;">
+        <h3 class="mb-5">{% trans 'Prefix list update tasks' %}</h3>
         <form method="post" novalidate>
           {% csrf_token %}
           {% if form.errors|length == 1 %}
@@ -25,7 +25,7 @@
             <div class="form-group col">
               {{ field.label_tag }}
               {% if field.errors %}
-              {% render_field field class+='form-control border-danger' placeholder=field.label %}
+              {% render_field field class+='form-control form-check border-danger' placeholder=field.label %}
               {% else %}
               {% render_field field class+='form-control' placeholder=field.label %}
               {% endif %}
@@ -40,11 +40,17 @@
           {% endfor %}
           <div class="form-row">
             <div class="form-group col">
-              <button type="submit" class="btn btn-danger btn-block">{% trans 'Delete' %}</button>
+              {% if action == 'create' %}
+              <button type="submit" class="btn btn-primary btn-block">{% trans 'Add' %}</button>
+              {% endif %}
+              {% if action == 'update' %}
+              <button type="submit" class="btn btn-success btn-block">{% trans 'Change' %}</button>
+              {% endif %}
             </div>
           </div>
         </form>
       </div>
+      <div class="col-12" style="height: 90px;"></div>
     </div>
   </div>
 </section>

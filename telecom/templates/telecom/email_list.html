@@ -53,7 +53,7 @@
                                 </td>
                                 <td class="text-nowrap">{{ obj.created_by }}</td>
                                 <td class="text-nowrap">{{ obj.email }}</td>
-                                <td>{{ obj.remark }}</td>
+                                <td class="text-nowrap">{{ obj.remark|linebreaks }}</td>
                             </tr>
                             {% empty %}
                             <tr>

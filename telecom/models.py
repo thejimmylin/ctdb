@@ -42,8 +42,9 @@ class Isp(models.Model):
 
 class IspGroup(models.Model):
 
-    name = models.CharField(max_length=63)
-    isps = models.ManyToManyField(to='telecom.Isp')
+    name = models.CharField(verbose_name=_('Name'), max_length=63)
+    isps = models.ManyToManyField(verbose_name=_('ISPs'), to='telecom.Isp')
+    remark = models.TextField(verbose_name=_('Remark'), blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -53,9 +54,10 @@ class IspGroup(models.Model):
         return ',\n'.join(instance.name for instance in self.isps.all())
 
 
-class ContactTask(models.Model):
+class PrefixListUpdateTask(models.Model):
 
-    contact_type = models.CharField(
+    update_type = models.CharField(
+        verbose_name=_('Update type'),
         max_length=64,
         choices=(
             ('add ip-prefix', 'Add IP-prefix'),
@@ -63,13 +65,13 @@ class ContactTask(models.Model):
             ('add route', 'Add Route'),
         )
     )
-    to_isp = models.ManyToManyField(to='telecom.Isp', blank=True)
-    to_isp_group = models.ManyToManyField(to='telecom.IspGroup', blank=True)
-    ip_network = models.TextField()
+    isps = models.ManyToManyField(verbose_name=_('To ISPs'), to='telecom.Isp', blank=True)
+    isp_groups = models.ManyToManyField(verbose_name=_('To ISP groups'), to='telecom.IspGroup', blank=True)
+    configs = models.TextField(verbose_name=_('Configs'))
     """
     example:
 
-    task_configs = [
+    configs = [
         {
             "original_as": "16999",
             "as_path": "16999-888-777",
@@ -82,8 +84,14 @@ class ContactTask(models.Model):
         },
     ]
     """
-    remark = models.TextField(blank=True)
+    remark = models.TextField(verbose_name=_('Remark'), blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.contact_type} {self.to_isp}'
+        return f'{self.contact_type} {self.isps} {self.isp_groups}'
+
+    def to_isps_as_str(self):
+        return ',\n'.join(instance.name for instance in self.isps.all())
+
+    def to_isp_group_as_str(self):
+        return ',\n'.join(instance.name for instance in self.isp_groups.all())
