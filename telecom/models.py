@@ -88,7 +88,7 @@ class PrefixListUpdateTask(models.Model):
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.contact_type} {self.isps} {self.isp_groups}'
+        return f'{self.update_type} {self.isps} {self.isp_groups}'
 
     def isps_as_str(self):
         return ',\n'.join(instance.name for instance in self.isps.all())
