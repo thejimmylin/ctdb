@@ -1,4 +1,4 @@
-{% extends 'diary/base.html' %}
+{% extends 'telecom/base.html' %}
 {% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
@@ -9,7 +9,7 @@
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col-12" style="height: 60px;"></div>
       <div class="col-12 max-w-10u border rounded shadow" style="padding: 2rem;">
-        <h3 class="mb-5">{% trans 'Diaries' %}</h3>
+        <h3 class="mb-5">{% trans 'ISPs' %}</h3>
         <form method="post" novalidate>
           {% csrf_token %}
           {% if form.errors|length == 1 %}
@@ -54,8 +54,4 @@
     </div>
   </div>
 </section>
-{% endblock %}
-
-{% block extrajs %}
-<script src="{% static 'diary/js/diary_form.js' %}"></script>
 {% endblock %}

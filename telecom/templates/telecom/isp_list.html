@@ -1,10 +1,10 @@
-{% extends 'diary/base.html' %}
+{% extends 'telecom/base.html' %}
 {% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
 
 {% block extracss %}
-<link rel="stylesheet" href="{% static 'diary/css/diary_list.css' %}">
+<link rel="stylesheet" href="{% static 'css/table_list_view.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -15,21 +15,22 @@
                 <div id="blankTop"></div>
                 <div id="toolBar" class="d-flex justify-content-between">
                     <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
-                    <a id="addButton" class="btn btn-light border shadow-sm" href="#">{% trans 'Add' %}</a>
+                    <a id="addButton" class="btn btn-light border shadow-sm" href="{% url 'telecom:isp_create' %}">{% trans 'Add' %}</a>
                 </div>
                 <div class="table-responsive">
-                    <table id="objListTable" class="table table-bordered table-solid">
+                    <table id="searchTable" class="table table-bordered table-solid">
                         <thead>
                             <tr>
-                                <th>{% trans 'Action' %}</th>
-                                {% if is_supervisor %}
-                                <th>{% trans 'Created by' %}</th>
-                                {% endif %}
-                                <th>{% trans 'Date' %}</th>
-                                <th>{% trans 'Daily check' %}</th>
-                                <th style="min-width: 400px;">{% trans 'Daily record' %}</th>
-                                <th style="min-width: 400px;">{% trans 'To do' %}</th>
-                                <th style="min-width: 250px;">{% trans 'Remark' %}</th>
+                                <th style="width: 1px;">{% trans 'Action' %}</th>
+                                <th style="width: 1px;">{% trans 'Created by' %}</th>
+                                <th style="width: 20%">{% trans 'Name' %}</th>
+                                <th style="width: 20%">{% trans 'Chinese name' %}</th>
+                                <th style="width: 20%">{% trans 'Customer No.' %}</th>
+                                <th style="width: 20%">{% trans 'Upstream AS' %}</th>
+                                <th style="width: 20%">{% trans 'Primary contact' %}</th>
+                                <th style="width: 1px">{% trans 'To' %}</th>
+                                <th style="width: 1px">{% trans 'CC' %}</th>
+                                <th style="width: 1px">{% trans 'BCC' %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,9 +46,9 @@
                                         {% if request.user == obj.created_by %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                             <a class="dropdown-item"
-                                                href="#">{% trans 'Change' %}</a>
+                                                href="{% url 'telecom:isp_update' pk=obj.pk %}">{% trans 'Change' %}</a>
                                             <a class="dropdown-item"
-                                                href="#">{% trans 'Delete' %}</a>
+                                                href="{% url 'telecom:isp_delete' pk=obj.pk %}">{% trans 'Delete' %}</a>
                                         </div>
                                         {% else %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -56,16 +57,15 @@
                                         {% endif %}
                                     </div>
                                 </td>
-                                {% if is_supervisor %}
                                 <td class="text-nowrap">{{ obj.created_by }}</td>
-                                {% endif %}
-                                <td class="text-nowrap">{{ obj.date|date:"Y-m-d" }}</td>
-                                <td class="text-nowrap">
-                                    {% if obj.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
-                                </td>
-                                <td>{{ obj.daily_record|safe|linebreaks }}</td>
-                                <td>{{ obj.todo|safe|linebreaks }}</td>
-                                <td>{{ obj.remark|safe|linebreaks }}</td>
+                                <td class="text-nowrap">{{ obj.name }}</td>
+                                <td class="text-nowrap">{{ obj.cname }}</td>
+                                <td class="text-nowrap">{{ obj.customer_no }}</td>
+                                <td class="text-nowrap">{{ obj.upstream_as }}</td>
+                                <td class="text-nowrap">{{ obj.primary_contact }}</td>
+                                <td class="text-nowrap">{{ obj.to_as_str|linebreaks }}</td>
+                                <td class="text-nowrap">{{ obj.cc_as_str|linebreaks }}</td>
+                                <td class="text-nowrap">{{ obj.bcc_as_str|linebreaks }}</td>
                             </tr>
                             {% empty %}
                             <tr>
@@ -108,5 +108,5 @@
 {% endblock %}
 
 {% block extrajs %}
-<script src="{% static 'diary/js/diary_list.js' %}"></script>
+<script src="{% static 'js/table_list_view.js' %}"></script>
 {% endblock %}

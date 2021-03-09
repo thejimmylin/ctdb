@@ -85,6 +85,13 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{% url 'telecom:email_list' %}">{% trans 'Email list' %}</a>
+                            <a class="dropdown-item" href="{% url 'telecom:email_create' %}">{% trans 'Add a Email' %}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'telecom:isp_list' %}">{% trans 'ISP list' %}</a>
+                            <a class="dropdown-item" href="{% url 'telecom:isp_create' %}">{% trans 'Add a ISP' %}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'telecom:ispgroup_list' %}">{% trans 'ISP group list' %}</a>
+                            <a class="dropdown-item" href="{% url 'telecom:ispgroup_create' %}">{% trans 'Add a ISP group' %}</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">

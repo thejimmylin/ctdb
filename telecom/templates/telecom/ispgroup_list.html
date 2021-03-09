@@ -1,0 +1,100 @@
+{% extends 'telecom/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/table_list_view.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content">
+    <div class="container-fluid max-w-24u">
+        <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
+            <div class="col">
+                <div id="blankTop"></div>
+                <div id="toolBar" class="d-flex justify-content-between">
+                    <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
+                    <a id="addButton" class="btn btn-light border shadow-sm" href="{% url 'telecom:isp_create' %}">{% trans 'Add' %}</a>
+                </div>
+                <div class="table-responsive">
+                    <table id="searchTable" class="table table-bordered table-solid">
+                        <thead>
+                            <tr>
+                                <th style="width: 1px;">{% trans 'Action' %}</th>
+                                <th style="width: 1px;">{% trans 'Created by' %}</th>
+                                <th style="width: 1px">{% trans 'Name' %}</th>
+                                <th style="width: 100%">{% trans 'ISPs' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for obj in object_list %}
+                            <tr>
+                                <td class="text-nowrap">
+                                    <div class="dropdown show">
+                                        <button class="btn btn-light bg-light dropdown-toggle" href="#" role="button"
+                                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            {% trans 'Choose' %}
+                                        </button>
+                                        {% if request.user == obj.created_by %}
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item"
+                                                href="{% url 'telecom:ispgroup_update' pk=obj.pk %}">{% trans 'Change' %}</a>
+                                            <a class="dropdown-item"
+                                                href="{% url 'telecom:ispgroup_delete' pk=obj.pk %}">{% trans 'Delete' %}</a>
+                                        </div>
+                                        {% else %}
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="#">{% trans 'No available options' %}</a>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td class="text-nowrap">{{ obj.created_by }}</td>
+                                <td class="text-nowrap">{{ obj.name }}</td>
+                                <td class="text-nowrap">{{ obj.isps_as_str }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td class='text-center text-secondary' colspan="100%">{% trans 'No entries.' %}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if is_paginated %}
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans 'Previous' %}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">{% trans 'Previous' %}</a>
+                    </li>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans 'Next' %}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">{% trans 'Next' %}</a>
+                    </li>
+                    {% endif %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=all">{% trans 'All' %}</a>
+                    </li>
+                </ul>
+                {% endif %}
+                <div id="blankButtom"></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extrajs %}
+<script src="{% static 'js/table_list_view.js' %}"></script>
+{% endblock %}
