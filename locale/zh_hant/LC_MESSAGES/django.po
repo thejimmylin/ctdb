@@ -87,7 +87,7 @@ msgstr "個人檔案"
 #: .\telecom\templates\telecom\isp_list.html:26
 #: .\telecom\templates\telecom\ispgroup_list.html:26
 msgid "Name"
-msgstr ""
+msgstr "名稱"
 
 #: .\accounts\models.py:77
 msgid "Department"

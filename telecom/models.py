@@ -81,7 +81,7 @@ class PrefixListUpdateTask(models.Model):
             "original_as": "16888",
             "as_path": "16888-666-777",
             "ip_network": ["100.99.88.0/24", "c44d:0fda:5e07:f12d:0:0:0:0/64"]
-        },
+        }
     ]
     """
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
