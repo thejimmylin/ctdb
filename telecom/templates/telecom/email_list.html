@@ -1,4 +1,4 @@
-{% extends 'diary/base.html' %}
+{% extends 'telecom/base.html' %}
 {% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
@@ -15,7 +15,7 @@
                 <div id="blankTop"></div>
                 <div id="toolBar" class="d-flex justify-content-between">
                     <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
-                    <a id="addButton" class="btn btn-light border shadow-sm" href="#">{% trans 'Add' %}</a>
+                    <a id="addButton" class="btn btn-light border shadow-sm" href="{% url 'telecom:email_create' %}">{% trans 'Add' %}</a>
                 </div>
                 <div class="table-responsive">
                     <table id="searchTable" class="table table-bordered table-solid">
@@ -40,9 +40,9 @@
                                         {% if request.user == obj.created_by %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                             <a class="dropdown-item"
-                                                href="#">{% trans 'Change' %}</a>
+                                                href="{% url 'telecom:email_update' pk=obj.pk %}">{% trans 'Change' %}</a>
                                             <a class="dropdown-item"
-                                                href="#">{% trans 'Delete' %}</a>
+                                                href="{% url 'telecom:email_delete' pk=obj.pk %}">{% trans 'Delete' %}</a>
                                         </div>
                                         {% else %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
