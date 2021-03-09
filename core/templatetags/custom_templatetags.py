@@ -6,4 +6,4 @@ register = template.Library()
 
 @register.filter()
 def nbsp(value):
-    return mark_safe("&nbsp;".join(value.split(' ')))
+    return mark_safe('&nbsp;'.join(value.split(' ')))

@@ -3,6 +3,7 @@
 {% load static %}
 {% load widget_tweaks %}
 {% load custom_templatetags %}
+{% load configs_parser %}
 
 {% block extracss %}
 <link rel="stylesheet" href="{% static 'css/table_list_view.css' %}">
@@ -56,7 +57,7 @@
                                 <td class="text-nowrap">{{ obj.created_by }}</td>
                                 <td class="text-nowrap">{{ obj.isps_as_str|linebreaks }}</td>
                                 <td class="text-nowrap">{{ obj.isp_group_as_str|linebreaks }}</td>
-                                <td class="text-nowrap">{{ obj.configs|linebreaks|nbsp }}</td>
+                                <td class="text-nowrap">{{ obj.configs|parse_configs_as_html|linebreaks }}</td>
                             </tr>
                             {% empty %}
                             <tr>
