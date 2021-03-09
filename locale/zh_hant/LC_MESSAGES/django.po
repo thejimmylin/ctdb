@@ -617,7 +617,7 @@ msgstr "更新類型"
 #: .\telecom\templates\telecom\ispgroup_form.html:12
 #: .\telecom\templates\telecom\prefixlistupdatetask_list.html:28
 msgid "ISP groups"
-msgstr "給 ISP 群組"
+msgstr "ISP 群組"
 
 #: .\telecom\models.py:70
 #: .\telecom\templates\telecom\prefixlistupdatetask_list.html:29
