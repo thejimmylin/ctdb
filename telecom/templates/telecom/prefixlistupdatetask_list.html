@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
-{% load nbsp %}
+{% load custom_templatetags %}
 
 {% block extracss %}
 <link rel="stylesheet" href="{% static 'css/table_list_view.css' %}">
@@ -24,8 +24,8 @@
                             <tr>
                                 <th style="width: 1px;">{% trans 'Action' %}</th>
                                 <th style="width: 1px;">{% trans 'Created by' %}</th>
-                                <th style="width: 1px;">{% trans 'To ISPs' %}</th>
-                                <th style="width: 1px;">{% trans 'To ISP groups' %}</th>
+                                <th style="width: 1px;">{% trans 'ISPs' %}</th>
+                                <th style="width: 1px;">{% trans 'ISP groups' %}</th>
                                 <th style="width: 100%;">{% trans 'Configs' %}</th>
                             </tr>
                         </thead>
@@ -54,8 +54,8 @@
                                     </div>
                                 </td>
                                 <td class="text-nowrap">{{ obj.created_by }}</td>
-                                <td class="text-nowrap">{{ obj.to_isps_as_str|linebreaks }}</td>
-                                <td class="text-nowrap">{{ obj.to_isp_group_as_str|linebreaks }}</td>
+                                <td class="text-nowrap">{{ obj.isps_as_str|linebreaks }}</td>
+                                <td class="text-nowrap">{{ obj.isp_group_as_str|linebreaks }}</td>
                                 <td class="text-nowrap">{{ obj.configs|linebreaks|nbsp }}</td>
                             </tr>
                             {% empty %}

@@ -65,8 +65,8 @@ class PrefixListUpdateTask(models.Model):
             ('add route', 'Add Route'),
         )
     )
-    isps = models.ManyToManyField(verbose_name=_('To ISPs'), to='telecom.Isp', blank=True)
-    isp_groups = models.ManyToManyField(verbose_name=_('To ISP groups'), to='telecom.IspGroup', blank=True)
+    isps = models.ManyToManyField(verbose_name=_('ISPs'), to='telecom.Isp', blank=True)
+    isp_groups = models.ManyToManyField(verbose_name=_('ISP groups'), to='telecom.IspGroup', blank=True)
     configs = models.TextField(verbose_name=_('Configs'))
     """
     example:
@@ -90,8 +90,8 @@ class PrefixListUpdateTask(models.Model):
     def __str__(self):
         return f'{self.contact_type} {self.isps} {self.isp_groups}'
 
-    def to_isps_as_str(self):
+    def isps_as_str(self):
         return ',\n'.join(instance.name for instance in self.isps.all())
 
-    def to_isp_group_as_str(self):
+    def isp_group_as_str(self):
         return ',\n'.join(instance.name for instance in self.isp_groups.all())
