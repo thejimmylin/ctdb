@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-10 17:57+0800\n"
+"POT-Creation-Date: 2021-03-10 18:00+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -686,8 +686,9 @@ msgid "Are you sure you want to delete this prefix list update task?"
 msgstr "你確定要刪除這個 Prefix list 更新任務嗎？"
 
 #: .\telecom\validators.py:15
-msgid "Please enter a prefix-list separated by comma."
-msgstr "請輸入一個由逗點分隔的 prefix-list。"
+#, python-format
+msgid "%(ip_network)s is not a valid IP network."
+msgstr "%(ip_network)s 不是一個合法的 IP network。"
 
 #: .\telecom\validators.py:23
 #, python-format

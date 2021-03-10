@@ -12,7 +12,7 @@ def validate_comma_separated_prefix_list_string(value):
         try:
             prefixlen = ipaddress.ip_network(ip_network).prefixlen
         except ValueError:
-            raise ValidationError(_('Please enter a prefix-list separated by comma.'), code='invalid')
+            raise ValidationError(_('%(ip_network)s is not a valid IP network.'), code='invalid')
         expect_operator = True
         operator_now = None
         length_configs = {}
