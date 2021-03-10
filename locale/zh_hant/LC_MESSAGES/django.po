@@ -635,7 +635,7 @@ msgstr "ISP 群組"
 #: .\telecom\models.py:70
 #: .\telecom\templates\telecom\prefixlistupdatetask_list.html:30
 msgid "Origin AS"
-msgstr "原始 AS"
+msgstr ""
 
 #: .\telecom\models.py:71
 #: .\telecom\templates\telecom\prefixlistupdatetask_list.html:31
