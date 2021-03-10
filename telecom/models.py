@@ -67,7 +67,7 @@ class PrefixListUpdateTask(models.Model):
     )
     isps = models.ManyToManyField(verbose_name=_('ISPs'), to='telecom.Isp', blank=True)
     isp_groups = models.ManyToManyField(verbose_name=_('ISP groups'), to='telecom.IspGroup', blank=True)
-    original_as = models.CharField(verbose_name=_('Original AS'), max_length=63)
+    origin_as = models.CharField(verbose_name=_('Origin AS'), max_length=63)
     as_path = models.CharField(verbose_name=_('AS path'), max_length=63)
     prefix_list = models.TextField(verbose_name=_('Prefix-list'))
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
