@@ -60,7 +60,7 @@ class PrefixListUpdateTask(models.Model):
         verbose_name=_('Update type'),
         max_length=63,
         choices=(
-            ('add ip-prefix', _('Add IP-prefix')),
+            ('add prefix-list', _('Add prefix-list')),
             ('add as', _('Add AS')),
             ('add route', _('Add Route')),
         )

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-10 13:42+0800\n"
+"POT-Creation-Date: 2021-03-10 14:00+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -248,7 +248,7 @@ msgstr "重置"
 #: .\telecom\templates\telecom\ispgroup_form.html:47
 #: .\telecom\templates\telecom\ispgroup_list.html:44
 #: .\telecom\templates\telecom\prefixlistupdatetask_form.html:47
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:47
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:48
 msgid "Change"
 msgstr "變更"
 
@@ -294,7 +294,7 @@ msgid "TDB"
 msgstr ""
 
 #: .\core\templates\base.html:74 .\core\templates\base.html:106
-#: .\diary\models.py:15
+#: .\diary\models.py:23
 msgid "Diary"
 msgstr "日誌"
 
@@ -335,11 +335,15 @@ msgid "Add a ISP group"
 msgstr "新增 ISP 群組"
 
 #: .\core\templates\base.html:96
-msgid "IP prefix update task list"
-msgstr "Prefix list 更新任務列表"
+#, fuzzy
+#| msgid "Prefix list update tasks"
+msgid "Prefix-list update task"
+msgstr "Prefix list 更新任務"
 
 #: .\core\templates\base.html:97
-msgid "Add a IP prefix update task"
+#, fuzzy
+#| msgid "Add a IP prefix update task"
+msgid "Add a prefix-list update task"
 msgstr "新增 Prefix list 更新任務"
 
 #: .\core\templates\base.html:103
@@ -371,30 +375,17 @@ msgstr "日期"
 msgid "Is holiday"
 msgstr "是假日"
 
-#: .\diary\forms.py:25 .\diary\templates\diary\diary_list.html:64
-msgid "Yes"
-msgstr ""
-
-#: .\diary\forms.py:26 .\diary\templates\diary\diary_list.html:64
-msgid "No"
-msgstr ""
-
-#: .\diary\forms.py:28 .\diary\models.py:8
-#: .\diary\templates\diary\diary_list.html:29
-msgid "Daily check"
-msgstr "日檢核"
-
-#: .\diary\forms.py:34 .\diary\forms.py:39 .\diary\models.py:9
+#: .\diary\forms.py:26 .\diary\forms.py:31 .\diary\models.py:17
 #: .\diary\templates\diary\diary_list.html:30
 msgid "Daily record"
 msgstr "日常紀錄"
 
-#: .\diary\forms.py:44 .\diary\forms.py:49 .\diary\models.py:10
+#: .\diary\forms.py:36 .\diary\forms.py:41 .\diary\models.py:18
 #: .\diary\templates\diary\diary_list.html:31
 msgid "To do"
 msgstr "待辦事項"
 
-#: .\diary\forms.py:55 .\diary\forms.py:60 .\diary\models.py:11
+#: .\diary\forms.py:47 .\diary\forms.py:52 .\diary\models.py:19
 #: .\diary\templates\diary\diary_list.html:32 .\telecom\models.py:9
 #: .\telecom\models.py:27 .\telecom\models.py:47 .\telecom\models.py:73
 #: .\telecom\templates\telecom\email_list.html:27
@@ -402,11 +393,23 @@ msgstr "待辦事項"
 msgid "Remark"
 msgstr "備註"
 
-#: .\diary\forms.py:73
+#: .\diary\forms.py:65
 msgid "The diary with this date has already existed."
 msgstr "這個日期的日誌已經存在。"
 
-#: .\diary\models.py:12 .\diary\templates\diary\diary_list.html:26
+#: .\diary\models.py:9 .\diary\templates\diary\diary_list.html:29
+msgid "Daily check"
+msgstr "日檢核"
+
+#: .\diary\models.py:12
+msgid "Yes"
+msgstr ""
+
+#: .\diary\models.py:13
+msgid "No"
+msgstr ""
+
+#: .\diary\models.py:20 .\diary\templates\diary\diary_list.html:26
 #: .\telecom\models.py:10 .\telecom\models.py:28 .\telecom\models.py:48
 #: .\telecom\models.py:74 .\telecom\templates\telecom\email_list.html:25
 #: .\telecom\templates\telecom\isp_list.html:25
@@ -415,7 +418,7 @@ msgstr "這個日期的日誌已經存在。"
 msgid "Created by"
 msgstr "建立者"
 
-#: .\diary\models.py:16 .\diary\templates\diary\diary_confirm_delete.html:11
+#: .\diary\models.py:24 .\diary\templates\diary\diary_confirm_delete.html:11
 #: .\diary\templates\diary\diary_form.html:12
 #: .\diary\templates\diary\index.html:11
 msgid "Diaries"
@@ -434,7 +437,7 @@ msgstr "你確定要刪除這個日誌嗎？"
 #: .\telecom\templates\telecom\ispgroup_confirm_delete.html:43
 #: .\telecom\templates\telecom\ispgroup_list.html:46
 #: .\telecom\templates\telecom\prefixlistupdatetask_confirm_delete.html:43
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:49
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:50
 msgid "Delete"
 msgstr "刪除"
 
@@ -473,7 +476,7 @@ msgstr "動作"
 #: .\telecom\templates\telecom\email_list.html:38
 #: .\telecom\templates\telecom\isp_list.html:44
 #: .\telecom\templates\telecom\ispgroup_list.html:39
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:42
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:43
 msgid "Choose"
 msgstr "選擇"
 
@@ -481,7 +484,7 @@ msgstr "選擇"
 #: .\telecom\templates\telecom\email_list.html:49
 #: .\telecom\templates\telecom\isp_list.html:55
 #: .\telecom\templates\telecom\ispgroup_list.html:50
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:53
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:54
 msgid "No available options"
 msgstr "沒有可用的選項"
 
@@ -490,7 +493,7 @@ msgstr "沒有可用的選項"
 #: .\telecom\templates\telecom\email_list.html:60
 #: .\telecom\templates\telecom\isp_list.html:72
 #: .\telecom\templates\telecom\ispgroup_list.html:62
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:67
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:69
 msgid "No entries."
 msgstr "沒有條目"
 
@@ -504,8 +507,8 @@ msgstr "沒有條目"
 #: .\telecom\templates\telecom\isp_list.html:86
 #: .\telecom\templates\telecom\ispgroup_list.html:72
 #: .\telecom\templates\telecom\ispgroup_list.html:76
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:77
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:81
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:79
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:83
 msgid "Previous"
 msgstr "上一頁"
 
@@ -519,8 +522,8 @@ msgstr "上一頁"
 #: .\telecom\templates\telecom\isp_list.html:95
 #: .\telecom\templates\telecom\ispgroup_list.html:81
 #: .\telecom\templates\telecom\ispgroup_list.html:85
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:86
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:90
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:88
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:92
 msgid "Next"
 msgstr "下一頁"
 
@@ -529,7 +532,7 @@ msgstr "下一頁"
 #: .\telecom\templates\telecom\email_list.html:87
 #: .\telecom\templates\telecom\isp_list.html:99
 #: .\telecom\templates\telecom\ispgroup_list.html:89
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:94
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:96
 msgid "All"
 msgstr ""
 
@@ -605,51 +608,48 @@ msgstr "手機"
 #: .\telecom\templates\telecom\isp_confirm_delete.html:11
 #: .\telecom\templates\telecom\isp_form.html:12
 #: .\telecom\templates\telecom\ispgroup_list.html:27
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:27
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:28
 msgid "ISPs"
 msgstr ""
 
 #: .\telecom\models.py:60
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:27
 msgid "Update type"
 msgstr "更新類型"
 
 #: .\telecom\models.py:63
-#, fuzzy
-#| msgid "Add a IP prefix update task"
-msgid "Add IP-prefix"
-msgstr "新增 Prefix list 更新任務"
+msgid "Add prefix-list"
+msgstr "新增 prefix-list"
 
 #: .\telecom\models.py:64
-#, fuzzy
-#| msgid "Add a ISP"
 msgid "Add AS"
-msgstr "新增 ISP"
+msgstr "新增 AS"
 
 #: .\telecom\models.py:65
 msgid "Add Route"
-msgstr ""
+msgstr "新增路由"
 
 #: .\telecom\models.py:69
 #: .\telecom\templates\telecom\ispgroup_confirm_delete.html:11
 #: .\telecom\templates\telecom\ispgroup_form.html:12
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:28
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:29
 msgid "ISP groups"
 msgstr "ISP 群組"
 
 #: .\telecom\models.py:70
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:29
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:30
 msgid "Original AS"
-msgstr ""
+msgstr "原始 AS"
 
 #: .\telecom\models.py:71
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:30
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:31
 msgid "AS path"
-msgstr ""
+msgstr "AS path"
 
 #: .\telecom\models.py:72
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:31
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:32
 msgid "Prefix-list"
-msgstr ""
+msgstr "Prefix-list"
 
 #: .\telecom\templates\telecom\email_confirm_delete.html:11
 #: .\telecom\templates\telecom\email_form.html:12
@@ -685,6 +685,3 @@ msgstr "你確定要刪除這個 Prefix list 更新任務嗎？"
 msgid ""
 "Enter a valid IP address, or multiple valid IP addresses separated by comma."
 msgstr "輸入一個有效的 IP 位址，或多個由逗點分隔的 IP 位址。"
-
-#~ msgid "Configs"
-#~ msgstr "組態"
