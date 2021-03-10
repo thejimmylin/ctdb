@@ -32,9 +32,9 @@ class PrefixListUpdateTaskModelForm(forms.ModelForm):
                     '100.100.100.100/24,\n'
                     '100.100.200.100/22 le 24,\n'
                 ),
-                'rows': 16,
+                'row': 16
             }
-        )
+        ),
     )
 
     class Meta():

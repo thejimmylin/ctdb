@@ -2,6 +2,7 @@ from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.core.paginator import Paginator
+from django.utils.translation import gettext_lazy as _
 
 from .models import Email, Isp, IspGroup, PrefixListUpdateTask
 from .forms import EmailModelForm, IspModelForm, IspGroupModelForm, PrefixListUpdateTaskModelForm
@@ -273,7 +274,8 @@ def prefixlistupdatetask_create(request):
     form_class = PrefixListUpdateTaskModelForm
     template_name = 'telecom/prefixlistupdatetask_form.html'
     success_url = reverse('telecom:prefixlistupdatetask_list')
-    action = 'create'
+    form_title = _('Prefix list update tasks')
+    form_buttons = ['create']
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     if request.method == 'POST':
@@ -282,10 +284,18 @@ def prefixlistupdatetask_create(request):
         if form.is_valid():
             instance = form.save()
             return redirect(success_url)
-        context = {'form': form, 'action': action}
+        context = {
+            'form': form,
+            'form_title': form_title,
+            'form_buttons': form_buttons
+        }
         return render(request, template_name, context)
     form = form_class()
-    context = {'form': form, 'action': action}
+    context = {
+        'form': form,
+        'form_title': form_title,
+        'form_buttons': form_buttons
+    }
     return render(request, template_name, context)
 
 
