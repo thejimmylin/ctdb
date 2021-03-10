@@ -57,7 +57,7 @@
                                 <td class="text-nowrap">{{ obj.created_by }}</td>
                                 <td class="text-nowrap">{{ obj.isps_as_str|linebreaks }}</td>
                                 <td class="text-nowrap">{{ obj.isp_group_as_str|linebreaks }}</td>
-                                <td class="text-nowrap">{{ obj.configs|parse_configs_as_html|linebreaks }}</td>
+                                <td class="text-nowrap">{{ obj.configs|parse_configs_as_html3 }}</td>
                             </tr>
                             {% empty %}
                             <tr>
