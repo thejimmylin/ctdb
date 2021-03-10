@@ -25,6 +25,7 @@ class DiaryModelForm(forms.ModelForm):
             attrs={
                 'placeholder': _('Daily record'),
                 'rows': 4,
+                'class': 'ckeditor4',
             },
         ),
         label=_('Daily record'),
