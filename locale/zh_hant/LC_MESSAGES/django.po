@@ -335,16 +335,12 @@ msgid "Add a ISP group"
 msgstr "新增 ISP 群組"
 
 #: .\core\templates\base.html:96
-#, fuzzy
-#| msgid "Prefix list update tasks"
 msgid "Prefix-list update task"
-msgstr "Prefix list 更新任務"
+msgstr "Prefix-list 更新任務"
 
 #: .\core\templates\base.html:97
-#, fuzzy
-#| msgid "Add a IP prefix update task"
 msgid "Add a prefix-list update task"
-msgstr "新增 Prefix list 更新任務"
+msgstr "新增 prefix-list 更新任務"
 
 #: .\core\templates\base.html:103
 msgid "Log"
