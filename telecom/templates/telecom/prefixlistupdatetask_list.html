@@ -27,7 +27,9 @@
                                 <th style="width: 1px;">{% trans 'Created by' %}</th>
                                 <th style="width: 1px;">{% trans 'ISPs' %}</th>
                                 <th style="width: 1px;">{% trans 'ISP groups' %}</th>
-                                <th style="width: 100%;">{% trans 'Configs' %}</th>
+                                <th style="width: 1px;">{% trans 'Original AS' %}</th>
+                                <th style="width: 1px;">{% trans 'AS path' %}</th>
+                                <th style="width: 100%;">{% trans 'Prefix-list' %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,7 +59,9 @@
                                 <td class="text-nowrap">{{ obj.created_by }}</td>
                                 <td class="text-nowrap">{{ obj.isps_as_str|linebreaks }}</td>
                                 <td class="text-nowrap">{{ obj.isp_group_as_str|linebreaks }}</td>
-                                <td class="text-nowrap">{{ obj.configs|parse_configs_as_html3 }}</td>
+                                <td class="text-nowrap">{{ obj.original_as|linebreaks }}</td>
+                                <td class="text-nowrap">{{ obj.as_path|linebreaks }}</td>
+                                <td class="text-nowrap">{{ obj.prefix_list|linebreaks }}</td>
                             </tr>
                             {% empty %}
                             <tr>

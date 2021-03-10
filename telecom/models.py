@@ -58,32 +58,18 @@ class PrefixListUpdateTask(models.Model):
 
     update_type = models.CharField(
         verbose_name=_('Update type'),
-        max_length=64,
+        max_length=63,
         choices=(
-            ('add ip-prefix', 'Add IP-prefix'),
-            ('add as', 'Add AS'),
-            ('add route', 'Add Route'),
+            ('add ip-prefix', _('Add IP-prefix')),
+            ('add as', _('Add AS')),
+            ('add route', _('Add Route')),
         )
     )
     isps = models.ManyToManyField(verbose_name=_('ISPs'), to='telecom.Isp', blank=True)
     isp_groups = models.ManyToManyField(verbose_name=_('ISP groups'), to='telecom.IspGroup', blank=True)
-    configs = models.TextField(verbose_name=_('Configs'))
-    """
-    example:
-
-    configs = [
-        {
-            "original_as": "16999",
-            "as_path": "16999-888-777",
-            "ip_network": ["100.88.77.0/24", "100.88.78.0/24", "2129:0375:0718:226d:0:0:0:0/64"]
-        },
-        {
-            "original_as": "16888",
-            "as_path": "16888-666-777",
-            "ip_network": ["100.99.88.0/24", "c44d:0fda:5e07:f12d:0:0:0:0/64"]
-        }
-    ]
-    """
+    original_as = models.CharField(verbose_name=_('Original AS'), max_length=63)
+    as_path = models.CharField(verbose_name=_('AS path'), max_length=63)
+    prefix_list = models.TextField(verbose_name=_('Prefix-list'))
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
