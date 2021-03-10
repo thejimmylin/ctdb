@@ -3,7 +3,6 @@
 {% load static %}
 {% load widget_tweaks %}
 {% load custom_templatetags %}
-{% load configs_parser %}
 
 {% block extracss %}
 <link rel="stylesheet" href="{% static 'css/table_list_view.css' %}">
@@ -25,6 +24,7 @@
                             <tr>
                                 <th style="width: 1px;">{% trans 'Action' %}</th>
                                 <th style="width: 1px;">{% trans 'Created by' %}</th>
+                                <th style="width: 1px;">{% trans 'Update type' %}</th>
                                 <th style="width: 1px;">{% trans 'ISPs' %}</th>
                                 <th style="width: 1px;">{% trans 'ISP groups' %}</th>
                                 <th style="width: 1px;">{% trans 'Original AS' %}</th>
@@ -57,6 +57,7 @@
                                     </div>
                                 </td>
                                 <td class="text-nowrap">{{ obj.created_by }}</td>
+                                <td class="text-nowrap">{{ obj.get_update_type_display }}</td>
                                 <td class="text-nowrap">{{ obj.isps_as_str|linebreaks }}</td>
                                 <td class="text-nowrap">{{ obj.isp_group_as_str|linebreaks }}</td>
                                 <td class="text-nowrap">{{ obj.original_as|linebreaks }}</td>

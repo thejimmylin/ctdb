@@ -61,7 +61,7 @@
                                 {% endif %}
                                 <td class="text-nowrap">{{ diary.date|date:"Y-m-d" }}</td>
                                 <td class="text-nowrap">
-                                    {% if diary.daily_check == 'yes' %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
+                                    {{ diary.get_daily_check_display }}
                                 </td>
                                 <td>{{ diary.daily_record|safe|linebreaks }}</td>
                                 <td>{{ diary.todo|safe|linebreaks }}</td>

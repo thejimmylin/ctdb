@@ -1,11 +1,10 @@
-from django.http import HttpResponseNotFound, JsonResponse
+from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.core.paginator import Paginator
 
 from .models import Email, Isp, IspGroup, PrefixListUpdateTask
 from .forms import EmailModelForm, IspModelForm, IspGroupModelForm, PrefixListUpdateTaskModelForm
-from .serializers import PrefixListUpdateTaskSerializer
 
 
 def email_list(request):
@@ -267,14 +266,6 @@ def prefixlistupdatetask_list(request):
     object_list = page_obj if is_paginated else qs
     context = {'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, }
     return render(request, template_name, context)
-
-
-def api_prefixlistupdatetask_list(request):
-    model = PrefixListUpdateTask
-    serializer = PrefixListUpdateTaskSerializer
-    qs = model.objects.all()
-    data = serializer(qs, many=True).data
-    return JsonResponse(data, safe=False)
 
 
 def prefixlistupdatetask_create(request):

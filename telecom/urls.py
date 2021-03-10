@@ -1,8 +1,7 @@
 from django.urls import path
 from .views import (email_list, email_create, email_update, email_delete, isp_list, isp_create, isp_update,
                     isp_delete, ispgroup_list, ispgroup_create, ispgroup_update, ispgroup_delete,
-                    prefixlistupdatetask_list, prefixlistupdatetask_create, prefixlistupdatetask_update, prefixlistupdatetask_delete,
-                    api_prefixlistupdatetask_list, )
+                    prefixlistupdatetask_list, prefixlistupdatetask_create, prefixlistupdatetask_update, prefixlistupdatetask_delete)
 
 app_name = 'telecom'
 
@@ -20,7 +19,6 @@ urlpatterns = [
     path('ispgroups/<int:pk>/change/', ispgroup_update, name='ispgroup_update'),
     path('ispgroups/<int:pk>/delete/', ispgroup_delete, name='ispgroup_delete'),
     path('prefixlistupdatetasks/', prefixlistupdatetask_list, name='prefixlistupdatetask_list'),
-    path('api/prefixlistupdatetasks/', api_prefixlistupdatetask_list, name='api_prefixlistupdatetask_list'),
     path('prefixlistupdatetasks/add/', prefixlistupdatetask_create, name='prefixlistupdatetask_create'),
     path('prefixlistupdatetasks/<int:pk>/change/', prefixlistupdatetask_update, name='prefixlistupdatetask_update'),
     path('prefixlistupdatetasks/<int:pk>/delete/', prefixlistupdatetask_delete, name='prefixlistupdatetask_delete'),

@@ -20,14 +20,6 @@ class DiaryModelForm(forms.ModelForm):
         label=_('Date'),
         initial=today,
     )
-    daily_check = forms.ChoiceField(
-        choices=(
-            ('yes', _('Yes')),
-            ('no', _('No')),
-        ),
-        label=_('Daily check'),
-        initial='no',
-    )
     daily_record = forms.CharField(
         widget=forms.Textarea(
             attrs={

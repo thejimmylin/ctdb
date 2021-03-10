@@ -5,7 +5,15 @@ from django.utils.translation import gettext_lazy as _
 
 class Diary(models.Model):
     date = models.DateField(verbose_name=_('Date'), null=True)
-    daily_check = models.CharField(verbose_name=_('Daily check'), max_length=15)
+    daily_check = models.CharField(
+        verbose_name=_('Daily check'),
+        max_length=15,
+        choices=(
+            ('yes', _('Yes')),
+            ('no', _('No')),
+        ),
+        default='no'
+    )
     daily_record = models.TextField(verbose_name=_('Daily record'), null=True)
     todo = models.TextField(verbose_name=_('To do'), null=True, blank=True)
     remark = models.TextField(verbose_name=_('Remark'), null=True, blank=True)
