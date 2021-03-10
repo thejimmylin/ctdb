@@ -25,9 +25,9 @@
             <div class="form-group col">
               {{ field.label_tag }}
               {% if field.errors %}
-              {% render_field field class+='form-control form-check border-danger' placeholder=field.label %}
+              {% render_field field class+='form-control form-check border-danger' %}
               {% else %}
-              {% render_field field class+='form-control' placeholder=field.label %}
+              {% render_field field class+='form-control' %}
               {% endif %}
               {% if field.help_text %}
               <small class="text-muted d-block px-1">{{ field.help_text }}</small>

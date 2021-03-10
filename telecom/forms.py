@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from .models import Email, Isp, IspGroup, PrefixListUpdateTask
 
@@ -22,6 +23,20 @@ class IspGroupModelForm(forms.ModelForm):
 
 
 class PrefixListUpdateTaskModelForm(forms.ModelForm):
+    prefix_list = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': _(
+                    'For example:\n'
+                    '\n'
+                    '100.100.100.100/24,\n'
+                    '100.100.200.100/22 le 24,\n'
+                ),
+                'rows': 16,
+            }
+        )
+    )
+
     class Meta():
         model = PrefixListUpdateTask
         exclude = ['created_by', ]

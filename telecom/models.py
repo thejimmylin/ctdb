@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from .validators import validate_comma_separated_ipv46_address_string  # TODO
+from .validators import validate_comma_separated_prefix_list_string
 
 
 class Email(models.Model):
@@ -41,7 +41,6 @@ class Isp(models.Model):
 
 
 class IspGroup(models.Model):
-
     name = models.CharField(verbose_name=_('Name'), max_length=63)
     isps = models.ManyToManyField(verbose_name=_('ISPs'), to='telecom.Isp')
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
@@ -55,7 +54,6 @@ class IspGroup(models.Model):
 
 
 class PrefixListUpdateTask(models.Model):
-
     update_type = models.CharField(
         verbose_name=_('Update type'),
         max_length=63,
@@ -69,12 +67,9 @@ class PrefixListUpdateTask(models.Model):
     isp_groups = models.ManyToManyField(verbose_name=_('ISP groups'), to='telecom.IspGroup', blank=True)
     origin_as = models.CharField(verbose_name=_('Origin AS'), max_length=63)
     as_path = models.CharField(verbose_name=_('AS path'), max_length=63)
-    prefix_list = models.TextField(verbose_name=_('Prefix-list'))
+    prefix_list = models.TextField(verbose_name=_('Prefix-list'), validators=[validate_comma_separated_prefix_list_string, ])
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'{self.update_type} {self.isps} {self.isp_groups}'
 
     def isps_as_str(self):
         return ',\n'.join(instance.name for instance in self.isps.all())
