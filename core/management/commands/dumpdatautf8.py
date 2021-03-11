@@ -1,3 +1,6 @@
+"""
+This file rewrite the django-management command "dumpdata", because it does not use the utf-8 with the "encoding" argument.
+"""
 import warnings
 
 from django.apps import apps
