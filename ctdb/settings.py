@@ -199,7 +199,7 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/uploads/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'node_modules',
+    BASE_DIR / 'node_modules'
 ]
 
 # Build-in auth system
