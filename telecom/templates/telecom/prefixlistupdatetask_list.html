@@ -16,7 +16,7 @@
                 <div id="blankTop"></div>
                 <div id="toolBar" class="d-flex justify-content-between">
                     <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
-                    <a id="addButton" class="btn btn-light border shadow-sm" href="{% url 'telecom:prefixlistupdatetask_create' %}">{% trans 'Add' %}</a>
+                    <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% trans 'Add' %}</a>
                 </div>
                 <div class="table-responsive">
                     <table id="searchTable" class="table table-bordered table-solid">
@@ -36,25 +36,7 @@
                             {% for obj in object_list %}
                             <tr>
                                 <td class="text-nowrap">
-                                    <div class="dropdown show">
-                                        <button class="btn btn-light bg-light dropdown-toggle" href="#" role="button"
-                                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            {% trans 'Choose' %}
-                                        </button>
-                                        {% if request.user == obj.created_by %}
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item"
-                                                href="{% url 'telecom:prefixlistupdatetask_update' pk=obj.pk %}">{% trans 'Change' %}</a>
-                                            <a class="dropdown-item"
-                                                href="{% url 'telecom:prefixlistupdatetask_delete' pk=obj.pk %}">{% trans 'Delete' %}</a>
-                                        </div>
-                                        {% else %}
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="#">{% trans 'No available options' %}</a>
-                                        </div>
-                                        {% endif %}
-                                    </div>
+                                    {% include 'action_dropdown_div.html' %}
                                 </td>
                                 <td class="text-nowrap">{{ obj.created_by }}</td>
                                 <td class="text-nowrap">{{ obj.get_update_type_display }}</td>

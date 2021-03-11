@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 from .validators import validate_comma_separated_prefix_list_string
 from .validators import validate_semicolon_seperated_email_string
 
@@ -19,8 +20,21 @@ class Isp(models.Model):
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
+    class Meta():
+        verbose_name = _('ISP')
+        verbose_name_plural = _('ISPs')
+
     def __str__(self):
         return self.name
+
+    def get_create_url(self):
+        return reverse('telecom:isp_create')
+
+    def get_update_url(self):
+        return reverse('telecom:isp_update', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('telecom:isp_delete', kwargs={'pk': self.pk})
 
 
 class IspGroup(models.Model):
@@ -29,11 +43,24 @@ class IspGroup(models.Model):
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
+    class Meta():
+        verbose_name = _('ISP group')
+        verbose_name_plural = _('ISP groups')
+
     def __str__(self):
         return self.name
 
     def isps_as_str(self):
         return ',\n'.join(instance.name for instance in self.isps.all())
+
+    def get_create_url(self):
+        return reverse('telecom:ispgroup_create')
+
+    def get_update_url(self):
+        return reverse('telecom:ispgroup_update', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('telecom:ispgroup_delete', kwargs={'pk': self.pk})
 
 
 class PrefixListUpdateTask(models.Model):
@@ -54,8 +81,21 @@ class PrefixListUpdateTask(models.Model):
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
+    class Meta():
+        verbose_name = _('prefix list update task')
+        verbose_name_plural = _('prefix list update tasks')
+
     def isps_as_str(self):
         return ',\n'.join(instance.name for instance in self.isps.all())
 
     def isp_group_as_str(self):
         return ',\n'.join(instance.name for instance in self.isp_groups.all())
+
+    def get_create_url(self):
+        return reverse('telecom:prefixlistupdatetask_create')
+
+    def get_update_url(self):
+        return reverse('telecom:prefixlistupdatetask_update', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('telecom:prefixlistupdatetask_delete', kwargs={'pk': self.pk})

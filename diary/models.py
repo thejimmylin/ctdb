@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 
 class Diary(models.Model):
@@ -26,3 +27,12 @@ class Diary(models.Model):
 
     def __str__(self):
         return self.daily_record[:8] + '..'
+
+    def get_create_url(self):
+        return reverse('diary:diary_create')
+
+    def get_update_url(self):
+        return reverse('diary:diary_update', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('diary:diary_delete', kwargs={'pk': self.pk})

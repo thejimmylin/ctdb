@@ -2,7 +2,6 @@ from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.core.paginator import Paginator
-from django.utils.translation import gettext_lazy as _
 
 from .forms import DiaryModelForm
 from .models import Diary
@@ -14,7 +13,7 @@ def diary_list(request):
     use_pagination = True
     paginate_by = 5
     template_name = 'diary/diary_list.html'
-    order_by = ('-date', '-id')
+    order_by = ('-date', '-pk')
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     role = get_role(request)
@@ -32,28 +31,28 @@ def diary_list(request):
     else:
         is_paginated = use_pagination and page_obj.has_other_pages()
     object_list = page_obj if is_paginated else qs_ordered
-    context = {'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, 'is_supervisor': is_supervisor, }
+    context = {'model': model, 'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, 'is_supervisor': is_supervisor, }
     return render(request, template_name, context)
 
 
 def diary_create(request):
+    model = Diary
     form_class = DiaryModelForm
     template_name = 'diary/diary_form.html'
     success_url = reverse('diary:diary_list')
-    form_title = _('Diaries')
     form_buttons = ['create']
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     if request.method == 'POST':
-        instance = Diary(created_by=request.user)
+        instance = model(created_by=request.user)
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
             instance = form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+        context = {'form': form, 'model': model, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
-    context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+    context = {'form': form, 'model': model, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -62,7 +61,6 @@ def diary_update(request, pk):
     form_class = DiaryModelForm
     template_name = 'diary/diary_form.html'
     success_url = reverse('diary:diary_list')
-    form_title = _('Diaries')
     form_buttons = ['update']
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
@@ -74,10 +72,10 @@ def diary_update(request, pk):
         if form.is_valid():
             form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+        context = {'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class(instance=instance)
-    context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+    context = {'form': form, 'model': model, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -93,4 +91,5 @@ def diary_delete(request, pk):
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)
-    return render(request, template_name)
+    context = {'model': model}
+    return render(request, template_name, context)

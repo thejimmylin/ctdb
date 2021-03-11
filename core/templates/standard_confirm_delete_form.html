@@ -1,0 +1,10 @@
+{% load i18n %}
+
+<form method="post" novalidate>
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col">
+      <button type="submit" class="btn btn-danger btn-block">{% trans 'Delete' %}</button>
+    </div>
+  </div>
+</form>

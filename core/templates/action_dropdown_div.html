@@ -1,0 +1,21 @@
+{% load i18n %}
+
+<div class="dropdown show">
+    <button class="btn btn-light bg-light dropdown-toggle" href="#" role="button"
+        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        {% trans 'Choose' %}
+    </button>
+    {% if request.user == obj.created_by %}
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item"
+            href="{{ obj.get_update_url }}">{% trans 'Change' %}</a>
+        <a class="dropdown-item"
+            href="{{ obj.get_delete_url }}">{% trans 'Delete' %}</a>
+    </div>
+    {% else %}
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#">{% trans 'No available options' %}</a>
+    </div>
+    {% endif %}
+</div>

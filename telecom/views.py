@@ -2,7 +2,6 @@ from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.core.paginator import Paginator
-from django.utils.translation import gettext_lazy as _
 
 from .models import Isp, IspGroup, PrefixListUpdateTask
 from .forms import IspModelForm, IspGroupModelForm, PrefixListUpdateTaskModelForm
@@ -13,7 +12,7 @@ def isp_list(request):
     use_pagination = True
     paginate_by = 5
     template_name = 'telecom/isp_list.html'
-    order_by = ('-id', )
+    order_by = ('-pk', )
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     qs = model.objects.all().order_by(*order_by)
@@ -25,7 +24,7 @@ def isp_list(request):
     else:
         is_paginated = use_pagination and page_obj.has_other_pages()
     object_list = page_obj if is_paginated else qs
-    context = {'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, }
+    context = {'model': model, 'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, }
     return render(request, template_name, context)
 
 
@@ -34,7 +33,6 @@ def isp_create(request):
     form_class = IspModelForm
     template_name = 'telecom/isp_form.html'
     success_url = reverse('telecom:isp_list')
-    form_title = _('ISPs')
     form_buttons = ['create']
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
@@ -44,10 +42,10 @@ def isp_create(request):
         if form.is_valid():
             instance = form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+        context = {'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
-    context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+    context = {'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -56,7 +54,6 @@ def isp_update(request, pk):
     form_class = IspModelForm
     template_name = 'telecom/isp_form.html'
     success_url = reverse('telecom:isp_list')
-    form_title = _('ISPs')
     form_buttons = ['update']
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
@@ -68,10 +65,10 @@ def isp_update(request, pk):
         if form.is_valid():
             form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+        context = {'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class(instance=instance)
-    context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+    context = {'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -87,7 +84,8 @@ def isp_delete(request, pk):
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)
-    return render(request, template_name)
+    context = {'model': model}
+    return render(request, template_name, context)
 
 
 def ispgroup_list(request):
@@ -95,7 +93,7 @@ def ispgroup_list(request):
     use_pagination = True
     paginate_by = 5
     template_name = 'telecom/ispgroup_list.html'
-    order_by = ('-id', )
+    order_by = ('-pk', )
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     qs = model.objects.all().order_by(*order_by)
@@ -107,7 +105,7 @@ def ispgroup_list(request):
     else:
         is_paginated = use_pagination and page_obj.has_other_pages()
     object_list = page_obj if is_paginated else qs
-    context = {'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, }
+    context = {'model': model, 'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, }
     return render(request, template_name, context)
 
 
@@ -116,7 +114,6 @@ def ispgroup_create(request):
     form_class = IspGroupModelForm
     template_name = 'telecom/ispgroup_form.html'
     success_url = reverse('telecom:ispgroup_list')
-    form_title = _('ISP groups')
     form_buttons = ['create']
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
@@ -126,10 +123,10 @@ def ispgroup_create(request):
         if form.is_valid():
             instance = form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+        context = {'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
-    context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+    context = {'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -138,7 +135,6 @@ def ispgroup_update(request, pk):
     form_class = IspGroupModelForm
     template_name = 'telecom/ispgroup_form.html'
     success_url = reverse('telecom:ispgroup_list')
-    form_title = _('ISP groups')
     form_buttons = ['update']
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
@@ -150,10 +146,10 @@ def ispgroup_update(request, pk):
         if form.is_valid():
             form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+        context = {'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class(instance=instance)
-    context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+    context = {'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -169,7 +165,8 @@ def ispgroup_delete(request, pk):
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)
-    return render(request, template_name)
+    context = {'model': model}
+    return render(request, template_name, context)
 
 
 def prefixlistupdatetask_list(request):
@@ -177,7 +174,7 @@ def prefixlistupdatetask_list(request):
     use_pagination = True
     paginate_by = 5
     template_name = 'telecom/prefixlistupdatetask_list.html'
-    order_by = ('-id', )
+    order_by = ('-pk', )
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     qs = model.objects.all().order_by(*order_by)
@@ -189,7 +186,7 @@ def prefixlistupdatetask_list(request):
     else:
         is_paginated = use_pagination and page_obj.has_other_pages()
     object_list = page_obj if is_paginated else qs
-    context = {'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, }
+    context = {'model': model, 'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, }
     return render(request, template_name, context)
 
 
@@ -198,7 +195,6 @@ def prefixlistupdatetask_create(request):
     form_class = PrefixListUpdateTaskModelForm
     template_name = 'telecom/prefixlistupdatetask_form.html'
     success_url = reverse('telecom:prefixlistupdatetask_list')
-    form_title = _('Prefix list update tasks')
     form_buttons = ['create']
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
@@ -208,10 +204,10 @@ def prefixlistupdatetask_create(request):
         if form.is_valid():
             instance = form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+        context = {'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
-    context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+    context = {'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -220,7 +216,6 @@ def prefixlistupdatetask_update(request, pk):
     form_class = PrefixListUpdateTaskModelForm
     template_name = 'telecom/prefixlistupdatetask_form.html'
     success_url = reverse('telecom:prefixlistupdatetask_list')
-    form_title = _('Prefix list update tasks')
     form_buttons = ['update']
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
@@ -232,10 +227,10 @@ def prefixlistupdatetask_update(request, pk):
         if form.is_valid():
             form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+        context = {'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class(instance=instance)
-    context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
+    context = {'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -251,4 +246,5 @@ def prefixlistupdatetask_delete(request, pk):
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)
-    return render(request, template_name)
+    context = {'model': model}
+    return render(request, template_name, context)
