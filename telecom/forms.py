@@ -5,12 +5,59 @@ from .models import Isp, IspGroup, PrefixListUpdateTask
 
 
 class IspModelForm(forms.ModelForm):
+    to = forms.CharField(
+        label=_('To'),
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': _(
+                    'Please enter a Email or multiple Email separated by ";".\n'
+                    'For example:\n'
+                    '\n'
+                    'example1@chief.com.tw;\n'
+                    'example2@google.com;\n'
+                ),
+                'row': 8
+            }
+        ),
+    )
+    cc = forms.CharField(
+        label=_('CC'),
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': _(
+                    'Please enter a Email or multiple Email separated by ";".\n'
+                    'For example:\n'
+                    '\n'
+                    'example1@chief.com.tw;\n'
+                    'example2@google.com;\n'
+                ),
+                'row': 8
+            }
+        ),
+    )
+    bcc = forms.CharField(
+        label=_('BCC'),
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': _(
+                    'Please enter a Email or multiple Email separated by ";".\n'
+                    'For example:\n'
+                    '\n'
+                    'example1@chief.com.tw;\n'
+                    'example2@google.com;\n'
+                ),
+                'row': 8
+            }
+        ),
+    )
+
     class Meta():
         model = Isp
         exclude = ['created_by', ]
 
 
 class IspGroupModelForm(forms.ModelForm):
+
     class Meta():
         model = IspGroup
         exclude = ['created_by', ]
@@ -18,10 +65,11 @@ class IspGroupModelForm(forms.ModelForm):
 
 class PrefixListUpdateTaskModelForm(forms.ModelForm):
     prefix_list = forms.CharField(
+        label=_('Prefix-list'),
         widget=forms.Textarea(
             attrs={
                 'placeholder': _(
-                    'For example:\n'
+                    'Please enter a prefix-list, for example:\n'
                     '\n'
                     '100.100.100.100/24,\n'
                     '100.100.200.100/22 le 24,\n'

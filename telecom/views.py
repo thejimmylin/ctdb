@@ -34,7 +34,8 @@ def isp_create(request):
     form_class = IspModelForm
     template_name = 'telecom/isp_form.html'
     success_url = reverse('telecom:isp_list')
-    action = 'create'
+    form_title = _('ISPs')
+    form_buttons = ['create']
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     if request.method == 'POST':
@@ -43,10 +44,10 @@ def isp_create(request):
         if form.is_valid():
             instance = form.save()
             return redirect(success_url)
-        context = {'form': form, 'action': action}
+        context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
-    context = {'form': form, 'action': action}
+    context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -55,7 +56,8 @@ def isp_update(request, pk):
     form_class = IspModelForm
     template_name = 'telecom/isp_form.html'
     success_url = reverse('telecom:isp_list')
-    action = 'update'
+    form_title = _('ISPs')
+    form_buttons = ['update']
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     instance = get_object_or_404(klass=model, pk=pk)
@@ -66,10 +68,10 @@ def isp_update(request, pk):
         if form.is_valid():
             form.save()
             return redirect(success_url)
-        context = {'form': form, 'action': action}
+        context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class(instance=instance)
-    context = {'form': form, 'action': action}
+    context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -112,9 +114,10 @@ def ispgroup_list(request):
 def ispgroup_create(request):
     model = IspGroup
     form_class = IspGroupModelForm
-    template_name = 'telecom/isp_form.html'
+    template_name = 'telecom/ispgroup_form.html'
     success_url = reverse('telecom:ispgroup_list')
-    action = 'create'
+    form_title = _('ISP groups')
+    form_buttons = ['create']
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     if request.method == 'POST':
@@ -123,10 +126,10 @@ def ispgroup_create(request):
         if form.is_valid():
             instance = form.save()
             return redirect(success_url)
-        context = {'form': form, 'action': action}
+        context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
-    context = {'form': form, 'action': action}
+    context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -135,7 +138,8 @@ def ispgroup_update(request, pk):
     form_class = IspGroupModelForm
     template_name = 'telecom/ispgroup_form.html'
     success_url = reverse('telecom:ispgroup_list')
-    action = 'update'
+    form_title = _('ISP groups')
+    form_buttons = ['update']
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     instance = get_object_or_404(klass=model, pk=pk)
@@ -146,10 +150,10 @@ def ispgroup_update(request, pk):
         if form.is_valid():
             form.save()
             return redirect(success_url)
-        context = {'form': form, 'action': action}
+        context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class(instance=instance)
-    context = {'form': form, 'action': action}
+    context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -204,18 +208,10 @@ def prefixlistupdatetask_create(request):
         if form.is_valid():
             instance = form.save()
             return redirect(success_url)
-        context = {
-            'form': form,
-            'form_title': form_title,
-            'form_buttons': form_buttons
-        }
+        context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
-    context = {
-        'form': form,
-        'form_title': form_title,
-        'form_buttons': form_buttons
-    }
+    context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -224,7 +220,8 @@ def prefixlistupdatetask_update(request, pk):
     form_class = PrefixListUpdateTaskModelForm
     template_name = 'telecom/prefixlistupdatetask_form.html'
     success_url = reverse('telecom:prefixlistupdatetask_list')
-    action = 'update'
+    form_title = _('Prefix list update tasks')
+    form_buttons = ['update']
     if not request.user.is_authenticated:
         return redirect(f'{reverse("accounts:login")}?next={request.path}')
     instance = get_object_or_404(klass=model, pk=pk)
@@ -235,10 +232,10 @@ def prefixlistupdatetask_update(request, pk):
         if form.is_valid():
             form.save()
             return redirect(success_url)
-        context = {'form': form, 'action': action}
+        context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class(instance=instance)
-    context = {'form': form, 'action': action}
+    context = {'form': form, 'form_title': form_title, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 

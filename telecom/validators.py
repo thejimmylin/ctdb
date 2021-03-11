@@ -7,6 +7,8 @@ OPERATORS = ['eq', 'le', 'ge']
 
 
 def validate_comma_separated_prefix_list_string(value):
+    if value[-1:] == ',':
+        value = value[:-1]
     prefix_list = list(map(str.strip, value.split(',')))
     for prefix in prefix_list:
         ip_network, *args = prefix.split(' ')
