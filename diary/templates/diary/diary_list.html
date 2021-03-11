@@ -33,7 +33,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for diary in object_list %}
+                            {% for obj in object_list %}
                             <tr>
                                 <td class="text-nowrap">
                                     <div class="dropdown show">
@@ -42,12 +42,12 @@
                                             aria-expanded="false">
                                             {% trans 'Choose' %}
                                         </button>
-                                        {% if request.user == diary.created_by %}
+                                        {% if request.user == obj.created_by %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                             <a class="dropdown-item"
-                                                href="{% url 'diary:diary_update' pk=diary.id %}">{% trans 'Change' %}</a>
+                                                href="{% url 'diary:diary_update' pk=obj.id %}">{% trans 'Change' %}</a>
                                             <a class="dropdown-item"
-                                                href="{% url 'diary:diary_delete' pk=diary.id %}">{% trans 'Delete' %}</a>
+                                                href="{% url 'diary:diary_delete' pk=obj.id %}">{% trans 'Delete' %}</a>
                                         </div>
                                         {% else %}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -57,15 +57,15 @@
                                     </div>
                                 </td>
                                 {% if is_supervisor %}
-                                <td class="text-nowrap">{{ diary.created_by }}</td>
+                                <td class="text-nowrap">{{ obj.created_by }}</td>
                                 {% endif %}
-                                <td class="text-nowrap">{{ diary.date|date:"Y-m-d" }}</td>
+                                <td class="text-nowrap">{{ obj.date|date:"Y-m-d" }}</td>
                                 <td class="text-nowrap">
-                                    {{ diary.get_daily_check_display }}
+                                    {{ obj.get_daily_check_display }}
                                 </td>
-                                <td>{{ diary.daily_record|safe|linebreaks }}</td>
-                                <td>{{ diary.todo|safe|linebreaks }}</td>
-                                <td>{{ diary.remark|safe|linebreaks }}</td>
+                                <td>{{ obj.daily_record|safe|linebreaks }}</td>
+                                <td>{{ obj.todo|safe|linebreaks }}</td>
+                                <td>{{ obj.remark|safe|linebreaks }}</td>
                             </tr>
                             {% empty %}
                             <tr>
