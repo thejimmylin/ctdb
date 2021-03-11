@@ -28,3 +28,6 @@ db.sqlite3
 
 # UWSGI things
 /uwsgi/
+
+# Node things
+node_modules/

@@ -31,7 +31,6 @@
   --height-footer-foot: 28px;
   /* Theme and color */
   --rgb-bluedark: 43, 49, 55;
-  --rgb-bluelightgray: 170, 173, 175;
 }
 
 /* Theme */
@@ -40,15 +39,11 @@
   background-color: rgb(var(--rgb-bluedark));
 }
 
-.text-bluelightgray {
-  color: rgb(var(--rgb-bluelightgray));
-}
-
 /* Global */
 
 html,
 body {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
   color: rgb(var(--rgb-bluedark));
   font-size: 15px;
 }
@@ -145,52 +140,13 @@ td {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
-.table-solid th, .table-solid td {
+.table-solid th,
+.table-solid td {
   border: 1px solid #dddddd !important;
-}
-
-/* Floating label things */
-
-.label-floating {
-  font-size: 1rem;
-  position: absolute;
-  pointer-events: none;
-  top: 0.5rem;
-  left: 1rem;
-  transition: 0.2s ease all;
-}
-
-form input:focus+.label-floating,
-form input:valid+.label-floating {
-  top: -0.5rem;
-  left: 0.8rem;
-  font-size: 0.6rem;
-  padding: 0 0.3rem;
-}
-
-.focus-shadow-none:focus {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-.focus-primary:focus {
-  border: 1px solid var(--primary);
-}
-
-form input:focus+.label-floating.label-floating-primary {
-  color: var(--primary) !important;
-}
-
-.focus-danger:focus {
-  border: 1px solid var(--danger);
-}
-
-form input:focus+.label-floating.label-floating-danger {
-  color: var(--danger) !important;
 }
 
 /* Cursor things */
 
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
 }
