@@ -45,7 +45,7 @@ def isp_create(request):
         context = {'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
-    context = {'form': form, 'form_buttons': form_buttons}
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -68,7 +68,7 @@ def isp_update(request, pk):
         context = {'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class(instance=instance)
-    context = {'form': form, 'form_buttons': form_buttons}
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -126,7 +126,7 @@ def ispgroup_create(request):
         context = {'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
-    context = {'form': form, 'form_buttons': form_buttons}
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -149,7 +149,7 @@ def ispgroup_update(request, pk):
         context = {'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class(instance=instance)
-    context = {'form': form, 'form_buttons': form_buttons}
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -207,7 +207,7 @@ def prefixlistupdatetask_create(request):
         context = {'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
-    context = {'form': form, 'form_buttons': form_buttons}
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -230,7 +230,7 @@ def prefixlistupdatetask_update(request, pk):
         context = {'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class(instance=instance)
-    context = {'form': form, 'form_buttons': form_buttons}
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
