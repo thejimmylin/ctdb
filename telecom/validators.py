@@ -1,4 +1,5 @@
 import ipaddress
+from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -87,3 +88,18 @@ def validate_comma_separated_prefix_list_string(value):
                         _('The prefix-length of IP network, le, ge should follow the rule: prefix-length < ge <= le.'),
                         code='invalid'
                     )
+
+
+def validate_semicolon_seperated_email_string(value):
+    if value[-1:] == ';':
+        value = value[:-1]
+    email_list = list(map(str.strip, value.split(';')))
+    for email in email_list:
+        try:
+            validate_email(email)
+        except ValidationError:
+            raise ValidationError(
+                _('"%(email)s" is not a valid Email. Please enter a valid Email or multiple valid Email separated by ";".'),
+                params={'email': email},
+                code='invalid'
+            )

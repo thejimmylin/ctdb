@@ -1,13 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-from .models import Email, Isp, IspGroup, PrefixListUpdateTask
-
-
-class EmailModelForm(forms.ModelForm):
-    class Meta():
-        model = Email
-        exclude = ['created_by', ]
+from .models import Isp, IspGroup, PrefixListUpdateTask
 
 
 class IspModelForm(forms.ModelForm):

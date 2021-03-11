@@ -1,15 +1,13 @@
 from django.urls import path
-from .views import (email_list, email_create, email_update, email_delete, isp_list, isp_create, isp_update,
-                    isp_delete, ispgroup_list, ispgroup_create, ispgroup_update, ispgroup_delete,
-                    prefixlistupdatetask_list, prefixlistupdatetask_create, prefixlistupdatetask_update, prefixlistupdatetask_delete)
+from .views import (
+    isp_list, isp_create, isp_update, isp_delete,
+    ispgroup_list, ispgroup_create, ispgroup_update, ispgroup_delete,
+    prefixlistupdatetask_list, prefixlistupdatetask_create, prefixlistupdatetask_update, prefixlistupdatetask_delete
+)
 
 app_name = 'telecom'
 
 urlpatterns = [
-    path('emails/', email_list, name='email_list'),
-    path('emails/add/', email_create, name='email_create'),
-    path('emails/<int:pk>/change/', email_update, name='email_update'),
-    path('emails/<int:pk>/delete/', email_delete, name='email_delete'),
     path('isps/', isp_list, name='isp_list'),
     path('isps/add/', isp_create, name='isp_create'),
     path('isps/<int:pk>/change/', isp_update, name='isp_update'),

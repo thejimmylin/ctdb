@@ -63,9 +63,9 @@
                                 <td class="text-nowrap">{{ obj.customer_no }}</td>
                                 <td class="text-nowrap">{{ obj.upstream_as }}</td>
                                 <td class="text-nowrap">{{ obj.primary_contact }}</td>
-                                <td class="text-nowrap">{{ obj.to_as_str|linebreaks }}</td>
-                                <td class="text-nowrap">{{ obj.cc_as_str|linebreaks }}</td>
-                                <td class="text-nowrap">{{ obj.bcc_as_str|linebreaks }}</td>
+                                <td class="text-nowrap">{{ obj.to|linebreaks }}</td>
+                                <td class="text-nowrap">{{ obj.cc|linebreaks }}</td>
+                                <td class="text-nowrap">{{ obj.bcc|linebreaks }}</td>
                             </tr>
                             {% empty %}
                             <tr>
