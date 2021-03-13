@@ -1,12 +1,8 @@
 from django import forms
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from core.utils import today
 
 from .models import Diary
-
-
-def today():
-    return timezone.localtime(timezone.now()).date()
 
 
 class DiaryModelForm(forms.ModelForm):

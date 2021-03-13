@@ -1,10 +1,10 @@
-from datetime import date as datetime_date, timedelta
+from datetime import timedelta
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.core.management.base import BaseCommand
-from django.utils import timezone
+from core.utils import today
 
 from diary.models import Diary
 from day.models import Day
@@ -19,10 +19,6 @@ days = Day.objects.all()
 HOLIDAYS = [day.date for day in days if day.is_holiday]
 EXTRA_WORKDAY = [day.date for day in days if not day.is_holiday]
 THRESHOLD_LIST = [3, 7, 30]
-
-
-def today():
-    return timezone.localtime(timezone.now()).date()
 
 
 def is_weekday(date):

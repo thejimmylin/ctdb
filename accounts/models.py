@@ -1,11 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
-from django.utils import timezone
-
-
-def today():
-    return timezone.localtime(timezone.now()).date()
+from core.utils import today
 
 
 class Profile(models.Model):

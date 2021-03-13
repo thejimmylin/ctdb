@@ -1,11 +1,7 @@
 from django import forms
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
-
-
-def today():
-    return timezone.localtime(timezone.now()).date()
+from core.utils import today
 
 
 class MailJobUpdateForm(forms.Form):
