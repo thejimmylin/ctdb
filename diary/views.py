@@ -15,14 +15,14 @@ def diary_list(request):
     template_name = 'diary/diary_list.html'
     order_by = ('-date', '-pk')
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     role = get_role(request)
     is_supervisor = request.user.groups.filter(name='Supervisors').exists()
     if is_supervisor:
-        qs = model.objects.filter(created_by__profile__department__name__in=[role])
+        qs = model.objects.filter(created_by__profile__department__name=role)
     else:
         qs = model.objects.filter(created_by=request.user)
-    qs_ordered = qs.distinct().order_by(*order_by)
+    qs_ordered = qs.order_by(*order_by)
     paginator = Paginator(qs_ordered, paginate_by)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -42,7 +42,7 @@ def diary_create(request):
     success_url = reverse('diary:diary_list')
     form_buttons = ['create']
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     if request.method == 'POST':
         instance = model(created_by=request.user)
         form = form_class(data=request.POST, instance=instance)
@@ -63,7 +63,7 @@ def diary_update(request, pk):
     success_url = reverse('diary:diary_list')
     form_buttons = ['update']
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     instance = get_object_or_404(klass=model, pk=pk)
     if instance.created_by != request.user:
         return HttpResponseNotFound('')
@@ -84,7 +84,7 @@ def diary_delete(request, pk):
     template_name = 'diary/diary_confirm_delete.html'
     success_url = reverse('diary:diary_list')
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     instance = get_object_or_404(klass=model, pk=pk)
     if instance.created_by != request.user:
         return HttpResponseNotFound('')

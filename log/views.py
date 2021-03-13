@@ -18,7 +18,7 @@ def diary_log_list(request):
     template_name = 'log/diary_log_list.html'
     order_by = ('-id', )
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     role = get_role(request)  # NOQA, to be used
     is_supervisor = request.user.groups.filter(name='Supervisors').exists()
     qs = model.objects.all().order_by(*order_by).values()

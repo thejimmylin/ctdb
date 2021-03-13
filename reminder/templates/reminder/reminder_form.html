@@ -1,0 +1,21 @@
+{% extends 'diary/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+{% load custom_templatetags %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid max-w-24u">
+    <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
+      <div class="col-12" style="height: 60px;"></div>
+      <div class="col-12 max-w-10u border rounded shadow" style="padding: 2rem;">
+        <h3 class="mb-5">{{ model|verbose_name_plural|capfirst }}</h3>
+        {% include 'standard_form.html' %}
+        </form>
+      </div>
+      <div class="col-12" style="height: 90px;"></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

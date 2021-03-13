@@ -14,7 +14,7 @@ def isp_list(request):
     template_name = 'telecom/isp_list.html'
     order_by = ('-pk', )
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     qs = model.objects.all().order_by(*order_by)
     paginator = Paginator(qs, paginate_by)
     page_number = request.GET.get('page')
@@ -35,7 +35,7 @@ def isp_create(request):
     success_url = reverse('telecom:isp_list')
     form_buttons = ['create']
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     if request.method == 'POST':
         instance = model(created_by=request.user)
         form = form_class(data=request.POST, instance=instance)
@@ -56,7 +56,7 @@ def isp_update(request, pk):
     success_url = reverse('telecom:isp_list')
     form_buttons = ['update']
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     instance = get_object_or_404(klass=model, pk=pk)
     if instance.created_by != request.user:
         return HttpResponseNotFound('')
@@ -77,7 +77,7 @@ def isp_delete(request, pk):
     template_name = 'telecom/isp_confirm_delete.html'
     success_url = reverse('telecom:isp_list')
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     instance = get_object_or_404(klass=model, pk=pk)
     if instance.created_by != request.user:
         return HttpResponseNotFound('')
@@ -95,7 +95,7 @@ def ispgroup_list(request):
     template_name = 'telecom/ispgroup_list.html'
     order_by = ('-pk', )
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     qs = model.objects.all().order_by(*order_by)
     paginator = Paginator(qs, paginate_by)
     page_number = request.GET.get('page')
@@ -116,7 +116,7 @@ def ispgroup_create(request):
     success_url = reverse('telecom:ispgroup_list')
     form_buttons = ['create']
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     if request.method == 'POST':
         instance = model(created_by=request.user)
         form = form_class(data=request.POST, instance=instance)
@@ -137,7 +137,7 @@ def ispgroup_update(request, pk):
     success_url = reverse('telecom:ispgroup_list')
     form_buttons = ['update']
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     instance = get_object_or_404(klass=model, pk=pk)
     if instance.created_by != request.user:
         return HttpResponseNotFound('')
@@ -158,7 +158,7 @@ def ispgroup_delete(request, pk):
     template_name = 'telecom/ispgroup_confirm_delete.html'
     success_url = reverse('telecom:ispgroup_list')
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     instance = get_object_or_404(klass=model, pk=pk)
     if instance.created_by != request.user:
         return HttpResponseNotFound('')
@@ -176,7 +176,7 @@ def prefixlistupdatetask_list(request):
     template_name = 'telecom/prefixlistupdatetask_list.html'
     order_by = ('-pk', )
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     qs = model.objects.all().order_by(*order_by)
     paginator = Paginator(qs, paginate_by)
     page_number = request.GET.get('page')
@@ -197,7 +197,7 @@ def prefixlistupdatetask_create(request):
     success_url = reverse('telecom:prefixlistupdatetask_list')
     form_buttons = ['create']
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     if request.method == 'POST':
         instance = model(created_by=request.user)
         form = form_class(data=request.POST, instance=instance)
@@ -218,7 +218,7 @@ def prefixlistupdatetask_update(request, pk):
     success_url = reverse('telecom:prefixlistupdatetask_list')
     form_buttons = ['update']
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     instance = get_object_or_404(klass=model, pk=pk)
     if instance.created_by != request.user:
         return HttpResponseNotFound('')
@@ -239,7 +239,7 @@ def prefixlistupdatetask_delete(request, pk):
     template_name = 'telecom/prefixlistupdatetask_confirm_delete.html'
     success_url = reverse('telecom:prefixlistupdatetask_list')
     if not request.user.is_authenticated:
-        return redirect(f'{reverse("accounts:login")}?next={request.path}')
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     instance = get_object_or_404(klass=model, pk=pk)
     if instance.created_by != request.user:
         return HttpResponseNotFound('')
