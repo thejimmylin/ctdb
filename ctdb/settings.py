@@ -18,16 +18,15 @@ from django.core.exceptions import ImproperlyConfigured
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-with open(BASE_DIR / 'secrets.json') as secrets_file:
-    secrets = json.load(secrets_file)
-
-
-def get_secret(setting, secrets=secrets):
-    """Get secret setting or fail with ImproperlyConfigured"""
+# A Helper function for getting secret settings.
+def get_value(key, path=BASE_DIR / 'secrets.json'):
+    with open(path) as f:
+        secrets = json.loads(f.read())
     try:
-        return secrets[setting]
+        value = secrets[key]
     except KeyError:
-        raise ImproperlyConfigured(f'Please set the "{setting}" setting in secrets_file.')
+        raise ImproperlyConfigured(f'\n\nThe value of "{key}" does not exsist in "{path}".')
+    return value
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,7 +36,7 @@ def get_secret(setting, secrets=secrets):
 SECRET_KEY = 'va8k29j1o_=rs9bw!ym@s#b8zz3=9cmj_o731i$^6)9+z_9ob#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not get_secret('IS_PRODUCTION')
+DEBUG = not get_value('IS_PRODUCTION')
 
 ALLOWED_HOSTS = ['*']
 
@@ -45,7 +44,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'widget_tweaks',  # this package makes it easier to integrate django templates with bootstrap
+    # This package makes it easier to modify form/field attributes in Django templates.
+    'widget_tweaks',
     'core.apps.CoreConfig',
     'accounts.apps.AccountsConfig',
     'diary.apps.DiaryConfig',
@@ -62,9 +62,13 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # this allows us to handle static files with DEBUG = False and runserver
+    # This allows us to handle static files with DEBUG = False and runserver
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # To enables language selection based on data from the request. Reference:
+    # https://docs.djangoproject.com/en/3.1/topics/i18n/translation/#how-django-discovers-language-preference
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -120,7 +124,7 @@ DATABASES_MSSQL = {
         'ENGINE': 'sql_server.pyodbc',
         'NAME': 'T21',
         'USER': 'jimmy_lin',
-        'PASSWORD': get_secret('DATABASES_MSSQL_PASSWORD'),
+        'PASSWORD': get_value('DATABASES_MSSQL_PASSWORD'),
         'HOST': '10.210.31.15',
         'PORT': '',
         'OPTIONS': {
@@ -129,7 +133,7 @@ DATABASES_MSSQL = {
     },
 }
 
-IS_PRODUCTION = get_secret('IS_PRODUCTION')
+IS_PRODUCTION = get_value('IS_PRODUCTION')
 if IS_PRODUCTION:
     DATABASES = DATABASES_MSSQL
 else:
@@ -219,7 +223,7 @@ if USE_GMAIL:
     EMAIL_USE_TLS = True
     EMAIL_PORT = 587
     EMAIL_HOST_USER = 'j3ycode@gmail.com'
-    EMAIL_HOST_PASSWORD = get_secret('EMAIL_HOST_PASSWORD')
+    EMAIL_HOST_PASSWORD = get_value('EMAIL_HOST_PASSWORD')
     DEFAULT_FROM_EMAIL = 'TDB <j3ycode@gmail.com>'
     SERVER_EMAIL = 'TDB <j3ycode@gmail.com>'
 else:
