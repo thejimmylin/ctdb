@@ -1,4 +1,5 @@
 import ipaddress
+from datetime import datetime
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
@@ -93,14 +94,36 @@ def validate_comma_separated_prefix_list_string(value):
 
 
 def validate_semicolon_seperated_email_string(value):
-    value = value[:-1] if value[-1:] == ';' else value
+    seperator = ';'
+    value = value[:-1] if value[-1:] == seperator else value
     email_list = list(map(str.strip, value.split(';')))
     for email in email_list:
         try:
             validate_email(email)
         except ValidationError:
             raise ValidationError(
-                _('"%(email)s" is not a valid Email. Please enter a valid Email or multiple valid Email separated by ";".'),
-                params={'email': email},
+                _(
+                    '"%(email)s" is not a valid Email.'
+                    ' multiple date should be separated by "%(seperator)s".'
+                ),
+                params={'email': email, 'seperator': seperator},
+                code='invalid'
+            )
+
+
+def validate_comma_seperated_date_string(value):
+    seperator = ','
+    value = value[:-1] if value[-1:] == seperator else value
+    date_list = list(map(str.strip, value.split(',')))
+    for date in date_list:
+        try:
+            datetime.strptime(date, '%Y-%m-%d')
+        except ValueError:
+            raise ValidationError(
+                _(
+                    '"%(date)s" is not a valid date. Please enter a date with the format "yyyy-mm-dd".'
+                    ' multiple date should be separated by "%(seperator)s".'
+                ),
+                params={'date': date, 'seperator': seperator},
                 code='invalid'
             )
