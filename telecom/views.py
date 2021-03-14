@@ -42,7 +42,7 @@ def isp_create(request):
         if form.is_valid():
             instance = form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_buttons': form_buttons}
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
     context = {'model': model, 'form': form, 'form_buttons': form_buttons}
@@ -65,7 +65,7 @@ def isp_update(request, pk):
         if form.is_valid():
             form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_buttons': form_buttons}
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class(instance=instance)
     context = {'model': model, 'form': form, 'form_buttons': form_buttons}
@@ -123,7 +123,7 @@ def ispgroup_create(request):
         if form.is_valid():
             instance = form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_buttons': form_buttons}
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
     context = {'model': model, 'form': form, 'form_buttons': form_buttons}
@@ -146,7 +146,7 @@ def ispgroup_update(request, pk):
         if form.is_valid():
             form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_buttons': form_buttons}
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class(instance=instance)
     context = {'model': model, 'form': form, 'form_buttons': form_buttons}
@@ -204,7 +204,7 @@ def prefixlistupdatetask_create(request):
         if form.is_valid():
             instance = form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_buttons': form_buttons}
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
     context = {'model': model, 'form': form, 'form_buttons': form_buttons}
@@ -227,7 +227,7 @@ def prefixlistupdatetask_update(request, pk):
         if form.is_valid():
             form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_buttons': form_buttons}
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class(instance=instance)
     context = {'model': model, 'form': form, 'form_buttons': form_buttons}

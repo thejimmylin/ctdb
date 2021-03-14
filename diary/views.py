@@ -49,10 +49,10 @@ def diary_create(request):
         if form.is_valid():
             instance = form.save()
             return redirect(success_url)
-        context = {'form': form, 'model': model, 'form_buttons': form_buttons}
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
-    context = {'form': form, 'model': model, 'form_buttons': form_buttons}
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 
@@ -72,10 +72,10 @@ def diary_update(request, pk):
         if form.is_valid():
             form.save()
             return redirect(success_url)
-        context = {'form': form, 'form_buttons': form_buttons}
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class(instance=instance)
-    context = {'form': form, 'model': model, 'form_buttons': form_buttons}
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
 
 

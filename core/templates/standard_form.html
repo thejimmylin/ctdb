@@ -17,11 +17,8 @@
     {% for field in form %}
     <div class="form-row">
         <div class="form-group col">
-            {% if field.field.required %}
-            <label for="{{ field.id_for_label }}">*{{ field.label }}{% trans ':' %}</label>
-            {% else %}
-            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-            {% endif %}
+
+            <label for="{{ field.id_for_label }}">{% if field.field.required %}*{% endif %}{{ field.label }}{% trans ':' %}</label>
 
             {% with has_error=field.errors has_placeholder=field.field.widget.attrs.placeholder %}
             {% if has_error and has_placeholder %}
