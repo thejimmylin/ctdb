@@ -41,3 +41,6 @@ class Reminder(models.Model):
 
     def get_delete_url(self):
         return reverse('reminder:reminder_delete', kwargs={'pk': self.pk})
+
+    def get_send_email_url(self):
+        return reverse('reminder:reminder_send_email', kwargs={'pk': self.pk})

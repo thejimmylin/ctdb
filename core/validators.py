@@ -93,8 +93,7 @@ def validate_comma_separated_prefix_list_string(value):
 
 
 def validate_semicolon_seperated_email_string(value):
-    if value[-1:] == ';':
-        value = value[:-1]
+    value = value[:-1] if value[-1:] == ';' else value
     email_list = list(map(str.strip, value.split(';')))
     for email in email_list:
         try:

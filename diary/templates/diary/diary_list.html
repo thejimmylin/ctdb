@@ -36,7 +36,7 @@
                             {% for obj in object_list %}
                             <tr>
                                 <td class="text-nowrap">
-                                {% include 'action_dropdown_div.html' %}
+                                {% include 'standard_action_dropdown.html' %}
                                 </td>
                                 {% if is_supervisor %}
                                 <td class="text-nowrap">{{ obj.created_by }}</td>

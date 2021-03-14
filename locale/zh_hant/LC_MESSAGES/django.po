@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-14 16:11+0800\n"
+"POT-Creation-Date: 2021-03-14 22:12+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -221,8 +221,9 @@ msgid "Reset"
 msgstr "重置"
 
 #: .\accounts\templates\registration\profile_change.html:42
-#: .\core\templates\action_dropdown_div.html:12
+#: .\core\templates\standard_action_dropdown.html:12
 #: .\core\templates\standard_form.html:49
+#: .\reminder\templates\reminder\reminder_action_dropdown.html:12
 msgid "Change"
 msgstr "變更"
 
@@ -262,19 +263,6 @@ msgstr "關於"
 msgid "To be done.."
 msgstr "待完成.."
 
-#: .\core\templates\action_dropdown_div.html:7
-msgid "Choose"
-msgstr "選擇"
-
-#: .\core\templates\action_dropdown_div.html:14
-#: .\core\templates\standard_confirm_delete_form.html:7
-msgid "Delete"
-msgstr "刪除"
-
-#: .\core\templates\action_dropdown_div.html:18
-msgid "No available options"
-msgstr "沒有可用的選項"
-
 #: .\core\templates\base.html:29 .\core\templates\base.html:53
 #: .\core\templates\base.html:171
 msgid "TDB"
@@ -290,7 +278,7 @@ msgstr "日誌"
 #: .\core\templates\base.html:80 .\core\templates\base.html:83
 #: .\core\templates\base.html:93 .\core\templates\base.html:103
 msgid "List"
-msgstr ""
+msgstr "列表"
 
 #: .\core\templates\base.html:68 .\core\templates\base.html:78
 #: .\core\templates\base.html:81 .\core\templates\base.html:84
@@ -346,6 +334,22 @@ msgstr "沒有可用的部門"
 msgid "Guest"
 msgstr "訪客"
 
+#: .\core\templates\standard_action_dropdown.html:7
+#: .\reminder\templates\reminder\reminder_action_dropdown.html:7
+msgid "Choose"
+msgstr "選擇"
+
+#: .\core\templates\standard_action_dropdown.html:14
+#: .\core\templates\standard_confirm_delete_form.html:7
+#: .\reminder\templates\reminder\reminder_action_dropdown.html:14
+msgid "Delete"
+msgstr "刪除"
+
+#: .\core\templates\standard_action_dropdown.html:18
+#: .\reminder\templates\reminder\reminder_action_dropdown.html:20
+msgid "No available options"
+msgstr "沒有可用的選項"
+
 #: .\core\templates\standard_form.html:26
 msgid ":"
 msgstr ""
@@ -399,7 +403,7 @@ msgstr ""
 "IP network 的 prefix-length, le, ge 必須遵守以下規則: prefix-length < ge <= "
 "le."
 
-#: .\core\validators.py:104
+#: .\core\validators.py:103
 #, python-format
 msgid ""
 "\"%(email)s\" is not a valid Email. Please enter a valid Email or multiple "
@@ -425,11 +429,11 @@ msgstr "這個日期的日誌已經存在。"
 msgid "Daily check"
 msgstr "日檢核"
 
-#: .\diary\models.py:14
+#: .\diary\models.py:14 .\reminder\templates\reminder\reminder_list.html:44
 msgid "Yes"
 msgstr ""
 
-#: .\diary\models.py:15
+#: .\diary\models.py:15 .\reminder\templates\reminder\reminder_list.html:44
 msgid "No"
 msgstr ""
 
@@ -607,7 +611,7 @@ msgstr "每月 3 號"
 msgid "%(n)sth of every month"
 msgstr "每月 %(n)s 號"
 
-#: .\reminder\models.py:22
+#: .\reminder\models.py:22 .\reminder\templates\reminder\reminder_list.html:27
 msgid "Is active"
 msgstr "啟用"
 
@@ -643,9 +647,14 @@ msgstr "收件者"
 msgid "Use \";\" to seperate multiple recipient."
 msgstr "使用 \";\" 分隔多個收件者"
 
-#: .\reminder\templates\reminder\reminder_list.html:27
-msgid "Enabled"
-msgstr "啟用"
+#: .\reminder\templates\reminder\reminder_action_dropdown.html:16
+#: .\reminder\templates\reminder\reminder_confirm_send_email.html:18
+msgid "Send Email"
+msgstr "寄送 Email"
+
+#: .\reminder\templates\reminder\reminder_confirm_send_email.html:13
+msgid "Are you sure you want to send a Email about this reminder?"
+msgstr "你確定要寄送關於這個 reminder 的 Email 嗎？"
 
 #: .\telecom\forms.py:9 .\telecom\models.py:15
 #: .\telecom\templates\telecom\isp_list.html:31
@@ -766,36 +775,3 @@ msgstr "prefix list 更新任務"
 #: .\telecom\templates\telecom\isp_list.html:27
 msgid "Chinese name"
 msgstr "中文名稱"
-
-#~ msgid "Diary list"
-#~ msgstr "日誌列表"
-
-#~ msgid "Add a diary"
-#~ msgstr "新增日誌"
-
-#~ msgid "ISP list"
-#~ msgstr "IPS 列表"
-
-#~ msgid "Add a ISP"
-#~ msgstr "新增 ISP"
-
-#~ msgid "ISP group list"
-#~ msgstr "ISP 群組列表"
-
-#~ msgid "Add a ISP group"
-#~ msgstr "新增 ISP 群組"
-
-#~ msgid "Prefix-list update task list"
-#~ msgstr "Prefix-list 更新任務列表"
-
-#~ msgid "Add a prefix-list update task"
-#~ msgstr "新增 prefix-list 更新任務"
-
-#~ msgid "list"
-#~ msgstr "列表"
-
-#~ msgid "add"
-#~ msgstr "新增"
-
-#~ msgid "Reminder list"
-#~ msgstr "Reminder 列表"

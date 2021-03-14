@@ -10,8 +10,15 @@
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col max-w-8u border rounded p-5">
         <h3 class="mb-5">{{ model|verbose_name_plural|capfirst }}</h3>
-        <p>{% trans 'Are you sure you want to delete this' %} {{ model|verbose_name }}{% trans '?' %}</p>
-        {% include 'standard_confirm_delete_form.html' %}
+        <p>{% trans 'Are you sure you want to send a Email about this reminder?' %}</p>
+        <form method="post" novalidate>
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="form-group col">
+              <button type="submit" class="btn btn-light border btn-block">{% trans 'Send Email' %}</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
