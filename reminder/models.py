@@ -19,7 +19,7 @@ class Reminder(models.Model):
         ('%(n)sth of every month' % {'n': n}, _('%(n)sth of every month') % {'n': n})
         for n in range(4, 32)
     ]
-    enabled = models.BooleanField(verbose_name=_('Enabled'), default=True)
+    is_active = models.BooleanField(verbose_name=_('Is active'), default=True)
     event = models.CharField(verbose_name=_('Event'), max_length=63)
     start_date = models.DateField(verbose_name=_('Start date'), default=today)
     stop_date = models.DateField(verbose_name=_('Stop date'), default=today)

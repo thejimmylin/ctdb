@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-14 15:01+0800\n"
+"POT-Creation-Date: 2021-03-14 16:11+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -222,7 +222,7 @@ msgstr "重置"
 
 #: .\accounts\templates\registration\profile_change.html:42
 #: .\core\templates\action_dropdown_div.html:12
-#: .\core\templates\standard_form.html:52
+#: .\core\templates\standard_form.html:49
 msgid "Change"
 msgstr "變更"
 
@@ -294,9 +294,9 @@ msgstr ""
 
 #: .\core\templates\base.html:68 .\core\templates\base.html:78
 #: .\core\templates\base.html:81 .\core\templates\base.html:84
-#: .\core\templates\base.html:94 .\core\templates\standard_form.html:49
+#: .\core\templates\base.html:94 .\core\templates\standard_form.html:46
 #: .\diary\templates\diary\diary_list.html:18
-#: .\reminder\templates\reminder\reminder_list.html:18
+#: .\reminder\templates\reminder\reminder_list.html:19
 #: .\telecom\templates\telecom\isp_list.html:18
 #: .\telecom\templates\telecom\ispgroup_list.html:18
 #: .\telecom\templates\telecom\prefixlistupdatetask_list.html:19
@@ -346,9 +346,67 @@ msgstr "沒有可用的部門"
 msgid "Guest"
 msgstr "訪客"
 
-#: .\core\templates\standard_form.html:21
+#: .\core\templates\standard_form.html:26
 msgid ":"
 msgstr ""
+
+#: .\core\validators.py:19
+#, python-format
+msgid "%(ip_network)s is not a valid IP network."
+msgstr "%(ip_network)s 不是一個合法的 IP network。"
+
+#: .\core\validators.py:30
+#, python-format
+msgid ""
+"\"%(arg)s\" is not a valid operator. Please use %(valid_operator_string)s."
+msgstr "\"%(arg)s\" 不是可用的運算子， 請使用 %(valid_operator_string)s。"
+
+#: .\core\validators.py:36
+#, python-format
+msgid "\"%(arg)s\" appears more than once."
+msgstr "\"%(arg)s\" 出現了超過一次。"
+
+#: .\core\validators.py:47
+#, python-format
+msgid "The length should be a integer. %(arg)s is not a integer."
+msgstr "長度參數應是一個整數， %(arg)s 不是一個整數。"
+
+#: .\core\validators.py:55
+msgid "A length should be followed after a operator."
+msgstr "長度參數應跟隨在一個運算子之後。"
+
+#: .\core\validators.py:61
+msgid "\"eq\" could not be using with \"le\"."
+msgstr "\"eq\" 不能與 \"le\" 同時使用。"
+
+#: .\core\validators.py:66
+msgid "\"eq\" could not be using with \"ge\"."
+msgstr "\"eq\" 不能與 \"ge\" 同時使用。"
+
+#: .\core\validators.py:71
+msgid ""
+"With \"eq\", the following length should be exactly the same as IP network "
+"prefix's."
+msgstr ""
+"當使用 \"eq\" 的時候，跟隨的長度參數必須與 IP network 的 prefix-length 完全一"
+"致。"
+
+#: .\core\validators.py:79 .\core\validators.py:84 .\core\validators.py:90
+msgid ""
+"The prefix-length of IP network, le, ge should follow the rule: prefix-"
+"length < ge <= le."
+msgstr ""
+"IP network 的 prefix-length, le, ge 必須遵守以下規則: prefix-length < ge <= "
+"le."
+
+#: .\core\validators.py:104
+#, python-format
+msgid ""
+"\"%(email)s\" is not a valid Email. Please enter a valid Email or multiple "
+"valid Email separated by \";\"."
+msgstr ""
+"\"%(email)s\" 不是一個可用的 Email。請輸入一個或多個由分號隔開的可用的 "
+"Email。"
 
 #: .\day\models.py:8 .\diary\models.py:9
 #: .\diary\templates\diary\diary_list.html:28
@@ -390,7 +448,7 @@ msgid "Remark"
 msgstr "備註"
 
 #: .\diary\models.py:22 .\diary\templates\diary\diary_list.html:26
-#: .\reminder\models.py:28 .\reminder\templates\reminder\reminder_list.html:25
+#: .\reminder\models.py:34 .\reminder\templates\reminder\reminder_list.html:26
 #: .\telecom\models.py:21 .\telecom\models.py:44 .\telecom\models.py:82
 #: .\telecom\templates\telecom\isp_list.html:25
 #: .\telecom\templates\telecom\ispgroup_list.html:25
@@ -420,7 +478,7 @@ msgstr ""
 
 #: .\diary\templates\diary\diary_list.html:17
 #: .\log\templates\log\diary_log_list.html:17
-#: .\reminder\templates\reminder\reminder_list.html:17
+#: .\reminder\templates\reminder\reminder_list.html:18
 #: .\telecom\templates\telecom\isp_list.html:17
 #: .\telecom\templates\telecom\ispgroup_list.html:17
 #: .\telecom\templates\telecom\prefixlistupdatetask_list.html:18
@@ -429,7 +487,7 @@ msgstr "搜尋.."
 
 #: .\diary\templates\diary\diary_list.html:24 .\log\models.py:6
 #: .\log\templates\log\diary_log_list.html:23
-#: .\reminder\templates\reminder\reminder_list.html:24
+#: .\reminder\templates\reminder\reminder_list.html:25
 #: .\telecom\templates\telecom\isp_list.html:24
 #: .\telecom\templates\telecom\ispgroup_list.html:24
 #: .\telecom\templates\telecom\prefixlistupdatetask_list.html:25
@@ -438,7 +496,7 @@ msgstr "動作"
 
 #: .\diary\templates\diary\diary_list.html:54
 #: .\log\templates\log\diary_log_list.html:37
-#: .\reminder\templates\reminder\reminder_list.html:53
+#: .\reminder\templates\reminder\reminder_list.html:56
 #: .\telecom\templates\telecom\isp_list.html:54
 #: .\telecom\templates\telecom\ispgroup_list.html:44
 #: .\telecom\templates\telecom\prefixlistupdatetask_list.html:51
@@ -449,8 +507,8 @@ msgstr "沒有條目"
 #: .\diary\templates\diary\diary_list.html:68
 #: .\log\templates\log\diary_log_list.html:47
 #: .\log\templates\log\diary_log_list.html:51
-#: .\reminder\templates\reminder\reminder_list.html:63
-#: .\reminder\templates\reminder\reminder_list.html:67
+#: .\reminder\templates\reminder\reminder_list.html:66
+#: .\reminder\templates\reminder\reminder_list.html:70
 #: .\telecom\templates\telecom\isp_list.html:64
 #: .\telecom\templates\telecom\isp_list.html:68
 #: .\telecom\templates\telecom\ispgroup_list.html:54
@@ -464,8 +522,8 @@ msgstr "上一頁"
 #: .\diary\templates\diary\diary_list.html:77
 #: .\log\templates\log\diary_log_list.html:56
 #: .\log\templates\log\diary_log_list.html:60
-#: .\reminder\templates\reminder\reminder_list.html:72
-#: .\reminder\templates\reminder\reminder_list.html:76
+#: .\reminder\templates\reminder\reminder_list.html:75
+#: .\reminder\templates\reminder\reminder_list.html:79
 #: .\telecom\templates\telecom\isp_list.html:73
 #: .\telecom\templates\telecom\isp_list.html:77
 #: .\telecom\templates\telecom\ispgroup_list.html:63
@@ -477,7 +535,7 @@ msgstr "下一頁"
 
 #: .\diary\templates\diary\diary_list.html:81
 #: .\log\templates\log\diary_log_list.html:64
-#: .\reminder\templates\reminder\reminder_list.html:80
+#: .\reminder\templates\reminder\reminder_list.html:83
 #: .\telecom\templates\telecom\isp_list.html:81
 #: .\telecom\templates\telecom\ispgroup_list.html:71
 #: .\telecom\templates\telecom\prefixlistupdatetask_list.html:78
@@ -516,70 +574,78 @@ msgstr "資料"
 msgid "Created at"
 msgstr "建立於"
 
-#: .\reminder\models.py:10
+#: .\reminder\models.py:11
 msgid "Once"
 msgstr "單次"
 
-#: .\reminder\models.py:11
+#: .\reminder\models.py:12
 msgid "Daily"
 msgstr "每天"
 
-#: .\reminder\models.py:12
+#: .\reminder\models.py:13
 msgid "On Weekdays"
 msgstr "周間"
 
-#: .\reminder\models.py:13
+#: .\reminder\models.py:14
 msgid "Every 7 days"
 msgstr "每 7 天"
 
-#: .\reminder\models.py:14
+#: .\reminder\models.py:15
 msgid "1st of every month"
 msgstr "每月 1 號"
 
-#: .\reminder\models.py:15
+#: .\reminder\models.py:16
 msgid "2nd of every month"
 msgstr "每月 2 號"
 
-#: .\reminder\models.py:16
+#: .\reminder\models.py:17
 msgid "3rd of every month"
 msgstr "每月 3 號"
 
-#: .\reminder\models.py:18
+#: .\reminder\models.py:19
 #, python-format
 msgid "%(n)sth of every month"
 msgstr "每月 %(n)s 號"
 
-#: .\reminder\models.py:21 .\reminder\templates\reminder\reminder_list.html:26
+#: .\reminder\models.py:22
+msgid "Is active"
+msgstr "啟用"
+
+#: .\reminder\models.py:23 .\reminder\templates\reminder\reminder_list.html:28
 msgid "Event"
 msgstr "事件"
 
-#: .\reminder\models.py:22 .\reminder\templates\reminder\reminder_list.html:27
+#: .\reminder\models.py:24 .\reminder\templates\reminder\reminder_list.html:29
 msgid "Start date"
 msgstr "起始日"
 
-#: .\reminder\models.py:23 .\reminder\templates\reminder\reminder_list.html:28
+#: .\reminder\models.py:25 .\reminder\templates\reminder\reminder_list.html:30
 msgid "Stop date"
 msgstr "終止日"
 
-#: .\reminder\models.py:24 .\reminder\templates\reminder\reminder_list.html:29
+#: .\reminder\models.py:26 .\reminder\templates\reminder\reminder_list.html:31
 msgid "Period"
 msgstr "週期"
 
-#: .\reminder\models.py:25 .\reminder\templates\reminder\reminder_list.html:30
+#: .\reminder\models.py:27 .\reminder\templates\reminder\reminder_list.html:32
 msgid "Email subject"
 msgstr "Email 主旨"
 
-#: .\reminder\models.py:26 .\reminder\templates\reminder\reminder_list.html:31
+#: .\reminder\models.py:28 .\reminder\templates\reminder\reminder_list.html:33
 msgid "Email content"
 msgstr "Email 內容"
 
-#: .\reminder\models.py:27 .\reminder\templates\reminder\reminder_list.html:32
+#: .\reminder\models.py:30 .\reminder\templates\reminder\reminder_list.html:34
 msgid "Recipients"
 msgstr "收件者"
 
-#: .\reminder\models.py:27
+#: .\reminder\models.py:31
 msgid "Use \";\" to seperate multiple recipient."
 msgstr "使用 \";\" 分隔多個收件者"
+
+#: .\reminder\templates\reminder\reminder_list.html:27
+msgid "Enabled"
+msgstr "啟用"
 
 #: .\telecom\forms.py:9 .\telecom\models.py:15
 #: .\telecom\templates\telecom\isp_list.html:31
@@ -700,65 +766,6 @@ msgstr "prefix list 更新任務"
 #: .\telecom\templates\telecom\isp_list.html:27
 msgid "Chinese name"
 msgstr "中文名稱"
-
-#: .\telecom\validators.py:19
-#, python-format
-msgid "%(ip_network)s is not a valid IP network."
-msgstr "%(ip_network)s 不是一個合法的 IP network。"
-
-#: .\telecom\validators.py:30
-#, python-format
-msgid ""
-"\"%(arg)s\" is not a valid operator. Please use %(valid_operator_string)s."
-msgstr "\"%(arg)s\" 不是可用的運算子， 請使用 %(valid_operator_string)s。"
-
-#: .\telecom\validators.py:36
-#, python-format
-msgid "\"%(arg)s\" appears more than once."
-msgstr "\"%(arg)s\" 出現了超過一次。"
-
-#: .\telecom\validators.py:47
-#, python-format
-msgid "The length should be a integer. %(arg)s is not a integer."
-msgstr "長度參數應是一個整數， %(arg)s 不是一個整數。"
-
-#: .\telecom\validators.py:55
-msgid "A length should be followed after a operator."
-msgstr "長度參數應跟隨在一個運算子之後。"
-
-#: .\telecom\validators.py:61
-msgid "\"eq\" could not be using with \"le\"."
-msgstr "\"eq\" 不能與 \"le\" 同時使用。"
-
-#: .\telecom\validators.py:66
-msgid "\"eq\" could not be using with \"ge\"."
-msgstr "\"eq\" 不能與 \"ge\" 同時使用。"
-
-#: .\telecom\validators.py:71
-msgid ""
-"With \"eq\", the following length should be exactly the same as IP network "
-"prefix's."
-msgstr ""
-"當使用 \"eq\" 的時候，跟隨的長度參數必須與 IP network 的 prefix-length 完全一"
-"致。"
-
-#: .\telecom\validators.py:79 .\telecom\validators.py:84
-#: .\telecom\validators.py:90
-msgid ""
-"The prefix-length of IP network, le, ge should follow the rule: prefix-"
-"length < ge <= le."
-msgstr ""
-"IP network 的 prefix-length, le, ge 必須遵守以下規則: prefix-length < ge <= "
-"le."
-
-#: .\telecom\validators.py:104
-#, python-format
-msgid ""
-"\"%(email)s\" is not a valid Email. Please enter a valid Email or multiple "
-"valid Email separated by \";\"."
-msgstr ""
-"\"%(email)s\" 不是一個可用的 Email。請輸入一個或多個由分號隔開的可用的 "
-"Email。"
 
 #~ msgid "Diary list"
 #~ msgstr "日誌列表"
