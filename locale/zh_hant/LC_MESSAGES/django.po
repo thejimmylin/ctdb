@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-13 22:52+0800\n"
+"POT-Creation-Date: 2021-03-14 15:01+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,7 +74,7 @@ msgstr "日誌起始日"
 
 #: .\accounts\models.py:52
 #: .\accounts\templates\registration\profile_change.html:11
-#: .\core\templates\base.html:118
+#: .\core\templates\base.html:119
 msgid "Profile"
 msgstr "個人檔案"
 
@@ -111,7 +111,7 @@ msgstr "© 2020 保留所有權利。"
 #: .\accounts\templates\registration\signup.html:20
 #: .\accounts\templates\registration\signup_with_account_and_password.html:13
 #: .\accounts\templates\registration\signup_with_email.html:13
-#: .\core\templates\base.html:189
+#: .\core\templates\base.html:190
 msgid "Login"
 msgstr "登入"
 
@@ -130,7 +130,7 @@ msgstr "建立"
 #: .\accounts\templates\registration\profile_change.html:15
 #: .\accounts\templates\registration\signup_with_account_and_password.html:18
 #: .\accounts\templates\registration\signup_with_email.html:18
-#: .\core\templates\standard_form.html:7
+#: .\core\templates\standard_form.html:8
 msgid "Please correct the error below."
 msgstr ""
 
@@ -141,7 +141,7 @@ msgstr ""
 #: .\accounts\templates\registration\profile_change.html:17
 #: .\accounts\templates\registration\signup_with_account_and_password.html:20
 #: .\accounts\templates\registration\signup_with_email.html:20
-#: .\core\templates\standard_form.html:9
+#: .\core\templates\standard_form.html:10
 msgid "Please correct the errors below."
 msgstr ""
 
@@ -165,7 +165,7 @@ msgid "Back to the homepage."
 msgstr "返回首頁"
 
 #: .\accounts\templates\registration\password_change_form.html:11
-#: .\core\templates\base.html:120
+#: .\core\templates\base.html:121
 msgid "Password change"
 msgstr "密碼變更"
 
@@ -212,7 +212,7 @@ msgid "I didn't recieve it."
 msgstr "我沒有收到"
 
 #: .\accounts\templates\registration\password_reset_form.html:11
-#: .\core\templates\base.html:123 .\core\templates\base.html:193
+#: .\core\templates\base.html:124 .\core\templates\base.html:194
 msgid "Password reset"
 msgstr "密碼重置"
 
@@ -222,7 +222,7 @@ msgstr "重置"
 
 #: .\accounts\templates\registration\profile_change.html:42
 #: .\core\templates\action_dropdown_div.html:12
-#: .\core\templates\standard_form.html:46
+#: .\core\templates\standard_form.html:52
 msgid "Change"
 msgstr "變更"
 
@@ -231,7 +231,7 @@ msgstr "變更"
 #: .\accounts\templates\registration\signup_with_account_and_password.html:41
 #: .\accounts\templates\registration\signup_with_email.html:11
 #: .\accounts\templates\registration\signup_with_email.html:44
-#: .\core\templates\base.html:190
+#: .\core\templates\base.html:191
 msgid "Sign up"
 msgstr "註冊"
 
@@ -253,8 +253,8 @@ msgstr "已經有帳號了嗎？"
 msgid "You have no access to this role."
 msgstr "你沒有此角色的存取權"
 
-#: .\core\templates\about.html:11 .\core\templates\base.html:106
-#: .\core\templates\base.html:179
+#: .\core\templates\about.html:11 .\core\templates\base.html:107
+#: .\core\templates\base.html:180
 msgid "About"
 msgstr "關於"
 
@@ -276,82 +276,25 @@ msgid "No available options"
 msgstr "沒有可用的選項"
 
 #: .\core\templates\base.html:29 .\core\templates\base.html:53
-#: .\core\templates\base.html:170
+#: .\core\templates\base.html:171
 msgid "TDB"
 msgstr ""
 
-#: .\core\templates\base.html:64 .\core\templates\base.html:102
-#: .\diary\models.py:24
+#: .\core\templates\base.html:64 .\core\templates\base.html:67
+#: .\core\templates\base.html:68 .\core\templates\base.html:103
+#: .\diary\models.py:25
 msgid "Diary"
 msgstr "日誌"
 
-#: .\core\templates\base.html:67
-msgid "Diary list"
-msgstr "日誌列表"
-
-#: .\core\templates\base.html:68
-msgid "Add a diary"
-msgstr "新增日誌"
-
-#: .\core\templates\base.html:74
-msgid "Telecom"
-msgstr "電信"
-
-#: .\core\templates\base.html:77
-msgid "ISP list"
-msgstr "IPS 列表"
-
-#: .\core\templates\base.html:78
-msgid "Add a ISP"
-msgstr "新增 ISP"
-
-#: .\core\templates\base.html:80
-msgid "ISP group list"
-msgstr "ISP 群組列表"
-
-#: .\core\templates\base.html:81
-msgid "Add a ISP group"
-msgstr "新增 ISP 群組"
-
-#: .\core\templates\base.html:83
-msgid "Prefix-list update task list"
-msgstr "Prefix-list 更新任務列表"
-
-#: .\core\templates\base.html:84
-msgid "Add a prefix-list update task"
-msgstr "新增 prefix-list 更新任務"
-
-#: .\core\templates\base.html:90
-msgid "Reminder"
+#: .\core\templates\base.html:67 .\core\templates\base.html:77
+#: .\core\templates\base.html:80 .\core\templates\base.html:83
+#: .\core\templates\base.html:93 .\core\templates\base.html:103
+msgid "List"
 msgstr ""
 
-#: .\core\templates\base.html:93
-#, fuzzy
-#| msgid "Diary list"
-msgid "Reminder list"
-msgstr "日誌列表"
-
-#: .\core\templates\base.html:99
-msgid "Log"
-msgstr ""
-
-#: .\core\templates\base.html:116
-msgid "Logout"
-msgstr "登出"
-
-#: .\core\templates\base.html:133
-msgid "------"
-msgstr ""
-
-#: .\core\templates\base.html:143
-msgid "No available departments"
-msgstr "沒有可用的部門"
-
-#: .\core\templates\base.html:186
-msgid "Guest"
-msgstr "訪客"
-
-#: .\core\templates\standard_form.html:43
+#: .\core\templates\base.html:68 .\core\templates\base.html:78
+#: .\core\templates\base.html:81 .\core\templates\base.html:84
+#: .\core\templates\base.html:94 .\core\templates\standard_form.html:49
 #: .\diary\templates\diary\diary_list.html:18
 #: .\reminder\templates\reminder\reminder_list.html:18
 #: .\telecom\templates\telecom\isp_list.html:18
@@ -360,7 +303,54 @@ msgstr "訪客"
 msgid "Add"
 msgstr "新增"
 
-#: .\day\models.py:8 .\diary\forms.py:16 .\diary\models.py:8
+#: .\core\templates\base.html:74
+msgid "Telecom"
+msgstr "電信"
+
+#: .\core\templates\base.html:77 .\core\templates\base.html:78
+#: .\telecom\models.py:24
+msgid "ISP"
+msgstr ""
+
+#: .\core\templates\base.html:80 .\core\templates\base.html:81
+#: .\telecom\models.py:47
+msgid "ISP group"
+msgstr "ISP 群組"
+
+#: .\core\templates\base.html:83 .\core\templates\base.html:84
+msgid "Prefix-list update task"
+msgstr "Prefix-list 更新任務"
+
+#: .\core\templates\base.html:90 .\core\templates\base.html:93
+#: .\core\templates\base.html:94
+msgid "Reminder"
+msgstr ""
+
+#: .\core\templates\base.html:100 .\core\templates\base.html:103
+msgid "Log"
+msgstr ""
+
+#: .\core\templates\base.html:117
+msgid "Logout"
+msgstr "登出"
+
+#: .\core\templates\base.html:134
+msgid "------"
+msgstr ""
+
+#: .\core\templates\base.html:144
+msgid "No available departments"
+msgstr "沒有可用的部門"
+
+#: .\core\templates\base.html:187
+msgid "Guest"
+msgstr "訪客"
+
+#: .\core\templates\standard_form.html:21
+msgid ":"
+msgstr ""
+
+#: .\day\models.py:8 .\diary\models.py:9
 #: .\diary\templates\diary\diary_list.html:28
 msgid "Date"
 msgstr "日期"
@@ -369,41 +359,38 @@ msgstr "日期"
 msgid "Is holiday"
 msgstr "是假日"
 
-#: .\diary\forms.py:22 .\diary\forms.py:27 .\diary\models.py:18
-#: .\diary\templates\diary\diary_list.html:30
+#: .\diary\forms.py:23
+msgid "The diary with this date has already existed."
+msgstr "這個日期的日誌已經存在。"
+
+#: .\diary\models.py:11 .\diary\templates\diary\diary_list.html:29
+msgid "Daily check"
+msgstr "日檢核"
+
+#: .\diary\models.py:14
+msgid "Yes"
+msgstr ""
+
+#: .\diary\models.py:15
+msgid "No"
+msgstr ""
+
+#: .\diary\models.py:19 .\diary\templates\diary\diary_list.html:30
 msgid "Daily record"
 msgstr "日常紀錄"
 
-#: .\diary\forms.py:32 .\diary\forms.py:37 .\diary\models.py:19
-#: .\diary\templates\diary\diary_list.html:31
+#: .\diary\models.py:20 .\diary\templates\diary\diary_list.html:31
 msgid "To do"
 msgstr "待辦事項"
 
-#: .\diary\forms.py:43 .\diary\forms.py:48 .\diary\models.py:20
-#: .\diary\templates\diary\diary_list.html:32 .\telecom\models.py:20
-#: .\telecom\models.py:43 .\telecom\models.py:81
+#: .\diary\models.py:21 .\diary\templates\diary\diary_list.html:32
+#: .\telecom\models.py:20 .\telecom\models.py:43 .\telecom\models.py:81
 #: .\telecom\templates\telecom\ispgroup_list.html:28
 msgid "Remark"
 msgstr "備註"
 
-#: .\diary\forms.py:61
-msgid "The diary with this date has already existed."
-msgstr "這個日期的日誌已經存在。"
-
-#: .\diary\models.py:10 .\diary\templates\diary\diary_list.html:29
-msgid "Daily check"
-msgstr "日檢核"
-
-#: .\diary\models.py:13
-msgid "Yes"
-msgstr ""
-
-#: .\diary\models.py:14
-msgid "No"
-msgstr ""
-
-#: .\diary\models.py:21 .\diary\templates\diary\diary_list.html:26
-#: .\reminder\models.py:27 .\reminder\templates\reminder\reminder_list.html:25
+#: .\diary\models.py:22 .\diary\templates\diary\diary_list.html:26
+#: .\reminder\models.py:28 .\reminder\templates\reminder\reminder_list.html:25
 #: .\telecom\models.py:21 .\telecom\models.py:44 .\telecom\models.py:82
 #: .\telecom\templates\telecom\isp_list.html:25
 #: .\telecom\templates\telecom\ispgroup_list.html:25
@@ -411,7 +398,7 @@ msgstr ""
 msgid "Created by"
 msgstr "建立者"
 
-#: .\diary\models.py:25 .\diary\templates\diary\index.html:11
+#: .\diary\models.py:26 .\diary\templates\diary\index.html:11
 msgid "Diaries"
 msgstr "日誌"
 
@@ -451,7 +438,7 @@ msgstr "動作"
 
 #: .\diary\templates\diary\diary_list.html:54
 #: .\log\templates\log\diary_log_list.html:37
-#: .\reminder\templates\reminder\reminder_list.html:52
+#: .\reminder\templates\reminder\reminder_list.html:53
 #: .\telecom\templates\telecom\isp_list.html:54
 #: .\telecom\templates\telecom\ispgroup_list.html:44
 #: .\telecom\templates\telecom\prefixlistupdatetask_list.html:51
@@ -462,8 +449,8 @@ msgstr "沒有條目"
 #: .\diary\templates\diary\diary_list.html:68
 #: .\log\templates\log\diary_log_list.html:47
 #: .\log\templates\log\diary_log_list.html:51
-#: .\reminder\templates\reminder\reminder_list.html:62
-#: .\reminder\templates\reminder\reminder_list.html:66
+#: .\reminder\templates\reminder\reminder_list.html:63
+#: .\reminder\templates\reminder\reminder_list.html:67
 #: .\telecom\templates\telecom\isp_list.html:64
 #: .\telecom\templates\telecom\isp_list.html:68
 #: .\telecom\templates\telecom\ispgroup_list.html:54
@@ -477,8 +464,8 @@ msgstr "上一頁"
 #: .\diary\templates\diary\diary_list.html:77
 #: .\log\templates\log\diary_log_list.html:56
 #: .\log\templates\log\diary_log_list.html:60
-#: .\reminder\templates\reminder\reminder_list.html:71
-#: .\reminder\templates\reminder\reminder_list.html:75
+#: .\reminder\templates\reminder\reminder_list.html:72
+#: .\reminder\templates\reminder\reminder_list.html:76
 #: .\telecom\templates\telecom\isp_list.html:73
 #: .\telecom\templates\telecom\isp_list.html:77
 #: .\telecom\templates\telecom\ispgroup_list.html:63
@@ -490,7 +477,7 @@ msgstr "下一頁"
 
 #: .\diary\templates\diary\diary_list.html:81
 #: .\log\templates\log\diary_log_list.html:64
-#: .\reminder\templates\reminder\reminder_list.html:79
+#: .\reminder\templates\reminder\reminder_list.html:80
 #: .\telecom\templates\telecom\isp_list.html:81
 #: .\telecom\templates\telecom\ispgroup_list.html:71
 #: .\telecom\templates\telecom\prefixlistupdatetask_list.html:78
@@ -529,68 +516,68 @@ msgstr "資料"
 msgid "Created at"
 msgstr "建立於"
 
-#: .\reminder\models.py:9
+#: .\reminder\models.py:10
 msgid "Once"
 msgstr "單次"
 
-#: .\reminder\models.py:10
+#: .\reminder\models.py:11
 msgid "Daily"
 msgstr "每天"
 
-#: .\reminder\models.py:11
+#: .\reminder\models.py:12
 msgid "On Weekdays"
 msgstr "周間"
 
-#: .\reminder\models.py:12
+#: .\reminder\models.py:13
 msgid "Every 7 days"
 msgstr "每 7 天"
 
-#: .\reminder\models.py:13
+#: .\reminder\models.py:14
 msgid "1st of every month"
 msgstr "每月 1 號"
 
-#: .\reminder\models.py:14
+#: .\reminder\models.py:15
 msgid "2nd of every month"
 msgstr "每月 2 號"
 
-#: .\reminder\models.py:15
+#: .\reminder\models.py:16
 msgid "3rd of every month"
 msgstr "每月 3 號"
 
-#: .\reminder\models.py:17
+#: .\reminder\models.py:18
 #, python-format
 msgid "%(n)sth of every month"
 msgstr "每月 %(n)s 號"
 
-#: .\reminder\models.py:20 .\reminder\templates\reminder\reminder_list.html:26
+#: .\reminder\models.py:21 .\reminder\templates\reminder\reminder_list.html:26
 msgid "Event"
 msgstr "事件"
 
-#: .\reminder\models.py:21 .\reminder\templates\reminder\reminder_list.html:30
+#: .\reminder\models.py:22 .\reminder\templates\reminder\reminder_list.html:27
 msgid "Start date"
 msgstr "起始日"
 
-#: .\reminder\models.py:22 .\reminder\templates\reminder\reminder_list.html:32
+#: .\reminder\models.py:23 .\reminder\templates\reminder\reminder_list.html:28
 msgid "Stop date"
 msgstr "終止日"
 
-#: .\reminder\models.py:23 .\reminder\templates\reminder\reminder_list.html:31
+#: .\reminder\models.py:24 .\reminder\templates\reminder\reminder_list.html:29
 msgid "Period"
 msgstr "週期"
 
-#: .\reminder\models.py:24 .\reminder\templates\reminder\reminder_list.html:27
+#: .\reminder\models.py:25 .\reminder\templates\reminder\reminder_list.html:30
 msgid "Email subject"
 msgstr "Email 主旨"
 
-#: .\reminder\models.py:25 .\reminder\templates\reminder\reminder_list.html:28
+#: .\reminder\models.py:26 .\reminder\templates\reminder\reminder_list.html:31
 msgid "Email content"
 msgstr "Email 內容"
 
-#: .\reminder\models.py:26 .\reminder\templates\reminder\reminder_list.html:29
+#: .\reminder\models.py:27 .\reminder\templates\reminder\reminder_list.html:32
 msgid "Recipients"
 msgstr "收件者"
 
-#: .\reminder\models.py:26
+#: .\reminder\models.py:27
 msgid "Use \";\" to seperate multiple recipient."
 msgstr "使用 \";\" 分隔多個收件者"
 
@@ -664,19 +651,11 @@ msgstr "電話"
 msgid "Cellphone"
 msgstr "手機"
 
-#: .\telecom\models.py:24
-msgid "ISP"
-msgstr ""
-
 #: .\telecom\models.py:25 .\telecom\models.py:42 .\telecom\models.py:76
 #: .\telecom\templates\telecom\ispgroup_list.html:27
 #: .\telecom\templates\telecom\prefixlistupdatetask_list.html:28
 msgid "ISPs"
 msgstr ""
-
-#: .\telecom\models.py:47
-msgid "ISP group"
-msgstr "ISP 群組"
 
 #: .\telecom\models.py:48 .\telecom\models.py:77
 #: .\telecom\templates\telecom\prefixlistupdatetask_list.html:29
@@ -780,3 +759,36 @@ msgid ""
 msgstr ""
 "\"%(email)s\" 不是一個可用的 Email。請輸入一個或多個由分號隔開的可用的 "
 "Email。"
+
+#~ msgid "Diary list"
+#~ msgstr "日誌列表"
+
+#~ msgid "Add a diary"
+#~ msgstr "新增日誌"
+
+#~ msgid "ISP list"
+#~ msgstr "IPS 列表"
+
+#~ msgid "Add a ISP"
+#~ msgstr "新增 ISP"
+
+#~ msgid "ISP group list"
+#~ msgstr "ISP 群組列表"
+
+#~ msgid "Add a ISP group"
+#~ msgstr "新增 ISP 群組"
+
+#~ msgid "Prefix-list update task list"
+#~ msgstr "Prefix-list 更新任務列表"
+
+#~ msgid "Add a prefix-list update task"
+#~ msgstr "新增 prefix-list 更新任務"
+
+#~ msgid "list"
+#~ msgstr "列表"
+
+#~ msgid "add"
+#~ msgstr "新增"
+
+#~ msgid "Reminder list"
+#~ msgstr "Reminder 列表"

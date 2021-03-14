@@ -64,8 +64,8 @@
                             {% trans 'Diary' %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{% url 'diary:diary_list' %}">{% trans 'Diary list' %}</a>
-                            <a class="dropdown-item" href="{% url 'diary:diary_create' %}">{% trans 'Add a diary' %}</a>
+                            <a class="dropdown-item" href="{% url 'diary:diary_list' %}">{% trans 'Diary' %} | {% trans 'List' %}</a>
+                            <a class="dropdown-item" href="{% url 'diary:diary_create' %}">{% trans 'Diary' %} | {% trans 'Add' %}</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -74,14 +74,14 @@
                             {% trans 'Telecom' %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{% url 'telecom:isp_list' %}">{% trans 'ISP list' %}</a>
-                            <a class="dropdown-item" href="{% url 'telecom:isp_create' %}">{% trans 'Add a ISP' %}</a>
+                            <a class="dropdown-item" href="{% url 'telecom:isp_list' %}">{% trans 'ISP' %} | {% trans 'List' %}</a>
+                            <a class="dropdown-item" href="{% url 'telecom:isp_create' %}">{% trans 'ISP' %} | {% trans 'Add' %}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'telecom:ispgroup_list' %}">{% trans 'ISP group list' %}</a>
-                            <a class="dropdown-item" href="{% url 'telecom:ispgroup_create' %}">{% trans 'Add a ISP group' %}</a>
+                            <a class="dropdown-item" href="{% url 'telecom:ispgroup_list' %}">{% trans 'ISP group' %} | {% trans 'List' %}</a>
+                            <a class="dropdown-item" href="{% url 'telecom:ispgroup_create' %}">{% trans 'ISP group' %} | {% trans 'Add' %}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'telecom:prefixlistupdatetask_list' %}">{% trans 'Prefix-list update task list' %}</a>
-                            <a class="dropdown-item" href="{% url 'telecom:prefixlistupdatetask_create' %}">{% trans 'Add a prefix-list update task' %}</a>
+                            <a class="dropdown-item" href="{% url 'telecom:prefixlistupdatetask_list' %}">{% trans 'Prefix-list update task' %} | {% trans 'List' %}</a>
+                            <a class="dropdown-item" href="{% url 'telecom:prefixlistupdatetask_create' %}">{% trans 'Prefix-list update task' %} | {% trans 'Add' %}</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -90,7 +90,8 @@
                             {% trans 'Reminder' %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{% url 'reminder:reminder_list' %}">{% trans 'Reminder list' %}</a>
+                            <a class="dropdown-item" href="{% url 'reminder:reminder_list' %}">{% trans 'Reminder' %} | {% trans 'List' %}</a>
+                            <a class="dropdown-item" href="{% url 'reminder:reminder_create' %}">{% trans 'Reminder' %} | {% trans 'Add' %}</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -99,7 +100,7 @@
                             {% trans 'Log' %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{% url 'log:diary_log_list' %}">{% trans 'Diary' %}</a>
+                            <a class="dropdown-item" href="{% url 'log:diary_log_list' %}">{% trans 'Log' %} | {% trans 'Diary' %} | {% trans 'List' %}</a>
                         </div>
                     </li>
                     <a class="nav-item nav-link" href="{% url 'about' %}">
