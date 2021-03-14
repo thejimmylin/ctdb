@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
+{% load custom_templatetags %}
 
 {% block extracss %}
 <link rel="stylesheet" href="{% static 'css/table_list_view.css' %}">
@@ -44,8 +45,8 @@
                                 <td class="text-nowrap">{{ obj.stop_date|date:"Y-m-d" }}</td>
                                 <td class="text-nowrap">{{ obj.get_period_display }}</td>
                                 <td class="text-nowrap">{{ obj.email_subject }}</td>
-                                <td class="text-nowrap">{{ obj.email_content }}</td>
-                                <td class="text-nowrap">{{ obj.recipients }}</td>
+                                <td class="text-nowrap">{{ obj.email_content|linebreaks|nbsp }}</td>
+                                <td class="text-nowrap">{{ obj.recipients|linebreaks }}</td>
 
                             </tr>
                             {% empty %}

@@ -17,29 +17,26 @@
     {% for field in form %}
     <div class="form-row">
         <div class="form-group col">
-
-            <label for="{{ field.id_for_label }}">{% if field.field.required %}*{% endif %}{{ field.label }}{% trans ':' %}</label>
-
-            {% with has_error=field.errors has_placeholder=field.field.widget.attrs.placeholder %}
-            {% if has_error and has_placeholder %}
-            {% render_field field class+='form-control form-check border-danger' %}
-            {% elif has_error and not has_placeholder %}
-            {% render_field field class+='form-control form-check border-danger' placeholder=field.label %}
-            {% elif not has_error and has_placeholder %}
-            {% render_field field class+='form-control' %}
+            {% with has_error=field.errors has_placeholder=field.field.widget.attrs.placeholder input_type=field.field.widget.input_type %}
+            {% if input_type == 'checkbox' %}
+            {% if has_error %}{% render_field field class+='form-check border-danger' %}{% else %}{% render_field field %}{% endif %}
+            <label for="{{ field.id_for_label }}">{% if field.field.required %}*{% endif %}{{ field.label }}</label>
             {% else %}
-            {% render_field field class+='form-control' placeholder=field.label %}
+            <label
+                for="{{ field.id_for_label }}">{% if field.field.required %}*{% endif %}{{ field.label }}{% trans ':' %}</label>
+            {% if has_error and has_placeholder %}{% render_field field class+='form-control form-check border-danger' %}
+            {% elif has_error and not has_placeholder %}{% render_field field class+='form-control form-check border-danger' placeholder=field.label %}
+            {% elif not has_error and has_placeholder %}{% render_field field class+='form-control' %}
+            {% else %}{% render_field field class+='form-control' placeholder=field.label %}
+            {% endif %}
             {% endif %}
             {% endwith %}
-
             {% if field.help_text %}
             <small class="text-muted d-block px-1">{{ field.help_text }}</small>
             {% endif %}
-
             {% for error in field.errors %}
             <small class="text-danger d-block px-1">{{ error }}</small>
             {% endfor %}
-
         </div>
     </div>
     {% endfor %}
