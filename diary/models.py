@@ -2,10 +2,11 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+from core.utils import today
 
 
 class Diary(models.Model):
-    date = models.DateField(verbose_name=_('Date'), null=True)
+    date = models.DateField(verbose_name=_('Date'), default=today)
     daily_check = models.CharField(
         verbose_name=_('Daily check'),
         max_length=15,
@@ -15,9 +16,9 @@ class Diary(models.Model):
         ),
         default='no'
     )
-    daily_record = models.TextField(verbose_name=_('Daily record'), null=True)
-    todo = models.TextField(verbose_name=_('To do'), null=True, blank=True)
-    remark = models.TextField(verbose_name=_('Remark'), null=True, blank=True)
+    daily_record = models.TextField(verbose_name=_('Daily record'))
+    todo = models.TextField(verbose_name=_('To do'), blank=True)
+    remark = models.TextField(verbose_name=_('Remark'), blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta():

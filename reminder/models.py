@@ -23,7 +23,7 @@ class Reminder(models.Model):
     stop_date = models.DateField(verbose_name=_('Stop date'), default=today)
     period = models.CharField(verbose_name=_('Period'), max_length=63, choices=PERIOD, default='on weekdays')
     email_subject = models.CharField(verbose_name=_('Email subject'), max_length=63)
-    email_content = models.TextField(verbose_name=_('Email content'))
+    email_content = models.TextField(verbose_name=_('Email content'), blank=True)
     recipients = models.TextField(verbose_name=_('Recipients'), help_text=_('Use ";" to seperate multiple recipient.'))
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
