@@ -10,13 +10,13 @@ class IspModelForm(forms.ModelForm):
         widget=forms.Textarea(
             attrs={
                 'placeholder': _(
-                    'Please enter a Email or multiple Email separated by ";".\n'
+                    'Please enter one or more Email separated by ";".\n'
                     'For example:\n'
                     '\n'
                     'example1@chief.com.tw;\n'
                     'example2@google.com;\n'
                 ),
-                'row': 8
+                'row': 10
             }
         ),
     )
@@ -25,13 +25,13 @@ class IspModelForm(forms.ModelForm):
         widget=forms.Textarea(
             attrs={
                 'placeholder': _(
-                    'Please enter a Email or multiple Email separated by ";".\n'
+                    'Please enter one or more Email separated by ";".\n'
                     'For example:\n'
                     '\n'
                     'example1@chief.com.tw;\n'
                     'example2@google.com;\n'
                 ),
-                'row': 8
+                'row': 10
             }
         ),
     )
@@ -40,13 +40,13 @@ class IspModelForm(forms.ModelForm):
         widget=forms.Textarea(
             attrs={
                 'placeholder': _(
-                    'Please enter a Email or multiple Email separated by ";".\n'
+                    'Please enter one or more Email separated by ";".\n'
                     'For example:\n'
                     '\n'
                     'example1@chief.com.tw;\n'
                     'example2@google.com;\n'
                 ),
-                'row': 8
+                'row': 10
             }
         ),
     )
@@ -69,7 +69,7 @@ class PrefixListUpdateTaskModelForm(forms.ModelForm):
         widget=forms.Textarea(
             attrs={
                 'placeholder': _(
-                    'Please enter a prefix-list, for example:\n'
+                    'Please enter a prefix-list. For example:\n'
                     '\n'
                     '100.100.100.100/24,\n'
                     '100.100.200.100/22 le 24,\n'
