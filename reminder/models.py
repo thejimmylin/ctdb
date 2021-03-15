@@ -10,7 +10,6 @@ class Reminder(models.Model):
     POLICY = [
         ('on weekdays', _('On weekdays')),
         ('daily', _('Daily')),
-        ('once', _('Once')),
         ('advanced policy', _('Advanced policy')),
     ]
     is_active = models.BooleanField(verbose_name=_('Is active'), default=True)
