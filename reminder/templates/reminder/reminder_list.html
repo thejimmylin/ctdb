@@ -28,7 +28,7 @@
                                 <th style="width: 20%">{% trans 'Event' %}</th>
                                 <th style="width: 1px">{% trans 'Start date' %}</th>
                                 <th style="width: 1px">{% trans 'Stop date' %}</th>
-                                <th style="width: 1px">{% trans 'Period' %}</th>
+                                <th style="width: 1px">{% trans 'Policy' %}</th>
                                 <th style="width: 20%">{% trans 'Email subject' %}</th>
                                 <th style="width: 40%">{% trans 'Email content' %}</th>
                                 <th style="width: 20%">{% trans 'Recipients' %}</th>
@@ -45,7 +45,7 @@
                                 <td class="text-nowrap">{{ obj.event }}</td>
                                 <td class="text-nowrap">{{ obj.start_date|date:"Y-m-d" }}</td>
                                 <td class="text-nowrap">{{ obj.stop_date|date:"Y-m-d" }}</td>
-                                <td class="text-nowrap">{{ obj.get_period_display }}</td>
+                                <td class="text-nowrap">{{ obj.get_policy_display }}</td>
                                 <td class="text-nowrap">{{ obj.email_subject }}</td>
                                 <td class="text-nowrap">{{ obj.email_content|linebreaks|nbsp }}</td>
                                 <td class="text-nowrap">{{ obj.recipients|linebreaks }}</td>

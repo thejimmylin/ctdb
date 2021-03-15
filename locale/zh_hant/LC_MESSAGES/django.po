@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-14 22:12+0800\n"
+"POT-Creation-Date: 2021-03-15 14:30+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,6 +131,7 @@ msgstr "建立"
 #: .\accounts\templates\registration\signup_with_account_and_password.html:18
 #: .\accounts\templates\registration\signup_with_email.html:18
 #: .\core\templates\standard_form.html:8
+#: .\reminder\templates\reminder\reminder_form.html:19
 msgid "Please correct the error below."
 msgstr ""
 
@@ -142,6 +143,7 @@ msgstr ""
 #: .\accounts\templates\registration\signup_with_account_and_password.html:20
 #: .\accounts\templates\registration\signup_with_email.html:20
 #: .\core\templates\standard_form.html:10
+#: .\reminder\templates\reminder\reminder_form.html:21
 msgid "Please correct the errors below."
 msgstr ""
 
@@ -224,6 +226,7 @@ msgstr "重置"
 #: .\core\templates\standard_action_dropdown.html:12
 #: .\core\templates\standard_form.html:49
 #: .\reminder\templates\reminder\reminder_action_dropdown.html:12
+#: .\reminder\templates\reminder\reminder_form.html:59
 msgid "Change"
 msgstr "變更"
 
@@ -284,6 +287,7 @@ msgstr "列表"
 #: .\core\templates\base.html:81 .\core\templates\base.html:84
 #: .\core\templates\base.html:94 .\core\templates\standard_form.html:46
 #: .\diary\templates\diary\diary_list.html:18
+#: .\reminder\templates\reminder\reminder_form.html:56
 #: .\reminder\templates\reminder\reminder_list.html:19
 #: .\telecom\templates\telecom\isp_list.html:18
 #: .\telecom\templates\telecom\ispgroup_list.html:18
@@ -351,43 +355,44 @@ msgid "No available options"
 msgstr "沒有可用的選項"
 
 #: .\core\templates\standard_form.html:26
+#: .\reminder\templates\reminder\reminder_form.html:36
 msgid ":"
 msgstr ""
 
-#: .\core\validators.py:19
+#: .\core\validators.py:20
 #, python-format
 msgid "%(ip_network)s is not a valid IP network."
 msgstr "%(ip_network)s 不是一個合法的 IP network。"
 
-#: .\core\validators.py:30
+#: .\core\validators.py:31
 #, python-format
 msgid ""
 "\"%(arg)s\" is not a valid operator. Please use %(valid_operator_string)s."
 msgstr "\"%(arg)s\" 不是可用的運算子， 請使用 %(valid_operator_string)s。"
 
-#: .\core\validators.py:36
+#: .\core\validators.py:37
 #, python-format
 msgid "\"%(arg)s\" appears more than once."
 msgstr "\"%(arg)s\" 出現了超過一次。"
 
-#: .\core\validators.py:47
+#: .\core\validators.py:48
 #, python-format
 msgid "The length should be a integer. %(arg)s is not a integer."
 msgstr "長度參數應是一個整數， %(arg)s 不是一個整數。"
 
-#: .\core\validators.py:55
+#: .\core\validators.py:56
 msgid "A length should be followed after a operator."
 msgstr "長度參數應跟隨在一個運算子之後。"
 
-#: .\core\validators.py:61
+#: .\core\validators.py:62
 msgid "\"eq\" could not be using with \"le\"."
 msgstr "\"eq\" 不能與 \"le\" 同時使用。"
 
-#: .\core\validators.py:66
+#: .\core\validators.py:67
 msgid "\"eq\" could not be using with \"ge\"."
 msgstr "\"eq\" 不能與 \"ge\" 同時使用。"
 
-#: .\core\validators.py:71
+#: .\core\validators.py:72
 msgid ""
 "With \"eq\", the following length should be exactly the same as IP network "
 "prefix's."
@@ -395,7 +400,7 @@ msgstr ""
 "當使用 \"eq\" 的時候，跟隨的長度參數必須與 IP network 的 prefix-length 完全一"
 "致。"
 
-#: .\core\validators.py:79 .\core\validators.py:84 .\core\validators.py:90
+#: .\core\validators.py:80 .\core\validators.py:85 .\core\validators.py:91
 msgid ""
 "The prefix-length of IP network, le, ge should follow the rule: prefix-"
 "length < ge <= le."
@@ -403,11 +408,18 @@ msgstr ""
 "IP network 的 prefix-length, le, ge 必須遵守以下規則: prefix-length < ge <= "
 "le."
 
-#: .\core\validators.py:103
-#, python-format
+#: .\core\validators.py:106
 msgid ""
-"\"%(email)s\" is not a valid Email. Please enter a valid Email or multiple "
-"valid Email separated by \";\"."
+"\"%(email)s\" is not a valid Email. multiple date should be separated by "
+"\"%(seperator)s\"."
+msgstr ""
+"\"%(email)s\" 不是一個可用的 Email。請輸入一個或多個由分號隔開的可用的 "
+"Email。"
+
+#: .\core\validators.py:124
+msgid ""
+"\"%(date)s\" is not a valid date. Please enter a date with the format \"yyyy-"
+"mm-dd\". multiple date should be separated by \"%(seperator)s\"."
 msgstr ""
 "\"%(email)s\" 不是一個可用的 Email。請輸入一個或多個由分號隔開的可用的 "
 "Email。"
@@ -452,7 +464,7 @@ msgid "Remark"
 msgstr "備註"
 
 #: .\diary\models.py:22 .\diary\templates\diary\diary_list.html:26
-#: .\reminder\models.py:34 .\reminder\templates\reminder\reminder_list.html:26
+#: .\reminder\models.py:29 .\reminder\templates\reminder\reminder_list.html:26
 #: .\telecom\models.py:21 .\telecom\models.py:44 .\telecom\models.py:82
 #: .\telecom\templates\telecom\isp_list.html:25
 #: .\telecom\templates\telecom\ispgroup_list.html:25
@@ -579,71 +591,54 @@ msgid "Created at"
 msgstr "建立於"
 
 #: .\reminder\models.py:11
-msgid "Once"
-msgstr "單次"
+msgid "On weekdays"
+msgstr "周間"
 
 #: .\reminder\models.py:12
 msgid "Daily"
 msgstr "每天"
 
 #: .\reminder\models.py:13
-msgid "On Weekdays"
-msgstr "周間"
+msgid "Once"
+msgstr "單次"
 
-#: .\reminder\models.py:14
-msgid "Every 7 days"
-msgstr "每 7 天"
+#: .\reminder\models.py:14 .\reminder\models.py:21
+msgid "Special policy"
+msgstr "特殊規則"
 
-#: .\reminder\models.py:15
-msgid "1st of every month"
-msgstr "每月 1 號"
-
-#: .\reminder\models.py:16
-msgid "2nd of every month"
-msgstr "每月 2 號"
-
-#: .\reminder\models.py:17
-msgid "3rd of every month"
-msgstr "每月 3 號"
-
-#: .\reminder\models.py:19
-#, python-format
-msgid "%(n)sth of every month"
-msgstr "每月 %(n)s 號"
-
-#: .\reminder\models.py:22 .\reminder\templates\reminder\reminder_list.html:27
+#: .\reminder\models.py:16 .\reminder\templates\reminder\reminder_list.html:27
 msgid "Is active"
 msgstr "啟用"
 
-#: .\reminder\models.py:23 .\reminder\templates\reminder\reminder_list.html:28
+#: .\reminder\models.py:17 .\reminder\templates\reminder\reminder_list.html:28
 msgid "Event"
 msgstr "事件"
 
-#: .\reminder\models.py:24 .\reminder\templates\reminder\reminder_list.html:29
+#: .\reminder\models.py:18 .\reminder\templates\reminder\reminder_list.html:29
 msgid "Start date"
 msgstr "起始日"
 
-#: .\reminder\models.py:25 .\reminder\templates\reminder\reminder_list.html:30
+#: .\reminder\models.py:19 .\reminder\templates\reminder\reminder_list.html:30
 msgid "Stop date"
 msgstr "終止日"
 
-#: .\reminder\models.py:26 .\reminder\templates\reminder\reminder_list.html:31
-msgid "Period"
-msgstr "週期"
+#: .\reminder\models.py:20 .\reminder\templates\reminder\reminder_list.html:31
+msgid "Policy"
+msgstr "規則"
 
-#: .\reminder\models.py:27 .\reminder\templates\reminder\reminder_list.html:32
+#: .\reminder\models.py:22 .\reminder\templates\reminder\reminder_list.html:32
 msgid "Email subject"
 msgstr "Email 主旨"
 
-#: .\reminder\models.py:28 .\reminder\templates\reminder\reminder_list.html:33
+#: .\reminder\models.py:23 .\reminder\templates\reminder\reminder_list.html:33
 msgid "Email content"
 msgstr "Email 內容"
 
-#: .\reminder\models.py:30 .\reminder\templates\reminder\reminder_list.html:34
+#: .\reminder\models.py:25 .\reminder\templates\reminder\reminder_list.html:34
 msgid "Recipients"
 msgstr "收件者"
 
-#: .\reminder\models.py:31
+#: .\reminder\models.py:26
 msgid "Use \";\" to seperate multiple recipient."
 msgstr "使用 \";\" 分隔多個收件者"
 

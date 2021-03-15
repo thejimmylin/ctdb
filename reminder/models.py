@@ -8,10 +8,10 @@ from core.validators import validate_semicolon_seperated_email_string, validate_
 
 class Reminder(models.Model):
     POLICY = [
-        ('on weekdays', _('On Weekdays')),
+        ('on weekdays', _('On weekdays')),
         ('daily', _('Daily')),
         ('once', _('Once')),
-        ('use special policy', _('Use special policy')),
+        ('special policy', _('Special policy')),
     ]
     is_active = models.BooleanField(verbose_name=_('Is active'), default=True)
     event = models.CharField(verbose_name=_('Event'), max_length=63)
