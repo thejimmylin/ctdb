@@ -8,8 +8,8 @@ class ReminderModelForm(forms.ModelForm):
         model = Reminder
         exclude = ['created_by']
         widgets = {
-            'start_date': forms.DateInput(attrs={'type': 'date'}),
-            'stop_date': forms.DateInput(attrs={'type': 'date'}),
+            'start_at': forms.DateInput(attrs={'type': 'date'}),
+            'end_at': forms.DateInput(attrs={'type': 'date'}),
             'advanced_policy': forms.Textarea(attrs={
                 'rows': 10,
                 'placeholder': _(
