@@ -10,7 +10,7 @@ class ReminderModelForm(forms.ModelForm):
         widgets = {
             'start_at': forms.DateInput(attrs={'type': 'date'}),
             'end_at': forms.DateInput(attrs={'type': 'date'}),
-            'advanced_policy': forms.Textarea(attrs={
+            'specified_dates': forms.Textarea(attrs={
                 'rows': 10,
                 'placeholder': _(
                     'Please enter one or more specified dates separated by "," and '

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-15 14:30+0800\n"
+"POT-Creation-Date: 2021-03-17 10:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -417,12 +417,12 @@ msgstr ""
 "Email。"
 
 #: .\core\validators.py:124
+#, python-format
 msgid ""
 "\"%(date)s\" is not a valid date. Please enter a date with the format \"yyyy-"
 "mm-dd\". multiple date should be separated by \"%(seperator)s\"."
 msgstr ""
-"\"%(email)s\" 不是一個可用的 Email。請輸入一個或多個由分號隔開的可用的 "
-"Email。"
+"\"%(date)s\" 不是一個可用的日期。請輸入格式為 \"yyyy-mm-dd\" 的日期。多個日期應以 \"%(seperator)s\" 隔開。"
 
 #: .\day\models.py:8 .\diary\models.py:9
 #: .\diary\templates\diary\diary_list.html:28
@@ -464,7 +464,7 @@ msgid "Remark"
 msgstr "備註"
 
 #: .\diary\models.py:22 .\diary\templates\diary\diary_list.html:26
-#: .\reminder\models.py:29 .\reminder\templates\reminder\reminder_list.html:26
+#: .\reminder\models.py:42 .\reminder\templates\reminder\reminder_list.html:26
 #: .\telecom\models.py:21 .\telecom\models.py:44 .\telecom\models.py:82
 #: .\telecom\templates\telecom\isp_list.html:25
 #: .\telecom\templates\telecom\ispgroup_list.html:25
@@ -590,55 +590,122 @@ msgstr "資料"
 msgid "Created at"
 msgstr "建立於"
 
+#: .\reminder\forms.py:16
+msgid ""
+"Please enter one or more specified dates separated by \",\" and the date "
+"format must be yyyy-mm-dd. For example:\n"
+"\n"
+"2021-03-16,\n"
+"2021-03-29,\n"
+"2021-04-01\n"
+msgstr "請輸入一個或多個以 \",\" 隔開的日期。\n"
+"例如：\n"
+"\n"
+"2021-03-16,\n"
+"2021-03-29,\n"
+"2021-04-01\n"
+
+
+#: .\reminder\forms.py:27 .\telecom\forms.py:13 .\telecom\forms.py:28
+#: .\telecom\forms.py:43
+msgid ""
+"Please enter one or more Email separated by \";\".\n"
+"For example:\n"
+"\n"
+"example1@chief.com.tw;\n"
+"example2@google.com;\n"
+msgstr ""
+"請輸入一個或多個以 \";\" 隔開的 Email。\n"
+"例如：\n"
+"\n"
+"example1@chief.com.tw;\n"
+"example2@google.com;\n"
+
 #: .\reminder\models.py:11
+msgid "Common"
+msgstr "常用"
+
+#: .\reminder\models.py:12
 msgid "On weekdays"
 msgstr "周間"
 
-#: .\reminder\models.py:12
+#: .\reminder\models.py:13
 msgid "Daily"
 msgstr "每天"
 
-#: .\reminder\models.py:13
+#: .\reminder\models.py:14
 msgid "Once"
 msgstr "單次"
 
-#: .\reminder\models.py:14 .\reminder\models.py:21
-msgid "Special policy"
-msgstr "特殊規則"
+#: .\reminder\models.py:15
+msgid "Every Monday"
+msgstr "每週一"
 
-#: .\reminder\models.py:16 .\reminder\templates\reminder\reminder_list.html:27
+#: .\reminder\models.py:16
+msgid "Every Tuesday"
+msgstr "每週二"
+
+#: .\reminder\models.py:17
+msgid "Every Wednesday"
+msgstr "每週三"
+
+#: .\reminder\models.py:18
+msgid "Every Thursday"
+msgstr "每週四"
+
+#: .\reminder\models.py:19
+msgid "Every Friday"
+msgstr "每週五"
+
+#: .\reminder\models.py:20
+msgid "Every Saturday"
+msgstr "每週六"
+
+#: .\reminder\models.py:21
+msgid "Every Sunday"
+msgstr "每週日"
+
+#: .\reminder\models.py:24
+msgid "Specific"
+msgstr "特定"
+
+#: .\reminder\models.py:25 .\reminder\models.py:34
+msgid "Specified dates"
+msgstr "特定日期"
+
+#: .\reminder\models.py:29 .\reminder\templates\reminder\reminder_list.html:27
 msgid "Is active"
 msgstr "啟用"
 
-#: .\reminder\models.py:17 .\reminder\templates\reminder\reminder_list.html:28
+#: .\reminder\models.py:30 .\reminder\templates\reminder\reminder_list.html:28
 msgid "Event"
 msgstr "事件"
 
-#: .\reminder\models.py:18 .\reminder\templates\reminder\reminder_list.html:29
-msgid "Start date"
-msgstr "起始日"
-
-#: .\reminder\models.py:19 .\reminder\templates\reminder\reminder_list.html:30
-msgid "Stop date"
-msgstr "終止日"
-
-#: .\reminder\models.py:20 .\reminder\templates\reminder\reminder_list.html:31
+#: .\reminder\models.py:31 .\reminder\templates\reminder\reminder_list.html:31
 msgid "Policy"
 msgstr "規則"
 
-#: .\reminder\models.py:22 .\reminder\templates\reminder\reminder_list.html:32
+#: .\reminder\models.py:32
+msgid "Start at"
+msgstr "開始於"
+
+#: .\reminder\models.py:33
+msgid "End at"
+msgstr "結束於"
+
+#: .\reminder\models.py:35 .\reminder\templates\reminder\reminder_list.html:32
 msgid "Email subject"
 msgstr "Email 主旨"
 
-#: .\reminder\models.py:23 .\reminder\templates\reminder\reminder_list.html:33
+#: .\reminder\models.py:36 .\reminder\templates\reminder\reminder_list.html:33
 msgid "Email content"
 msgstr "Email 內容"
 
-#: .\reminder\models.py:25 .\reminder\templates\reminder\reminder_list.html:34
+#: .\reminder\models.py:38 .\reminder\templates\reminder\reminder_list.html:34
 msgid "Recipients"
 msgstr "收件者"
 
-#: .\reminder\models.py:26
+#: .\reminder\models.py:39
 msgid "Use \";\" to seperate multiple recipient."
 msgstr "使用 \";\" 分隔多個收件者"
 
@@ -651,24 +718,18 @@ msgstr "寄送 Email"
 msgid "Are you sure you want to send a Email about this reminder?"
 msgstr "你確定要寄送關於這個 reminder 的 Email 嗎？"
 
+#: .\reminder\templates\reminder\reminder_list.html:29
+msgid "Start date"
+msgstr "起始日"
+
+#: .\reminder\templates\reminder\reminder_list.html:30
+msgid "Stop date"
+msgstr "終止日"
+
 #: .\telecom\forms.py:9 .\telecom\models.py:15
 #: .\telecom\templates\telecom\isp_list.html:31
 msgid "To"
 msgstr "收件者"
-
-#: .\telecom\forms.py:13 .\telecom\forms.py:28 .\telecom\forms.py:43
-msgid ""
-"Please enter a Email or multiple Email separated by \";\".\n"
-"For example:\n"
-"\n"
-"example1@chief.com.tw;\n"
-"example2@google.com;\n"
-msgstr ""
-"請輸入一個或多個以 \";\" 分隔的 Email。\n"
-"例如：\n"
-"\n"
-"example1@chief.com.tw;\n"
-"example2@google.com;\n"
 
 #: .\telecom\forms.py:24 .\telecom\models.py:16
 #: .\telecom\templates\telecom\isp_list.html:32
@@ -687,7 +748,7 @@ msgstr "Prefix-list"
 
 #: .\telecom\forms.py:72
 msgid ""
-"Please enter a prefix-list, for example:\n"
+"Please enter a prefix-list. For example:\n"
 "\n"
 "100.100.100.100/24,\n"
 "100.100.200.100/22 le 24,\n"

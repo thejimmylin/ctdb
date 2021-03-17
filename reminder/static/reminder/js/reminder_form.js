@@ -1,24 +1,29 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Declare
     const inputPolicy = document.querySelector("#id_policy");
-    const inputAdvancedPolicy = document.querySelector("#id_advanced_policy");
+    const inputSpecifiedDates = document.querySelector("#id_specified_dates");
     const formRowStartAt = document.querySelector("#id_form_row_start_at");
     const formRowEndAt = document.querySelector("#id_form_row_end_at");
-    const formRowAdvancedPolicy = document.querySelector("#id_form_row_advanced_policy");
+    const formRowSpecifiedDates = document.querySelector("#id_form_row_specified_dates");
     // INIT
-    formRowAdvancedPolicy.style.display = "";
+    formRowSpecifiedDates.style.display = "";
     // Event
     inputPolicy.addEventListener("change", function(event) {
-        if (inputPolicy.value === 'advanced policy') {
+        if (inputPolicy.value === 'specified dates') {
             formRowStartAt.style.display = "none";
             formRowEndAt.style.display = "none";
-            formRowAdvancedPolicy.style.display = "";
+            formRowSpecifiedDates.style.display = "";
+        }
+        else if (inputPolicy.value === 'once') {
+            formRowStartAt.style.display = "";
+            formRowEndAt.style.display = "none";
+            formRowSpecifiedDates.style.display = "";
         }
         else {
             formRowStartAt.style.display = "";
             formRowEndAt.style.display = "";
-            formRowAdvancedPolicy.style.display = "none";
-            inputAdvancedPolicy.value = "";
+            formRowSpecifiedDates.style.display = "none";
+            inputSpecifiedDates.value = "";
         }
     })
 })
