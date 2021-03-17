@@ -20,7 +20,16 @@ def calld_django_send_diary_user_email():
     os.system(cmd)
 
 
+def calld_django_send_reminder_email():
+    time_string = time.strftime('%Y%m%d%H%M%S')
+    print(time_string)
+    print('start..')
+    cmd = f'{PYTHONPATH_ABS} {REPO_ROOT}\\manage.py sendreminderemail'
+    os.system(cmd)
+
+
 schedule.every().day.at('09:00').do(calld_django_send_diary_user_email)
+schedule.every().day.at('09:00').do(calld_django_send_reminder_email)
 
 while True:
     schedule.run_pending()
