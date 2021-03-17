@@ -37,6 +37,15 @@ class Command(BaseCommand):
         qs = Reminder.objects.filter(is_active=True, policy=policy, start_at__lte=today(), end_at__gt=today())
         for reminder in qs:
             self.handle_mail(reminder)
+        # Specified dates
+        qs = Reminder.objects.filter(is_active=True, policy='specified dates')
+        for reminder in qs:
+            dates = reminder.specified_dates
+            seperator = ','
+            dates = dates[:-1] if dates[-1:] == seperator else dates
+            date_list = list(map(str.strip, dates.split(';')))
+            if str(today()) in date_list:
+                self.handle_mail(reminder)
 
     def handle_mail(self, reminder, debug=True):
         seperator = ';'
