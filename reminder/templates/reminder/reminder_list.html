@@ -26,9 +26,9 @@
                                 <th style="width: 1px;">{% trans 'Created by' %}</th>
                                 <th style="width: 1px;">{% trans 'Is active' %}</th>
                                 <th style="width: 20%">{% trans 'Event' %}</th>
+                                <th style="width: 1px">{% trans 'Policy' %}</th>
                                 <th style="width: 1px">{% trans 'Start date' %}</th>
                                 <th style="width: 1px">{% trans 'Stop date' %}</th>
-                                <th style="width: 1px">{% trans 'Policy' %}</th>
                                 <th style="width: 20%">{% trans 'Email subject' %}</th>
                                 <th style="width: 40%">{% trans 'Email content' %}</th>
                                 <th style="width: 20%">{% trans 'Recipients' %}</th>
@@ -43,9 +43,9 @@
                                 <td class="text-nowrap">{{ obj.created_by }}</td>
                                 <td class="text-nowrap">{% if obj.is_active %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td>
                                 <td class="text-nowrap">{{ obj.event }}</td>
-                                <td class="text-nowrap">{{ obj.start_date|date:"Y-m-d" }}</td>
-                                <td class="text-nowrap">{{ obj.stop_date|date:"Y-m-d" }}</td>
                                 <td class="text-nowrap">{{ obj.get_policy_display }}</td>
+                                <td class="text-nowrap">{{ obj.start_at|date:"Y-m-d" }}</td>
+                                <td class="text-nowrap">{{ obj.end_at|date:"Y-m-d" }}</td>
                                 <td class="text-nowrap">{{ obj.email_subject }}</td>
                                 <td class="text-nowrap">{{ obj.email_content|linebreaks|nbsp }}</td>
                                 <td class="text-nowrap">{{ obj.recipients|linebreaks }}</td>

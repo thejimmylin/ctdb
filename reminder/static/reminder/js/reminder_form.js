@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const inputPolicy = document.querySelector("#id_policy");
     const inputSpecifiedDates = document.querySelector("#id_specified_dates");
     const formRowStartAt = document.querySelector("#id_form_row_start_at");
+    const inputEndAt = document.querySelector("#id_end_at");
+    const initValueInputEndAt = inputEndAt.value;
     const formRowEndAt = document.querySelector("#id_form_row_end_at");
     const formRowSpecifiedDates = document.querySelector("#id_form_row_specified_dates");
     // INIT
@@ -17,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
         else if (inputPolicy.value === 'once') {
             formRowStartAt.style.display = "";
             formRowEndAt.style.display = "none";
+            inputEndAt.value = initValueInputEndAt;
             formRowSpecifiedDates.style.display = "";
         }
         else {

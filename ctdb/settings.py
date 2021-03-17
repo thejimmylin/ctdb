@@ -61,6 +61,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+if DEBUG:
+    INSTALLED_APPS.append('django_extensions')
+
 MIDDLEWARE = [
     # This allows us to handle static files with DEBUG = False and runserver
     'whitenoise.middleware.WhiteNoiseMiddleware',
