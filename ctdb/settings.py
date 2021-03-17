@@ -126,7 +126,7 @@ DATABASES_MYSQL = {
 DATABASES_MSSQL = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'T21',
+        'NAME': 'TDB',
         'USER': 'jimmy_lin',
         'PASSWORD': get_value('DATABASES_MSSQL_PASSWORD'),
         'HOST': '10.210.31.15',

@@ -48,7 +48,7 @@ class Command(BaseCommand):
             if str(today()) in date_list:
                 self.handle_mail(reminder)
 
-    def handle_mail(self, reminder, debug=True):
+    def handle_mail(self, reminder, debug=settings.DEBUG):
         seperator = ';'
         recipients = reminder.recipients[:-1] if reminder.recipients[-1:] == seperator else reminder.recipients
         recipient_list = list(map(str.strip, recipients.split(';')))
