@@ -1,12 +1,13 @@
 import uuid
+
 from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import PasswordResetForm, UsernameField, AuthenticationForm
+from django.contrib.auth.forms import (AuthenticationForm, PasswordResetForm,
+                                       UsernameField)
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.utils.translation import gettext_lazy as _
-
 
 User = get_user_model()
 

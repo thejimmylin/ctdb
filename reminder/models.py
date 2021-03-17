@@ -1,9 +1,11 @@
 from django.conf import settings
 from django.db import models
-from django.utils.translation import gettext_lazy as _
-from core.utils import today, tomorrow
 from django.urls import reverse
-from core.validators import validate_semicolon_seperated_email_string, validate_comma_seperated_date_string
+from django.utils.translation import gettext_lazy as _
+
+from core.utils import today, tomorrow
+from core.validators import (validate_comma_seperated_date_string,
+                             validate_semicolon_seperated_email_string)
 
 
 class Reminder(models.Model):

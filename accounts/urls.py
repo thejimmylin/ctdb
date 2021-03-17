@@ -1,13 +1,14 @@
+from django.contrib.auth.views import (LoginView, LogoutView,
+                                       PasswordChangeDoneView,
+                                       PasswordChangeView,
+                                       PasswordResetCompleteView,
+                                       PasswordResetConfirmView,
+                                       PasswordResetDoneView,
+                                       PasswordResetView)
 from django.urls import path, reverse_lazy
-from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.views import (
-    PasswordChangeView, PasswordChangeDoneView,
-    PasswordResetView, PasswordResetDoneView,
-    PasswordResetConfirmView, PasswordResetCompleteView
-)
-from .views import signup, signup_with_email, profile_change, set_role
-from .forms import EmailValidationOnForgotPasswordForm, LoginForm
 
+from .forms import EmailValidationOnForgotPasswordForm, LoginForm
+from .views import profile_change, set_role, signup, signup_with_email
 
 app_name = 'accounts'
 

@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Profile, Department
 from django.contrib.auth.models import Permission
+
+from .models import Department, Profile
 
 
 class ProfileAdmin(admin.ModelAdmin):

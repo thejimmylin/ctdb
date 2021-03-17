@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import (
-    isp_list, isp_create, isp_update, isp_delete,
-    ispgroup_list, ispgroup_create, ispgroup_update, ispgroup_delete,
-    prefixlistupdatetask_list, prefixlistupdatetask_create, prefixlistupdatetask_update, prefixlistupdatetask_delete
-)
+
+from .views import (isp_create, isp_delete, isp_list, isp_update,
+                    ispgroup_create, ispgroup_delete, ispgroup_list,
+                    ispgroup_update, prefixlistupdatetask_create,
+                    prefixlistupdatetask_delete, prefixlistupdatetask_list,
+                    prefixlistupdatetask_update)
 
 app_name = 'telecom'
 

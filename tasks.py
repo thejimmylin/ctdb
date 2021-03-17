@@ -1,9 +1,9 @@
-from invoke import task
-from pathlib import Path
+import json
 import os
 import platform
-import json
+from pathlib import Path
 
+from invoke import task
 
 REPO_ROOT = Path(__file__).parent
 OS = platform.system().lower()

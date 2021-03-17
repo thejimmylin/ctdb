@@ -1,6 +1,7 @@
 from django import forms
-from .models import Reminder
 from django.utils.translation import gettext_lazy as _
+
+from .models import Reminder
 
 
 class ReminderModelForm(forms.ModelForm):

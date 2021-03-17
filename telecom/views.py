@@ -1,10 +1,11 @@
+from django.core.paginator import Paginator
 from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from django.core.paginator import Paginator
 
+from .forms import (IspGroupModelForm, IspModelForm,
+                    PrefixListUpdateTaskModelForm)
 from .models import Isp, IspGroup, PrefixListUpdateTask
-from .forms import IspModelForm, IspGroupModelForm, PrefixListUpdateTaskModelForm
 
 
 def isp_list(request):

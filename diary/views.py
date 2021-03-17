@@ -1,11 +1,12 @@
+from django.core.paginator import Paginator
 from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from django.core.paginator import Paginator
+
+from accounts.views import get_role
 
 from .forms import DiaryModelForm
 from .models import Diary
-from accounts.views import get_role
 
 
 def diary_list(request):

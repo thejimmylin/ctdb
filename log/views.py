@@ -1,12 +1,13 @@
 import json
+
+from django.contrib.auth import get_user_model
+from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.core.paginator import Paginator
+
+from accounts.views import get_role
 
 from .models import Log
-from accounts.views import get_role
-from django.contrib.auth import get_user_model
-
 
 User = get_user_model()
 

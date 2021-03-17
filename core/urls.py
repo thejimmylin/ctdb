@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import about
 from django.views.generic import RedirectView
+
+from .views import about
 
 urlpatterns = [
     path('about/', about, name='about'),

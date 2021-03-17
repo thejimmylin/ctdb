@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import reminder_list, reminder_create, reminder_update, reminder_delete, reminder_send_email
+
+from .views import (reminder_create, reminder_delete, reminder_list,
+                    reminder_send_email, reminder_update)
 
 app_name = 'reminder'
 

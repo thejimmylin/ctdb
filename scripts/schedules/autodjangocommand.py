@@ -1,8 +1,8 @@
+import json
 import os
 import time
-import schedule
-import json
 
+import schedule
 
 with open(r'..\..\secrets.json') as f:
     s = f.read()

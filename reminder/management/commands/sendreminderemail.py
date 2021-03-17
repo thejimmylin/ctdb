@@ -1,8 +1,9 @@
-from django.core.management.base import BaseCommand
-from reminder.models import Reminder
-from core.utils import today
-from django.core.mail import send_mail
 from django.conf import settings
+from django.core.mail import send_mail
+from django.core.management.base import BaseCommand
+
+from core.utils import today
+from reminder.models import Reminder
 
 
 class Command(BaseCommand):

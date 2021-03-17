@@ -1,12 +1,14 @@
 from django.conf import settings
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseNotFound
-from django.urls import reverse
-from .models import Reminder
-from .forms import ReminderModelForm
-from django.core.paginator import Paginator
-from accounts.views import get_role
 from django.core.mail import send_mail
+from django.core.paginator import Paginator
+from django.http import HttpResponseNotFound
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
+
+from accounts.views import get_role
+
+from .forms import ReminderModelForm
+from .models import Reminder
 
 
 def reminder_list(request):
