@@ -63,11 +63,12 @@ INSTALLED_APPS = [
 ]
 
 if DEBUG:
-    INSTALLED_APPS.append('django_extensions')
+    INSTALLED_APPS = INSTALLED_APPS + [
+        'django_extensions',
+    ]
 
 MIDDLEWARE = [
     # This allows us to handle static files with DEBUG = False and runserver
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # To enables language selection based on data from the request. Reference:
@@ -79,6 +80,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if DEBUG:
+    MIDDLEWARE = [
+        'whitenoise.middleware.WhiteNoiseMiddleware',
+    ] + MIDDLEWARE
 
 ROOT_URLCONF = 'ctdb.urls'
 
