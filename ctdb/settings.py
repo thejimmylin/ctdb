@@ -30,6 +30,13 @@ def get_value(key, path=BASE_DIR / 'secrets.json'):
     return value
 
 
+DEBUG = get_value('DEBUG')
+IS_PRODUCTION = get_value('IS_PRODUCTION')
+USE_WHITENOISE = get_value('USE_WHITENOISE')
+DATABASES_MSSQL_PASSWORD = get_value('DATABASES_MSSQL_PASSWORD')
+USE_GMAIL = get_value('USE_GMAIL')
+EMAIL_HOST_PASSWORD = get_value('EMAIL_HOST_PASSWORD')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -37,7 +44,7 @@ def get_value(key, path=BASE_DIR / 'secrets.json'):
 SECRET_KEY = 'va8k29j1o_=rs9bw!ym@s#b8zz3=9cmj_o731i$^6)9+z_9ob#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not get_value('IS_PRODUCTION')
+DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['*']
 
@@ -54,6 +61,8 @@ INSTALLED_APPS = [
     'log.apps.LogConfig',
     'telecom.apps.TelecomConfig',
     'reminder.apps.ReminderConfig',
+    'archive.apps.ArchiveConfig',
+    # Default Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,12 +72,29 @@ INSTALLED_APPS = [
 ]
 
 if DEBUG:
-    INSTALLED_APPS = INSTALLED_APPS + [
+    INSTALLED_APPS = [
+        # This package makes it easier to modify form/field attributes in Django templates.
+        'widget_tweaks',
+        'core.apps.CoreConfig',
+        'accounts.apps.AccountsConfig',
+        'diary.apps.DiaryConfig',
+        'day.apps.DayConfig',
+        'log.apps.LogConfig',
+        'telecom.apps.TelecomConfig',
+        'reminder.apps.ReminderConfig',
+        'archive.apps.ArchiveConfig',
+        # Default Apps
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        # For python manage.py shell_plus --print-sql
         'django_extensions',
     ]
 
 MIDDLEWARE = [
-    # This allows us to handle static files with DEBUG = False and runserver
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # To enables language selection based on data from the request. Reference:
@@ -81,10 +107,21 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-if DEBUG:
+if USE_WHITENOISE:
     MIDDLEWARE = [
+        'django.middleware.security.SecurityMiddleware',
+        # This allows us to handle static files with DEBUG = False and runserver
         'whitenoise.middleware.WhiteNoiseMiddleware',
-    ] + MIDDLEWARE
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        # To enables language selection based on data from the request. Reference:
+        # https://docs.djangoproject.com/en/3.1/topics/i18n/translation/#how-django-discovers-language-preference
+        'django.middleware.locale.LocaleMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    ]
 
 ROOT_URLCONF = 'ctdb.urls'
 
@@ -134,7 +171,7 @@ DATABASES_MSSQL = {
         'ENGINE': 'sql_server.pyodbc',
         'NAME': 'TDB',
         'USER': 'jimmy_lin',
-        'PASSWORD': get_value('DATABASES_MSSQL_PASSWORD'),
+        'PASSWORD': DATABASES_MSSQL_PASSWORD,
         'HOST': '10.210.31.15',
         'PORT': '',
         'OPTIONS': {
@@ -143,7 +180,7 @@ DATABASES_MSSQL = {
     },
 }
 
-IS_PRODUCTION = get_value('IS_PRODUCTION')
+
 if IS_PRODUCTION:
     DATABASES = DATABASES_MSSQL
 else:
@@ -209,9 +246,9 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = BASE_DIR / 'uploads'
+MEDIA_ROOT = BASE_DIR / 'media'
 
-MEDIA_URL = '/uploads/'
+MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'node_modules'
@@ -233,7 +270,7 @@ if USE_GMAIL:
     EMAIL_USE_TLS = True
     EMAIL_PORT = 587
     EMAIL_HOST_USER = 'j3ycode@gmail.com'
-    EMAIL_HOST_PASSWORD = get_value('EMAIL_HOST_PASSWORD')
+    EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
     DEFAULT_FROM_EMAIL = 'TDB <j3ycode@gmail.com>'
     SERVER_EMAIL = 'TDB <j3ycode@gmail.com>'
 else:
