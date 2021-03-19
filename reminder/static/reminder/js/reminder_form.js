@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const formRowEndAt = document.querySelector("#id_form_row_end_at");
     const formRowSpecifiedDates = document.querySelector("#id_form_row_specified_dates");
     // INIT
-    formRowSpecifiedDates.style.display = "";
+    formRowSpecifiedDates.style.display = "none";
     // Event
     inputPolicy.addEventListener("change", function(event) {
         if (inputPolicy.value === 'specified dates') {
