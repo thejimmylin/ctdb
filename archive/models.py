@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from .storage import UUIDFileSystemStorage
@@ -19,3 +20,12 @@ class Archive(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_create_url(self):
+        return reverse('archive:archive_create')
+
+    def get_update_url(self):
+        return reverse('archive:archive_update', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('archive:archive_delete', kwargs={'pk': self.pk})
