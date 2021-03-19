@@ -4,8 +4,9 @@ from django.urls import include, path
 
 from .static import static
 
-# App
+# Apps
 urlpatterns = [
+    path('', include('core.urls')),
     path('', include('accounts.urls')),
     path('', include('diary.urls')),
     path('', include('reminder.urls')),
@@ -15,10 +16,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-# Media (active only when DEBUG=True or USE_WHITENOISE=True)
+# Media things (active only when DEBUG=True or USE_WHITENOISE=True)
 if settings.DEBUG or settings.USE_WHITENOISE:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-urlpatterns += [
-    path('', include('core.urls')),
-]
