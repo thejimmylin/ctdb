@@ -104,7 +104,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{% url 'archive:archive_list' %}">{% trans 'Archive' %} | {% trans 'List' %}</a>
-                            <a class="dropdown-item" href="{% url 'archive:archive_create' %}">{% trans 'Archive' %} | {% trans 'Add' %}</a>
+                            {% if 'archive.archive_add' in perms %}<a class="dropdown-item" href="{% url 'archive:archive_create' %}">{% trans 'Archive' %} | {% trans 'Add' %}</a>{% endif %}
                         </div>
                     </li>
                     <li class="nav-item dropdown">

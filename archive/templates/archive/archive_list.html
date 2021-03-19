@@ -15,7 +15,9 @@
                 <div id="blankTop"></div>
                 <div id="toolBar" class="d-flex justify-content-between">
                     <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
+                    {% if 'archive.add_archive' in perms %}
                     <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% trans 'Add' %}</a>
+                    {% endif %}
                 </div>
                 <div class="table-responsive">
                     <table id="searchTable" class="table table-light table-borderless table-solid">
