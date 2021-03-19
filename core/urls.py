@@ -1,7 +1,7 @@
-from django.urls import path, include
+from django.urls import include, path
 from django.views.generic import RedirectView
 
-from .views import news, http404
+from .views import http404, news
 
 urlpatterns = [
     path('news/', news, name='news'),

@@ -6,7 +6,6 @@ from pathlib import Path
 
 from invoke import task
 
-
 # Basic parameters
 REPO_ROOT = Path(__file__).parent
 OS = platform.system().lower()

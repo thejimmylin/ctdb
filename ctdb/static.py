@@ -5,7 +5,6 @@ from django.core.exceptions import ImproperlyConfigured
 from django.urls import re_path
 from django.views.static import serve
 
-
 """
 Re-define a "static" function from django.conf.urls.static which works even when DEBUG = false.
 """

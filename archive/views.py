@@ -3,10 +3,10 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
 from accounts.views import get_role
+from core.views import http404
 
 from .forms import ArchiveModelForm
 from .models import Archive
-from core.views import http404
 
 
 def archive_list(request):
