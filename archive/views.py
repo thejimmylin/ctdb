@@ -2,9 +2,9 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.http.response import Http404
 
 from accounts.views import get_role
-from core.views import http404
 
 from .forms import ArchiveModelForm
 from .models import Archive
@@ -24,7 +24,7 @@ def archive_list(request):
         return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     for perm in required_perms:
         if not request.user.has_perm(perm):
-            return http404(request, path=request.path[1:])
+            raise Http404
     role = get_role(request)
     is_supervisor = request.user.groups.filter(name='Supervisors').exists()
     if is_supervisor:
@@ -64,7 +64,7 @@ def archive_create(request):
         return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     for perm in required_perms:
         if not request.user.has_perm(perm):
-            return http404(request, path=request.path[1:])
+            raise Http404
     if request.method == 'POST':
         instance = model(created_by=request.user)
         form = form_class(data=request.POST, files=request.FILES, instance=instance)
@@ -91,10 +91,10 @@ def archive_update(request, pk):
         return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     for perm in required_perms:
         if not request.user.has_perm(perm):
-            return http404(request, path=request.path[1:])
+            raise Http404
     instance = get_object_or_404(klass=model, pk=pk)
     if instance.created_by != request.user:
-        return http404(request, path=request.path[1:])
+        raise Http404
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -118,10 +118,10 @@ def archive_delete(request, pk):
         return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     for perm in required_perms:
         if not request.user.has_perm(perm):
-            return http404(request, path=request.path[1:])
+            raise Http404
     instance = get_object_or_404(klass=model, pk=pk)
     if instance.created_by != request.user:
-        return http404(request, path=request.path[1:])
+        raise Http404
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)

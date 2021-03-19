@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-19 14:33+0800\n"
+"POT-Creation-Date: 2021-03-19 23:15+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,7 +82,8 @@ msgstr "個人檔案"
 msgid "Profiles"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:60 .\telecom\models.py:11 .\telecom\models.py:42
+#: .\accounts\models.py:60 .\archive\templates\archive\archive_list.html:30
+#: .\telecom\models.py:11 .\telecom\models.py:42
 #: .\telecom\templates\telecom\isp_list.html:26
 #: .\telecom\templates\telecom\ispgroup_list.html:26
 msgid "Name"
@@ -97,7 +98,7 @@ msgid "Departments"
 msgstr "部門"
 
 #: .\accounts\templates\registration\base.html:10
-#: .\archive\templates\archive\base.html:10 .\core\templates\http404.html:29
+#: .\archive\templates\archive\base.html:10 .\core\templates\404.html:29
 #: .\core\templates\news.html:24 .\diary\templates\diary\base.html:10
 #: .\log\templates\log\base.html:10 .\reminder\templates\reminder\base.html:10
 #: .\telecom\templates\telecom\base.html:10
@@ -132,6 +133,7 @@ msgstr "建立"
 #: .\accounts\templates\registration\signup_with_account_and_password.html:18
 #: .\accounts\templates\registration\signup_with_email.html:18
 #: .\core\templates\standard_form.html:8
+#: .\core\templates\standard_form_with_file.html:8
 #: .\reminder\templates\reminder\reminder_form.html:19
 msgid "Please correct the error below."
 msgstr ""
@@ -144,6 +146,7 @@ msgstr ""
 #: .\accounts\templates\registration\signup_with_account_and_password.html:20
 #: .\accounts\templates\registration\signup_with_email.html:20
 #: .\core\templates\standard_form.html:10
+#: .\core\templates\standard_form_with_file.html:10
 #: .\reminder\templates\reminder\reminder_form.html:21
 msgid "Please correct the errors below."
 msgstr ""
@@ -225,7 +228,9 @@ msgstr "重置"
 
 #: .\accounts\templates\registration\profile_change.html:42
 #: .\core\templates\standard_action_dropdown.html:12
-#: .\core\templates\standard_form.html:49
+#: .\core\templates\standard_action_dropdown.html:18
+#: .\core\templates\standard_form.html:59
+#: .\core\templates\standard_form_with_file.html:68
 #: .\reminder\templates\reminder\reminder_action_dropdown.html:12
 #: .\reminder\templates\reminder\reminder_form.html:59
 msgid "Change"
@@ -258,12 +263,12 @@ msgstr "已經有帳號了嗎？"
 msgid "You have no access to this role."
 msgstr "你沒有此角色的存取權"
 
-#: .\archive\models.py:17 .\core\templates\base.html:103
+#: .\archive\models.py:18 .\core\templates\base.html:103
 #: .\core\templates\base.html:106 .\core\templates\base.html:107
 msgid "Archive"
 msgstr "檔案"
 
-#: .\archive\models.py:18
+#: .\archive\models.py:19
 msgid "Archives"
 msgstr "檔案"
 
@@ -277,7 +282,7 @@ msgid "Are you sure you want to delete this"
 msgstr "你確定要刪除這個"
 
 #: .\archive\templates\archive\archive_confirm_delete.html:13
-#: .\core\templates\http404.html:17
+#: .\core\templates\404.html:17
 #: .\diary\templates\diary\diary_confirm_delete.html:13
 #: .\reminder\templates\reminder\reminder_confirm_delete.html:13
 #: .\telecom\templates\telecom\isp_confirm_delete.html:13
@@ -296,11 +301,12 @@ msgstr ""
 msgid "Search.."
 msgstr "搜尋.."
 
-#: .\archive\templates\archive\archive_list.html:18
+#: .\archive\templates\archive\archive_list.html:19
 #: .\core\templates\base.html:71 .\core\templates\base.html:81
 #: .\core\templates\base.html:91 .\core\templates\base.html:94
 #: .\core\templates\base.html:97 .\core\templates\base.html:107
-#: .\core\templates\standard_form.html:46
+#: .\core\templates\standard_form.html:56
+#: .\core\templates\standard_form_with_file.html:65
 #: .\diary\templates\diary\diary_list.html:18
 #: .\reminder\templates\reminder\reminder_form.html:56
 #: .\reminder\templates\reminder\reminder_list.html:19
@@ -310,7 +316,7 @@ msgstr "搜尋.."
 msgid "Add"
 msgstr "新增"
 
-#: .\archive\templates\archive\archive_list.html:24
+#: .\archive\templates\archive\archive_list.html:26
 #: .\diary\templates\diary\diary_list.html:24 .\log\models.py:6
 #: .\log\templates\log\diary_log_list.html:23
 #: .\reminder\templates\reminder\reminder_list.html:25
@@ -320,7 +326,7 @@ msgstr "新增"
 msgid "Action"
 msgstr "動作"
 
-#: .\archive\templates\archive\archive_list.html:26 .\diary\models.py:23
+#: .\archive\templates\archive\archive_list.html:28 .\diary\models.py:23
 #: .\diary\templates\diary\diary_list.html:26 .\reminder\models.py:44
 #: .\reminder\templates\reminder\reminder_list.html:26 .\telecom\models.py:22
 #: .\telecom\models.py:45 .\telecom\models.py:83
@@ -330,34 +336,7 @@ msgstr "動作"
 msgid "Created by"
 msgstr "建立者"
 
-#: .\archive\templates\archive\archive_list.html:28 .\day\models.py:8
-#: .\diary\models.py:10 .\diary\templates\diary\diary_list.html:28
-msgid "Date"
-msgstr "日期"
-
-#: .\archive\templates\archive\archive_list.html:29 .\diary\models.py:12
-#: .\diary\templates\diary\diary_list.html:29
-msgid "Daily check"
-msgstr "日檢核"
-
-#: .\archive\templates\archive\archive_list.html:30 .\diary\models.py:20
-#: .\diary\templates\diary\diary_list.html:30
-msgid "Daily record"
-msgstr "日常紀錄"
-
-#: .\archive\templates\archive\archive_list.html:31 .\diary\models.py:21
-#: .\diary\templates\diary\diary_list.html:31
-msgid "To do"
-msgstr "待辦事項"
-
-#: .\archive\templates\archive\archive_list.html:32 .\diary\models.py:22
-#: .\diary\templates\diary\diary_list.html:32 .\telecom\models.py:21
-#: .\telecom\models.py:44 .\telecom\models.py:82
-#: .\telecom\templates\telecom\ispgroup_list.html:28
-msgid "Remark"
-msgstr "備註"
-
-#: .\archive\templates\archive\archive_list.html:54
+#: .\archive\templates\archive\archive_list.html:46
 #: .\diary\templates\diary\diary_list.html:54
 #: .\log\templates\log\diary_log_list.html:37
 #: .\reminder\templates\reminder\reminder_list.html:56
@@ -367,8 +346,8 @@ msgstr "備註"
 msgid "No entries."
 msgstr "沒有條目"
 
-#: .\archive\templates\archive\archive_list.html:64
-#: .\archive\templates\archive\archive_list.html:68
+#: .\archive\templates\archive\archive_list.html:56
+#: .\archive\templates\archive\archive_list.html:60
 #: .\diary\templates\diary\diary_list.html:64
 #: .\diary\templates\diary\diary_list.html:68
 #: .\log\templates\log\diary_log_list.html:47
@@ -384,8 +363,8 @@ msgstr "沒有條目"
 msgid "Previous"
 msgstr "上一頁"
 
-#: .\archive\templates\archive\archive_list.html:73
-#: .\archive\templates\archive\archive_list.html:77
+#: .\archive\templates\archive\archive_list.html:65
+#: .\archive\templates\archive\archive_list.html:69
 #: .\diary\templates\diary\diary_list.html:73
 #: .\diary\templates\diary\diary_list.html:77
 #: .\log\templates\log\diary_log_list.html:56
@@ -401,7 +380,7 @@ msgstr "上一頁"
 msgid "Next"
 msgstr "下一頁"
 
-#: .\archive\templates\archive\archive_list.html:81
+#: .\archive\templates\archive\archive_list.html:73
 #: .\diary\templates\diary\diary_list.html:81
 #: .\log\templates\log\diary_log_list.html:64
 #: .\reminder\templates\reminder\reminder_list.html:83
@@ -431,14 +410,35 @@ msgstr "不知道怎麼做嗎？"
 msgid "Example"
 msgstr "範例"
 
+#: .\core\models.py:12
+msgid "New"
+msgstr "最新消息"
+
+#: .\core\models.py:13 .\core\templates\base.html:62
+#: .\core\templates\news.html:11
+msgid "News"
+msgstr "最新消息"
+
+#: .\core\templates\404.html:11
+msgid "404"
+msgstr ""
+
+#: .\core\templates\404.html:14
+msgid "Page not found."
+msgstr "找不到該網頁"
+
+#: .\core\templates\404.html:17
+msgid "May be you want to back to "
+msgstr "也許你想要回到"
+
+#: .\core\templates\404.html:17
+msgid "homepage"
+msgstr "首頁"
+
 #: .\core\templates\base.html:29 .\core\templates\base.html:53
 #: .\core\templates\base.html:181
 msgid "TDB"
 msgstr ""
-
-#: .\core\templates\base.html:62 .\core\templates\news.html:11
-msgid "News"
-msgstr "最新消息"
 
 #: .\core\templates\base.html:67 .\core\templates\base.html:70
 #: .\core\templates\base.html:71 .\core\templates\base.html:116
@@ -496,44 +496,26 @@ msgstr "沒有可用的部門"
 msgid "Guest"
 msgstr "訪客"
 
-#: .\core\templates\http404.html:11
-msgid "404"
-msgstr ""
-
-#: .\core\templates\http404.html:14
-msgid "Page not found."
-msgstr "找不到該網頁"
-
-#: .\core\templates\http404.html:17
-#, python-format
-msgid "There is nothing found at /%(path)s."
-msgstr "在 /%(path)s 沒有找到東西。"
-
-#: .\core\templates\http404.html:17
-msgid " May be you want to back to "
-msgstr "也許你想要回到"
-
-#: .\core\templates\http404.html:17
-msgid "homepage"
-msgstr "首頁"
-
-#: .\core\templates\standard_action_dropdown.html:7
+#: .\core\templates\standard_action_dropdown.html:6
 #: .\reminder\templates\reminder\reminder_action_dropdown.html:7
 msgid "Choose"
 msgstr "選擇"
 
-#: .\core\templates\standard_action_dropdown.html:14
+#: .\core\templates\standard_action_dropdown.html:15
+#: .\core\templates\standard_action_dropdown.html:19
 #: .\core\templates\standard_confirm_delete_form.html:7
 #: .\reminder\templates\reminder\reminder_action_dropdown.html:14
 msgid "Delete"
 msgstr "刪除"
 
-#: .\core\templates\standard_action_dropdown.html:18
+#: .\core\templates\standard_action_dropdown.html:24
 #: .\reminder\templates\reminder\reminder_action_dropdown.html:22
 msgid "No available options"
 msgstr "沒有可用的選項"
 
-#: .\core\templates\standard_form.html:26
+#: .\core\templates\standard_form.html:31
+#: .\core\templates\standard_form_with_file.html:31
+#: .\core\templates\standard_form_with_file.html:40
 #: .\reminder\templates\reminder\reminder_form.html:36
 msgid ":"
 msgstr ""
@@ -605,6 +587,11 @@ msgstr ""
 "\"%(date)s\" 不是一個可用的日期。請輸入格式為 \"yyyy-mm-dd\" 的日期。多個日期"
 "應以 \"%(seperator)s\" 隔開。"
 
+#: .\day\models.py:8 .\diary\models.py:10
+#: .\diary\templates\diary\diary_list.html:28
+msgid "Date"
+msgstr "日期"
+
 #: .\day\models.py:13
 msgid "Is holiday"
 msgstr "是假日"
@@ -621,6 +608,10 @@ msgstr "日子"
 msgid "The diary with this date has already existed."
 msgstr "這個日期的日誌已經存在。"
 
+#: .\diary\models.py:12 .\diary\templates\diary\diary_list.html:29
+msgid "Daily check"
+msgstr "日檢核"
+
 #: .\diary\models.py:15 .\reminder\templates\reminder\reminder_list.html:44
 msgid "Yes"
 msgstr ""
@@ -628,6 +619,20 @@ msgstr ""
 #: .\diary\models.py:16 .\reminder\templates\reminder\reminder_list.html:44
 msgid "No"
 msgstr ""
+
+#: .\diary\models.py:20 .\diary\templates\diary\diary_list.html:30
+msgid "Daily record"
+msgstr "日常紀錄"
+
+#: .\diary\models.py:21 .\diary\templates\diary\diary_list.html:31
+msgid "To do"
+msgstr "待辦事項"
+
+#: .\diary\models.py:22 .\diary\templates\diary\diary_list.html:32
+#: .\telecom\models.py:21 .\telecom\models.py:44 .\telecom\models.py:82
+#: .\telecom\templates\telecom\ispgroup_list.html:28
+msgid "Remark"
+msgstr "備註"
 
 #: .\log\models.py:7
 msgid "APP label"
@@ -894,6 +899,10 @@ msgstr "prefix list 更新任務"
 #: .\telecom\templates\telecom\isp_list.html:27
 msgid "Chinese name"
 msgstr "中文名稱"
+
+#, python-format
+#~ msgid "There is nothing found at /%(path)s."
+#~ msgstr "在 /%(path)s 沒有找到東西。"
 
 #~ msgid "Back to "
 #~ msgstr "回到"

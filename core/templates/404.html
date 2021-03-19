@@ -14,7 +14,7 @@
           {% trans 'Page not found.' %}
         </p>
         <br>
-        <p class="text-center">{% blocktranslate %}There is nothing found at /{{ path }}.{% endblocktranslate %}{% trans ' May be you want to back to ' %}<a class="text-decoration-none" href="{% url 'index' %}">{% trans 'homepage' %}</a>{% trans '?' %}</p>
+        <p class="text-center">{% trans 'May be you want to back to ' %}<a class="text-decoration-none" href="{% url 'index' %}">{% trans 'homepage' %}</a>{% trans '?' %}</p>
       </div>
     </div>
   </div>
