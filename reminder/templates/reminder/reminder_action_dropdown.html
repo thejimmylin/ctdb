@@ -13,6 +13,8 @@
         <a class="dropdown-item"
             href="{{ obj.get_delete_url }}">{% trans 'Delete' %}</a>
         <a class="dropdown-item"
+            href="{{ obj.get_clone_url }}">{% trans 'Clone' %}</a>
+        <a class="dropdown-item"
             href="{{ obj.get_send_email_url }}">{% trans 'Send Email' %}</a>
     </div>
     {% else %}

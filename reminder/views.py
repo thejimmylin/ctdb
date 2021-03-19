@@ -94,6 +94,30 @@ def reminder_delete(request, pk):
     return render(request, template_name, context)
 
 
+def reminder_clone(request, pk):
+    model = Reminder
+    form_class = ReminderModelForm
+    template_name = 'reminder/reminder_form.html'
+    success_url = reverse('reminder:reminder_list')
+    form_buttons = ['create']
+    if not request.user.is_authenticated:
+        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
+    instance = get_object_or_404(klass=model, pk=pk)
+    if instance.created_by != request.user:
+        return HttpResponseNotFound('')
+    instance.pk = None
+    if request.method == 'POST':
+        form = form_class(data=request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect(success_url)
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+        return render(request, template_name, context)
+    form = form_class(instance=instance)
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+    return render(request, template_name, context)
+
+
 def reminder_send_email(request, pk):
     model = Reminder
     template_name = 'reminder/reminder_confirm_send_email.html'
