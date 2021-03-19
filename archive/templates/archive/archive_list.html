@@ -21,15 +21,11 @@
                     <table id="searchTable" class="table table-light table-borderless table-solid">
                         <thead>
                             <tr>
-                                <th>{% trans 'Action' %}</th>
+                                <th style="width: 1px;">{% trans 'Action' %}</th>
                                 {% if is_supervisor %}
-                                <th>{% trans 'Created by' %}</th>
+                                <th style="width: 1px;">{% trans 'Created by' %}</th>
                                 {% endif %}
-                                <th>{% trans 'Date' %}</th>
-                                <th>{% trans 'Daily check' %}</th>
-                                <th style="min-width: 400px;">{% trans 'Daily record' %}</th>
-                                <th style="min-width: 400px;">{% trans 'To do' %}</th>
-                                <th style="min-width: 250px;">{% trans 'Remark' %}</th>
+                                <th>{% trans 'Name' %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,13 +37,7 @@
                                 {% if is_supervisor %}
                                 <td class="text-nowrap">{{ obj.created_by }}</td>
                                 {% endif %}
-                                <td class="text-nowrap">{{ obj.date|date:"Y-m-d" }}</td>
-                                <td class="text-nowrap">
-                                    {{ obj.get_daily_check_display }}
-                                </td>
-                                <td>{{ obj.daily_record|safe|linebreaks }}</td>
-                                <td>{{ obj.todo|safe|linebreaks }}</td>
-                                <td>{{ obj.remark|safe|linebreaks }}</td>
+                                <td class="text-nowrap">{{ obj.name }}</td>
                             </tr>
                             {% empty %}
                             <tr>

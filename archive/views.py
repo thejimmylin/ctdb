@@ -46,7 +46,7 @@ def archive_create(request):
         return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     if request.method == 'POST':
         instance = model(created_by=request.user)
-        form = form_class(data=request.POST, instance=instance)
+        form = form_class(data=request.POST, files=request.FILES, instance=instance)
         if form.is_valid():
             instance = form.save()
             return redirect(success_url)

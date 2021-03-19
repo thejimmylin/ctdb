@@ -4,6 +4,7 @@ from django.urls import include, path
 
 from .static import static
 
+# App
 urlpatterns = [
     path('', include('accounts.urls')),
     path('', include('diary.urls')),
@@ -12,8 +13,12 @@ urlpatterns = [
     path('', include('archive.urls')),
     path('log/', include('log.urls')),
     path('admin/', admin.site.urls),
-    path('', include('core.urls')),
 ]
 
+# Media (active only when DEBUG=True or USE_WHITENOISE=True)
 if settings.DEBUG or settings.USE_WHITENOISE:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += [
+    path('', include('core.urls')),
+]
