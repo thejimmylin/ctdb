@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required, permission_required
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -9,6 +10,8 @@ from .forms import ArchiveModelForm
 from .models import Archive
 
 
+@login_required
+@permission_required('archive.archive_view')
 def archive_list(request):
     model = Archive
     use_pagination = True
