@@ -43,6 +43,11 @@ class Reminder(models.Model):
     )
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
+    class Meta():
+        ordering = ['-id']
+        verbose_name = _('Reminder')
+        verbose_name_plural = _('Reminders')
+
     def get_create_url(self):
         return reverse('reminder:reminder_create')
 

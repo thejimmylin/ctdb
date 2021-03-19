@@ -15,7 +15,9 @@ class Day(models.Model):
     )
 
     class Meta():
-        ordering = ['-date']
+        ordering = ['date']
+        verbose_name = _('Day')
+        verbose_name_plural = _('Days')
 
     def __str__(self):
         day_type_string = '"H"' if self.is_holiday else '"W"'

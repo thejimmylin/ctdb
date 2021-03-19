@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid max-w-24u">
+    <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
+      <div class="col-12">
+        <p class="display-1 text-center">
+          {% trans '404' %}
+        </p>
+        <p class="h1 font-weight-normal text-center">
+          {% trans 'Page not found.' %}
+        </p>
+        <br>
+        <p class="text-center">{% blocktranslate %}There is nothing found at /{{ path }}.{% endblocktranslate %}{% trans ' May be you want to back to ' %}<a class="text-decoration-none" href="{% url 'index' %}">{% trans 'homepage' %}</a>{% trans '?' %}</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+<footer class="footer footer-foot mt-n-footer-foot">
+  <div class="container-fluid max-w-24u">
+    <div class="row justify-content-center">
+      <div class="col text-center text-secondary small">
+        {% trans '© 2020 All rights reserved.' %}
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}

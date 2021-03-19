@@ -1,5 +1,10 @@
 from django.shortcuts import render
 
 
-def about(request):
-    return render(request, 'about.html')
+def news(request):
+    return render(request, 'news.html')
+
+
+def http404(request, path):
+    context = {'path': path}
+    return render(request, 'http404.html', context)

@@ -1,17 +1,18 @@
+from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
-from django.conf import settings
+
 from .static import static
 
 urlpatterns = [
-    path('', include('core.urls')),
-    path('admin/', admin.site.urls),
-    path('auth/', include('accounts.urls')),
-    path('diary/', include('diary.urls')),
+    path('', include('accounts.urls')),
+    path('', include('diary.urls')),
+    path('', include('reminder.urls')),
+    path('', include('telecom.urls')),
+    path('', include('archive.urls')),
     path('log/', include('log.urls')),
-    path('telecom/', include('telecom.urls')),
-    path('reminder/', include('reminder.urls')),
-    path('i18n/', include('django.conf.urls.i18n')),
+    path('admin/', admin.site.urls),
+    path('', include('core.urls')),
 ]
 
 if settings.DEBUG or settings.USE_WHITENOISE:
