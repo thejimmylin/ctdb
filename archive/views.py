@@ -11,7 +11,7 @@ from .models import Archive
 
 
 @login_required
-@permission_required('archive.archive_view')
+@permission_required('archive.archive_view', raise_exception=True)
 def archive_list(request):
     model = Archive
     use_pagination = True
