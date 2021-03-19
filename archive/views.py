@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -8,10 +8,11 @@ from accounts.views import get_role
 
 from .forms import ArchiveModelForm
 from .models import Archive
+from core.decorators import permission_required
 
 
 @login_required
-@permission_required('archive.archive_view', raise_exception=True)
+@permission_required('archive.archive_view', raise_exception=True, exception=Http404)
 def archive_list(request):
     model = Archive
     use_pagination = True
@@ -20,8 +21,6 @@ def archive_list(request):
     order_by = ('-pk', )
     required_perms = []
     dropdown_actions = ['update', 'delete']
-    if not request.user.is_authenticated:
-        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     for perm in required_perms:
         if not request.user.has_perm(perm):
             raise Http404
