@@ -1,8 +1,5 @@
 {% extends 'telecom/base.html' %}
-{% load i18n %}
-{% load static %}
-{% load widget_tweaks %}
-{% load custom_templatetags %}
+{% load static i18n widget_tweaks custom_templatetags %}
 
 {% block extracss %}
 <link rel="stylesheet" href="{% static 'css/table_list_view.css' %}">
@@ -10,79 +7,59 @@
 
 {% block content %}
 <section class="content">
-    <div class="container-fluid max-w-24u">
-        <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
-            <div class="col">
-                <div id="blankTop"></div>
-                <div id="toolbar" class="d-flex justify-content-between">
-                    <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
-                    <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% trans 'Add' %}</a>
-                </div>
-                <div class="table-responsive">
-                    <table id="searchTable" class="table table-bordered table-solid">
-                        <thead>
-                            <tr>
-                                <th style="width: 1px;">{% trans 'Action' %}</th>
-                                <th style="width: 1px;">{% trans 'Created by' %}</th>
-                                <th style="width: 1px;">{% trans 'Update type' %}</th>
-                                <th style="width: 1px;">{% trans 'ISPs' %}</th>
-                                <th style="width: 1px;">{% trans 'ISP groups' %}</th>
-                                <th style="width: 1px;">{% trans 'Origin AS' %}</th>
-                                <th style="width: 1px;">{% trans 'AS path' %}</th>
-                                <th style="width: 100%;">{% trans 'Prefix-list' %}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for obj in object_list %}
-                            <tr>
-                                <td class="text-nowrap">
-                                    {% include 'standard_action_dropdown.html' %}
-                                </td>
-                                <td class="text-nowrap">{{ obj.created_by }}</td>
-                                <td class="text-nowrap">{{ obj.get_update_type_display }}</td>
-                                <td class="text-nowrap">{{ obj.isps_as_str|linebreaks }}</td>
-                                <td class="text-nowrap">{{ obj.isp_group_as_str|linebreaks }}</td>
-                                <td class="text-nowrap">{{ obj.origin_as }}</td>
-                                <td class="text-nowrap">{{ obj.as_path }}</td>
-                                <td class="text-nowrap">{{ obj.prefix_list|linebreaks }}</td>
-                            </tr>
-                            {% empty %}
-                            <tr>
-                                <td class='text-center text-secondary' colspan="100%">{% trans 'No entries.' %}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                {% if is_paginated %}
-                <ul class="pagination">
-                    {% if page_obj.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans 'Previous' %}</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">{% trans 'Previous' %}</a>
-                    </li>
-                    {% endif %}
-                    {% if page_obj.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans 'Next' %}</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">{% trans 'Next' %}</a>
-                    </li>
-                    {% endif %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page=all">{% trans 'All' %}</a>
-                    </li>
-                </ul>
-                {% endif %}
-                <div id="blankButtom"></div>
-            </div>
+  <div class="container-fluid max-w-24u">
+    <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
+      <div class="col">
+        <div id="blankTop"></div>
+        <div id="toolbar" class="d-flex justify-content-between">
+          <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
+          {% if 'create' in toolbar_actions %}
+          <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% trans 'Add' %}</a>
+          {% endif %}
         </div>
+        <div class="table-responsive">
+          <table id="searchTable" class="table table-light table-borderless table-solid">
+            <thead>
+              <tr>
+                <th style="width: 1px;">{% trans 'Action' %}</th>
+                <th style="width: 1px;">{% trans 'Created by' %}</th>
+                <th style="width: 1px;">{% trans 'Update type' %}</th>
+                <th style="width: 1px;">{% trans 'ISPs' %}</th>
+                <th style="width: 1px;">{% trans 'ISP groups' %}</th>
+                <th style="width: 1px;">{% trans 'Origin AS' %}</th>
+                <th style="width: 1px;">{% trans 'AS path' %}</th>
+                <th style="width: 100%;">{% trans 'Prefix-list' %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for obj in object_list %}
+              <tr>
+                <td class="text-nowrap">
+                  {% include 'standard_action_dropdown.html' %}
+                </td>
+                <td class="text-nowrap">{{ obj.created_by }}</td>
+                <td class="text-nowrap">{{ obj.get_update_type_display }}</td>
+                <td class="text-nowrap">{{ obj.isps_as_str|linebreaks }}</td>
+                <td class="text-nowrap">{{ obj.isp_group_as_str|linebreaks }}</td>
+                <td class="text-nowrap">{{ obj.origin_as }}</td>
+                <td class="text-nowrap">{{ obj.as_path }}</td>
+                <td class="text-nowrap">{{ obj.prefix_list|linebreaks }}</td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td class='text-center text-secondary' colspan="100%">{% trans 'No entries.' %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% if is_paginated %}
+        {% include 'standard_pagination.html' %}
+        {% endif %}
+        <div id="blankButtom"></div>
+      </div>
     </div>
+  </div>
 </section>
 {% endblock %}
 
