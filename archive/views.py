@@ -14,32 +14,27 @@ from .models import Archive
 @permission_required('archive.view_archive', raise_exception=True, exception=Http404)
 def archive_list(request):
     model = Archive
-    order_by = ['-pk']
-    use_pagination = True
     paginate_by = 5
-    template_name = 'archive/archive_list.html'
+    toolbar_actions = ['create']
     dropdown_actions = ['update', 'delete']
+    template_name = 'archive/archive_list.html'
     role = request.session.get('role', request.user.profile.get_default_role())
     is_supervisor = request.user.groups.filter(name='Supervisors').exists()
     if is_supervisor:
         qs = model.objects.filter(created_by__profile__department__name=role)
     else:
         qs = model.objects.filter(created_by=request.user)
-    qs_ordered = qs.order_by(*order_by)
-    paginator = Paginator(qs_ordered, paginate_by)
-    page_number = request.GET.get('page')
-    if str(page_number).lower() == 'all':
-        is_paginated = False
-    else:
-        page_obj = paginator.get_page(page_number)
-        is_paginated = use_pagination and page_obj.has_other_pages()
-    object_list = page_obj if is_paginated else qs_ordered
+    page_number = request.GET.get('page', '')
+    paginator = Paginator(qs, paginate_by)
+    page_obj = paginator.get_page(page_number)
+    is_paginated = page_number.lower() != 'all' and page_obj.has_other_pages()
     context = {
         'model': model,
         'page_obj': page_obj,
-        'object_list': object_list,
+        'object_list': page_obj if is_paginated else qs,
         'is_paginated': is_paginated,
         'is_supervisor': is_supervisor,
+        'toolbar_actions': toolbar_actions,
         'dropdown_actions': dropdown_actions,
     }
     return render(request, template_name, context)
