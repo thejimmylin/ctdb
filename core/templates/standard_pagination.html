@@ -1,0 +1,24 @@
+{% load i18n %}
+<ul class="pagination">
+  {% if page_obj.has_previous %}
+  <li class="page-item">
+    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans 'Previous' %}</a>
+  </li>
+  {% else %}
+  <li class="page-item disabled">
+    <a class="page-link" href="#">{% trans 'Previous' %}</a>
+  </li>
+  {% endif %}
+  {% if page_obj.has_next %}
+  <li class="page-item">
+    <a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans 'Next' %}</a>
+  </li>
+  {% else %}
+  <li class="page-item disabled">
+    <a class="page-link" href="#">{% trans 'Next' %}</a>
+  </li>
+  {% endif %}
+  <li class="page-item">
+    <a class="page-link" href="?page=all">{% trans 'All' %}</a>
+  </li>
+</ul>

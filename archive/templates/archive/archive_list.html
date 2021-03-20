@@ -1,7 +1,5 @@
 {% extends 'archive/base.html' %}
-{% load i18n %}
-{% load static %}
-{% load widget_tweaks %}
+{% load static i18n widget_tweaks %}
 
 {% block extracss %}
 <link rel="stylesheet" href="{% static 'css/table_list_view.css' %}">
@@ -9,75 +7,51 @@
 
 {% block content %}
 <section class="content">
-    <div class="container-fluid max-w-24u">
-        <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
-            <div class="col">
-                <div id="blankTop"></div>
-                <div id="toolBar" class="d-flex justify-content-between">
-                    <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
-                    {% if 'archive.add_archive' in perms %}
-                    <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% trans 'Add' %}</a>
-                    {% endif %}
-                </div>
-                <div class="table-responsive">
-                    <table id="searchTable" class="table table-light table-borderless table-solid">
-                        <thead>
-                            <tr>
-                                <th style="width: 1px;">{% trans 'Action' %}</th>
-                                {% if is_supervisor %}
-                                <th style="width: 1px;">{% trans 'Created by' %}</th>
-                                {% endif %}
-                                <th>{% trans 'Name' %}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for obj in object_list %}
-                            <tr>
-                                <td class="text-nowrap">
-                                {% include 'standard_action_dropdown.html' %}
-                                </td>
-                                {% if is_supervisor %}
-                                <td class="text-nowrap">{{ obj.created_by }}</td>
-                                {% endif %}
-                                <td class="text-nowrap">{{ obj.name }}</td>
-                            </tr>
-                            {% empty %}
-                            <tr>
-                                <td class='text-center text-secondary' colspan="100%">{% trans 'No entries.' %}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                {% if is_paginated %}
-                <ul class="pagination">
-                    {% if page_obj.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans 'Previous' %}</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">{% trans 'Previous' %}</a>
-                    </li>
-                    {% endif %}
-                    {% if page_obj.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans 'Next' %}</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">{% trans 'Next' %}</a>
-                    </li>
-                    {% endif %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page=all">{% trans 'All' %}</a>
-                    </li>
-                </ul>
-                {% endif %}
-                <div id="blankButtom"></div>
-            </div>
+  <div class="container-fluid max-w-24u">
+    <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
+      <div class="col">
+        <div id="blankTop"></div>
+        <div id="toolbar" class="d-flex justify-content-between">
+          <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
+          {% if 'create' in toolbar_actions %}
+          <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% trans 'Add' %}</a>
+          {% endif %}
         </div>
+        <div class="table-responsive">
+          <table id="searchTable" class="table table-light table-borderless table-solid">
+            <thead>
+              <tr>
+                <th style="width: 1px;">{% trans 'Action' %}</th>
+                {% if is_supervisor %}
+                <th style="width: 1px;">{% trans 'Created by' %}</th>
+                {% endif %}
+                <th style="width: 100%">{% trans 'Name' %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for obj in object_list %}
+              <tr>
+                <td class="text-nowrap">{% include 'standard_action_dropdown.html' %}</td>
+                {% if is_supervisor %}
+                <td class="text-nowrap">{{ obj.created_by }}</td>
+                {% endif %}
+                <td class="text-nowrap">{{ obj.name }}</td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td class='text-center text-secondary' colspan="100%">{% trans 'No entries.' %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% if is_paginated %}
+        {% include 'standard_pagination.html' %}
+        {% endif %}
+        <div id="blankButtom"></div>
+      </div>
     </div>
+  </div>
 </section>
 {% endblock %}
 
