@@ -2,8 +2,6 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
-from accounts.views import get_role
-
 from .forms import DiaryModelForm
 from .models import Diary
 
@@ -16,7 +14,7 @@ def diary_list(request):
     order_by = ('-date', '-pk')
     if not request.user.is_authenticated:
         return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
-    role = get_role(request)
+    role = request.session.get('role', request.user.profile.get_default_role())
     is_supervisor = request.user.groups.filter(name='Supervisors').exists()
     if is_supervisor:
         qs = model.objects.filter(created_by__profile__department__name=role)
@@ -66,7 +64,7 @@ def diary_update(request, pk):
         return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     instance = get_object_or_404(klass=model, pk=pk)
     if instance.created_by != request.user:
-        return http404(request, path=request.path[1:])
+        raise Http404
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -87,7 +85,7 @@ def diary_delete(request, pk):
         return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     instance = get_object_or_404(klass=model, pk=pk)
     if instance.created_by != request.user:
-        return http404(request, path=request.path[1:])
+        raise Http404
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)

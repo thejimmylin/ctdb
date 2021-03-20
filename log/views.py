@@ -5,8 +5,6 @@ from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from accounts.views import get_role
-
 from .models import Log
 
 User = get_user_model()
@@ -20,7 +18,7 @@ def diary_log_list(request):
     order_by = ('-id', )
     if not request.user.is_authenticated:
         return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
-    role = get_role(request)  # NOQA, to be used
+    role = request.session.get('role', request.user.profile.get_default_role())
     is_supervisor = request.user.groups.filter(name='Supervisors').exists()
     qs = model.objects.all().order_by(*order_by).values()
     object_list = []

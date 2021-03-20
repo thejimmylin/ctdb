@@ -1,5 +1,5 @@
-from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import user_passes_test
+from django.core.exceptions import PermissionDenied
 
 
 def permission_required(perm, login_url=None, raise_exception=False, exception=PermissionDenied):

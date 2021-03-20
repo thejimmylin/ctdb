@@ -94,16 +94,3 @@ def set_role(request, role):
         return redirect(reverse('index'))
     request.session['role'] = role
     return redirect(request.META.get('HTTP_REFERER', '/'))
-
-
-def get_role(request):
-    """
-    Not a view. This function get the role for a given request.
-    It detects the role set in session of the request. If there's not one,
-    use the first result of profile-department of user.
-    """
-    user = request.user
-    departments = user.profile.department.all()
-    default_role = departments.first().name if departments.exists() else ''
-    role = request.session.get('role', default_role)
-    return role

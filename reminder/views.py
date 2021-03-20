@@ -4,8 +4,6 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
-from accounts.views import get_role
-
 from .forms import ReminderModelForm
 from .models import Reminder
 
@@ -18,7 +16,7 @@ def reminder_list(request):
     order_by = ('-pk', )
     if not request.user.is_authenticated:
         return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
-    role = get_role(request)
+    role = request.session.get('role', request.user.profile.get_default_role())
     qs = model.objects.filter(created_by__profile__department__name=role)
     qs_ordered = qs.order_by(*order_by)
     paginator = Paginator(qs_ordered, paginate_by)

@@ -53,6 +53,16 @@ class Profile(models.Model):
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
 
+    def get_available_roles(self):
+        roles = [i.name for i in self.department.all()]
+        return roles
+
+    def get_default_role(self):
+        roles = self.get_available_roles()
+        if roles:
+            return roles[0]
+        return ''
+
 
 class Department(models.Model):
 
