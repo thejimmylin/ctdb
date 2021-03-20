@@ -1,51 +1,57 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.http.response import Http404
+from core.decorators import permission_required
 
 from .forms import DiaryModelForm
 from .models import Diary
 
 
+@login_required
+@permission_required('diary.view_diary', raise_exception=True, exception=Http404)
 def diary_list(request):
     model = Diary
-    use_pagination = True
     paginate_by = 5
+    toolbar_actions = ['create']
+    dropdown_actions = ['update', 'delete']
     template_name = 'diary/diary_list.html'
-    order_by = ('-date', '-pk')
-    if not request.user.is_authenticated:
-        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     role = request.session.get('role', request.user.profile.get_default_role())
     is_supervisor = request.user.groups.filter(name='Supervisors').exists()
     if is_supervisor:
         qs = model.objects.filter(created_by__profile__department__name=role)
     else:
         qs = model.objects.filter(created_by=request.user)
-    qs_ordered = qs.order_by(*order_by)
-    paginator = Paginator(qs_ordered, paginate_by)
-    page_number = request.GET.get('page')
+    page_number = request.GET.get('page', '')
+    paginator = Paginator(qs, paginate_by)
     page_obj = paginator.get_page(page_number)
-    if str(page_number).lower() == 'all':
-        is_paginated = False
-    else:
-        is_paginated = use_pagination and page_obj.has_other_pages()
-    object_list = page_obj if is_paginated else qs_ordered
-    context = {'model': model, 'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, 'is_supervisor': is_supervisor, }
+    is_paginated = page_number.lower() != 'all' and page_obj.has_other_pages()
+    context = {
+        'model': model,
+        'page_obj': page_obj,
+        'object_list': page_obj if is_paginated else qs,
+        'is_paginated': is_paginated,
+        'is_supervisor': is_supervisor,
+        'toolbar_actions': toolbar_actions,
+        'dropdown_actions': dropdown_actions,
+    }
     return render(request, template_name, context)
 
 
+@login_required
+@permission_required('diary.add_diary', raise_exception=True, exception=Http404)
 def diary_create(request):
     model = Diary
+    instance = model(created_by=request.user)
     form_class = DiaryModelForm
-    template_name = 'diary/diary_form.html'
     success_url = reverse('diary:diary_list')
+    template_name = 'diary/diary_form.html'
     form_buttons = ['create']
-    if not request.user.is_authenticated:
-        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     if request.method == 'POST':
-        instance = model(created_by=request.user)
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
-            instance = form.save()
+            form.save()
             return redirect(success_url)
         context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
@@ -54,15 +60,15 @@ def diary_create(request):
     return render(request, template_name, context)
 
 
+@login_required
+@permission_required('diary.change_diary', raise_exception=True, exception=Http404)
 def diary_update(request, pk):
     model = Diary
-    form_class = DiaryModelForm
-    template_name = 'diary/diary_form.html'
-    success_url = reverse('diary:diary_list')
-    form_buttons = ['update']
-    if not request.user.is_authenticated:
-        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     instance = get_object_or_404(klass=model, pk=pk)
+    form_class = DiaryModelForm
+    success_url = reverse('diary:diary_list')
+    template_name = 'diary/diary_form.html'
+    form_buttons = ['update']
     if instance.created_by != request.user:
         raise Http404
     if request.method == 'POST':
@@ -77,13 +83,13 @@ def diary_update(request, pk):
     return render(request, template_name, context)
 
 
+@login_required
+@permission_required('diary.diary_archive', raise_exception=True, exception=Http404)
 def diary_delete(request, pk):
     model = Diary
-    template_name = 'diary/diary_confirm_delete.html'
-    success_url = reverse('diary:diary_list')
-    if not request.user.is_authenticated:
-        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     instance = get_object_or_404(klass=model, pk=pk)
+    success_url = reverse('diary:diary_list')
+    template_name = 'diary/diary_confirm_delete.html'
     if instance.created_by != request.user:
         raise Http404
     if request.method == 'POST':
