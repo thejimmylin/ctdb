@@ -62,59 +62,93 @@
                         {% trans 'News' %}
                     </a>
                     <li class="nav-item dropdown">
+                        {% if perms.diary.view_diary or perms.diary.add_diary %}
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             {% trans 'Diary' %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if perms.diary.view_diary %}
                             <a class="dropdown-item" href="{% url 'diary:diary_list' %}">{% trans 'Diary' %} | {% trans 'List' %}</a>
+                            {% endif %}
+                            {% if perms.diary.add_diary %}
                             <a class="dropdown-item" href="{% url 'diary:diary_create' %}">{% trans 'Diary' %} | {% trans 'Add' %}</a>
+                            {% endif %}
                         </div>
+                        {% endif %}
                     </li>
                     <li class="nav-item dropdown">
+                        {% if perms.reminder.view_reminder or perms.reminder.add_reminder %}
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             {% trans 'Reminder' %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if perms.reminder.view_reminder %}
                             <a class="dropdown-item" href="{% url 'reminder:reminder_list' %}">{% trans 'Reminder' %} | {% trans 'List' %}</a>
+                            {% endif %}
+                            {% if perms.reminder.add_reminder %}
                             <a class="dropdown-item" href="{% url 'reminder:reminder_create' %}">{% trans 'Reminder' %} | {% trans 'Add' %}</a>
+                            {% endif %}
                         </div>
+                        {% endif %}
                     </li>
                     <li class="nav-item dropdown">
+                        {% if perms.telecom.view_isp or perms.telecom.add_isp or perms.telecom.view_ispgroup or perms.telecom.add_ispgroup or perms.telecom.view_prefixlistupdatetask or perms.telecom.add_prefixlistupdatetask %}
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             {% trans 'Telecom' %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if perms.telecom.view_isp %}
                             <a class="dropdown-item" href="{% url 'telecom:isp_list' %}">{% trans 'ISP' %} | {% trans 'List' %}</a>
+                            {% endif %}
+                            {% if perms.telecom.add_isp %}
                             <a class="dropdown-item" href="{% url 'telecom:isp_create' %}">{% trans 'ISP' %} | {% trans 'Add' %}</a>
-                            <div class="dropdown-divider"></div>
+                            {% endif %}
+                            {% if perms.telecom.view_ispgroup %}
                             <a class="dropdown-item" href="{% url 'telecom:ispgroup_list' %}">{% trans 'ISP group' %} | {% trans 'List' %}</a>
+                            {% endif %}
+                            {% if perms.telecom.add_ispgroup %}
                             <a class="dropdown-item" href="{% url 'telecom:ispgroup_create' %}">{% trans 'ISP group' %} | {% trans 'Add' %}</a>
-                            <div class="dropdown-divider"></div>
+                            {% endif %}
+                            {% if perms.telecom.view_prefixlistupdatetask %}
                             <a class="dropdown-item" href="{% url 'telecom:prefixlistupdatetask_list' %}">{% trans 'Prefix-list update task' %} | {% trans 'List' %}</a>
+                            {% endif %}
+                            {% if perms.telecom.add_prefixlistupdatetask %}
                             <a class="dropdown-item" href="{% url 'telecom:prefixlistupdatetask_create' %}">{% trans 'Prefix-list update task' %} | {% trans 'Add' %}</a>
+                            {% endif %}
                         </div>
+                        {% endif %}
                     </li>
                     <li class="nav-item dropdown">
+                        {% if perms.archive.view_archive or perms.archive.add_archive %}
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             {% trans 'Archive' %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if perms.archive.view_archive %}
                             <a class="dropdown-item" href="{% url 'archive:archive_list' %}">{% trans 'Archive' %} | {% trans 'List' %}</a>
-                            {% if 'archive.archive_add' in perms %}<a class="dropdown-item" href="{% url 'archive:archive_create' %}">{% trans 'Archive' %} | {% trans 'Add' %}</a>{% endif %}
+                            {% endif %}
+                            {% if perms.archive.add_archive %}
+                            <a class="dropdown-item" href="{% url 'archive:archive_create' %}">{% trans 'Archive' %} | {% trans 'Add' %}</a>
+                            {% endif %}
                         </div>
+                        {% endif %}
                     </li>
                     <li class="nav-item dropdown">
+                        {% if perms.log.view_log %}
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             {% trans 'Log' %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if perms.log.view_log %}
                             <a class="dropdown-item" href="{% url 'log:diary_log_list' %}">{% trans 'Log' %} | {% trans 'Diary' %} | {% trans 'List' %}</a>
+                            {% endif %}
                         </div>
+                        {% endif %}
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto" style="padding-left: 3.55rem;">
