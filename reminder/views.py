@@ -1,49 +1,58 @@
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
+from django.http.response import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+
+from core.decorators import permission_required
+from core.utils import remove_unnecessary_seperator
 
 from .forms import ReminderModelForm
 from .models import Reminder
 
 
+@login_required
+@permission_required('reminder.view_reminder', raise_exception=True, exception=Http404)
 def reminder_list(request):
     model = Reminder
-    use_pagination = True
     paginate_by = 5
+    toolbar_actions = ['create']
+    dropdown_actions = ['update', 'delete']
     template_name = 'reminder/reminder_list.html'
-    order_by = ('-pk', )
-    if not request.user.is_authenticated:
-        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     role = request.session.get('role', request.user.profile.get_default_role())
+    is_supervisor = True
     qs = model.objects.filter(created_by__profile__department__name=role)
-    qs_ordered = qs.order_by(*order_by)
-    paginator = Paginator(qs_ordered, paginate_by)
-    page_number = request.GET.get('page')
+    page_number = request.GET.get('page', '')
+    paginator = Paginator(qs, paginate_by)
     page_obj = paginator.get_page(page_number)
-    if str(page_number).lower() == 'all':
-        is_paginated = False
-    else:
-        is_paginated = use_pagination and page_obj.has_other_pages()
-    object_list = page_obj if is_paginated else qs_ordered
-    context = {'model': model, 'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated}
+    is_paginated = page_number.lower() != 'all' and page_obj.has_other_pages()
+    context = {
+        'model': model,
+        'page_obj': page_obj,
+        'object_list': page_obj if is_paginated else qs,
+        'is_paginated': is_paginated,
+        'is_supervisor': is_supervisor,
+        'toolbar_actions': toolbar_actions,
+        'dropdown_actions': dropdown_actions,
+    }
     return render(request, template_name, context)
 
 
+@login_required
+@permission_required('reminder.add_reminder', raise_exception=True, exception=Http404)
 def reminder_create(request):
     model = Reminder
+    instance = model(created_by=request.user)
     form_class = ReminderModelForm
-    template_name = 'reminder/reminder_form.html'
     success_url = reverse('reminder:reminder_list')
     form_buttons = ['create']
-    if not request.user.is_authenticated:
-        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
+    template_name = 'reminder/reminder_form.html'
     if request.method == 'POST':
-        instance = model(created_by=request.user)
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
-            instance = form.save()
+            form.save()
             return redirect(success_url)
         context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
@@ -52,17 +61,17 @@ def reminder_create(request):
     return render(request, template_name, context)
 
 
+@login_required
+@permission_required('reminder.change_reminder', raise_exception=True, exception=Http404)
 def reminder_update(request, pk):
     model = Reminder
+    instance = get_object_or_404(klass=model, pk=pk)
     form_class = ReminderModelForm
-    template_name = 'reminder/reminder_form.html'
     success_url = reverse('reminder:reminder_list')
     form_buttons = ['update']
-    if not request.user.is_authenticated:
-        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
-    instance = get_object_or_404(klass=model, pk=pk)
+    template_name = 'reminder/reminder_form.html'
     if instance.created_by != request.user:
-        return http404(request, path=request.path[1:])
+        raise Http404
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -75,15 +84,15 @@ def reminder_update(request, pk):
     return render(request, template_name, context)
 
 
+@login_required
+@permission_required('reminder.delete_reminder', raise_exception=True, exception=Http404)
 def reminder_delete(request, pk):
     model = Reminder
-    template_name = 'reminder/reminder_confirm_delete.html'
-    success_url = reverse('reminder:reminder_list')
-    if not request.user.is_authenticated:
-        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     instance = get_object_or_404(klass=model, pk=pk)
+    success_url = reverse('reminder:reminder_list')
+    template_name = 'reminder/reminder_confirm_delete.html'
     if instance.created_by != request.user:
-        return http404(request, path=request.path[1:])
+        raise Http404
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)
@@ -91,18 +100,18 @@ def reminder_delete(request, pk):
     return render(request, template_name, context)
 
 
+@login_required
+@permission_required('reminder.change_reminder', raise_exception=True, exception=Http404)
 def reminder_clone(request, pk):
     model = Reminder
+    instance = get_object_or_404(klass=model, pk=pk)
+    instance.pk = None
     form_class = ReminderModelForm
-    template_name = 'reminder/reminder_form.html'
     success_url = reverse('reminder:reminder_list')
     form_buttons = ['create']
-    if not request.user.is_authenticated:
-        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
-    instance = get_object_or_404(klass=model, pk=pk)
+    template_name = 'reminder/reminder_form.html'
     if instance.created_by != request.user:
-        return http404(request, path=request.path[1:])
-    instance.pk = None
+        raise Http404
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -115,19 +124,18 @@ def reminder_clone(request, pk):
     return render(request, template_name, context)
 
 
+@login_required
+@permission_required('reminder.change_reminder', raise_exception=True, exception=Http404)
 def reminder_send_email(request, pk):
     model = Reminder
-    template_name = 'reminder/reminder_confirm_send_email.html'
-    success_url = reverse('reminder:reminder_list')
-    if not request.user.is_authenticated:
-        return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
     instance = get_object_or_404(klass=model, pk=pk)
+    success_url = reverse('reminder:reminder_list')
+    template_name = 'reminder/reminder_confirm_send_email.html'
     if instance.created_by != request.user:
-        return http404(request, path=request.path[1:])
+        raise Http404
     if request.method == 'POST':
-        recipients = instance.recipients
-        recipients = recipients[:-1] if recipients[-1:] == ';' else recipients
-        recipient_list = list(map(str.strip, recipients.split(';')))
+        s = remove_unnecessary_seperator(instance.recipients, ';')
+        recipient_list = list(map(str.strip, s.split(';')))
         send_mail(
             subject=instance.email_subject,
             message=instance.email_content,

@@ -47,8 +47,8 @@ def diary_create(request):
     instance = model(created_by=request.user)
     form_class = DiaryModelForm
     success_url = reverse('diary:diary_list')
-    template_name = 'diary/diary_form.html'
     form_buttons = ['create']
+    template_name = 'diary/diary_form.html'
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -68,8 +68,8 @@ def diary_update(request, pk):
     instance = get_object_or_404(klass=model, pk=pk)
     form_class = DiaryModelForm
     success_url = reverse('diary:diary_list')
-    template_name = 'diary/diary_form.html'
     form_buttons = ['update']
+    template_name = 'diary/diary_form.html'
     if instance.created_by != request.user:
         raise Http404
     if request.method == 'POST':
