@@ -1,5 +1,4 @@
-{% load i18n %}
-{% load static %}
+{% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
 {% get_language_info_list for LANGUAGES as languages %}
@@ -8,298 +7,63 @@
 
 <head>
 
-    {% block meta %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% endblock %}
+  {% block meta %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% endblock %}
 
-    {% block css %}
-    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    {% endblock %}
+  {% block css %}
+  <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  {% endblock %}
 
-    {% block extracss %}
-    {% endblock %}
+  {% block extracss %}
+  {% endblock %}
 
-    {% block favicon %}
-    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
-    {% endblock %}
+  {% block favicon %}
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+  {% endblock %}
 
-    {% block title %}
-    <title>{% trans 'TDB' %}</title>
-    {% endblock title %}
+  {% block title %}
+  <title>{% trans 'TDB' %}</title>
+  {% endblock title %}
 
-    {% block jslib %}
-    <script src="{% static 'jquery/dist/jquery.slim.min.js' %}"></script>
-    <script src="{% static 'popper.js/dist/umd/popper.min.js' %}"></script>
-    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'ckeditor/ckeditor.js' %}"></script>
-    {% endblock %}
+  {% block jslib %}
+  <script src="{% static 'jquery/dist/jquery.slim.min.js' %}"></script>
+  <script src="{% static 'popper.js/dist/umd/popper.min.js' %}"></script>
+  <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'ckeditor/ckeditor.js' %}"></script>
+  {% endblock %}
 
-    {% block extrajslib %}
-    {% endblock %}
+  {% block extrajslib %}
+  {% endblock %}
 </head>
 
 <body>
 
-    {% block nav %}
-    {% if user.is_authenticated %}
-    <nav class="navbar mb-n-navbar navbar-expand-xl navbar-light bg-white fixed-top scroll-sensitive">
-        <div class="container-fluid" style="max-width: 1440px;">
-            <a class="navbar-brand nav-link" href="{% url 'index' %}">
-                {% include 'brand_nav.html' %}
-            </a>
-            <a class="navbar-brand nav-link mr-auto" href="{% url 'index' %}" style="margin-left: -2.75rem;">
-                <span class="text-secondary" style="font-size: 1.45rem;">{% trans 'TDB' %}</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#togglerTarget"
-                aria-controls="togglerTarget" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="togglerTarget">
-                <ul class="navbar-nav mr-auto" style="padding-left: 3.55rem;">
-                    <a class="nav-item nav-link" href="{% url 'news' %}">
-                        {% trans 'News' %}
-                    </a>
-                    <li class="nav-item dropdown">
-                        {% if perms.diary.view_diary or perms.diary.add_diary %}
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            {% trans 'Diary' %}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {% if perms.diary.view_diary %}
-                            <a class="dropdown-item" href="{% url 'diary:diary_list' %}">{% trans 'Diary' %} | {% trans 'List' %}</a>
-                            {% endif %}
-                            {% if perms.diary.add_diary %}
-                            <a class="dropdown-item" href="{% url 'diary:diary_create' %}">{% trans 'Diary' %} | {% trans 'Add' %}</a>
-                            {% endif %}
-                        </div>
-                        {% endif %}
-                    </li>
-                    <li class="nav-item dropdown">
-                        {% if perms.reminder.view_reminder or perms.reminder.add_reminder %}
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            {% trans 'Reminder' %}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {% if perms.reminder.view_reminder %}
-                            <a class="dropdown-item" href="{% url 'reminder:reminder_list' %}">{% trans 'Reminder' %} | {% trans 'List' %}</a>
-                            {% endif %}
-                            {% if perms.reminder.add_reminder %}
-                            <a class="dropdown-item" href="{% url 'reminder:reminder_create' %}">{% trans 'Reminder' %} | {% trans 'Add' %}</a>
-                            {% endif %}
-                        </div>
-                        {% endif %}
-                    </li>
-                    <li class="nav-item dropdown">
-                        {% if perms.telecom.view_isp or perms.telecom.add_isp or perms.telecom.view_ispgroup or perms.telecom.add_ispgroup or perms.telecom.view_prefixlistupdatetask or perms.telecom.add_prefixlistupdatetask %}
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            {% trans 'Telecom' %}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {% if perms.telecom.view_isp %}
-                            <a class="dropdown-item" href="{% url 'telecom:isp_list' %}">{% trans 'ISP' %} | {% trans 'List' %}</a>
-                            {% endif %}
-                            {% if perms.telecom.add_isp %}
-                            <a class="dropdown-item" href="{% url 'telecom:isp_create' %}">{% trans 'ISP' %} | {% trans 'Add' %}</a>
-                            {% endif %}
-                            {% if perms.telecom.view_ispgroup %}
-                            <a class="dropdown-item" href="{% url 'telecom:ispgroup_list' %}">{% trans 'ISP group' %} | {% trans 'List' %}</a>
-                            {% endif %}
-                            {% if perms.telecom.add_ispgroup %}
-                            <a class="dropdown-item" href="{% url 'telecom:ispgroup_create' %}">{% trans 'ISP group' %} | {% trans 'Add' %}</a>
-                            {% endif %}
-                            {% if perms.telecom.view_prefixlistupdatetask %}
-                            <a class="dropdown-item" href="{% url 'telecom:prefixlistupdatetask_list' %}">{% trans 'Prefix-list update task' %} | {% trans 'List' %}</a>
-                            {% endif %}
-                            {% if perms.telecom.add_prefixlistupdatetask %}
-                            <a class="dropdown-item" href="{% url 'telecom:prefixlistupdatetask_create' %}">{% trans 'Prefix-list update task' %} | {% trans 'Add' %}</a>
-                            {% endif %}
-                        </div>
-                        {% endif %}
-                    </li>
-                    <li class="nav-item dropdown">
-                        {% if perms.archive.view_archive or perms.archive.add_archive %}
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            {% trans 'Archive' %}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {% if perms.archive.view_archive %}
-                            <a class="dropdown-item" href="{% url 'archive:archive_list' %}">{% trans 'Archive' %} | {% trans 'List' %}</a>
-                            {% endif %}
-                            {% if perms.archive.add_archive %}
-                            <a class="dropdown-item" href="{% url 'archive:archive_create' %}">{% trans 'Archive' %} | {% trans 'Add' %}</a>
-                            {% endif %}
-                        </div>
-                        {% endif %}
-                    </li>
-                    <li class="nav-item dropdown">
-                        {% if perms.log.view_log %}
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            {% trans 'Log' %}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {% if perms.log.view_log %}
-                            <a class="dropdown-item" href="{% url 'log:diary_log_list' %}">{% trans 'Log' %} | {% trans 'Diary' %} | {% trans 'List' %}</a>
-                            {% endif %}
-                        </div>
-                        {% endif %}
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto" style="padding-left: 3.55rem;">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            {{ user.username }}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{% url 'accounts:logout' %}">{% trans 'Logout' %}</a>
-                            <a class="dropdown-item"
-                                href="{% url 'accounts:profile_change' %}">{% trans 'Profile' %}</a>
-                            <a class="dropdown-item"
-                                href="{% url 'accounts:password_change' %}">{% trans 'Password change' %}</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item"
-                                href="{% url 'accounts:password_reset' %}">{% trans 'Password reset' %}</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        {% with deps=request.user.profile.department.all %}
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            {% if deps %}
-                            {{ request.session.role|default:deps.0 }}
-                            {% else %}
-                            {% trans '------' %}
-                            {% endif %}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            {% if deps %}
-                            {% for dep in deps %}
-                            <a class="dropdown-item"
-                                href="{% url 'accounts:set_role' role=dep.name %}">{{ dep.name }}</a>
-                            {% endfor %}
-                            {% else %}
-                            <a class="dropdown-item" href="#">{% trans 'No available departments' %}</a>
-                            {% endif %}
-                        </div>
-                        {% endwith %}
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            {{ LANGUAGE_CODE }}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            {% for language in languages %}
-                            <a class="dropdown-item set-language-item cursor-pointer">{{ language.code }}</a>
-                            {% endfor %}
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    {% else %}
-    <nav class="navbar mb-n-navbar navbar-expand-xl navbar-light bg-white fixed-top scroll-sensitive">
-        <div class="container-fluid" style="max-width: 1440px;">
-            <a class="navbar-brand nav-link" href="{% url 'index' %}">
-                {% include 'brand_nav.html' %}
-            </a>
-            <a class="navbar-brand nav-link mr-auto" href="{% url 'index' %}" style="margin-left: -2.75rem;">
-                <span class="text-secondary" style="font-size: 1.45rem;">{% trans 'TDB' %}</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#togglerTarget"
-                aria-controls="togglerTarget" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="togglerTarget">
-                <ul class="navbar-nav ml-auto" style="padding-left: 3.55rem;">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            {% trans "Guest" %}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{% url 'accounts:login' %}">{% trans 'Login' %}</a>
-                            <a class="dropdown-item" href="{% url 'accounts:signup' %}">{% trans 'Sign up' %}</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item"
-                                href="{% url 'accounts:password_reset' %}">{% trans 'Password reset' %}</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            {{ LANGUAGE_CODE }}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            {% for language in languages %}
-                            <a class="dropdown-item set-language-item" href="#">{{ language.code }}</a>
-                            {% endfor %}
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    {% endif %}
-    {% endblock %}
+  {% block nav %}
+  {% include 'standard_nav.html' %}
+  {% endblock %}
 
-    {% block message %}
-    {% if messages %}
-    {% for message in messages %}
-    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-    <div class="alert alert-success" role="alert">
-        {{ message }}
-    </div>
-    {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-    <div class="alert alert-danger" role="alert">
-        {{ message }}
-    </div>
-    {% else %}
-    <div class="alert alert-info" role="alert">
-        {{ message }}
-    </div>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    {% endblock %}
+  {% block content %}
+  {% endblock %}
 
-    {% block tip %}
-    {% if guidelines %}
-    {% for guideline in guidelines %}
-    <div class="alert alert-info" role="alert">
-        <div class="container-fluid text-center" style="max-width: 1440px;">{{ guideline }}</div>
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% endblock %}
+  {% block sock %}
+  {% endblock %}
 
-    {% block content %}
-    {% endblock %}
+  {% block footer %}
+  {% endblock %}
 
-    {% block sock %}
-    {% endblock %}
+  {% block basejs %}
+  <script>
+    const csrfmiddlewaretoken = "{{ csrf_token }}";
+    const url = "{% url 'set_language' %}";
+  </script>
+  <script src="{% static 'js/base.js' %}"></script>
+  {% endblock %}
 
-    {% block footer %}
-    {% endblock %}
-
-    {% block basejs %}
-    <script>
-        const csrfmiddlewaretoken = "{{ csrf_token }}";
-        const url = "{% url 'set_language' %}";
-    </script>
-    <script src="{% static 'js/base.js' %}"></script>
-    {% endblock %}
-
-    {% block extrajs %}
-    {% endblock %}
+  {% block extrajs %}
+  {% endblock %}
 
 </body>
 
