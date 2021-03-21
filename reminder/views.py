@@ -65,13 +65,11 @@ def reminder_create(request):
 @permission_required('reminder.change_reminder', raise_exception=True, exception=Http404)
 def reminder_update(request, pk):
     model = Reminder
-    instance = get_object_or_404(klass=model, pk=pk)
+    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     form_class = ReminderModelForm
     success_url = reverse('reminder:reminder_list')
     form_buttons = ['update']
     template_name = 'reminder/reminder_form.html'
-    if instance.created_by != request.user:
-        raise Http404
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -88,11 +86,9 @@ def reminder_update(request, pk):
 @permission_required('reminder.delete_reminder', raise_exception=True, exception=Http404)
 def reminder_delete(request, pk):
     model = Reminder
-    instance = get_object_or_404(klass=model, pk=pk)
+    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     success_url = reverse('reminder:reminder_list')
     template_name = 'reminder/reminder_confirm_delete.html'
-    if instance.created_by != request.user:
-        raise Http404
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)
@@ -104,14 +100,12 @@ def reminder_delete(request, pk):
 @permission_required('reminder.change_reminder', raise_exception=True, exception=Http404)
 def reminder_clone(request, pk):
     model = Reminder
-    instance = get_object_or_404(klass=model, pk=pk)
+    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     instance.pk = None
     form_class = ReminderModelForm
     success_url = reverse('reminder:reminder_list')
     form_buttons = ['create']
     template_name = 'reminder/reminder_form.html'
-    if instance.created_by != request.user:
-        raise Http404
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -128,11 +122,9 @@ def reminder_clone(request, pk):
 @permission_required('reminder.change_reminder', raise_exception=True, exception=Http404)
 def reminder_send_email(request, pk):
     model = Reminder
-    instance = get_object_or_404(klass=model, pk=pk)
+    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     success_url = reverse('reminder:reminder_list')
     template_name = 'reminder/reminder_confirm_send_email.html'
-    if instance.created_by != request.user:
-        raise Http404
     if request.method == 'POST':
         s = remove_unnecessary_seperator(instance.recipients, ';')
         recipient_list = list(map(str.strip, s.split(';')))

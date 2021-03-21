@@ -63,13 +63,11 @@ def isp_create(request):
 @permission_required('telecom.change_isp', raise_exception=True, exception=Http404)
 def isp_update(request, pk):
     model = Isp
-    instance = get_object_or_404(klass=model, pk=pk)
+    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     form_class = IspModelForm
     success_url = reverse('telecom:isp_list')
     form_buttons = ['update']
     template_name = 'telecom/isp_form.html'
-    if instance.created_by != request.user:
-        raise Http404
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -86,11 +84,9 @@ def isp_update(request, pk):
 @permission_required('telecom.delete_isp', raise_exception=True, exception=Http404)
 def isp_delete(request, pk):
     model = Isp
-    instance = get_object_or_404(klass=model, pk=pk)
+    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     success_url = reverse('telecom:isp_list')
     template_name = 'telecom/isp_confirm_delete.html'
-    if instance.created_by != request.user:
-        raise Http404
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)
@@ -150,13 +146,11 @@ def ispgroup_create(request):
 @permission_required('telecom.change_ispgroup', raise_exception=True, exception=Http404)
 def ispgroup_update(request, pk):
     model = IspGroup
-    instance = get_object_or_404(klass=model, pk=pk)
+    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     form_class = IspGroupModelForm
     success_url = reverse('telecom:ispgroup_list')
     form_buttons = ['update']
     template_name = 'telecom/ispgroup_form.html'
-    if instance.created_by != request.user:
-        raise Http404
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -173,11 +167,9 @@ def ispgroup_update(request, pk):
 @permission_required('telecom.delete_ispgroup', raise_exception=True, exception=Http404)
 def ispgroup_delete(request, pk):
     model = IspGroup
-    instance = get_object_or_404(klass=model, pk=pk)
+    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     success_url = reverse('telecom:ispgroup_list')
     template_name = 'telecom/ispgroup_confirm_delete.html'
-    if instance.created_by != request.user:
-        raise Http404
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)
@@ -237,13 +229,11 @@ def prefixlistupdatetask_create(request):
 @permission_required('telecom.change_prefixlistupdatetask', raise_exception=True, exception=Http404)
 def prefixlistupdatetask_update(request, pk):
     model = PrefixListUpdateTask
-    instance = get_object_or_404(klass=model, pk=pk)
+    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     form_class = PrefixListUpdateTaskModelForm
     success_url = reverse('telecom:prefixlistupdatetask_list')
     form_buttons = ['update']
     template_name = 'telecom/prefixlistupdatetask_form.html'
-    if instance.created_by != request.user:
-        raise Http404
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -260,11 +250,9 @@ def prefixlistupdatetask_update(request, pk):
 @permission_required('telecom.delete_prefixlistupdatetask', raise_exception=True, exception=Http404)
 def prefixlistupdatetask_delete(request, pk):
     model = PrefixListUpdateTask
-    instance = get_object_or_404(klass=model, pk=pk)
+    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     success_url = reverse('telecom:prefixlistupdatetask_list')
     template_name = 'telecom/prefixlistupdatetask_confirm_delete.html'
-    if instance.created_by != request.user:
-        raise Http404
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)

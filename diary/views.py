@@ -65,13 +65,11 @@ def diary_create(request):
 @permission_required('diary.change_diary', raise_exception=True, exception=Http404)
 def diary_update(request, pk):
     model = Diary
-    instance = get_object_or_404(klass=model, pk=pk)
+    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     form_class = DiaryModelForm
     success_url = reverse('diary:diary_list')
     form_buttons = ['update']
     template_name = 'diary/diary_form.html'
-    if instance.created_by != request.user:
-        raise Http404
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -88,11 +86,9 @@ def diary_update(request, pk):
 @permission_required('diary.diary_archive', raise_exception=True, exception=Http404)
 def diary_delete(request, pk):
     model = Diary
-    instance = get_object_or_404(klass=model, pk=pk)
+    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     success_url = reverse('diary:diary_list')
     template_name = 'diary/diary_confirm_delete.html'
-    if instance.created_by != request.user:
-        raise Http404
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)

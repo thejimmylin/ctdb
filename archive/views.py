@@ -65,13 +65,11 @@ def archive_create(request):
 @permission_required('archive.change_archive', raise_exception=True, exception=Http404)
 def archive_update(request, pk):
     model = Archive
-    instance = get_object_or_404(klass=model, pk=pk)
+    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     form_class = ArchiveModelForm
     success_url = reverse('archive:archive_list')
     form_buttons = ['update']
     template_name = 'archive/archive_form.html'
-    if instance.created_by != request.user:
-        raise Http404
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -88,11 +86,9 @@ def archive_update(request, pk):
 @permission_required('archive.delete_archive', raise_exception=True, exception=Http404)
 def archive_delete(request, pk):
     model = Archive
-    instance = get_object_or_404(klass=model, pk=pk)
+    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     success_url = reverse('archive:archive_list')
     template_name = 'archive/archive_confirm_delete.html'
-    if instance.created_by != request.user:
-        raise Http404
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)
