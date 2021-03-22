@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 
-from .models import Department, Profile, GroupProfile
+from .models import GroupProfile, Profile
 
 User = get_user_model()
 
@@ -18,13 +18,6 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Profile, ProfileAdmin)
-
-
-class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ['name', 'managed_by', ]
-
-
-admin.site.register(Department, DepartmentAdmin)
 
 
 class GroupProfileAdmin(admin.ModelAdmin):
