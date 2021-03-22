@@ -39,7 +39,7 @@ SETCRETS = {
     'IS_DEBUG': False,
     'IS_PRODUCTION': False,
     'USE_WHITENOISE': False,
-    "DATABASES_TYPE": "MySQL",
+    "DATABASES_TYPE": '',
     'DATABASES_MSSQL_PASSWORD': '',
     'USE_GMAIL': True,
     'EMAIL_HOST_PASSWORD': '',
