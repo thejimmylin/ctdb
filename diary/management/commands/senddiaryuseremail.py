@@ -39,6 +39,13 @@ def date_range(start, end):
 class Command(BaseCommand):
     help = 'Commands of notifying users of the diary app.'
 
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--test',
+            action='store_true',
+            help='Print messages only. The Email would not be sent.',
+        )
+
     def get_diary_users(self):
         """
         Get all user who need to write diary.
@@ -89,7 +96,11 @@ class Command(BaseCommand):
             missing[user_id].append(date)
         return missing
 
-    def send_email(self, missing):
+    def send_notification_mail(self, missing, test=True):
+        """
+        Given a dictionary with `user.id` as key and a list of `date` as value, It
+        would send notification Email to those user.
+        """
         for user_id, dates in missing.items():
             user = User.objects.get(id=user_id)
             username = user.username
@@ -112,13 +123,14 @@ class Command(BaseCommand):
                 if person_notified.email not in recipient_list:
                     recipient_list.append(person_notified.email)
                 person_notified = person_notified.profile.boss
-            # send_mail(
-            #     subject=subject,
-            #     message=message,
-            #     from_email=settings.DEFAULT_FROM_EMAIL,
-            #     recipient_list=recipient_list,
-            #     fail_silently=False,
-            # )
+            if not test:
+                send_mail(
+                    subject=subject,
+                    message=message,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=recipient_list,
+                    fail_silently=False,
+                )
             print(f'An Email for user {username} has been sent to {recipient_list}, dates={datestrings}')
 
     def handle(self, *args, **options):
@@ -126,4 +138,7 @@ class Command(BaseCommand):
         needed = self.get_diary_needed(users=users)
         existing = self.get_diary_existing()
         missing = self.get_diary_missing(needed=needed, existing=existing)
-        self.send_email(missing=missing)
+        if options['test']:
+            self.send_notification_mail(missing=missing)
+        else:
+            self.send_notification_mail(missing=missing, test=False)
