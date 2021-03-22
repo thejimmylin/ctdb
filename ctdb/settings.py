@@ -31,9 +31,10 @@ def get_value(key, path=BASE_DIR / 'secrets.json'):
     return value
 
 
-DEBUG = get_value('DEBUG')
+IS_DEBUG = get_value('IS_DEBUG')
 IS_PRODUCTION = get_value('IS_PRODUCTION')
 USE_WHITENOISE = get_value('USE_WHITENOISE')
+DATABASES_TYPE = get_value('DATABASES_TYPE')
 DATABASES_MSSQL_PASSWORD = get_value('DATABASES_MSSQL_PASSWORD')
 USE_GMAIL = get_value('USE_GMAIL')
 EMAIL_HOST_PASSWORD = get_value('EMAIL_HOST_PASSWORD')
@@ -45,7 +46,7 @@ EMAIL_HOST_PASSWORD = get_value('EMAIL_HOST_PASSWORD')
 SECRET_KEY = 'va8k29j1o_=rs9bw!ym@s#b8zz3=9cmj_o731i$^6)9+z_9ob#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = DEBUG
+DEBUG = IS_DEBUG
 
 ALLOWED_HOSTS = ['*']
 
@@ -53,6 +54,9 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    # This is not a default App, but this should be on the top
+    # to override some templates of django.contrib.auth .
+    'accounts.apps.AccountsConfig',
     # Default Apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -64,7 +68,6 @@ INSTALLED_APPS = [
 
 INSTALLED_APPS += [
     'core.apps.CoreConfig',
-    'accounts.apps.AccountsConfig',
     'day.apps.DayConfig',
     'archive.apps.ArchiveConfig',
     'diary.apps.DiaryConfig',
@@ -132,14 +135,15 @@ WSGI_APPLICATION = 'ctdb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES_SQLITE = {
+DB_CONFIGS = {}
+DB_CONFIGS['SQLite'] = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-DATABASES_MYSQL = {
+DB_CONFIGS['MySQL'] = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ctdbdb',
@@ -151,7 +155,7 @@ DATABASES_MYSQL = {
     }
 }
 
-DATABASES_MSSQL = {
+DB_CONFIGS['MSSQL'] = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
         'NAME': 'TDB',
@@ -166,10 +170,7 @@ DATABASES_MSSQL = {
 }
 
 
-if IS_PRODUCTION:
-    DATABASES = DATABASES_MSSQL
-else:
-    DATABASES = DATABASES_MYSQL
+DATABASES = DB_CONFIGS[DATABASES_TYPE]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

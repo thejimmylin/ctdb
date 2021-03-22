@@ -36,9 +36,10 @@ VSCODE_SETTINGS = {
 SETCRETS = {
     'REPO_ROOT': str(Path(__file__).parent),
     'PYTHONPATH_ABS': str(PATHONPATHS_ABS[OS]),
-    'DEBUG': False,
+    'IS_DEBUG': False,
     'IS_PRODUCTION': False,
     'USE_WHITENOISE': False,
+    "DATABASES_TYPE": "MySQL",
     'DATABASES_MSSQL_PASSWORD': '',
     'USE_GMAIL': True,
     'EMAIL_HOST_PASSWORD': '',

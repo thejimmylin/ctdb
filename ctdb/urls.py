@@ -7,12 +7,12 @@ from .static import static
 # Apps
 urlpatterns = [
     path('', include('core.urls')),
-    path('', include('accounts.urls')),
     path('', include('diary.urls')),
     path('', include('reminder.urls')),
     path('', include('telecom.urls')),
     path('', include('archive.urls')),
     path('log/', include('log.urls')),
+    path('auth/', include('accounts.urls')),
     path('admin/', admin.site.urls),
 ]
 
