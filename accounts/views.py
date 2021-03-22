@@ -89,9 +89,7 @@ def set_role(request, role):
     """
     A set role view.
     """
-    if not request.user.is_authenticated:
-        return redirect(reverse('login'))
-    if role not in [group.name for group in request.user.groups.all()]:
+    if role not in request.user.get_available_roles():
         raise Http404
     request.session['role'] = role
     return redirect(request.META.get('HTTP_REFERER', '/'))
