@@ -16,6 +16,6 @@ def tomorrow():
 
 
 def remove_unnecessary_seperator(s, seperator):
-    if s.recipients[-1:] == seperator:
-        return s.recipients[:-1]
+    if s[-1:] == seperator:
+        return s[:-1]
     return s
