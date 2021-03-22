@@ -54,7 +54,7 @@ class Profile(models.Model):
         verbose_name_plural = _('Profiles')
 
     def get_available_roles(self):
-        roles = [i.name for i in self.user.groups.filter(is_displayed=True)]
+        roles = [i.name for i in self.user.groups.filter(groupprofile__is_displayed=True)]
         return roles
 
     def get_default_role(self):
