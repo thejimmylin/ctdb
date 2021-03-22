@@ -83,14 +83,8 @@ class PrefixListUpdateTask(models.Model):
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta():
-        verbose_name = _('prefix list update task')
-        verbose_name_plural = _('prefix list update tasks')
-
-    def isps_as_str(self):
-        return ',\n'.join(instance.name for instance in self.isps.all())
-
-    def isp_group_as_str(self):
-        return ',\n'.join(instance.name for instance in self.isp_groups.all())
+        verbose_name = _('Prefix-list update task')
+        verbose_name_plural = _('Prefix-list update tasks')
 
     def get_create_url(self):
         return reverse('telecom:prefixlistupdatetask_create')
@@ -100,3 +94,21 @@ class PrefixListUpdateTask(models.Model):
 
     def get_delete_url(self):
         return reverse('telecom:prefixlistupdatetask_delete', kwargs={'pk': self.pk})
+
+    def has_create_perm(self, user):
+        s = f'{self._meta.app_label}.add_{self._meta.model_name}'
+        return user.has_perm(s)
+
+    def has_update_perm(self, user):
+        s = f'{self._meta.app_label}.change_{self._meta.model_name}'
+        return user.has_perm(s)
+
+    def has_delete_perm(self, user):
+        s = f'{self._meta.app_label}.delete_{self._meta.model_name}'
+        return user.has_perm(s)
+
+    def isps_as_str(self):
+        return ',\n'.join(instance.name for instance in self.isps.all())
+
+    def isp_group_as_str(self):
+        return ',\n'.join(instance.name for instance in self.isp_groups.all())
