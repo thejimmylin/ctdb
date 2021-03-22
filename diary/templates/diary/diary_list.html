@@ -1,5 +1,5 @@
 {% extends 'diary/base.html' %}
-{% load static i18n widget_tweaks %}
+{% load static i18n widget_tweaks custom_templatetags %}
 
 {% block extracss %}
 <link rel="stylesheet" href="{% static 'css/table_list_view.css' %}">
@@ -13,9 +13,8 @@
         <div id="blankTop"></div>
         <div id="toolbar" class="d-flex justify-content-between">
           <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
-          {% if 'create' in toolbar_actions %}
-          <a id="addButton" class="btn btn-light border shadow-sm"
-            href="{{ model.get_create_url }}">{% trans 'Add' %}</a>
+          {% if model|has_create_perm:user %}
+          <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% trans 'Add' %}</a>
           {% endif %}
         </div>
         <div class="table-responsive">
