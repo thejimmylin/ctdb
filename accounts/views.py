@@ -89,7 +89,7 @@ def set_role(request, role):
     """
     A set role view.
     """
-    if role not in request.user.get_available_roles():
+    if role not in request.user.profile.get_available_roles():
         raise Http404
     request.session['role'] = role
     return redirect(request.META.get('HTTP_REFERER', '/'))
