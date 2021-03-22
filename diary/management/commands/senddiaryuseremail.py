@@ -21,7 +21,19 @@ THRESHOLD_LIST = [3, 7, 30]
 
 
 def is_weekday(date):
-    return (date.weekday() <= 4)
+    """
+    Check if a Python's datetime.date or datetime.datetime is a weekday.
+    """
+    return (date.isoweekday() <= 5)
+
+
+def date_range(start, end):
+    """
+    Given two datetime.date or datetime.datetime, retrun a date range.
+    """
+    days = (end - start).days
+    date_range = [start + timedelta(n) for n in range(days)]
+    return date_range
 
 
 class Command(BaseCommand):
@@ -34,9 +46,10 @@ class Command(BaseCommand):
         users = User.objects.filter(profile__keep_diary=True)
         wanted = {}
         for user in users:
-            starting_date = user.profile.diary_starting_date
-            past_dates = [starting_date + timedelta(n) for n in range((today() - starting_date).days)]
-            past_weekday_dates = [date for date in past_dates if is_weekday(date) and date not in HOLIDAYS]  # Temp solution
+            start = user.profile.diary_starting_date
+            end = today()
+            past_dates = date_range(start, end)
+            past_weekday_dates = [date for date in past_dates if is_weekday(date) and date not in HOLIDAYS]
             past_work_dates = past_weekday_dates + EXTRA_WORKDAY
             past_work_dates = sorted(past_work_dates)
             for date in past_work_dates:
