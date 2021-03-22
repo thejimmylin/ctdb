@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Department, Profile
+from .models import Department, Profile, GroupProfile
 
 
 class ProfileAdmin(admin.ModelAdmin):
@@ -19,3 +19,10 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Department, DepartmentAdmin)
+
+
+class GroupProfileAdmin(admin.ModelAdmin):
+    list_display = ['group', 'managed_by', ]
+
+
+admin.site.register(GroupProfile, GroupProfileAdmin)

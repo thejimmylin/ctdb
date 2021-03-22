@@ -86,3 +86,27 @@ class Department(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class GroupProfile(models.Model):
+
+    group = models.OneToOneField(
+        verbose_name=_('Group'),
+        to='auth.Group',
+        on_delete=models.CASCADE,
+    )
+    managed_by = models.ForeignKey(
+        verbose_name=_('Manager'),
+        to=settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='managing_groups',
+    )
+
+    class Meta():
+        verbose_name = _('Group profile')
+        verbose_name_plural = _('Group profiles')
+
+    def __str__(self):
+        return f'Profile of group {self.group.name}'
