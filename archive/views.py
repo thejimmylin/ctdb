@@ -21,7 +21,7 @@ def archive_list(request):
     role = request.session.get('role', request.user.profile.get_default_role())
     is_supervisor = request.user.groups.filter(name='Supervisors').exists()
     if is_supervisor:
-        qs = model.objects.filter(created_by__profile__department__name=role)
+        qs = model.objects.filter(created_by__groups__name=role)
     else:
         qs = model.objects.filter(created_by=request.user)
     page_number = request.GET.get('page', '')

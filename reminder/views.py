@@ -23,7 +23,7 @@ def reminder_list(request):
     template_name = 'reminder/reminder_list.html'
     role = request.session.get('role', request.user.profile.get_default_role())
     is_supervisor = True
-    qs = model.objects.filter(created_by__profile__department__name=role)
+    qs = model.objects.filter(created_by__groups__name=role)
     page_number = request.GET.get('page', '')
     paginator = Paginator(qs, paginate_by)
     page_obj = paginator.get_page(page_number)
