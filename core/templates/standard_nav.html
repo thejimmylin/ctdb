@@ -14,11 +14,13 @@
     </button>
     <div class="collapse navbar-collapse" id="togglerTarget">
       <ul class="navbar-nav mr-auto" style="padding-left: 3.55rem;">
+        {% if perms.core.view_news %}
         <a class="nav-item nav-link" href="{% url 'news' %}">
           {% trans 'News' %}
         </a>
+        {% endif %}
+        {% if perms.diary.view_diary or perms.diary.add_diary %}
         <li class="nav-item dropdown">
-          {% if perms.diary.view_diary or perms.diary.add_diary %}
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="true">
             {% trans 'Diary' %}
