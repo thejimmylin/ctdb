@@ -1,9 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, get_user_model, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.http.response import Http404
+
 
 from .forms import ProfileForm, SignUpWithEmailForm
 
@@ -89,8 +92,7 @@ def set_role(request, role):
     """
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
-    if role not in [dep.name for dep in request.user.profile.department.all()]:
-        messages.add_message(request, messages.ERROR, _('You have no access to this role.'))
-        return redirect(reverse('index'))
+    if role not in [group.name for group in request.user.groups.all()]:
+        raise Http404
     request.session['role'] = role
     return redirect(request.META.get('HTTP_REFERER', '/'))
