@@ -251,7 +251,6 @@ LOGOUT_REDIRECT_URL = '/'
 # SMTP things
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-USE_GMAIL = False
 
 if USE_GMAIL:
     EMAIL_HOST = 'smtp.gmail.com'
