@@ -105,9 +105,9 @@ class Command(BaseCommand):
             user = User.objects.get(id=user_id)
             username = user.username
             email = user.email
-            datestrings = [str(date) for date in dates]
+            datestrings = ', '.join(str(date) for date in dates)
             subject = f'[TDB]工程師日誌-{username}，您有 {len(dates)} 筆日誌還沒有紀錄。'
-            message = f'Hi {username},\n\n您有 {len(dates)} 筆工程師日誌還沒有紀錄，以下為日期：\n\n' + '\n'.join(datestrings) + '\n\nSincerely,\nTDB'
+            message = f'Hi {username},\n\n您有 {len(dates)} 筆工程師日誌還沒有紀錄，以下為日期：\n\n' + datestrings + '\n\nSincerely,\nTDB'
             recipient_list = [email]
             notification_level = 1
             oldest_date = sorted(dates)[0]
@@ -131,7 +131,13 @@ class Command(BaseCommand):
                     recipient_list=recipient_list,
                     fail_silently=False,
                 )
-            print(f'An Email for user {username} has been sent to {recipient_list}, dates={datestrings}')
+            print('-' * 120)
+            print(subject)
+            print('To:', '; '.join(recipient_list))
+            print('\n')
+            print(message)
+            print('\n\n')
+            print('-' * 120)
 
     def handle(self, *args, **options):
         users = self.get_diary_users()
