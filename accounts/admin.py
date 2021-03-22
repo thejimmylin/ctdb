@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.contrib.auth.models import Permission
 
 from .models import Department, Profile
 
@@ -20,4 +19,3 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Department, DepartmentAdmin)
-admin.site.register(Permission)
