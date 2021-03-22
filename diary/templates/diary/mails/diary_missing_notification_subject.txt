@@ -1,0 +1,1 @@
+[TDB]工程師日誌-{{ username }}，您有 {{ dates|length }} 筆日誌還沒有紀錄。
