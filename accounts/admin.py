@@ -1,14 +1,20 @@
 from django.contrib import admin
+from django.contrib.auth import get_user_model
 
 from .models import Department, Profile, GroupProfile
+
+User = get_user_model()
 
 
 class ProfileAdmin(admin.ModelAdmin):
 
-    def departments(self, obj):
-        return ', '.join(dep.name for dep in obj.department.all())
+    def groups_as_str(self, obj):
+        return ', '.join(i.name for i in obj.user.groups.all())
 
-    list_display = ['user', 'staff_code', 'job_title', 'phone_number', 'departments', 'boss', 'keep_diary', 'diary_starting_date', ]
+    def departments_as_str(self, obj):
+        return ', '.join(i.name for i in obj.department.all())
+
+    list_display = ['user', 'groups_as_str', 'departments_as_str', 'staff_code', 'job_title', 'phone_number', 'boss', 'keep_diary', 'diary_starting_date', ]
 
 
 admin.site.register(Profile, ProfileAdmin)
@@ -22,7 +28,7 @@ admin.site.register(Department, DepartmentAdmin)
 
 
 class GroupProfileAdmin(admin.ModelAdmin):
-    list_display = ['group', 'managed_by', ]
+    list_display = ['group', 'is_displayed', 'managed_by', ]
 
 
 admin.site.register(GroupProfile, GroupProfileAdmin)

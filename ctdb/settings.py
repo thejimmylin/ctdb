@@ -53,16 +53,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    # This package makes it easier to modify form/field attributes in Django templates.
-    'widget_tweaks',
-    'core.apps.CoreConfig',
-    'accounts.apps.AccountsConfig',
-    'diary.apps.DiaryConfig',
-    'day.apps.DayConfig',
-    'log.apps.LogConfig',
-    'telecom.apps.TelecomConfig',
-    'reminder.apps.ReminderConfig',
-    'archive.apps.ArchiveConfig',
     # Default Apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -72,26 +62,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+INSTALLED_APPS += [
+    'core.apps.CoreConfig',
+    'accounts.apps.AccountsConfig',
+    'day.apps.DayConfig',
+    'archive.apps.ArchiveConfig',
+    'diary.apps.DiaryConfig',
+    'reminder.apps.ReminderConfig',
+    'telecom.apps.TelecomConfig',
+    'log.apps.LogConfig',
+    'widget_tweaks',
+]
+
 if DEBUG:
-    INSTALLED_APPS = [
-        # This package makes it easier to modify form/field attributes in Django templates.
-        'widget_tweaks',
-        'core.apps.CoreConfig',
-        'accounts.apps.AccountsConfig',
-        'diary.apps.DiaryConfig',
-        'day.apps.DayConfig',
-        'log.apps.LogConfig',
-        'telecom.apps.TelecomConfig',
-        'reminder.apps.ReminderConfig',
-        'archive.apps.ArchiveConfig',
-        # Default Apps
-        'django.contrib.admin',
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.messages',
-        'django.contrib.staticfiles',
-        # For python manage.py shell_plus --print-sql
+    INSTALLED_APPS += [
         'django_extensions',
     ]
 

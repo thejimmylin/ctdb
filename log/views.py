@@ -44,5 +44,5 @@ def diary_log_list(request):
     else:
         is_paginated = use_pagination and page_obj.has_other_pages()
     object_list = page_obj if is_paginated else object_list
-    context = {'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, 'is_supervisor': is_supervisor, }
+    context = {'model': model, 'page_obj': page_obj, 'object_list': object_list, 'is_paginated': is_paginated, 'is_supervisor': is_supervisor, }
     return render(request, template_name, context)

@@ -55,6 +55,7 @@ class Profile(models.Model):
 
     def get_available_roles(self):
         roles = [i.name for i in self.user.groups.all()]
+        print(self.user.groups.all())
         return roles
 
     def get_default_role(self):
@@ -95,6 +96,7 @@ class GroupProfile(models.Model):
         to='auth.Group',
         on_delete=models.CASCADE,
     )
+    is_displayed = models.BooleanField(default=False)
     managed_by = models.ForeignKey(
         verbose_name=_('Manager'),
         to=settings.AUTH_USER_MODEL,

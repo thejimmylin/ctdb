@@ -149,7 +149,7 @@
             <a class="dropdown-item" href="{% url 'accounts:set_role' role=role %}">{{ role }}</a>
             {% endfor %}
             {% else %}
-            <a class="dropdown-item" href="#">{% trans 'No available departments' %}</a>
+            <a class="dropdown-item" href="">{% trans 'No available role' %}</a>
             {% endif %}
           </div>
           {% endwith %}

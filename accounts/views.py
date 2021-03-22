@@ -1,10 +1,8 @@
-from django.contrib import messages
 from django.contrib.auth import authenticate, get_user_model, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from django.utils.translation import gettext_lazy as _
 from django.http.response import Http404
 
 
@@ -86,6 +84,7 @@ def profile_change(request):
     return render(request, 'registration/profile_change.html', context)
 
 
+@login_required
 def set_role(request, role):
     """
     A set role view.
