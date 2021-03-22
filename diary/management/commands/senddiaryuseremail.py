@@ -1,9 +1,9 @@
-from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.core.mail import send_mail
 from django.core.management.base import BaseCommand
+from django.template import loader
 
 from core.utils import today, date_range
+from core.mail import send_mail
 from day.models import Day
 from diary.models import Diary
 
@@ -16,6 +16,8 @@ class Command(BaseCommand):
     HOLIDAYS = [day.date for day in Day.objects.all() if day.is_holiday]
     EXTRA_WORKDAY = [day.date for day in Day.objects.all() if not day.is_holiday]
     THRESHOLD_LIST = [3, 7, 30]
+    SUBJECT_TEMPLATE_NAME = 'diary/mails/diary_missing_notification_subject.txt'
+    BODY_TEMPLATE_NAME = 'diary/mails/diary_missing_notification_body.html'
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -80,13 +82,17 @@ class Command(BaseCommand):
         would send notification Email to those user.
         """
         for user_id, dates in missing.items():
-            user = User.objects.get(id=user_id)
+            try:
+                user = User.objects.get(id=user_id)
+            except User.DoesNotExist:
+                continue
             username = user.username
-            email = user.email
             datestrings = ', '.join(str(date) for date in dates)
-            subject = f'[TDB]工程師日誌-{username}，您有 {len(dates)} 筆日誌還沒有紀錄。'
-            message = f'Hi {username},\n\n您有 {len(dates)} 筆工程師日誌還沒有紀錄，以下為日期：\n\n' + datestrings + '\n\nSincerely,\nTDB'
-            recipient_list = [email]
+            context = {'username': username, 'dates': dates, 'datestrings': datestrings}
+            subject = loader.render_to_string(self.SUBJECT_TEMPLATE_NAME, context)
+            body = loader.render_to_string(self.BODY_TEMPLATE_NAME, context)
+            to = [user.email]
+
             notification_level = 1
             oldest_date = sorted(dates)[0]
             late_days = (today() - oldest_date).days
@@ -95,26 +101,21 @@ class Command(BaseCommand):
                     notification_level += 1
                 else:
                     break
+
             person_notified = user
             while notification_level >= 1 and person_notified:
                 notification_level -= 1
-                if person_notified.email not in recipient_list:
-                    recipient_list.append(person_notified.email)
+                if person_notified.email not in to:
+                    to.append(person_notified.email)
                 person_notified = person_notified.profile.boss
             if not test:
-                send_mail(
-                    subject=subject,
-                    message=message,
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=recipient_list,
-                    fail_silently=False,
-                )
+                send_mail(subject, body, to=to)
+
             print('-' * 120)
+            print('To:', '; '.join(to))
             print(subject)
-            print('To:', '; '.join(recipient_list))
             print('\n')
-            print(message)
-            print('\n\n')
+            print(body)
             print('-' * 120)
 
     def handle(self, *args, **options):
