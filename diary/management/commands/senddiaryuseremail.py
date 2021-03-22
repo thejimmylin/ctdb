@@ -1,43 +1,21 @@
-from datetime import timedelta
-
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.core.management.base import BaseCommand
 
-from core.utils import today
+from core.utils import today, date_range
 from day.models import Day
 from diary.models import Diary
 
 User = get_user_model()
-"""
-Just a temp solution for holiday exception.
-"""
-
-days = Day.objects.all()
-HOLIDAYS = [day.date for day in days if day.is_holiday]
-EXTRA_WORKDAY = [day.date for day in days if not day.is_holiday]
-THRESHOLD_LIST = [3, 7, 30]
-
-
-def is_weekday(date):
-    """
-    Check if a Python's datetime.date or datetime.datetime is a weekday.
-    """
-    return (date.isoweekday() <= 5)
-
-
-def date_range(start, end):
-    """
-    Given two datetime.date or datetime.datetime, retrun a date range.
-    """
-    days = (end - start).days
-    date_range = [start + timedelta(n) for n in range(days)]
-    return date_range
 
 
 class Command(BaseCommand):
     help = 'Commands of notifying users of the diary app.'
+
+    HOLIDAYS = [day.date for day in Day.objects.all() if day.is_holiday]
+    EXTRA_WORKDAY = [day.date for day in Day.objects.all() if not day.is_holiday]
+    THRESHOLD_LIST = [3, 7, 30]
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -59,12 +37,12 @@ class Command(BaseCommand):
         """
         wanted = {}
         for user in users:
-            start = user.profile.diary_starting_date
-            end = today()
-            dates = date_range(start, end)
-            weekday_dates = [date for date in dates if is_weekday(date)]
-            workday_dates = [date for date in weekday_dates if date not in HOLIDAYS]
-            wanted_dates = set(workday_dates) | set(EXTRA_WORKDAY)
+            start_date = user.profile.diary_starting_date
+            end_date = today()
+            dates = date_range(start_date, end_date)
+            weekday_dates = [date for date in dates if date.isoweekday() <= 5]
+            workday_dates = [date for date in weekday_dates if date not in self.HOLIDAYS]
+            wanted_dates = set(workday_dates) | set(self.EXTRA_WORKDAY)
             sorted_wanted_dates = sorted(list(wanted_dates))
             for date in sorted_wanted_dates:
                 wanted.update({(user.id, date): False})
@@ -112,7 +90,7 @@ class Command(BaseCommand):
             notification_level = 1
             oldest_date = sorted(dates)[0]
             late_days = (today() - oldest_date).days
-            for threshlod in THRESHOLD_LIST:
+            for threshlod in self.THRESHOLD_LIST:
                 if late_days >= threshlod:
                     notification_level += 1
                 else:
