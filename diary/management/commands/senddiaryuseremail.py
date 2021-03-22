@@ -39,46 +39,58 @@ def date_range(start, end):
 class Command(BaseCommand):
     help = 'Commands of notifying users of the diary app.'
 
-    def handle(self, *args, **options):
+    def get_diary_users(self):
         """
-        Create a checklist.
+        Get all user who need to write diary.
         """
-        users = User.objects.filter(profile__keep_diary=True)
+        return User.objects.filter(profile__keep_diary=True)
+
+    def get_diary_needed(self, users):
+        """
+        Generate a dict with (`user.id`, `date`) as key and boolean value as value.
+        This is for recording what kind of diary we need.
+        """
         wanted = {}
         for user in users:
             start = user.profile.diary_starting_date
             end = today()
-            past_dates = date_range(start, end)
-            past_weekday_dates = [date for date in past_dates if is_weekday(date) and date not in HOLIDAYS]
-            past_work_dates = past_weekday_dates + EXTRA_WORKDAY
-            past_work_dates = sorted(past_work_dates)
-            for date in past_work_dates:
-                wanted.update({(date, user.id): False})
+            dates = date_range(start, end)
+            weekday_dates = [date for date in dates if is_weekday(date)]
+            workday_dates = [date for date in weekday_dates if date not in HOLIDAYS]
+            wanted_dates = set(workday_dates) | set(EXTRA_WORKDAY)
+            sorted_wanted_dates = sorted(list(wanted_dates))
+            for date in sorted_wanted_dates:
+                wanted.update({(user.id, date): False})
+        return wanted
+
+    def get_diary_existing(self):
         """
-        Create a dictionary using a tuple ``date`` and ``created_by_id`` as key,
-        Because we only need these two fields to check if there is lack of diary.
-        Note that in Django Sunday = 1, in python datetime Sunday = 6.
+        Generate a dictionary with (`created_by_id`, `date`) as key and boolean value as value.
+        This is to recording what kind of diary we have.
         """
-        diarys = Diary.objects.filter(date__week_day__gte=2).filter(date__week_day__lte=7)  # Monday to Friday
-        values_list = diarys.values_list('date', 'created_by_id')
-        existed = {(values): True for values in values_list}
+        diaries = Diary.objects.all()
+        diary_values_list = diaries.values_list('created_by_id', 'date')
+        existing = {(values): True for values in diary_values_list}
+        return existing
+
+    def get_diary_missing(self, needed, existing):
         """
-        Compare them.
+        Generate a dictionary with `user.id` as key and a list of `date` as value.
+        This is to recording what kind of diary we are missing.
         """
-        wanted.update(existed)
-        """
-        Formatting
-        """
-        results = [(key[1], key[0]) for key, value in wanted.items() if value is False]
-        results_dict = {}
-        for user_id, date in results:
-            if user_id not in results_dict:
-                results_dict[user_id] = []
-            results_dict[user_id].append(date)
-        """
-        Sending Emails.
-        """
-        for user_id, dates in results_dict.items():
+        needed.update(existing)
+        missing = {}
+        for key, value in needed.items():
+            if value:
+                continue
+            user_id, date = key
+            if user_id not in missing:
+                missing[user_id] = []
+            missing[user_id].append(date)
+        return missing
+
+    def send_email(self, missing):
+        for user_id, dates in missing.items():
             user = User.objects.get(id=user_id)
             username = user.username
             email = user.email
@@ -100,11 +112,18 @@ class Command(BaseCommand):
                 if person_notified.email not in recipient_list:
                     recipient_list.append(person_notified.email)
                 person_notified = person_notified.profile.boss
-            send_mail(
-                subject=subject,
-                message=message,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=recipient_list,
-                fail_silently=False,
-            )
+            # send_mail(
+            #     subject=subject,
+            #     message=message,
+            #     from_email=settings.DEFAULT_FROM_EMAIL,
+            #     recipient_list=recipient_list,
+            #     fail_silently=False,
+            # )
             print(f'An Email for user {username} has been sent to {recipient_list}, dates={datestrings}')
+
+    def handle(self, *args, **options):
+        users = self.get_diary_users()
+        needed = self.get_diary_needed(users=users)
+        existing = self.get_diary_existing()
+        missing = self.get_diary_missing(needed=needed, existing=existing)
+        self.send_email(missing=missing)
