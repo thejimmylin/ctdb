@@ -53,9 +53,6 @@ class IspGroup(models.Model):
     def __str__(self):
         return self.name
 
-    def isps_as_str(self):
-        return ',\n'.join(instance.name for instance in self.isps.all())
-
     def get_create_url(self):
         return reverse('telecom:ispgroup_create')
 
