@@ -22,6 +22,7 @@ class Isp(models.Model):
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta():
+        ordering = ['-id']
         verbose_name = _('ISP')
         verbose_name_plural = _('ISPs')
 
@@ -45,6 +46,7 @@ class IspGroup(models.Model):
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta():
+        ordering = ['-id']
         verbose_name = _('ISP group')
         verbose_name_plural = _('ISP groups')
 
@@ -83,6 +85,7 @@ class PrefixListUpdateTask(models.Model):
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta():
+        ordering = ['-id']
         verbose_name = _('Prefix-list update task')
         verbose_name_plural = _('Prefix-list update tasks')
 
