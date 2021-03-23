@@ -275,6 +275,7 @@ AUTHENTICATION_BACKENDS = ['accounts.backends.AuthWithUsernameOrEmailBackend']
 
 
 # Logging
+# https://docs.djangoproject.com/en/3.1/topics/logging/
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
