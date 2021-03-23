@@ -42,7 +42,7 @@ SETCRETS = {
     "DATABASES_TYPE": '',
     'DATABASES_MSSQL_PASSWORD': '',
     'USE_GMAIL': True,
-    'EMAIL_HOST_PASSWORD': '',
+    'GMAIL_EMAIL_HOST_PASSWORD': '',
 }
 
 

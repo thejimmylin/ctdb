@@ -37,7 +37,7 @@ USE_WHITENOISE = get_value('USE_WHITENOISE')
 DATABASES_TYPE = get_value('DATABASES_TYPE')
 DATABASES_MSSQL_PASSWORD = get_value('DATABASES_MSSQL_PASSWORD')
 USE_GMAIL = get_value('USE_GMAIL')
-EMAIL_HOST_PASSWORD = get_value('EMAIL_HOST_PASSWORD')
+GMAIL_EMAIL_HOST_PASSWORD = get_value('GMAIL_EMAIL_HOST_PASSWORD')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -257,7 +257,7 @@ if USE_GMAIL:
     EMAIL_USE_TLS = True
     EMAIL_PORT = 587
     EMAIL_HOST_USER = 'j3ycode@gmail.com'
-    EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+    EMAIL_HOST_PASSWORD = GMAIL_EMAIL_HOST_PASSWORD
     DEFAULT_FROM_EMAIL = 'TDB <j3ycode@gmail.com>'
     SERVER_EMAIL = 'TDB <j3ycode@gmail.com>'
 else:
