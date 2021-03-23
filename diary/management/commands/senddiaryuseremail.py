@@ -96,8 +96,8 @@ class Command(BaseCommand):
             notification_level = 1
             oldest_date = sorted(dates)[0]
             late_days = (today() - oldest_date).days
-            for threshlod in self.THRESHOLD_LIST:
-                if late_days >= threshlod:
+            for threshold in self.THRESHOLD_LIST:
+                if late_days >= threshold:
                     notification_level += 1
                 else:
                     break
