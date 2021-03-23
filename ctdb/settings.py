@@ -283,6 +283,7 @@ LOGGING = {
         'file': {
             'class': 'logging.FileHandler',
             'filename': BASE_DIR / 'logging' / 'debug.log',
+            'encoding': 'utf-8',
         },
     },
     'root': {
