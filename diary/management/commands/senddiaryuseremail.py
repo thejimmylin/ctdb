@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from django.template import loader
+from django.conf import settings
 
 from core.utils import today, date_range
 from core.mail import send_mail
@@ -27,9 +28,13 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '--test',
+            '--debug',
             action='store_true',
-            help='Print messages only. The Email would not be sent.',
+            default=settings.DEBUG,
+            help=(
+                'If set to `False`, the command would still log the messages but the Email would not be sent.'
+                'Defalut to `settings.DEBUG`'
+            ),
         )
 
     def get_diary_users(self):
@@ -154,7 +159,7 @@ class Command(BaseCommand):
         email_configs = self.get_email_configs(missing=diary_missing)
         for config in email_configs:
             subject, body, to, cc = config['subject'], config['body'], config['to'], config['cc']
-            if not options['test']:
+            if not options['debug']:
                 send_mail(subject=subject, body=body, to=to, cc=cc)
             log = (
                 f'to:\n{to}\n'
