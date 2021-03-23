@@ -76,16 +76,39 @@ class Command(BaseCommand):
             missing[user_id].append(date)
         return missing
 
+    def get_notification_level(self, past_days):
+        notification_level = 0
+        for threshold in self.THRESHOLD_LIST:
+            if past_days >= threshold:
+                notification_level += 1
+            else:
+                break
+        return notification_level
+
+    def get_cc(self, user, notification_level):
+        cc = []
+        while notification_level > 0:
+            boss = user.profile.boss
+            if boss:
+                email = boss.email
+                if email:
+                    cc.append(boss.email)
+                user = boss
+            notification_level = notification_level - 1
+        return cc
+
     def send_notification_mail(self, missing, test=True):
         """
         Given a dictionary with `user.id` as key and a list of `date` as value, It
         would send notification Email to those user.
         """
         for user_id, dates in missing.items():
+            # Fetch user
             try:
                 user = User.objects.get(id=user_id)
             except User.DoesNotExist:
                 continue
+            # Calculate `notification_level`
             username = user.username
             datestrings = ', '.join(str(date) for date in dates)
             context = {'username': username, 'dates': dates, 'datestrings': datestrings}
@@ -93,27 +116,20 @@ class Command(BaseCommand):
             body = loader.render_to_string(self.BODY_TEMPLATE_NAME, context)
             to = [user.email]
 
-            notification_level = 1
             earliest_date = min(dates)
             past_days = (today() - earliest_date).days
-            for threshold in self.THRESHOLD_LIST:
-                if past_days >= threshold:
-                    notification_level += 1
-                else:
-                    break
+            notification_level = self.get_notification_level(past_days=past_days)
 
-            person_notified = user
-            while notification_level >= 1 and person_notified:
-                notification_level -= 1
-                if person_notified.email not in to:
-                    to.append(person_notified.email)
-                person_notified = person_notified.profile.boss
+            cc = self.get_cc(user=user, notification_level=notification_level)
 
-            if not test:
-                send_mail(subject=subject, body=body, to=to)
+            if test:
+                pass
+            else:
+                send_mail(subject=subject, body=body, to=to, cc=cc)
 
             print('-' * 120)
             print('To:', '; '.join(to))
+            print('CC:', '; '.join(cc))
             print(subject)
             print('\n')
             print(body)
