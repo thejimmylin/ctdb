@@ -57,3 +57,19 @@ def has_add_permission(model_meta, user):
     """
     codename = get_permission_codename(model_meta, 'add')
     return user.has_perm(codename)
+
+
+def has_change_permission(model_meta, user):
+    """
+    Return True if the given user has permission to change an object.
+    """
+    codename = get_permission_codename(model_meta, 'change')
+    return user.has_perm(codename)
+
+
+def has_delete_permission(model_meta, user):
+    """
+    Return True if the given user has permission to delete an object.
+    """
+    codename = get_permission_codename(model_meta, 'delete')
+    return user.has_perm(codename)

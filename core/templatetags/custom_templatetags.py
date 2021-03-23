@@ -1,8 +1,7 @@
 from django import template
-from django.contrib.auth.models import Permission
-from django.contrib.contenttypes.models import ContentType
 from django.utils.safestring import mark_safe
 from django.utils.html import conditional_escape
+from core.utils import has_add_permission as view, has_change_permission, has_delete_permission
 
 
 register = template.Library()
@@ -53,3 +52,11 @@ def join_with_newline(value, arg, autoescape=True):
     except TypeError:  # Fail silently if arg isn't iterable.
         return value
     return mark_safe(data)
+
+
+@register.filter()
+def model_meta(value):
+    """
+    Given a model or instance, return a `model._meta` or `instance._meta`.
+    """
+    return value._meta

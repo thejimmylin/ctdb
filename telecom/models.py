@@ -94,15 +94,3 @@ class PrefixListUpdateTask(models.Model):
 
     def get_delete_url(self):
         return reverse('telecom:prefixlistupdatetask_delete', kwargs={'pk': self.pk})
-
-    def has_create_perm(self, user):
-        s = f'{self._meta.app_label}.add_{self._meta.model_name}'
-        return user.has_perm(s)
-
-    def has_update_perm(self, user):
-        s = f'{self._meta.app_label}.change_{self._meta.model_name}'
-        return user.has_perm(s)
-
-    def has_delete_perm(self, user):
-        s = f'{self._meta.app_label}.delete_{self._meta.model_name}'
-        return user.has_perm(s)
