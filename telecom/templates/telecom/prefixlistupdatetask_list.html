@@ -39,8 +39,8 @@
                 </td>
                 <td class="text-nowrap">{{ obj.created_by }}</td>
                 <td class="text-nowrap">{{ obj.get_update_type_display }}</td>
-                <td class="text-nowrap">{{ obj.isps_as_str|linebreaks }}</td>
-                <td class="text-nowrap">{{ obj.isp_group_as_str|linebreaks }}</td>
+                <td class="text-nowrap">{{ obj.isps.all|join_with_newline:',' }}</td>
+                <td class="text-nowrap">{{ obj.ispgroups|join_with_newline:',' }}</td>
                 <td class="text-nowrap">{{ obj.origin_as }}</td>
                 <td class="text-nowrap">{{ obj.as_path }}</td>
                 <td class="text-nowrap">{{ obj.prefix_list|linebreaks }}</td>

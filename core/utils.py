@@ -34,6 +34,26 @@ def date_range(start_date, end_date):
 
 
 def remove_unnecessary_seperator(s, seperator):
+    """
+    Remove the trailing seperator if there is one.
+    """
     if s[-1:] == seperator:
         return s[:-1]
     return s
+
+
+def get_permission_codename(model_meta, action):
+    """
+    Return the codename of the permission for the specified action.
+    """
+    app_label, model_name = model_meta.app_label, model_meta.model_name
+    codename = f'{app_label}.{action}_{model_name}'
+    return codename
+
+
+def has_add_permission(model_meta, user):
+    """
+    Return True if the given user has permission to add an object.
+    """
+    codename = get_permission_codename(model_meta, 'add')
+    return user.has_perm(codename)

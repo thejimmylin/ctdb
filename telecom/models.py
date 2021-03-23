@@ -109,9 +109,3 @@ class PrefixListUpdateTask(models.Model):
     def has_delete_perm(self, user):
         s = f'{self._meta.app_label}.delete_{self._meta.model_name}'
         return user.has_perm(s)
-
-    def isps_as_str(self):
-        return ',\n'.join(instance.name for instance in self.isps.all())
-
-    def isp_group_as_str(self):
-        return ',\n'.join(instance.name for instance in self.isp_groups.all())

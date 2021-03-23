@@ -36,7 +36,7 @@
                 </td>
                 <td class="text-nowrap">{{ obj.created_by }}</td>
                 <td class="text-nowrap">{{ obj.name }}</td>
-                <td class="text-nowrap">{{ obj.isps_as_str|linebreaks }}</td>
+                <td class="text-nowrap">{{ obj.isps.all|join_with_newline:','|linebreaks }}</td>
                 <td class="text-nowrap">{{ obj.remark|linebreaks }}</td>
               </tr>
               {% empty %}
