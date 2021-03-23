@@ -31,3 +31,6 @@ db.sqlite3
 
 # Node things
 node_modules/
+
+# Logging
+/logging
