@@ -150,10 +150,10 @@ class Command(BaseCommand):
             subject, body, to, cc = config['subject'], config['body'], config['to'], config['cc']
             if not options['test']:
                 send_mail(subject=subject, body=body, to=to, cc=cc)
-            print('-' * 120)
-            print('To:', '; '.join(to))
-            print('CC:', '; '.join(cc))
-            print(subject)
-            print('\n')
-            print(body)
-            print('-' * 120)
+            log = (
+                f'to:\n{to}\n'
+                f'cc:\n{cc}\n'
+                f'subject:\n{subject}\n'
+                f'body:\n{body}'
+            )
+            print(log)
