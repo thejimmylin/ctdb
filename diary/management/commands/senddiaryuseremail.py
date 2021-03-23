@@ -6,6 +6,12 @@ from core.utils import today, date_range
 from core.mail import send_mail
 from day.models import Day
 from diary.models import Diary
+# import the logging library
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
 
 User = get_user_model()
 
@@ -156,4 +162,4 @@ class Command(BaseCommand):
                 f'subject:\n{subject}\n'
                 f'body:\n{body}'
             )
-            print(log)
+            logger.info(log)
