@@ -94,10 +94,10 @@ class Command(BaseCommand):
             to = [user.email]
 
             notification_level = 1
-            oldest_date = sorted(dates)[0]
-            late_days = (today() - oldest_date).days
+            earliest_date = min(dates)
+            past_days = (today() - earliest_date).days
             for threshold in self.THRESHOLD_LIST:
-                if late_days >= threshold:
+                if past_days >= threshold:
                     notification_level += 1
                 else:
                     break
@@ -108,8 +108,9 @@ class Command(BaseCommand):
                 if person_notified.email not in to:
                     to.append(person_notified.email)
                 person_notified = person_notified.profile.boss
+
             if not test:
-                send_mail(subject, body, to=to)
+                send_mail(subject=subject, body=body, to=to)
 
             print('-' * 120)
             print('To:', '; '.join(to))
