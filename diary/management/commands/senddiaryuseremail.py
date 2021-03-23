@@ -37,18 +37,18 @@ class Command(BaseCommand):
         Generate a dict with (`user.id`, `date`) as key and boolean value as value.
         This is for recording what kind of diary we need.
         """
-        wanted = {}
+        needed = {}
         for user in users:
             start_date = user.profile.diary_starting_date
             end_date = today()
             dates = date_range(start_date, end_date)
             weekday_dates = [date for date in dates if date.isoweekday() <= 5]
             workday_dates = [date for date in weekday_dates if date not in self.HOLIDAYS]
-            wanted_dates = set(workday_dates) | set(self.EXTRA_WORKDAY)
-            sorted_wanted_dates = sorted(list(wanted_dates))
-            for date in sorted_wanted_dates:
-                wanted.update({(user.id, date): False})
-        return wanted
+            needed_dates = set(workday_dates) | set(self.EXTRA_WORKDAY)
+            sorted_needed_dates = sorted(list(needed_dates))
+            for date in sorted_needed_dates:
+                needed.update({(user.id, date): False})
+        return needed
 
     def get_diary_existing(self):
         """
@@ -77,6 +77,11 @@ class Command(BaseCommand):
         return missing
 
     def get_notification_level(self, past_days):
+        """
+        Given a `past_days`, return a `notification_level`.
+        If `notification_level` == 1, the user's boss will be added into `CC`.
+        If `notification_level` == 2, the user's boss, and the boss' boss will be added into `CC`.
+        """
         notification_level = 0
         for threshold in self.THRESHOLD_LIST:
             if past_days >= threshold:
@@ -86,6 +91,10 @@ class Command(BaseCommand):
         return notification_level
 
     def get_cc(self, user, notification_level):
+        """
+        Given a `user` and a `notification_level`,
+        return a CC, which is nothing more than a list of Email string.
+        """
         cc = []
         while notification_level > 0:
             boss = user.profile.boss
@@ -97,36 +106,50 @@ class Command(BaseCommand):
             notification_level = notification_level - 1
         return cc
 
-    def send_notification_mail(self, missing, test=True):
+    def get_email_configs(self, missing, test=True):
         """
         Given a dictionary with `user.id` as key and a list of `date` as value, It
-        would send notification Email to those user.
+        would generate a Email config list like this:
+        [
+            {'subject': subject1, 'body': body1, 'to': to1, 'cc', cc1},
+            {'subject': subject2, 'body': body2, 'to': to2, 'cc', cc2},
+            ...
+        ]
         """
+        email_configs = []
         for user_id, dates in missing.items():
-            # Fetch user
             try:
                 user = User.objects.get(id=user_id)
             except User.DoesNotExist:
                 continue
-            # Calculate `notification_level`
             username = user.username
             datestrings = ', '.join(str(date) for date in dates)
             context = {'username': username, 'dates': dates, 'datestrings': datestrings}
             subject = loader.render_to_string(self.SUBJECT_TEMPLATE_NAME, context)
             body = loader.render_to_string(self.BODY_TEMPLATE_NAME, context)
             to = [user.email]
-
-            earliest_date = min(dates)
-            past_days = (today() - earliest_date).days
-            notification_level = self.get_notification_level(past_days=past_days)
-
+            notification_level = self.get_notification_level(past_days=(today() - min(dates)).days)
             cc = self.get_cc(user=user, notification_level=notification_level)
 
-            if test:
-                pass
-            else:
-                send_mail(subject=subject, body=body, to=to, cc=cc)
+            email_config = {
+                'subject': subject,
+                'body': body,
+                'to': to,
+                'cc': cc,
+            }
+            email_configs.append(email_config)
+        return email_configs
 
+    def handle(self, *args, **options):
+        users = self.get_diary_users()
+        diary_needed = self.get_diary_needed(users=users)
+        diary_existing = self.get_diary_existing()
+        diary_missing = self.get_diary_missing(needed=diary_needed, existing=diary_existing)
+        email_configs = self.get_email_configs(missing=diary_missing)
+        for config in email_configs:
+            subject, body, to, cc = config['subject'], config['body'], config['to'], config['cc']
+            if not options['test']:
+                send_mail(subject=subject, body=body, to=to, cc=cc)
             print('-' * 120)
             print('To:', '; '.join(to))
             print('CC:', '; '.join(cc))
@@ -134,13 +157,3 @@ class Command(BaseCommand):
             print('\n')
             print(body)
             print('-' * 120)
-
-    def handle(self, *args, **options):
-        users = self.get_diary_users()
-        needed = self.get_diary_needed(users=users)
-        existing = self.get_diary_existing()
-        missing = self.get_diary_missing(needed=needed, existing=existing)
-        if options['test']:
-            self.send_notification_mail(missing=missing)
-        else:
-            self.send_notification_mail(missing=missing, test=False)
