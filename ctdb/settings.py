@@ -287,7 +287,7 @@ AUTHENTICATION_BACKENDS = ['accounts.backends.AuthWithUsernameOrEmailBackend']
 # https://docs.djangoproject.com/en/3.1/topics/logging/
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
     'handlers': {
         'console': {
             'level': 'INFO',
@@ -296,12 +296,19 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logging' / 'debug.log',
+            'filename': BASE_DIR / 'logging' / 'logging.log',
             'encoding': 'utf-8',
         },
     },
-    'root': {
-        'handlers': ['console', 'file'],
-        'level': 'DEBUG',
+    'loggers': {
+        '': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+        },
+        'django': {
+            'handlers': ['console', 'file'],
+            'propagate': False,
+            'level': 'INFO',
+        },
     },
 }
