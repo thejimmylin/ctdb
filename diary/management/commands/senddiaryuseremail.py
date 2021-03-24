@@ -1,14 +1,14 @@
+import logging
+
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from django.template import loader
-from django.conf import settings
 
-from core.utils import today, date_range
 from core.mail import send_mail
+from core.utils import date_range, today
 from day.models import Day
 from diary.models import Diary
-# import the logging library
-import logging
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)

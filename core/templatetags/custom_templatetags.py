@@ -1,8 +1,6 @@
 from django import template
-from django.utils.safestring import mark_safe
 from django.utils.html import conditional_escape
-from core.utils import has_add_permission as view, has_change_permission, has_delete_permission
-
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
