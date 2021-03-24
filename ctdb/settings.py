@@ -53,11 +53,15 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
+# To load first
 INSTALLED_APPS = [
-    # This is not a default App, but this should be on the top
-    # to override some templates of django.contrib.auth .
+    # This should be on the top to override built-in templates in:
+    # django/contrib/templates/registration/.
     'accounts.apps.AccountsConfig',
-    # Default Apps
+]
+
+# Default Apps
+INSTALLED_APPS += [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -66,6 +70,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# Package Apps
+INSTALLED_APPS += [
+    'widget_tweaks',
+]
+
+# Other Apps
 INSTALLED_APPS += [
     'core.apps.CoreConfig',
     'day.apps.DayConfig',
@@ -74,7 +84,6 @@ INSTALLED_APPS += [
     'reminder.apps.ReminderConfig',
     'telecom.apps.TelecomConfig',
     'log.apps.LogConfig',
-    'widget_tweaks',
 ]
 
 if DEBUG:
