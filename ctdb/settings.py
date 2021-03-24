@@ -288,6 +288,11 @@ AUTHENTICATION_BACKENDS = ['accounts.backends.AuthWithUsernameOrEmailBackend']
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
+    'formatters': {
+        'default': {
+            'format': '[%(levelname)s] %(name)s: %(message)s'
+        }
+    },
     'handlers': {
         'console': {
             'level': 'INFO',
@@ -296,19 +301,29 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logging' / 'logging.log',
+            'filename': BASE_DIR / 'logging' / 'file.log',
             'encoding': 'utf-8',
         },
+        'diary.file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logging' / 'diary.file.log',
+            'encoding': 'utf-8',
+        }
     },
     'loggers': {
         '': {
-            'handlers': ['console', 'file'],
             'level': 'DEBUG',
+            'handlers': ['file'],
         },
         'django': {
-            'handlers': ['console', 'file'],
-            'propagate': False,
             'level': 'INFO',
+            'propagate': True,
         },
-    },
+        'diary': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'diary.file'],
+            'propagate': False,
+        },
+    }
 }
