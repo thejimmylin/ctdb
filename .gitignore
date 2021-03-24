@@ -12,28 +12,26 @@
 __pycache__/
 
 # Django things
-db.sqlite3
+/db.sqlite3
 **/migrations/*
 !**/migrations/__init__.py
+/static/*
+/media/*
 
 # Django manage.py dumpdata & loaddata directory
-/dumpdata/
-
-# Django static & media
-/static/
-/media/
-
-# Nginx things
-/nginx/
-
-# UWSGI things
-/uwsgi/
-
-# Node things
-node_modules/
+/dumpdata/*
 
 # Logging
 /logging/*
+
+# Nginx things
+/nginx/*
+
+# UWSGI things
+/uwsgi/*
+
+# Node things
+/node_modules/*
 
 # To commit empty directory
 !.gitkeep
