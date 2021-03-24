@@ -10,7 +10,7 @@
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col-12" style="height: 60px;"></div>
       <div class="col-12 max-w-10u border rounded shadow" style="padding: 2rem;">
-        <h3 class="mb-5">{{ model|verbose_name_plural|capfirst }}</h3>
+        <h3 class="mb-5">{{ model|attr:'_meta'|attr:'verbose_name_plural' }}</h3>
         {% include 'standard_form_with_file.html' %}
       </div>
       <div class="col-12" style="height: 90px;"></div>

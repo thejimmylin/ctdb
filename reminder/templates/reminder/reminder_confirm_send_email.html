@@ -9,7 +9,7 @@
   <div class="container-fluid max-w-24u">
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col max-w-8u border rounded p-5">
-        <h3 class="mb-5">{{ model|verbose_name_plural|capfirst }}</h3>
+        <h3 class="mb-5">{{ model|attr:'_meta'|attr:'verbose_name_plural' }}</h3>
         <p>{% trans 'Are you sure you want to send a Email about this reminder?' %}</p>
         <form method="post" novalidate>
           {% csrf_token %}
