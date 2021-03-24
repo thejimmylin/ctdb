@@ -10,12 +10,12 @@ def get_attr(value, attr_name):
     return getattr(value, attr_name)
 
 
-@register.filter()
+@register.simple_tag
 def has_perm(user, perm, obj):
     return user.has_perm(perm, obj)
 
 
-@register.filter()
+@register.filter
 def nbsp(value):
     return mark_safe('&nbsp;'.join(value.split(' ')))
 

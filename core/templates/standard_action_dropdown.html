@@ -6,10 +6,11 @@
     {% trans 'Choose' %}
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    {% has_perm user=user perm='add' obj=obj %}
     {% if obj|has_update_perm:user %}
     <a class="dropdown-item" href="{{ obj.get_update_url }}">{% trans 'Change' %}</a>
     {% endif %}
-    {% if obj|has_delete_perm:user %}
+    {% if user|has_delete_perm:user %}
     <a class="dropdown-item" href="{{ obj.get_delete_url }}">{% trans 'Delete' %}</a>
     {% endif %}
     {% if not obj|has_update_perm:user and not obj|has_delete_perm:user %}
