@@ -31,14 +31,15 @@ class AuthWithUsernameOrEmailBackend(ModelBackend):
         base_perm = super().has_perm(user_obj, perm, obj=obj)
         if not obj:
             return base_perm
-        advanced_perm = self.has_obj_perm(user_obj, perm, obj=obj)
-        if base_perm and advanced_perm:
-            return True
-        return False
-        return base_perm and advanced_perm
+        if not base_perm:
+            return False
+        if not self.has_obj_perm(user_obj, perm, obj=obj):
+            return False
+        return True
 
     def has_obj_perm(self, user_obj, perm, obj=None):
         if hasattr(obj, 'created_by'):
-            if obj.created_by == user_obj:
-                return True
-        return False
+            return False
+        if obj.created_by != user_obj:
+            return False
+        return True
