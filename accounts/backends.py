@@ -45,7 +45,7 @@ class AuthWithUsernameOrEmailBackend(ModelBackend):
 
     def has_obj_perm(self, user_obj, action, obj):
         """
-        Generally speaking, a specific object doesn't has its `add` permission.
+        Generally speaking, a specific object doesn't have its `add` permission.
         """
         actions = ('view', 'change', 'delete')
         if action not in actions:
