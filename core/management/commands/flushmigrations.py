@@ -1,7 +1,8 @@
-from django.apps import apps
-from django.core.management.base import BaseCommand, CommandError
-from django.conf import settings
 from pathlib import Path
+
+from django.apps import apps
+from django.conf import settings
+from django.core.management.base import BaseCommand, CommandError
 
 
 class Command(BaseCommand):

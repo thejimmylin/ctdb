@@ -2,7 +2,6 @@ import json
 
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
-from django.utils import timezone
 from rest_framework import serializers
 
 from diary.models import Diary
@@ -10,12 +9,10 @@ from diary.models import Diary
 from .models import Log
 
 
-def now():
-    return timezone.localtime(timezone.now())
-
-
 class DiarySerializer(serializers.ModelSerializer):
-    """Using django-rest-framework's serializers is better than json.dumps with custom encoder."""
+    """
+    Using django-rest-framework's serializers is better than json.dumps with custom encoder.
+    """
     class Meta:
         model = Diary
         fields = '__all__'
@@ -26,12 +23,13 @@ def post_save_diary(sender, instance, created, **kwargs):
     action = 'CREATE' if created else 'UPDATE'
     app_label = sender._meta.app_label
     model_name = sender._meta.model_name
+    created_by = instance.created_by if hasattr(instance, 'created_by') else None
     Log.objects.create(
         action=action,
         app_label=app_label,
         model_name=model_name,
         data=json.dumps(DiarySerializer(instance).data, ensure_ascii=False),
-        created_at=now(),
+        created_by=created_by,
     )
 
 
@@ -40,10 +38,11 @@ def post_delete_diary(sender, instance, **kwargs):
     action = 'DELETE'
     app_label = sender._meta.app_label
     model_name = sender._meta.model_name
+    created_by = instance.created_by if hasattr(instance, 'created_by') else None
     Log.objects.create(
         action=action,
         app_label=app_label,
         model_name=model_name,
         data=json.dumps(DiarySerializer(instance).data, ensure_ascii=False),
-        created_at=now(),
+        created_by=created_by,
     )

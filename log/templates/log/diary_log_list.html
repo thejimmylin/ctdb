@@ -23,6 +23,9 @@
             <thead>
               <tr>
                 <th style="width: 1px;">{% trans 'Action' %}</th>
+                {% if is_supervisor %}
+                <th style="width: 1px;">{% trans 'Created by' %}</th>
+                {% endif %}
                 <th style="width: 100%;">{% trans 'Data' %}</th>
                 <th style="width: 1px;">{% trans 'Created at' %}</th>
               </tr>
@@ -31,6 +34,9 @@
               {% for obj in object_list %}
               <tr>
                 <td class="text-nowrap">{{ obj.action }}</td>
+                {% if is_supervisor %}
+                <td class="text-nowrap">{{ obj.created_by }}</td>
+                {% endif %}
                 <td>{{ obj.data }}</td>
                 <td class="text-nowrap">{{ obj.created_at|date:"Y-m-d H:m:s" }}</td>
               </tr>
