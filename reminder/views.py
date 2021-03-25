@@ -18,8 +18,6 @@ from .models import Reminder
 def reminder_list(request):
     model = Reminder
     paginate_by = 5
-    toolbar_actions = ['create']
-    dropdown_actions = ['update', 'delete']
     template_name = 'reminder/reminder_list.html'
     group = request.session.get('group', request.user.profile.get_default_group_name())
     is_supervisor = True
@@ -34,8 +32,6 @@ def reminder_list(request):
         'object_list': page_obj if is_paginated else qs,
         'is_paginated': is_paginated,
         'is_supervisor': is_supervisor,
-        'toolbar_actions': toolbar_actions,
-        'dropdown_actions': dropdown_actions,
     }
     return render(request, template_name, context)
 

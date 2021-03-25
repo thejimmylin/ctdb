@@ -16,8 +16,6 @@ from .models import Isp, IspGroup, PrefixListUpdateTask
 def isp_list(request):
     model = Isp
     paginate_by = 5
-    toolbar_actions = ['create']
-    dropdown_actions = ['update', 'delete']
     template_name = 'telecom/isp_list.html'
     group = request.session.get('group', request.user.profile.get_default_group_name())
     is_supervisor = True
@@ -32,8 +30,6 @@ def isp_list(request):
         'object_list': page_obj if is_paginated else qs,
         'is_paginated': is_paginated,
         'is_supervisor': is_supervisor,
-        'toolbar_actions': toolbar_actions,
-        'dropdown_actions': dropdown_actions,
     }
     return render(request, template_name, context)
 
@@ -99,8 +95,6 @@ def isp_delete(request, pk):
 def ispgroup_list(request):
     model = IspGroup
     paginate_by = 5
-    toolbar_actions = ['create']
-    dropdown_actions = ['update', 'delete']
     template_name = 'telecom/ispgroup_list.html'
     group = request.session.get('group', request.user.profile.get_default_group_name())
     is_supervisor = True
@@ -115,8 +109,6 @@ def ispgroup_list(request):
         'object_list': page_obj if is_paginated else qs,
         'is_paginated': is_paginated,
         'is_supervisor': is_supervisor,
-        'toolbar_actions': toolbar_actions,
-        'dropdown_actions': dropdown_actions,
     }
     return render(request, template_name, context)
 
@@ -182,8 +174,6 @@ def ispgroup_delete(request, pk):
 def prefixlistupdatetask_list(request):
     model = PrefixListUpdateTask
     paginate_by = 5
-    toolbar_actions = ['create']
-    dropdown_actions = ['update', 'delete']
     template_name = 'telecom/prefixlistupdatetask_list.html'
     group = request.session.get('group', request.user.profile.get_default_group_name())
     is_supervisor = True
@@ -198,8 +188,6 @@ def prefixlistupdatetask_list(request):
         'object_list': page_obj if is_paginated else qs,
         'is_paginated': is_paginated,
         'is_supervisor': is_supervisor,
-        'toolbar_actions': toolbar_actions,
-        'dropdown_actions': dropdown_actions,
     }
     return render(request, template_name, context)
 
