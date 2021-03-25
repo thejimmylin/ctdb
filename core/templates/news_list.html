@@ -9,7 +9,9 @@
       <div class="col-12">
         <p class="h1 text-center">
           {% trans 'News' %}
-        </p>
+          {% for obj in object_list %}
+          <p class="text-center p-5">{{ obj.title }}</p>
+          {% endfor %}
       </div>
     </div>
   </div>
