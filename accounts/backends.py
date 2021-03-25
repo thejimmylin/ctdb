@@ -28,30 +28,31 @@ class AuthWithUsernameOrEmailBackend(ModelBackend):
                 return user
 
     def has_perm(self, user_obj, perm, obj=None):
-        base_perm = super().has_perm(user_obj, perm, obj=None)
         if obj is None:
-            return base_perm
-        return base_perm and self._has_obj_perm(user_obj, perm, obj=obj)
+            return super().has_perm(user_obj, perm, obj=obj)
+        return self._has_perm(user_obj, perm_or_action=perm, obj=obj)
 
-    def _has_obj_perm(self, user_obj, perm, obj):
+    def _has_perm(self, user_obj, perm_or_action, obj):
         """
-        The `obj` should be the same model as what `perm` says.
+        If `perm_or_action` is a perm, split it to get `action`.
+        In this case, the `obj` should be the same model as what `perm` says.
         """
+        if '.' not in perm_or_action:
+            action = perm_or_action
+            return self.has_obj_perm(user_obj, action=action, obj=obj)
+        perm = perm_or_action
         app_label, codename = perm.split('.')
         action, model_name = codename.split('_')
-        if not obj._meta.model_name == model_name:
+        if obj._meta.model_name != model_name:
             return False
-        return self.has_obj_perm(user_obj, action, obj)
+        return self.has_obj_perm(user_obj, action=action, obj=obj)
 
     def has_obj_perm(self, user_obj, action, obj):
         """
         Generally speaking, a specific object doesn't have its `add` permission.
         """
-        actions = ('view', 'change', 'delete')
-        if action not in actions:
-            return False
         if action == 'view':
             return True
-        if not hasattr(obj, 'created_by'):
-            return False
-        return obj.created_by == user_obj
+        if action in ('change', 'delete') and hasattr(obj, 'created_by') and obj.created_by == user_obj:
+            return True
+        return False

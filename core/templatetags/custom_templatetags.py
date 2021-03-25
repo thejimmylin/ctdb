@@ -5,16 +5,45 @@ from django.utils.safestring import mark_safe
 register = template.Library()
 
 
-@register.filter(name='attr')
-def get_attr(value, attr_name):
+# General
+@register.simple_tag
+def assign(value):
+    return value
+
+
+@register.filter
+def attr(value, attr_name):
     return getattr(value, attr_name)
 
 
-@register.simple_tag
-def has_perm(user, perm, obj):
-    return user.has_perm(perm, obj)
+# Permission
+@register.filter
+def has_perm(user, perm):
+    return user.has_perm(perm=perm, obj=None)
 
 
+@register.filter
+def get_perm_name(options, action):
+    perm_name = f'{options.app_label}.{action}_{options.model_name}'
+    return perm_name
+
+
+@register.filter
+def can_view(user, obj):
+    return user.has_perm(perm='view', obj=obj)
+
+
+@register.filter
+def can_change(user, obj):
+    return user.has_perm(perm='change', obj=obj)
+
+
+@register.filter
+def can_delete(user, obj):
+    return user.has_perm(perm='delete', obj=obj)
+
+
+# String
 @register.filter
 def nbsp(value):
     return mark_safe('&nbsp;'.join(value.split(' ')))
