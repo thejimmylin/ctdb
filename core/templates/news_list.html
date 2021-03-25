@@ -7,44 +7,34 @@
 
 {% block content %}
 <section class="content">
-  <div class="container-fluid max-w-24u">
+  <div class="container-fluid max-w-12u">
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col">
         <div id="blankTop"></div>
-        <div id="toolbar" class="d-flex justify-content-between">
-          <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
-          {% assign model|attr:'_meta'|get_perm_name:'add' as perm_name %}
-          {% if user|has_perm:perm_name %}
+        <div id="toolbar" class="d-flex justify-content-end">
+          {% assign model|attr:'_meta'|get_perm_name:'add' as add_perm %}
+          {% if user|has_perm:add_perm %}
           <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% trans 'Add' %}</a>
           {% endif %}
         </div>
         <div class="table-responsive">
           <table id="searchTable" class="table table-light table-borderless table-solid">
+            {% assign model|attr:'_meta'|get_perm_name:'change' as change_perm %}
+            {% if user|has_perm:change_perm %}
             <thead>
               <tr>
                 <th style="width: 1px;">{% trans 'Action' %}</th>
-                {% if is_supervisor %}
-                <th style="width: 1px;">{% trans 'Created by' %}</th>
-                {% endif %}
-                <th style="width: 1px;">{% trans 'Date' %}</th>
-                <th style="width: 1px;">{% trans 'Daily check' %}</th>
-                <th style="width: 37.5%">{% trans 'Daily record' %}</th>
-                <th style="width: 37.5%">{% trans 'To do' %}</th>
-                <th style="width: 25%">{% trans 'Remark' %}</th>
+                <th style="width: 1px;">{% trans 'News' %}</th>
               </tr>
             </thead>
+            {% endif %}
             <tbody>
               {% for obj in object_list %}
               <tr>
+                {% if user|has_perm:change_perm %}
                 <td class="text-nowrap">{% include 'standard_action_dropdown.html' %}</td>
-                {% if is_supervisor %}
-                <td class="text-nowrap">{{ obj.created_by }}</td>
                 {% endif %}
-                <td class="text-nowrap">{{ obj.date|date:"Y-m-d" }}</td>
-                <td class="text-nowrap">{{ obj.get_daily_check_display }}</td>
-                <td>{{ obj.daily_record|safe|linebreaks }}</td>
-                <td>{{ obj.todo|safe|linebreaks }}</td>
-                <td>{{ obj.remark|safe|linebreaks }}</td>
+                <td><h5>{{ obj.title }}</h5><hr>{{ obj.content }}<br><br><small class="text-secondary text-right d-block">{{ obj.at|date:'Y-m-d A h:m' }}</small></td>
               </tr>
               {% empty %}
               <tr>
@@ -62,8 +52,4 @@
     </div>
   </div>
 </section>
-{% endblock %}
-
-{% block extrajs %}
-<script src="{% static 'js/table_list_view.js' %}"></script>
 {% endblock %}
