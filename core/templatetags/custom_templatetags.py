@@ -63,22 +63,3 @@ def join_with_newline(value, arg, autoescape=True):
     except TypeError:  # Fail silently if arg isn't iterable.
         return value
     return mark_safe(data)
-
-
-# The tags below are going to be deprecated.
-@register.filter()
-def has_create_perm(value, user):
-    s = f'{value._meta.app_label}.add_{value._meta.model_name}'
-    return user.has_perm(s)
-
-
-@register.filter()
-def has_update_perm(value, user):
-    s = f'{value._meta.app_label}.change_{value._meta.model_name}'
-    return user.has_perm(s)
-
-
-@register.filter()
-def has_delete_perm(value, user):
-    s = f'{value._meta.app_label}.delete_{value._meta.model_name}'
-    return user.has_perm(s)
