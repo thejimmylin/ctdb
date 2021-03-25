@@ -473,10 +473,8 @@ msgid "------"
 msgstr ""
 
 #: .\core\templates\standard_nav.html:152
-#, fuzzy
-#| msgid "No available options"
-msgid "No available role"
-msgstr "沒有可用的選項"
+msgid "No available group"
+msgstr "沒有可用的群組"
 
 #: .\core\templates\standard_nav.html:161
 msgid "Guest"

@@ -136,22 +136,22 @@
           </div>
         </li>
         <li class="nav-item dropdown">
-          {% with available_roles=user.profile.get_available_roles %}
+          {% with available_group_names=user.profile.get_displayed_group_names %}
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="true">
-            {% if available_roles %}
-            {{ request.session.role|default:available_roles.0 }}
+            {% if available_group_names %}
+            {{ request.session.group|default:available_group_names.0 }}
             {% else %}
             {% trans '------' %}
             {% endif %}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            {% if available_roles %}
-            {% for role in available_roles %}
-            <a class="dropdown-item" href="{% url 'accounts:set_role' role=role %}">{{ role }}</a>
+            {% if available_group_names %}
+            {% for group in available_group_names %}
+            <a class="dropdown-item" href="{% url 'accounts:set_group' group=group %}">{{ group }}</a>
             {% endfor %}
             {% else %}
-            <a class="dropdown-item" href="">{% trans 'No available role' %}</a>
+            <a class="dropdown-item" href="">{% trans 'No available group' %}</a>
             {% endif %}
           </div>
           {% endwith %}

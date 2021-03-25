@@ -84,11 +84,11 @@ def profile_change(request):
 
 
 @login_required
-def set_role(request, role):
+def set_group(request, group):
     """
-    A set role view.
+    A set group view.
     """
-    if role not in request.user.profile.get_available_roles():
+    if group not in request.user.profile.get_displayed_group_names():
         raise Http404
-    request.session['role'] = role
+    request.session['group'] = group
     return redirect(request.META.get('HTTP_REFERER', '/'))

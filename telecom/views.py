@@ -19,9 +19,9 @@ def isp_list(request):
     toolbar_actions = ['create']
     dropdown_actions = ['update', 'delete']
     template_name = 'telecom/isp_list.html'
-    role = request.session.get('role', request.user.profile.get_default_role())
+    group = request.session.get('group', request.user.profile.get_default_group_name())
     is_supervisor = True
-    qs = model.objects.filter(created_by__groups__name=role)
+    qs = model.objects.filter(created_by__groups__name=group)
     page_number = request.GET.get('page', '')
     paginator = Paginator(qs, paginate_by)
     page_obj = paginator.get_page(page_number)
@@ -102,9 +102,9 @@ def ispgroup_list(request):
     toolbar_actions = ['create']
     dropdown_actions = ['update', 'delete']
     template_name = 'telecom/ispgroup_list.html'
-    role = request.session.get('role', request.user.profile.get_default_role())
+    group = request.session.get('group', request.user.profile.get_default_group_name())
     is_supervisor = True
-    qs = model.objects.filter(created_by__groups__name=role)
+    qs = model.objects.filter(created_by__groups__name=group)
     page_number = request.GET.get('page', '')
     paginator = Paginator(qs, paginate_by)
     page_obj = paginator.get_page(page_number)
@@ -185,9 +185,9 @@ def prefixlistupdatetask_list(request):
     toolbar_actions = ['create']
     dropdown_actions = ['update', 'delete']
     template_name = 'telecom/prefixlistupdatetask_list.html'
-    role = request.session.get('role', request.user.profile.get_default_role())
+    group = request.session.get('group', request.user.profile.get_default_group_name())
     is_supervisor = True
-    qs = model.objects.filter(created_by__groups__name=role)
+    qs = model.objects.filter(created_by__groups__name=group)
     page_number = request.GET.get('page', '')
     paginator = Paginator(qs, paginate_by)
     page_obj = paginator.get_page(page_number)

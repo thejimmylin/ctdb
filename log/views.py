@@ -18,7 +18,7 @@ def diary_log_list(request):
     order_by = ('-id', )
     if not request.user.is_authenticated:
         return redirect(reverse("accounts:login") + '?next=' + request.get_full_path())
-    role = request.session.get('role', request.user.profile.get_default_role())
+    group = request.session.get('group', request.user.profile.get_default_group_name())
     is_supervisor = request.user.groups.filter(name='Supervisors').exists()
     qs = model.objects.all().order_by(*order_by).values()
     object_list = []
@@ -28,7 +28,7 @@ def diary_log_list(request):
             created_by = User.objects.filter(id=data_as_dict.get('created_by')).first()
             if not created_by:
                 continue
-            if role in [dep.name for dep in created_by.profile.department.all()]:
+            if group in created_by.profile.get_displayed_group_names():
                 object_list.append(instance)
     else:
         for instance in qs:

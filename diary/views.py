@@ -18,10 +18,10 @@ def diary_list(request):
     toolbar_actions = ['create']
     dropdown_actions = ['update', 'delete']
     template_name = 'diary/diary_list.html'
-    role = request.session.get('role', request.user.profile.get_default_role())
+    group = request.session.get('group', request.user.profile.get_default_group_name())
     is_supervisor = request.user.groups.filter(name='Supervisors').exists()
     if is_supervisor:
-        qs = model.objects.filter(created_by__groups__name=role)
+        qs = model.objects.filter(created_by__groups__name=group)
     else:
         qs = model.objects.filter(created_by=request.user)
     page_number = request.GET.get('page', '')

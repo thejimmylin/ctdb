@@ -8,7 +8,7 @@ from django.contrib.auth.views import (LoginView, LogoutView,
 from django.urls import path, reverse_lazy
 
 from .forms import EmailValidationOnForgotPasswordForm, LoginForm
-from .views import profile_change, set_role, signup, signup_with_email
+from .views import profile_change, set_group, signup, signup_with_email
 
 app_name = 'accounts'
 
@@ -44,5 +44,5 @@ urlpatterns += [
 # Custom views about user extending model - profile.
 urlpatterns += [
     path('profile/', profile_change, name='profile_change'),
-    path('set-role/<str:role>/', set_role, name='set_role'),  # Role/department
+    path('set-group/<str:group>/', set_group, name='set_group'),
 ]
