@@ -4,33 +4,41 @@ This repository includes many reusable Django apps.
 
 ## Overview
 
+##### Clean & simple style
+
 <img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/login.png" width="60%">
 
 <img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/news.png" width="60%">
 
-<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/diary.png" width="60%">
+##### with i18 & user-role system
 
 <img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/i18n.png" width="60%">
+
+##### Diary app
+
+<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/diary.png" width="60%">
+
+##### Reminder app
 
 <img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/reminder.png" width="60%">
 
 
 ## Installation
 
-git clone
-```
+git clone this repo
+```bash
 git clone https://github.com/j3ygithub/ctdb /Users/jimmy_lin/repos/ctdb
 ```
 
-venv & pip
-```
+build venv & install packages with pip
+```bash
 python3 -m venv /Users/jimmy_lin/repos/ctdb/.venv
 source /Users/jimmy_lin/repos/ctdb/.venv
 pip install -r /Users/jimmy_lin/repos/ctdb/requirements/dev.txt
 ```
 
-DB migrate
-```
+Make DB migrations
+```bash 
 python3 /Users/jimmy_lin/repos/ctdb/manage.py makemigrations
 python3 /Users/jimmy_lin/repos/ctdb/manage.py migrate
 ```
