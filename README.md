@@ -26,6 +26,62 @@ This repository includes many reusable Django apps.
 
 <img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/log.png" width="60%">
 
+## Source code overview
+
+#### Reusable auth backend `AuthWithUsernameOrEmailBackend`.
+
+```python
+class AuthWithUsernameOrEmailBackend(ModelBackend):
+    """
+    Override method authenticate, make it possible to login with Email.
+    """
+
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        if username is None:
+            username = kwargs.get(User.USERNAME_FIELD)
+        if username is None or password is None:
+            return
+        try:
+            try:
+                user = User._default_manager.get_by_natural_key(username)
+            except User.DoesNotExist:
+                user = User._default_manager.get(email=username)
+        except User.DoesNotExist:
+            # Run the default password hasher once to reduce the timing
+            # difference between an existing and a nonexistent user (#20760).
+            User().set_password(password)
+        else:
+            if user.check_password(password) and self.user_can_authenticate(user):
+                return user
+```
+
+#### Overrided `permission_required` decorator.
+```python
+def permission_required(perm, login_url=None, raise_exception=False, exception=PermissionDenied):
+    """
+    Override Django's built-in permission_required decorator.
+    Act like permission_required but let you set a optional `exception` argument.
+    You can set it to Http404 instead of the default PermissionDenied.
+    """
+    def check_perms(user):
+        if isinstance(perm, str):
+            perms = (perm,)
+        else:
+            perms = perm
+        # First check if the user has the permission (even anon users)
+        if user.has_perms(perms):
+            return True
+        # In case the 403 handler should be called raise the exception
+        if raise_exception:
+            raise exception
+        # As the last resort, show the login form
+        return False
+    return user_passes_test(check_perms, login_url=login_url)
+```
+
+..
+..
+
 ## Installation
 
 git clone this repo
