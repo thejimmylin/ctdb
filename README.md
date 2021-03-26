@@ -4,24 +4,27 @@ This repository includes many reusable Django apps.
 
 ## Overview
 
-##### Clean & simple style
+#### Clean & simple style
 
 <img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/login.png" width="60%">
 
 <img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/news.png" width="60%">
 
-##### with i18 & user-role system
+#### with i18 & user-role system
 
 <img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/i18n.png" width="60%">
 
-##### Diary app
+#### Diary app
 
 <img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/diary.png" width="60%">
 
-##### Reminder app
+#### Reminder app
 
 <img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/reminder.png" width="60%">
 
+#### Log app
+
+<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/log.png" width="60%">
 
 ## Installation
 
