@@ -13,7 +13,7 @@ from .forms import NewsModelForm
 def news_list(request):
     model = News
     paginate_by = 5
-    template_name = 'news_list.html'
+    template_name = 'news/news_list.html'
     is_supervisor = True
     qs = News.objects.all()
     page_number = request.GET.get('page', '')
@@ -31,14 +31,14 @@ def news_list(request):
 
 
 @login_required
-@permission_required('core.add_news', raise_exception=True, exception=Http404)
+@permission_required('news.add_news', raise_exception=True, exception=Http404)
 def news_create(request):
     model = News
     instance = model(created_by=request.user)
     form_class = NewsModelForm
-    success_url = reverse('news_list')
+    success_url = reverse('news:news_list')
     form_buttons = ['create']
-    template_name = 'news_form.html'
+    template_name = 'news/news_form.html'
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -52,14 +52,14 @@ def news_create(request):
 
 
 @login_required
-@permission_required('core.change_news', raise_exception=True, exception=Http404)
+@permission_required('news.change_news', raise_exception=True, exception=Http404)
 def news_update(request, pk):
     model = News
     instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     form_class = NewsModelForm
-    success_url = reverse('news_list')
+    success_url = reverse('news:news_list')
     form_buttons = ['update']
-    template_name = 'news_form.html'
+    template_name = 'news/news_form.html'
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
@@ -73,12 +73,12 @@ def news_update(request, pk):
 
 
 @login_required
-@permission_required('core.delete_news', raise_exception=True, exception=Http404)
+@permission_required('news.delete_news', raise_exception=True, exception=Http404)
 def news_delete(request, pk):
     model = News
     instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
-    success_url = reverse('news_list')
-    template_name = 'news_confirm_delete.html'
+    success_url = reverse('news:news_list')
+    template_name = 'news/news_confirm_delete.html'
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)

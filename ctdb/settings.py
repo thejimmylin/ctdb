@@ -80,6 +80,7 @@ INSTALLED_APPS += [
     'core.apps.CoreConfig',
     'day.apps.DayConfig',
     'archive.apps.ArchiveConfig',
+    'news.apps.NewsConfig',
     'diary.apps.DiaryConfig',
     'reminder.apps.ReminderConfig',
     'telecom.apps.TelecomConfig',

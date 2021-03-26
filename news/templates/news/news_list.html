@@ -34,12 +34,9 @@
                 {% if user|has_perm:change_perm %}
                 <td class="text-nowrap">{% include 'standard_action_dropdown.html' %}</td>
                 {% endif %}
-                <td><h5>{{ obj.title }}</h5><hr>{{ obj.content }}<br><br><small class="text-secondary text-right d-block">{{ obj.at|date:'Y-m-d A h:m' }}</small></td>
+                <td class="p-4"><h5>{{ obj.title }}</h5><hr><p>{{ obj.content }}</p><small class="text-secondary text-right d-block">{{ obj.at|date:'Y-m-d A h:m' }}</small></td>
               </tr>
               {% empty %}
-              <tr>
-                <td class='text-center text-secondary' colspan="100%">{% trans 'No entries.' %}</td>
-              </tr>
               {% endfor %}
             </tbody>
           </table>
