@@ -28,7 +28,7 @@ This repository includes many reusable Django apps.
 
 ## Source code overview
 
-#### Reusable auth backend `AuthWithUsernameOrEmailBackend`.
+#### Auth backend `AuthWithUsernameOrEmailBackend`.
 
 ```python
 class AuthWithUsernameOrEmailBackend(ModelBackend):
@@ -79,8 +79,7 @@ def permission_required(perm, login_url=None, raise_exception=False, exception=P
     return user_passes_test(check_perms, login_url=login_url)
 ```
 
-..
-..
+There are other reusable source code like `flushmigrations`, `dumpdatautf8` Django management commands.
 
 ## Installation
 
