@@ -4,7 +4,16 @@ This repository includes many reusable Django apps.
 
 ## Overview
 
-<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/diary.png" width="60%">
+<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/login" width="60%">
+
+<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/news" width="60%">
+
+<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/diary" width="60%">
+
+<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/i18n" width="60%">
+
+<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/reminder" width="60%">
+
 
 ## Installation
 
