@@ -70,7 +70,6 @@ class GroupProfile(models.Model):
         to='auth.Group',
         on_delete=models.CASCADE,
     )
-    is_displayed = models.BooleanField(default=False)
     managed_by = models.ForeignKey(
         verbose_name=_('Manager'),
         to=settings.AUTH_USER_MODEL,
@@ -78,6 +77,22 @@ class GroupProfile(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='managing_groups',
+    )
+    is_displayed = models.BooleanField(
+        verbose_name=_('Is displayed'),
+        default=False
+    )
+    is_department = models.BooleanField(
+        verbose_name=_('Is department'),
+        default=False
+    )
+    parent_department = models.ForeignKey(        
+        verbose_name=_('Parent Department'),
+        to='auth.Group',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='child_departments',
     )
 
     class Meta():
