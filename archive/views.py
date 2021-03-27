@@ -16,7 +16,7 @@ def archive_list(request):
     model = Archive
     paginate_by = 5
     template_name = 'archive/archive_list.html'
-    is_supervisor = request.user.groups.filter(name='Supervisors').exists()
+    is_supervisor = request.user.profile.is_supervisor()
     qs = model.objects.all()
     page_number = request.GET.get('page', '')
     paginator = Paginator(qs, paginate_by)

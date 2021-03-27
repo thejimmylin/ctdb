@@ -6,6 +6,7 @@ from core.utils import today
 
 
 class Profile(models.Model):
+    SUPERVISOR_GROUP_NAME = 'SUPERVISORS'
 
     user = models.OneToOneField(
         verbose_name=_('User'),
@@ -57,6 +58,9 @@ class Profile(models.Model):
         if group_names:
             return group_names[0]
         return ''
+
+    def is_supervisor(self):
+        return self.user.groups.filter(name=self.SUPERVISOR_GROUP_NAME).exists()
 
 
 class GroupProfile(models.Model):

@@ -17,7 +17,7 @@ def diary_list(request):
     paginate_by = 5
     template_name = 'diary/diary_list.html'
     group = request.session.get('group', request.user.profile.get_default_group_name())
-    is_supervisor = request.user.groups.filter(name='Supervisors').exists()
+    is_supervisor = request.user.profile.is_supervisor()
     if is_supervisor:
         qs = model.objects.filter(created_by__groups__name=group)
     else:
