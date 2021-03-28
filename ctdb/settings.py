@@ -285,10 +285,17 @@ AUTHENTICATION_BACKENDS = ['accounts.backends.AuthWithUsernameOrEmailBackend']
 
 
 # Logging
-# https://docs.djangoproject.com/en/3.1/topics/logging/
+# https://docs.djangoproject.com/en/3.1/topics/logging/#examples
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '[{asctime}] {message}',
+            'style': '{',
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+    },
     'handlers': {
         'file': {
             'level': 'DEBUG',
@@ -305,6 +312,7 @@ LOGGING = {
         'console': {
             'level': 'INFO',
             'class': 'logging.StreamHandler',
+            'formatter': 'simple',
         },
     },
     'loggers': {

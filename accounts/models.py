@@ -64,7 +64,6 @@ class Profile(models.Model):
 
 
 class GroupProfile(models.Model):
-
     group = models.OneToOneField(
         verbose_name=_('Group'),
         to='auth.Group',
@@ -86,7 +85,7 @@ class GroupProfile(models.Model):
         verbose_name=_('Is department'),
         default=False
     )
-    parent_department = models.ForeignKey(        
+    parent_department = models.ForeignKey(
         verbose_name=_('Parent Department'),
         to='auth.Group',
         null=True,
@@ -101,3 +100,30 @@ class GroupProfile(models.Model):
 
     def __str__(self):
         return f'Profile of group {self.group.name}'
+
+
+class Play(models.Model):
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    group = models.ForeignKey(to='auth.Group', on_delete=models.CASCADE)
+    roles = models.ManyToManyField(to='accounts.Role', blank=True)
+
+    class Meta():
+        verbose_name = _('Play')
+        verbose_name_plural = _('Play')
+
+    def __str__(self):
+        role_names = ', '.join(role.name for role in self.roles.all())
+        if role_names:
+            return f'User {self.user} plays {role_names} in group {self.group}'
+        return f'User {self.user} plays a member in group {self.group}'
+
+
+class Role(models.Model):
+    name = models.CharField(max_length=63, unique=True)
+
+    class Meta():
+        verbose_name = _('Role')
+        verbose_name_plural = _('Roles')
+
+    def __str__(self):
+        return self.name

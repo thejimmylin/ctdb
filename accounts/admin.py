@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 
-from .models import GroupProfile, Profile
+from .models import GroupProfile, Profile, Play, Role
 
 User = get_user_model()
 
@@ -22,3 +22,17 @@ class GroupProfileAdmin(admin.ModelAdmin):
 
 
 admin.site.register(GroupProfile, GroupProfileAdmin)
+
+
+class PlayAdmin(admin.ModelAdmin):
+    list_display = ['__str__', 'user', 'group']
+
+
+admin.site.register(Play, PlayAdmin)
+
+
+class RoleAdmin(admin.ModelAdmin):
+    list_display = ['__str__']
+
+
+admin.site.register(Role, RoleAdmin)
