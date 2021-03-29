@@ -91,10 +91,10 @@ def set_group(request, group_pk):
     """
     A view let user set `group` in session.
     """
+    group = get_object_or_404(klass=Group, pk=group_pk)
     if group_pk not in [group.pk for group in request.user.profile.get_groups_playing_in()]:
         raise Http404
-    group = get_object_or_404(klass=Group, pk=group_pk)
-    request.session['group'] = model_to_dict(group, fields=['id', 'name'])
+    request.session['group'] = {'pk': group.pk, 'name': group.name}
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
@@ -103,10 +103,8 @@ def set_role(request, role_pk):
     """
     A view let user set `role` in session.
     """
-    d = dict(request.session)
-    print(d)
-    if role_pk not in [role.pk for role in request.user.profile.get_roles_playing()]:
-        raise Http404
     role = get_object_or_404(klass=Role, pk=role_pk)
-    request.session['role'] = model_to_dict(role, fields=['id', 'name'])
+    if role not in request.user.profile.get_roles_playing():
+        raise Http404
+    request.session['role'] = {'pk': role.pk, 'name': role.name, 'codename': role.codename}
     return redirect(request.META.get('HTTP_REFERER', '/'))

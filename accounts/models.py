@@ -53,6 +53,12 @@ class Profile(models.Model):
     def __str__(self):
         return f'Profile of {self.user}'
 
+    def get_plays_outer_roles(self):
+        plays = Play.objects.filter(user=self.user)
+        plays_outer_roles = plays.values('group_id', 'group__name', 'roles__id', 'roles__name')
+        ordered = plays_outer_roles.order_by('group__name', 'roles__name')
+        return ordered
+
     def get_groups_playing_in(self):
         groups_playing_in = Group.objects.filter(play__user=self.user)
         return groups_playing_in
