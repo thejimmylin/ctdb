@@ -119,7 +119,8 @@ class Play(models.Model):
 
 
 class Role(models.Model):
-    name = models.CharField(max_length=63, unique=True)
+    name = models.CharField(max_length=63)
+    codename = models.CharField(max_length=63, unique=True)
 
     class Meta():
         verbose_name = _('Role')
