@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.models import Group
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -49,9 +50,20 @@ class Profile(models.Model):
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
 
-    def get_displayed_group_names(self):
-        group_names = [i.name for i in self.user.groups.filter(groupprofile__is_displayed=True)]
-        return group_names
+    def __str__(self):
+        return f'Profile of {self.user}'
+
+    def get_groups_playing_in(self):
+        groups_playing_in = Group.objects.filter(play__user=self.user)
+        return groups_playing_in
+
+    def get_roles_playing(self):
+        roles = Role.objects.filter(play__user=self.user)
+        return roles
+
+    def get_displayed_groups(self):
+        displayed_groups = self.user.groups.filter(groupprofile__is_displayed=True)
+        return displayed_groups
 
     def get_default_group_name(self):
         group_names = self.get_displayed_group_names()
@@ -68,14 +80,6 @@ class GroupProfile(models.Model):
         verbose_name=_('Group'),
         to='auth.Group',
         on_delete=models.CASCADE,
-    )
-    managed_by = models.ForeignKey(
-        verbose_name=_('Manager'),
-        to=settings.AUTH_USER_MODEL,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='managing_groups',
     )
     is_displayed = models.BooleanField(
         verbose_name=_('Is displayed'),
@@ -99,7 +103,7 @@ class GroupProfile(models.Model):
         verbose_name_plural = _('Group profiles')
 
     def __str__(self):
-        return f'Profile of group {self.group.name}'
+        return f'Profile of {self.group}'
 
 
 class Play(models.Model):
@@ -112,10 +116,9 @@ class Play(models.Model):
         verbose_name_plural = _('Play')
 
     def __str__(self):
-        role_names = ', '.join(role.name for role in self.roles.all())
-        if role_names:
-            return f'User {self.user} plays {role_names} in group {self.group}'
-        return f'User {self.user} plays a member in group {self.group}'
+        roles = ', '.join(str(role) for role in self.roles.all())
+        roles = roles if roles else 'a member'
+        return f'{self.user}, in group {self.group}, playing {roles}'
 
 
 class Role(models.Model):

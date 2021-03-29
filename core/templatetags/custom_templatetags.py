@@ -7,7 +7,7 @@ register = template.Library()
 
 # General
 @register.simple_tag
-def assign(value):
+def name(value):
     return value
 
 

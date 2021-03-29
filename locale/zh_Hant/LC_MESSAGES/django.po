@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 22:46+0800\n"
+"POT-Creation-Date: 2021-03-29 11:12+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,41 +84,37 @@ msgstr "個人檔案"
 
 #: .\accounts\models.py:68
 msgid "Group"
-msgstr ""
+msgstr "群組"
 
 #: .\accounts\models.py:73
-msgid "Manager"
-msgstr "管理者"
-
-#: .\accounts\models.py:81
 msgid "Is displayed"
 msgstr "是否顯示"
 
-#: .\accounts\models.py:85
+#: .\accounts\models.py:77
 msgid "Is department"
 msgstr "是否為部門"
 
-#: .\accounts\models.py:89
+#: .\accounts\models.py:81
 msgid "Parent Department"
 msgstr "母部門"
 
-#: .\accounts\models.py:98
+#: .\accounts\models.py:90
 msgid "Group profile"
 msgstr "群組檔案"
 
-#: .\accounts\models.py:99
+#: .\accounts\models.py:91
 msgid "Group profiles"
 msgstr "群組檔案"
 
-#: .\accounts\models.py:111 .\accounts\models.py:112
+#: .\accounts\models.py:103 .\accounts\models.py:104
 msgid "Play"
 msgstr "扮演"
 
-#: .\accounts\models.py:125
+#: .\accounts\models.py:118
 msgid "Role"
 msgstr "角色"
 
-#: .\accounts\models.py:126
+#: .\accounts\models.py:119
 msgid "Roles"
 msgstr "角色"
 
@@ -915,3 +911,6 @@ msgstr "Prefix-list 更新任務"
 #: .\telecom\templates\telecom\isp_list.html:28
 msgid "Chinese name"
 msgstr "中文名稱"
+
+#~ msgid "Manager"
+#~ msgstr "管理者"

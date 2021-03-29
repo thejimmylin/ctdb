@@ -84,11 +84,22 @@ def profile_change(request):
 
 
 @login_required
-def set_group(request, group):
+def set_group(request, group_name):
     """
-    A set group view.
+    A view let user set `group` in session.
     """
-    if group not in request.user.profile.get_displayed_group_names():
+    if group_name not in [group.name for group in request.user.profile.get_groups_playing_in()]:
         raise Http404
-    request.session['group'] = group
+    request.session['group'] = group_name
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
+def set_role(request, role_name):
+    """
+    A view let user set `role` in session.
+    """
+    if role_name not in [role.name for role in request.user.profile.get_roles_playing()]:
+        raise Http404
+    request.session['role'] = role_name
     return redirect(request.META.get('HTTP_REFERER', '/'))

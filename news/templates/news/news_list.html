@@ -12,14 +12,14 @@
       <div class="col">
         <div id="blankTop"></div>
         <div id="toolbar" class="d-flex justify-content-end">
-          {% assign model|attr:'_meta'|get_perm_name:'add' as add_perm %}
+          {% name model|attr:'_meta'|get_perm_name:'add' as add_perm %}
           {% if user|has_perm:add_perm %}
           <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% trans 'Add' %}</a>
           {% endif %}
         </div>
         <div class="table-responsive">
           <table id="searchTable" class="table table-light table-borderless table-solid">
-            {% assign model|attr:'_meta'|get_perm_name:'change' as change_perm %}
+            {% name model|attr:'_meta'|get_perm_name:'change' as change_perm %}
             {% if user|has_perm:change_perm %}
             <thead>
               <tr>

@@ -13,7 +13,7 @@
         <div id="blankTop"></div>
         <div id="toolbar" class="d-flex justify-content-between">
           <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
-          {% assign model|attr:'_meta'|get_perm_name:'add' as perm_name %}
+          {% name model|attr:'_meta'|get_perm_name:'add' as perm_name %}
           {% if user|has_perm:perm_name %}
           <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% trans 'Add' %}</a>
           {% endif %}
