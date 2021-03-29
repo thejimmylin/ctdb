@@ -139,11 +139,11 @@
           {% name user.profile.get_groups_playing_in as groups %}
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="true">
-            {{ request.session.group|default:groups.first|default:'------' }}
+            {{ request.session.group.name|default:groups.first|default:'------' }}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             {% for group in groups %}
-            <a class="dropdown-item" href="{% url 'accounts:set_group' group_name=group.name %}">{{ group }}</a>
+            <a class="dropdown-item" href="{% url 'accounts:set_group' group_pk=group.pk %}">{{ group }}</a>
             {% empty %}
             <a class="dropdown-item" href="">{% trans 'No available groups' %}</a>
             {% endfor %}
@@ -153,11 +153,11 @@
           {% name user.profile.get_roles_playing as roles %}
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="true">
-            {{ request.session.role|default:roles.first|default:'------' }}
+            {{ request.session.role.name|default:roles.first|default:'------' }}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             {% for role in roles %}
-            <a class="dropdown-item" href="{% url 'accounts:set_role' role_name=role.name %}">{{ role }}</a>
+            <a class="dropdown-item" href="{% url 'accounts:set_role' role_pk=role.pk %}">{{ role }}</a>
             {% empty %}
             <a class="dropdown-item" href="">{% trans 'No available roles' %}</a>
             {% endfor %}

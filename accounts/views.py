@@ -4,7 +4,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http.response import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.forms.models import model_to_dict
+from django.contrib.auth.models import Group
 
+from .models import Role
 from .forms import ProfileForm, SignUpWithEmailForm
 
 User = get_user_model()
@@ -84,22 +87,26 @@ def profile_change(request):
 
 
 @login_required
-def set_group(request, group_name):
+def set_group(request, group_pk):
     """
     A view let user set `group` in session.
     """
-    if group_name not in [group.name for group in request.user.profile.get_groups_playing_in()]:
+    if group_pk not in [group.pk for group in request.user.profile.get_groups_playing_in()]:
         raise Http404
-    request.session['group'] = group_name
+    group = get_object_or_404(klass=Group, pk=group_pk)
+    request.session['group'] = model_to_dict(group, fields=['id', 'name'])
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @login_required
-def set_role(request, role_name):
+def set_role(request, role_pk):
     """
     A view let user set `role` in session.
     """
-    if role_name not in [role.name for role in request.user.profile.get_roles_playing()]:
+    d = dict(request.session)
+    print(d)
+    if role_pk not in [role.pk for role in request.user.profile.get_roles_playing()]:
         raise Http404
-    request.session['role'] = role_name
+    role = get_object_or_404(klass=Role, pk=role_pk)
+    request.session['role'] = model_to_dict(role, fields=['id', 'name'])
     return redirect(request.META.get('HTTP_REFERER', '/'))

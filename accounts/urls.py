@@ -44,6 +44,6 @@ urlpatterns += [
 # Custom views about user extending model - profile.
 urlpatterns += [
     path('profile/', profile_change, name='profile_change'),
-    path('set-group/<str:group_name>/', set_group, name='set_group'),
-    path('set-role/<str:role_name>/', set_role, name='set_role'),
+    path('set-group/<int:group_pk>/', set_group, name='set_group'),
+    path('set-role/<int:role_pk>/', set_role, name='set_role'),
 ]
