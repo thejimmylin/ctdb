@@ -63,9 +63,3 @@ def join_with_newline(value, arg, autoescape=True):
     except TypeError:  # Fail silently if arg isn't iterable.
         return value
     return mark_safe(data)
-
-
-# Quertset
-@register.simple_tag
-def filter(value, **kwargs):
-    return value.filter(**kwargs)

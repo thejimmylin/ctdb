@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-30 10:44+0800\n"
+"POT-Creation-Date: 2021-03-30 11:38+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,19 +40,19 @@ msgstr "電子信箱不能以 %(join_email_cant_endswith_strings)s 結尾。"
 msgid "A user with this Email already exists."
 msgstr "使用此 Email 的使用者已存在"
 
-#: .\accounts\forms.py:124 .\accounts\models.py:16
+#: .\accounts\forms.py:124 .\accounts\models.py:15
 msgid "Staff code"
 msgstr "員工編號"
 
-#: .\accounts\forms.py:129 .\accounts\models.py:21
+#: .\accounts\forms.py:129 .\accounts\models.py:20
 msgid "Job title"
 msgstr "職稱"
 
-#: .\accounts\forms.py:134 .\accounts\models.py:26
+#: .\accounts\forms.py:134 .\accounts\models.py:25
 msgid "Phone number"
 msgstr "電話號碼"
 
-#: .\accounts\forms.py:149 .\accounts\models.py:31
+#: .\accounts\forms.py:149 .\accounts\models.py:30
 msgid "Boss"
 msgstr "主管"
 
@@ -60,53 +60,92 @@ msgstr "主管"
 msgid "No user registering with this Email."
 msgstr "沒有以這個電子信箱註冊的使用者"
 
-#: .\accounts\models.py:11
+# Variable translation
+#: .\accounts\i18n.py:8
+msgid "T00 supervisor"
+msgstr "T00 主管"
+
+# Variable translation
+#: .\accounts\i18n.py:9
+msgid "T01 supervisor"
+msgstr "T01 主管"
+
+# Variable translation
+#: .\accounts\i18n.py:10
+msgid "T02 supervisor"
+msgstr "T02 主管"
+
+#: .\accounts\i18n.py:11
+msgid "T11 supervisor"
+msgstr "T11 主管"
+
+#: .\accounts\i18n.py:12
+msgid "T12 supervisor"
+msgstr "T12 主管"
+
+#: .\accounts\i18n.py:13
+msgid "T21 supervisor"
+msgstr "T21 主管"
+
+#: .\accounts\i18n.py:14
+msgid "T22 supervisor"
+msgstr "T22 主管"
+
+#: .\accounts\i18n.py:15
+msgid "T31 supervisor"
+msgstr "T31 主管"
+
+#: .\accounts\i18n.py:16
+msgid "T32 supervisor"
+msgstr "T32 主管"
+
+#: .\accounts\models.py:10
 msgid "User"
 msgstr "使用者"
 
-#: .\accounts\models.py:39
+#: .\accounts\models.py:38
 msgid "Keep diary"
 msgstr "寫日記"
 
-#: .\accounts\models.py:43
+#: .\accounts\models.py:42
 msgid "Diary starting date"
 msgstr "日誌起始日"
 
-#: .\accounts\models.py:51
+#: .\accounts\models.py:50
 #: .\accounts\templates\registration\profile_change.html:11
 #: .\core\templates\standard_nav.html:131
 msgid "Profile"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:52
+#: .\accounts\models.py:51
 msgid "Profiles"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:60
+#: .\accounts\models.py:59
 msgid "Group"
 msgstr "群組"
 
-#: .\accounts\models.py:65
+#: .\accounts\models.py:64
 msgid "Is role"
 msgstr ""
 
-#: .\accounts\models.py:69
+#: .\accounts\models.py:68
 msgid "Is department"
 msgstr "是否為部門"
 
-#: .\accounts\models.py:73
+#: .\accounts\models.py:72
 msgid "Is displayed"
 msgstr "是否顯示"
 
-#: .\accounts\models.py:77
+#: .\accounts\models.py:76
 msgid "Parent Department"
 msgstr "母部門"
 
-#: .\accounts\models.py:86
+#: .\accounts\models.py:85
 msgid "Group profile"
 msgstr "群組檔案"
 
-#: .\accounts\models.py:87
+#: .\accounts\models.py:86
 msgid "Group profiles"
 msgstr "群組檔案"
 
@@ -901,7 +940,3 @@ msgstr "Prefix-list 更新任務"
 #: .\telecom\templates\telecom\isp_list.html:28
 msgid "Chinese name"
 msgstr "中文名稱"
-
-# Variable translation
-msgid "T00 supervisor"
-msgstr "T00 主管"

@@ -1,12 +1,13 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
-from core.decorators import permission_required
 from django.http.response import Http404
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
-from .models import News
+from core.decorators import permission_required
+
 from .forms import NewsModelForm
+from .models import News
 
 
 @login_required

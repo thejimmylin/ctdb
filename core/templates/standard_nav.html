@@ -137,7 +137,7 @@
         <li class="nav-item dropdown">
           {% name user.profile.get_available_roles as roles %}
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            {{ request.session.role.name|default:roles.first|default:'------' }}
+            {% translate request.session.role.name|default:roles.first|default:'------' %}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             {% for role in roles %}

@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.contrib.auth.models import Group
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -47,6 +46,9 @@ class Profile(models.Model):
     def get_available_roles(self):
         return self.user.groups.filter(groupprofile__is_role=True, groupprofile__is_displayed=True)
 
+    def get_default_role(self):
+        return self.get_available_roles().first()
+
     class Meta():
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
@@ -65,12 +67,12 @@ class GroupProfile(models.Model):
         verbose_name=_('Is role'),
         default=False
     )
-    is_department = models.BooleanField(
-        verbose_name=_('Is department'),
-        default=False
-    )
     is_displayed = models.BooleanField(
         verbose_name=_('Is displayed'),
+        default=False
+    )
+    is_department = models.BooleanField(
+        verbose_name=_('Is department'),
         default=False
     )
     parent_department = models.ForeignKey(
@@ -80,6 +82,7 @@ class GroupProfile(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='child_departments',
+        limit_choices_to={'is_department': True},
     )
 
     class Meta():
@@ -88,3 +91,13 @@ class GroupProfile(models.Model):
 
     def __str__(self):
         return f'Profile of {self.group}'
+
+    def get_final_child_deps(self):
+        deps = []
+        for dep in self.group.child_departments.all():
+            _deps = dep.get_final_child_deps()
+            if _deps:
+                deps.extend(_deps)
+            else:
+                deps.append(dep)
+        return deps
