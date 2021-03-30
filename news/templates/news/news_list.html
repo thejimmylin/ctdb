@@ -14,7 +14,7 @@
         <div id="toolbar" class="d-flex justify-content-end">
           {% name model|attr:'_meta'|get_perm_name:'add' as add_perm %}
           {% if user|has_perm:add_perm %}
-          <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% trans 'Add' %}</a>
+          <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% translate 'Add' %}</a>
           {% endif %}
         </div>
         <div class="table-responsive">
@@ -23,8 +23,8 @@
             {% if user|has_perm:change_perm %}
             <thead>
               <tr>
-                <th style="width: 1px;">{% trans 'Action' %}</th>
-                <th style="width: 1px;">{% trans 'News' %}</th>
+                <th style="width: 1px;">{% translate 'Action' %}</th>
+                <th style="width: 1px;">{% translate 'News' %}</th>
               </tr>
             </thead>
             {% endif %}
@@ -38,7 +38,7 @@
               </tr>
               {% empty %}
               <tr>
-                <td class='text-center text-secondary' colspan="100%">{% trans 'No entries.' %}</td>
+                <td class='text-center text-secondary' colspan="100%">{% translate 'No entries.' %}</td>
               </tr>
               {% endfor %}
             </tbody>

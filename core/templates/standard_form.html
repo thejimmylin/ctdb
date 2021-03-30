@@ -5,9 +5,9 @@
   {% csrf_token %}
 
   {% if form.errors|length == 1 %}
-  <p class="text-danger">{% trans "Please correct the error below." %}</p>
+  <p class="text-danger">{% translate "Please correct the error below." %}</p>
   {% elif form.errors|length > 1 %}
-  <p class="text-danger">{% trans "Please correct the errors below." %}</p>
+  <p class="text-danger">{% translate "Please correct the errors below." %}</p>
   {% endif %}
 
   {% for error in form.non_field_errors %}
@@ -28,7 +28,7 @@
 
         {% else %}
 
-          <label for="{{ field.id_for_label }}">{% if field.field.required %}*{% endif %}{{ field.label }}{% trans ':' %}</label>
+          <label for="{{ field.id_for_label }}">{% if field.field.required %}*{% endif %}{{ field.label }}{% translate ':' %}</label>
           {% if has_error and has_placeholder %}{% render_field field class+='form-control form-check border-danger' %}
           {% elif has_error and not has_placeholder %}{% render_field field class+='form-control form-check border-danger' placeholder=field.label %}
           {% elif not has_error and has_placeholder %}{% render_field field class+='form-control' %}
@@ -53,10 +53,10 @@
   <div class="form-row">
     <div class="form-group col">
       {% if 'create' in form_buttons %}
-      <button type="submit" class="btn btn-primary btn-block">{% trans 'Add' %}</button>
+      <button type="submit" class="btn btn-primary btn-block">{% translate 'Add' %}</button>
       {% endif %}
       {% if 'update' in form_buttons %}
-      <button type="submit" class="btn btn-success btn-block">{% trans 'Change' %}</button>
+      <button type="submit" class="btn btn-success btn-block">{% translate 'Change' %}</button>
       {% endif %}
     </div>
   </div>

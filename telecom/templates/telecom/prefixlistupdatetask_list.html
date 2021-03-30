@@ -12,24 +12,24 @@
       <div class="col">
         <div id="blankTop"></div>
         <div id="toolbar" class="d-flex justify-content-between">
-          <input type="text" id="searchInput" class="shadow-sm" placeholder={% trans 'Search..' %}>
+          <input type="text" id="searchInput" class="shadow-sm" placeholder={% translate 'Search..' %}>
           {% name model|attr:'_meta'|get_perm_name:'add' as perm_name %}
           {% if user|has_perm:perm_name %}
-          <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% trans 'Add' %}</a>
+          <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% translate 'Add' %}</a>
           {% endif %}
         </div>
         <div class="table-responsive">
           <table id="searchTable" class="table table-light table-borderless table-solid">
             <thead>
               <tr>
-                <th style="width: 1px;">{% trans 'Action' %}</th>
-                <th style="width: 1px;">{% trans 'Created by' %}</th>
-                <th style="width: 1px;">{% trans 'Update type' %}</th>
-                <th style="width: 1px;">{% trans 'ISPs' %}</th>
-                <th style="width: 1px;">{% trans 'ISP groups' %}</th>
-                <th style="width: 1px;">{% trans 'Origin AS' %}</th>
-                <th style="width: 1px;">{% trans 'AS path' %}</th>
-                <th style="width: 100%;">{% trans 'Prefix-list' %}</th>
+                <th style="width: 1px;">{% translate 'Action' %}</th>
+                <th style="width: 1px;">{% translate 'Created by' %}</th>
+                <th style="width: 1px;">{% translate 'Update type' %}</th>
+                <th style="width: 1px;">{% translate 'ISPs' %}</th>
+                <th style="width: 1px;">{% translate 'ISP groups' %}</th>
+                <th style="width: 1px;">{% translate 'Origin AS' %}</th>
+                <th style="width: 1px;">{% translate 'AS path' %}</th>
+                <th style="width: 100%;">{% translate 'Prefix-list' %}</th>
               </tr>
             </thead>
             <tbody>
@@ -48,7 +48,7 @@
               </tr>
               {% empty %}
               <tr>
-                <td class='text-center text-secondary' colspan="100%">{% trans 'No entries.' %}</td>
+                <td class='text-center text-secondary' colspan="100%">{% translate 'No entries.' %}</td>
               </tr>
               {% endfor %}
             </tbody>

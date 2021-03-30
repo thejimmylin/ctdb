@@ -8,16 +8,16 @@
   <div class="container-fluid max-w-24u">
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col max-w-8u border rounded p-5">
-        <h1 class="text-center mb-5">{% trans 'Sign up' %}</h1>
+        <h1 class="text-center mb-5">{% translate 'Sign up' %}</h1>
         <p>
-          {% trans 'Already have an account?' %}&nbsp;<a href="{% url 'accounts:login' %}" class="text-decoration-none">{% trans 'Login' %}</a>
+          {% translate 'Already have an account?' %}&nbsp;<a href="{% url 'accounts:login' %}" class="text-decoration-none">{% translate 'Login' %}</a>
         </p>
         <form method="post" novalidate>
           {% csrf_token %}
           {% if form.errors|length == 1 %}
-          <p class="text-danger">{% trans "Please correct the error below." %}</p>
+          <p class="text-danger">{% translate "Please correct the error below." %}</p>
           {% elif form.errors|length > 1 %}
-          <p class="text-danger">{% trans "Please correct the errors below." %}</p>
+          <p class="text-danger">{% translate "Please correct the errors below." %}</p>
           {% endif %}
           {% for error in form.non_field_errors %}
           <p class="text-danger">{{ error }}</p>
@@ -41,7 +41,7 @@
           {% endfor %}
           <div class="form-row">
             <div class="form-group col">
-              <button type="submit" class="btn btn-success btn-block">{% trans 'Sign up' %}</button>
+              <button type="submit" class="btn btn-success btn-block">{% translate 'Sign up' %}</button>
             </div>
           </div>
         </form>

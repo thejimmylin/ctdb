@@ -8,16 +8,16 @@
   <div class="container-fluid max-w-24u">
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col max-w-8u border rounded p-5">
-        <h1 class="text-center mb-5">{% trans 'Sign up' %}</h1>
+        <h1 class="text-center mb-5">{% translate 'Sign up' %}</h1>
         <p class="mx-1 text-secondary">
-          {% trans 'Join us and enjoy all the amazing features with us.' %}
+          {% translate 'Join us and enjoy all the amazing features with us.' %}
         </p>
         <a class="btn btn-block text-secondary border" href="{% url 'accounts:signup_with_chief_email' %}" style="line-height: 2rem;">
-          {% trans 'Continue with Chief Email' %}
+          {% translate 'Continue with Chief Email' %}
         </a>
         <br>
         <p class="mx-1 text-secondary">
-          {% trans 'Already have an account?' %}&nbsp;<a href="{% url 'accounts:login' %}" class="text-decoration-none">{% trans 'Login' %}</a>
+          {% translate 'Already have an account?' %}&nbsp;<a href="{% url 'accounts:login' %}" class="text-decoration-none">{% translate 'Login' %}</a>
         </p>
       </div>
     </div>

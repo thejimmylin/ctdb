@@ -8,17 +8,17 @@
   <div class="container-fluid max-w-24u">
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col max-w-7u p-5">
-        <h1 class="text-center mb-5">{% trans 'Login' %}</h1>
+        <h1 class="text-center mb-5">{% translate 'Login' %}</h1>
         <p class="mx-1">
-          {% trans "Don't have an account?" %}&nbsp;<a href="{% url 'accounts:signup' %}" class="text-decoration-none">{% trans 'Create one' %}</a>
+          {% translate "Don't have an account?" %}&nbsp;<a href="{% url 'accounts:signup' %}" class="text-decoration-none">{% translate 'Create one' %}</a>
         </p>
         <div class="form">
           <form method="post" novalidate>
             {% csrf_token %}
             {% if form.errors|length == 1 %}
-            <p class="text-danger">{% trans "Please correct the error below." %}</p>
+            <p class="text-danger">{% translate "Please correct the error below." %}</p>
             {% elif form.errors|length > 1 %}
-            <p class="text-danger">{% trans "Please correct the errors below." %}</p>
+            <p class="text-danger">{% translate "Please correct the errors below." %}</p>
             {% endif %}
             {% for error in form.non_field_errors %}
             <p class="text-danger">{{ error }}</p>
@@ -42,13 +42,13 @@
             {% endfor %}
             <div class="form-row">
               <div class="form-group col">
-                <button type="submit" class="btn btn-dark btn-block">{% trans 'Login' %}</button>
+                <button type="submit" class="btn btn-dark btn-block">{% translate 'Login' %}</button>
               </div>
             </div>
           </form>
         </div>
         <p class="mx-1">
-          <a href="{% url 'accounts:password_reset' %}" class="text-decoration-none">{% trans 'Forgot your password?' %}</a>
+          <a href="{% url 'accounts:password_reset' %}" class="text-decoration-none">{% translate 'Forgot your password?' %}</a>
         </p>
       </div>
     </div>

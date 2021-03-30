@@ -10,12 +10,12 @@
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col max-w-8u border rounded p-5">
         <h3 class="mb-5">{{ model|attr:'_meta'|attr:'verbose_name_plural' }}</h3>
-        <p>{% trans 'Are you sure you want to send a Email about this reminder?' %}</p>
+        <p>{% translate 'Are you sure you want to send a Email about this reminder?' %}</p>
         <form method="post" novalidate>
           {% csrf_token %}
           <div class="form-row">
             <div class="form-group col">
-              <button type="submit" class="btn btn-light border btn-block">{% trans 'Send Email' %}</button>
+              <button type="submit" class="btn btn-light border btn-block">{% translate 'Send Email' %}</button>
             </div>
           </div>
         </form>
