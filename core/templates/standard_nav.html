@@ -141,7 +141,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             {% for role in roles %}
-            <a class="dropdown-item" href="{% url 'accounts:set_role' pk=role.pk %}">{{ role.name }}</a>
+            <a class="dropdown-item" href="{% url 'accounts:set_role' pk=role.pk %}">{% translate role.name %}</a>
             {% empty %}
             <a class="dropdown-item" href="">{% trans 'No available roles' %}</a>
             {% endfor %}

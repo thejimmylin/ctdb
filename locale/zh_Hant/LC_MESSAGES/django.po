@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-29 11:12+0800\n"
+"POT-Creation-Date: 2021-03-30 10:44+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,19 +40,19 @@ msgstr "電子信箱不能以 %(join_email_cant_endswith_strings)s 結尾。"
 msgid "A user with this Email already exists."
 msgstr "使用此 Email 的使用者已存在"
 
-#: .\accounts\forms.py:124 .\accounts\models.py:17
+#: .\accounts\forms.py:124 .\accounts\models.py:16
 msgid "Staff code"
 msgstr "員工編號"
 
-#: .\accounts\forms.py:129 .\accounts\models.py:22
+#: .\accounts\forms.py:129 .\accounts\models.py:21
 msgid "Job title"
 msgstr "職稱"
 
-#: .\accounts\forms.py:134 .\accounts\models.py:27
+#: .\accounts\forms.py:134 .\accounts\models.py:26
 msgid "Phone number"
 msgstr "電話號碼"
 
-#: .\accounts\forms.py:149 .\accounts\models.py:32
+#: .\accounts\forms.py:149 .\accounts\models.py:31
 msgid "Boss"
 msgstr "主管"
 
@@ -60,63 +60,55 @@ msgstr "主管"
 msgid "No user registering with this Email."
 msgstr "沒有以這個電子信箱註冊的使用者"
 
-#: .\accounts\models.py:12
+#: .\accounts\models.py:11
 msgid "User"
 msgstr "使用者"
 
-#: .\accounts\models.py:40
+#: .\accounts\models.py:39
 msgid "Keep diary"
 msgstr "寫日記"
 
-#: .\accounts\models.py:44
+#: .\accounts\models.py:43
 msgid "Diary starting date"
 msgstr "日誌起始日"
 
-#: .\accounts\models.py:49
+#: .\accounts\models.py:51
 #: .\accounts\templates\registration\profile_change.html:11
-#: .\core\templates\standard_nav.html:132
+#: .\core\templates\standard_nav.html:131
 msgid "Profile"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:50
+#: .\accounts\models.py:52
 msgid "Profiles"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:68
+#: .\accounts\models.py:60
 msgid "Group"
 msgstr "群組"
+
+#: .\accounts\models.py:65
+msgid "Is role"
+msgstr ""
+
+#: .\accounts\models.py:69
+msgid "Is department"
+msgstr "是否為部門"
 
 #: .\accounts\models.py:73
 msgid "Is displayed"
 msgstr "是否顯示"
 
 #: .\accounts\models.py:77
-msgid "Is department"
-msgstr "是否為部門"
-
-#: .\accounts\models.py:81
 msgid "Parent Department"
 msgstr "母部門"
 
-#: .\accounts\models.py:90
+#: .\accounts\models.py:86
 msgid "Group profile"
 msgstr "群組檔案"
 
-#: .\accounts\models.py:91
+#: .\accounts\models.py:87
 msgid "Group profiles"
 msgstr "群組檔案"
-
-#: .\accounts\models.py:103 .\accounts\models.py:104
-msgid "Play"
-msgstr "扮演"
-
-#: .\accounts\models.py:118
-msgid "Role"
-msgstr "角色"
-
-#: .\accounts\models.py:119
-msgid "Roles"
-msgstr "角色"
 
 #: .\accounts\templates\registration\base.html:10
 #: .\archive\templates\archive\base.html:10 .\core\templates\404.html:29
@@ -134,7 +126,7 @@ msgstr "© 2020 保留所有權利。"
 #: .\accounts\templates\registration\signup.html:20
 #: .\accounts\templates\registration\signup_with_account_and_password.html:13
 #: .\accounts\templates\registration\signup_with_email.html:13
-#: .\core\templates\standard_nav.html:166
+#: .\core\templates\standard_nav.html:157
 msgid "Login"
 msgstr "登入"
 
@@ -192,7 +184,7 @@ msgid "Back to the homepage."
 msgstr "返回首頁"
 
 #: .\accounts\templates\registration\password_change_form.html:11
-#: .\core\templates\standard_nav.html:133
+#: .\core\templates\standard_nav.html:132
 msgid "Password change"
 msgstr "密碼變更"
 
@@ -239,8 +231,8 @@ msgid "I didn't recieve it."
 msgstr "我沒有收到"
 
 #: .\accounts\templates\registration\password_reset_form.html:11
-#: .\core\templates\standard_nav.html:135
-#: .\core\templates\standard_nav.html:169
+#: .\core\templates\standard_nav.html:134
+#: .\core\templates\standard_nav.html:160
 msgid "Password reset"
 msgstr "密碼重置"
 
@@ -262,7 +254,7 @@ msgstr "變更"
 #: .\accounts\templates\registration\signup_with_account_and_password.html:41
 #: .\accounts\templates\registration\signup_with_email.html:11
 #: .\accounts\templates\registration\signup_with_email.html:44
-#: .\core\templates\standard_nav.html:167
+#: .\core\templates\standard_nav.html:158
 msgid "Sign up"
 msgstr "註冊"
 
@@ -486,19 +478,17 @@ msgstr "Prefix-list 更新任務"
 msgid "Log"
 msgstr ""
 
-#: .\core\templates\standard_nav.html:131
+#: .\core\templates\standard_nav.html:130
 msgid "Logout"
 msgstr "登出"
 
-#: .\core\templates\standard_nav.html:145
-msgid "------"
-msgstr ""
-
-#: .\core\templates\standard_nav.html:154
-msgid "No available group"
+#: .\core\templates\standard_nav.html:146
+#, fuzzy
+#| msgid "No available group"
+msgid "No available roles"
 msgstr "沒有可用的群組"
 
-#: .\core\templates\standard_nav.html:163
+#: .\core\templates\standard_nav.html:154
 msgid "Guest"
 msgstr "訪客"
 
@@ -912,5 +902,6 @@ msgstr "Prefix-list 更新任務"
 msgid "Chinese name"
 msgstr "中文名稱"
 
-#~ msgid "Manager"
-#~ msgstr "管理者"
+# Variable translation
+msgid "T00 supervisor"
+msgstr "T00 主管"
