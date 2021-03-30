@@ -4,10 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http.response import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from django.forms.models import model_to_dict
 from django.contrib.auth.models import Group
 
-from .models import Role
 from .forms import ProfileForm, SignUpWithEmailForm
 
 User = get_user_model()
@@ -76,7 +74,6 @@ def profile_change(request):
         form = ProfileForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            # messages.success(request, _('Changed successfully.'))  The template is not ready (message div covered.)
             return redirect(reverse('accounts:profile_change'))
     else:
         form = ProfileForm(instance=instance)
@@ -87,24 +84,17 @@ def profile_change(request):
 
 
 @login_required
-def set_group(request, group_pk):
+def set_role(request, pk):
     """
     A view let user set `group` in session.
     """
-    group = get_object_or_404(klass=Group, pk=group_pk)
-    if group_pk not in [group.pk for group in request.user.profile.get_groups_playing_in()]:
+    try:
+        pk = int(pk)
+    except ValueError:
         raise Http404
-    request.session['group'] = {'pk': group.pk, 'name': group.name}
-    return redirect(request.META.get('HTTP_REFERER', '/'))
-
-
-@login_required
-def set_role(request, role_pk):
-    """
-    A view let user set `role` in session.
-    """
-    role = get_object_or_404(klass=Role, pk=role_pk)
-    if role not in request.user.profile.get_roles_playing():
+    available_roles = request.user.profile.get_available_roles()
+    if not available_roles.filter(pk=pk).exists():
         raise Http404
-    request.session['role'] = {'pk': role.pk, 'name': role.name, 'codename': role.codename}
+    role = available_roles.get(pk=pk)
+    request.session['role'] = {'pk': role.pk, 'name': role.name}
     return redirect(request.META.get('HTTP_REFERER', '/'))
