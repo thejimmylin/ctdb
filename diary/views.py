@@ -6,9 +6,9 @@ from django.urls import reverse
 
 from core.decorators import permission_required
 
-from .querys import get_diary_query
 from .forms import DiaryModelForm
 from .models import Diary
+from .querys import get_diary_query
 
 
 @login_required
