@@ -35,6 +35,9 @@ class Profile(models.Model):
         default=today,
     )
 
+    def get_roles(self):
+        return self.user.groups.filter(groupprofile__is_role=True)
+
     def get_available_roles(self):
         return self.user.groups.filter(groupprofile__is_role=True, groupprofile__is_displayed=True)
 
@@ -55,6 +58,21 @@ class GroupProfile(models.Model):
         to='auth.Group',
         on_delete=models.CASCADE,
     )
+    is_role = models.BooleanField(
+        verbose_name=_('Is role'),
+        default=False
+    )
+    is_displayed = models.BooleanField(
+        verbose_name=_('Is displayed'),
+        default=False
+    )
+    supervise_roles = models.ManyToManyField(
+        verbose_name=_('Supervis groups'),
+        to='auth.Group',
+        blank=True,
+        related_name='supervised_by_roles',
+        limit_choices_to={'groupprofile__is_role': True},
+    )
     is_department = models.BooleanField(
         verbose_name=_('Is department'),
         default=False
@@ -67,14 +85,6 @@ class GroupProfile(models.Model):
         on_delete=models.SET_NULL,
         related_name='child_departments',
         limit_choices_to={'groupprofile__is_department': True},
-    )
-    is_role = models.BooleanField(
-        verbose_name=_('Is role'),
-        default=False
-    )
-    is_displayed = models.BooleanField(
-        verbose_name=_('Is displayed'),
-        default=False
     )
 
     class Meta():
