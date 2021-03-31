@@ -6,6 +6,7 @@ from django.http.response import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
+from accounts.models import get_role
 from core.decorators import permission_required
 from core.utils import remove_unnecessary_seperator
 
@@ -13,25 +14,39 @@ from .forms import ReminderModelForm
 from .models import Reminder
 
 
+def get_reminder_queryset(request):
+    """
+    The queryset of model `Reminder` with filter depending on user's role/identity/group.
+    The views below will use this as a basic queryset. This ensures that users won't
+    accidentally see or touch those they shouldn't.
+    """
+    model = Reminder
+    queryset = model.objects.all()
+    role = get_role(user=request.user, session=request.session)
+    if not role:
+        return queryset.filter(created_by=request.user)
+    supervise_roles = role.groupprofile.supervise_roles.all()
+    if not supervise_roles:
+        return queryset.filter(created_by=request.user)
+    return queryset.filter(created_by__groups__in=supervise_roles).distinct()
+
+
 @login_required
 @permission_required('reminder.view_reminder', raise_exception=True, exception=Http404)
 def reminder_list(request):
     model = Reminder
+    queryset = get_reminder_queryset(request)
     paginate_by = 5
     template_name = 'reminder/reminder_list.html'
-    group = request.session.get('group', request.user.profile.get_default_group_name())
-    is_supervisor = True
-    qs = model.objects.filter(created_by__groups__name=group)
     page_number = request.GET.get('page', '')
-    paginator = Paginator(qs, paginate_by)
+    paginator = Paginator(queryset, paginate_by)
     page_obj = paginator.get_page(page_number)
     is_paginated = page_number.lower() != 'all' and page_obj.has_other_pages()
     context = {
         'model': model,
         'page_obj': page_obj,
-        'object_list': page_obj if is_paginated else qs,
+        'object_list': page_obj if is_paginated else queryset,
         'is_paginated': is_paginated,
-        'is_supervisor': is_supervisor,
     }
     return render(request, template_name, context)
 
@@ -61,7 +76,8 @@ def reminder_create(request):
 @permission_required('reminder.change_reminder', raise_exception=True, exception=Http404)
 def reminder_update(request, pk):
     model = Reminder
-    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
+    queryset = get_reminder_queryset(request)
+    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     form_class = ReminderModelForm
     success_url = reverse('reminder:reminder_list')
     form_buttons = ['update']
@@ -82,7 +98,8 @@ def reminder_update(request, pk):
 @permission_required('reminder.delete_reminder', raise_exception=True, exception=Http404)
 def reminder_delete(request, pk):
     model = Reminder
-    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
+    queryset = get_reminder_queryset(request)
+    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     success_url = reverse('reminder:reminder_list')
     template_name = 'reminder/reminder_confirm_delete.html'
     if request.method == 'POST':
@@ -96,7 +113,8 @@ def reminder_delete(request, pk):
 @permission_required('reminder.change_reminder', raise_exception=True, exception=Http404)
 def reminder_clone(request, pk):
     model = Reminder
-    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
+    queryset = get_reminder_queryset(request)
+    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     instance.pk = None
     form_class = ReminderModelForm
     success_url = reverse('reminder:reminder_list')
@@ -118,7 +136,8 @@ def reminder_clone(request, pk):
 @permission_required('reminder.change_reminder', raise_exception=True, exception=Http404)
 def reminder_send_email(request, pk):
     model = Reminder
-    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
+    queryset = get_reminder_queryset(request)
+    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     success_url = reverse('reminder:reminder_list')
     template_name = 'reminder/reminder_confirm_send_email.html'
     if request.method == 'POST':
