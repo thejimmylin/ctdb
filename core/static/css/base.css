@@ -150,3 +150,15 @@ td {
 .cursor-pointer {
   cursor: pointer;
 }
+
+/* Button */
+
+.btn-peace {
+  color: #FFF;
+  background-color: #5090A0;
+}
+
+.btn-peace:hover {
+  color: #FFF;
+  background-color: #256585;
+}

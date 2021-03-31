@@ -55,12 +55,14 @@ def diary_create(request):
     instance = model(created_by=request.user)
     form_class = DiaryModelForm
     success_url = reverse('diary:diary_list')
-    form_buttons = ['create']
+    form_buttons = ['create', 'save_and_continue_editing']
     template_name = 'diary/diary_form.html'
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
-            form.save()
+            instance = form.save()
+            if request.POST.get('save_and_continue_editing'):
+                return redirect(reverse('diary:diary_update', kwargs={'pk': instance.pk}))
             return redirect(success_url)
         context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
@@ -77,12 +79,14 @@ def diary_update(request, pk):
     instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     form_class = DiaryModelForm
     success_url = reverse('diary:diary_list')
-    form_buttons = ['update']
+    form_buttons = ['update', 'save_and_continue_editing']
     template_name = 'diary/diary_form.html'
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
-            form.save()
+            instance = form.save()
+            if request.POST.get('save_and_continue_editing'):
+                return redirect(reverse('diary:diary_update', kwargs={'pk': instance.pk}))
             return redirect(success_url)
         context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)

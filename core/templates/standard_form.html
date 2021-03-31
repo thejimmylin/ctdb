@@ -58,6 +58,9 @@
       {% if 'update' in form_buttons %}
       <button type="submit" class="btn btn-success btn-block">{% translate 'Change' %}</button>
       {% endif %}
+      {% if 'save_and_continue_editing' in form_buttons %}
+      <button type="submit" class="btn btn-peace btn-block" name="save_and_continue_editing" value="True">{% translate 'Save and continue editing' %}</button>
+      {% endif %}
     </div>
   </div>
 </form>
