@@ -53,7 +53,7 @@ class Profile(models.Model):
 
 
 def get_role(session, user):
-    role = session.get('role')
+    role = session.get('role', {})
     pk = role.get('pk', 0)
     try:
         pk = int(role.get('pk', 0))
