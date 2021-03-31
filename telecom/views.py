@@ -21,11 +21,12 @@ def get_telecom_model_queryset(request, model):
     """
     queryset = model.objects.all()
     role = get_role(user=request.user, session=request.session)
+    deps = request.user.groups.filter(groupprofile__is_department=True)
     if not role:
-        return queryset.filter(created_by=request.user)
+        return queryset.filter(created_by__groups__in=deps).distinct()
     supervise_roles = role.groupprofile.supervise_roles.all()
     if not supervise_roles:
-        return queryset.filter(created_by=request.user)
+        return queryset.filter(created_by__groups__in=deps).distinct()
     return queryset.filter(created_by__groups__in=supervise_roles).distinct()
 
 
