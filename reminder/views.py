@@ -21,9 +21,15 @@ def get_reminder_queryset(request):
     accidentally see or touch those they shouldn't.
     """
     model = Reminder
+    queryset = model.objects.all()
+    role = get_role(user=request.user, session=request.session)
     deps = request.user.groups.filter(groupprofile__is_department=True)
-    queryset = model.objects.filter(created_by__groups__in=deps).distinct()
-    return queryset
+    if not role:
+        return queryset.filter(created_by__groups__in=deps).distinct()
+    supervise_roles = role.groupprofile.supervise_roles.all()
+    if not supervise_roles:
+        return queryset.filter(created_by__groups__in=deps).distinct()
+    return queryset.filter(created_by__groups__in=supervise_roles).distinct()
 
 
 @login_required
