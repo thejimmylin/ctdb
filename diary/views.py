@@ -12,6 +12,11 @@ from .models import Diary
 
 
 def get_diary_queryset(request):
+    """
+    The queryset of model `Diary` with filter depending on user's role/identity/group.
+    The views below will use this as a basic queryset. This ensures that users won't
+    accidentally see or touch those they shouldn't.
+    """
     model = Diary
     queryset = model.objects.all()
     role = get_role(user=request.user, session=request.session)
@@ -68,8 +73,7 @@ def diary_create(request):
 @permission_required('diary.change_diary', raise_exception=True, exception=Http404)
 def diary_update(request, pk):
     model = Diary
-    query = get_diary_query(user=request.user)
-    queryset = Diary.objects.filter(query)
+    queryset = get_diary_queryset(request)
     instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     form_class = DiaryModelForm
     success_url = reverse('diary:diary_list')
@@ -91,8 +95,7 @@ def diary_update(request, pk):
 @permission_required('diary.delete_diary', raise_exception=True, exception=Http404)
 def diary_delete(request, pk):
     model = Diary
-    query = get_diary_query(user=request.user)
-    queryset = Diary.objects.filter(query)
+    queryset = get_diary_queryset(request)
     instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     success_url = reverse('diary:diary_list')
     template_name = 'diary/diary_confirm_delete.html'

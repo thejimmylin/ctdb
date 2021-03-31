@@ -107,22 +107,19 @@ class Command(BaseCommand):
         return a CC, which is nothing more than a list of Email string.
         """
         cc = []
-        while notification_level > 0:
-            supervised_by_roles = []
-            roles = user.groups.filter(groupprofile__is_role=True)
-            for role in roles:
-                _supervised_by_roles = role.group.supervised_by_roles.all()
-                if _supervised_by_roles:
-                    for role in _supervised_by_roles:
-                        if role not in supervised_by_roles:
-                            supervised_by_roles.append(role)
-            users = []
-            for role in supervised_by_roles:
-                users.append(role.group.user_set.all())
+        users = [user]
+        for _ in range(notification_level):
             for user in users:
-                cc.append(user.email)
-            notification_level = notification_level - 1
-        return cc
+                supervisors = User.objects.filter(
+                    groups__groupprofile__supervise_roles__in=user.groups.filter(
+                        groupprofile__is_role=True
+                    )
+                ).distinct()
+                for supervisor in supervisors:
+                    cc.append(supervisor.email)
+            users = list(supervisors)
+        cc_distinct = list(set(cc))
+        return cc_distinct
 
     def get_email_configs(self, missing, test=True):
         """
