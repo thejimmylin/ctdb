@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-30 11:38+0800\n"
+"POT-Creation-Date: 2021-03-31 14:32+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgstr "職稱"
 msgid "Phone number"
 msgstr "電話號碼"
 
-#: .\accounts\forms.py:149 .\accounts\models.py:30
+#: .\accounts\forms.py:149
 msgid "Boss"
 msgstr "主管"
 
@@ -103,49 +103,49 @@ msgstr "T32 主管"
 msgid "User"
 msgstr "使用者"
 
-#: .\accounts\models.py:38
+#: .\accounts\models.py:30
 msgid "Keep diary"
 msgstr "寫日記"
 
-#: .\accounts\models.py:42
+#: .\accounts\models.py:34
 msgid "Diary starting date"
 msgstr "日誌起始日"
 
-#: .\accounts\models.py:50
+#: .\accounts\models.py:45
 #: .\accounts\templates\registration\profile_change.html:11
 #: .\core\templates\standard_nav.html:131
 msgid "Profile"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:51
+#: .\accounts\models.py:46
 msgid "Profiles"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:59
+#: .\accounts\models.py:54
 msgid "Group"
 msgstr "群組"
 
-#: .\accounts\models.py:64
+#: .\accounts\models.py:59
 msgid "Is role"
-msgstr ""
+msgstr "是否為角色"
 
-#: .\accounts\models.py:68
-msgid "Is department"
-msgstr "是否為部門"
-
-#: .\accounts\models.py:72
+#: .\accounts\models.py:63
 msgid "Is displayed"
 msgstr "是否顯示"
 
-#: .\accounts\models.py:76
+#: .\accounts\models.py:67
+msgid "Is department"
+msgstr "是否為部門"
+
+#: .\accounts\models.py:71
 msgid "Parent Department"
 msgstr "母部門"
 
-#: .\accounts\models.py:85
+#: .\accounts\models.py:81
 msgid "Group profile"
 msgstr "群組檔案"
 
-#: .\accounts\models.py:86
+#: .\accounts\models.py:82
 msgid "Group profiles"
 msgstr "群組檔案"
 
@@ -380,8 +380,8 @@ msgid "Action"
 msgstr "動作"
 
 #: .\archive\templates\archive\archive_list.html:27 .\diary\models.py:23
-#: .\diary\templates\diary\diary_list.html:27 .\log\models.py:13
-#: .\log\templates\log\diary_log_list.html:27 .\news\models.py:13
+#: .\diary\templates\diary\diary_list.html:26 .\log\models.py:13
+#: .\log\templates\log\diary_log_list.html:27 .\news\models.py:14
 #: .\reminder\models.py:44 .\reminder\templates\reminder\reminder_list.html:26
 #: .\telecom\models.py:22 .\telecom\models.py:46 .\telecom\models.py:82
 #: .\telecom\templates\telecom\isp_list.html:26
@@ -397,7 +397,7 @@ msgid "Name"
 msgstr "名稱"
 
 #: .\archive\templates\archive\archive_list.html:43
-#: .\diary\templates\diary\diary_list.html:51
+#: .\diary\templates\diary\diary_list.html:49
 #: .\log\templates\log\diary_log_list.html:45
 #: .\news\templates\news\news_list.html:41
 #: .\reminder\templates\reminder\reminder_list.html:56
@@ -470,7 +470,7 @@ msgstr "沒有可用的選項"
 msgid ":"
 msgstr ""
 
-#: .\core\templates\standard_nav.html:19 .\news\models.py:18
+#: .\core\templates\standard_nav.html:19 .\news\models.py:19
 #: .\news\templates\news\news_list.html:27
 msgid "News"
 msgstr "最新消息"
@@ -613,7 +613,7 @@ msgstr ""
 "應以 \"%(seperator)s\" 隔開。"
 
 #: .\day\models.py:8 .\diary\models.py:10
-#: .\diary\templates\diary\diary_list.html:29
+#: .\diary\templates\diary\diary_list.html:27
 msgid "Date"
 msgstr "日期"
 
@@ -633,7 +633,7 @@ msgstr "日子"
 msgid "The diary with this date has already existed."
 msgstr "這個日期的日誌已經存在。"
 
-#: .\diary\models.py:12 .\diary\templates\diary\diary_list.html:30
+#: .\diary\models.py:12 .\diary\templates\diary\diary_list.html:28
 msgid "Daily check"
 msgstr "日檢核"
 
@@ -645,15 +645,15 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: .\diary\models.py:20 .\diary\templates\diary\diary_list.html:31
+#: .\diary\models.py:20 .\diary\templates\diary\diary_list.html:29
 msgid "Daily record"
 msgstr "日常紀錄"
 
-#: .\diary\models.py:21 .\diary\templates\diary\diary_list.html:32
+#: .\diary\models.py:21 .\diary\templates\diary\diary_list.html:30
 msgid "To do"
 msgstr "待辦事項"
 
-#: .\diary\models.py:22 .\diary\templates\diary\diary_list.html:33
+#: .\diary\models.py:22 .\diary\templates\diary\diary_list.html:31
 #: .\telecom\models.py:21 .\telecom\models.py:45 .\telecom\models.py:81
 #: .\telecom\templates\telecom\ispgroup_list.html:29
 msgid "Remark"
@@ -679,19 +679,19 @@ msgstr "建立於"
 msgid "Logs"
 msgstr ""
 
-#: .\news\models.py:10
+#: .\news\models.py:11
 msgid "Title"
 msgstr ""
 
-#: .\news\models.py:11
+#: .\news\models.py:12
 msgid "Content"
 msgstr "內容"
 
-#: .\news\models.py:12
+#: .\news\models.py:13
 msgid "at"
 msgstr "於"
 
-#: .\news\models.py:17
+#: .\news\models.py:18
 msgid "New"
 msgstr "最新消息"
 

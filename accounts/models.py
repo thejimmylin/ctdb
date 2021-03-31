@@ -26,14 +26,6 @@ class Profile(models.Model):
         max_length=31,
         blank=True,
     )
-    boss = models.ForeignKey(
-        verbose_name=_('Boss'),
-        to=settings.AUTH_USER_MODEL,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='underling',
-    )
     keep_diary = models.BooleanField(
         verbose_name=_('Keep diary'),
         default=False,
@@ -63,14 +55,6 @@ class GroupProfile(models.Model):
         to='auth.Group',
         on_delete=models.CASCADE,
     )
-    is_role = models.BooleanField(
-        verbose_name=_('Is role'),
-        default=False
-    )
-    is_displayed = models.BooleanField(
-        verbose_name=_('Is displayed'),
-        default=False
-    )
     is_department = models.BooleanField(
         verbose_name=_('Is department'),
         default=False
@@ -82,7 +66,15 @@ class GroupProfile(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='child_departments',
-        limit_choices_to={'is_department': True},
+        limit_choices_to={'groupprofile__is_department': True},
+    )
+    is_role = models.BooleanField(
+        verbose_name=_('Is role'),
+        default=False
+    )
+    is_displayed = models.BooleanField(
+        verbose_name=_('Is displayed'),
+        default=False
     )
 
     class Meta():

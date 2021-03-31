@@ -1,22 +1,33 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.http.response import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
-from core.decorators import permission_required
-
 from .forms import DiaryModelForm
 from .models import Diary
-from .querys import get_diary_query
+
+from core.decorators import permission_required
+from accounts.utils import get_role
+
+
+def get_diary_queryset(request):
+    model = Diary
+    queryset = model.objects.all()
+    role = get_role(user=request.user, session=request.session)
+    if role.name == 'T00 supervisor':
+        return queryset.filter(Q(created_by__group__name__in=['T00', 'T01', 'T02', 'T11', 'T12', 'T21', 'T22', 'T31', 'T32'])).distinct()
+    if role.name == 'T01 supervisor':
+        return queryset.filter(Q(created_by__group__name__in=['T01', 'T11', 'T12'])).distinct()
+    return queryset.filter(created_by=request.user)
 
 
 @login_required
 @permission_required('diary.view_diary', raise_exception=True, exception=Http404)
 def diary_list(request):
     model = Diary
-    query = get_diary_query(user=request.user, session=request.session)
-    queryset = model.objects.filter(query)
+    queryset = get_diary_queryset(request)
     paginate_by = 5
     template_name = 'diary/diary_list.html'
     page_number = request.GET.get('page', '')
