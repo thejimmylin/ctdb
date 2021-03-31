@@ -23,9 +23,7 @@
             <thead>
               <tr>
                 <th style="width: 1px;">{% translate 'Action' %}</th>
-                {% if is_supervisor %}
                 <th style="width: 1px;">{% translate 'Created by' %}</th>
-                {% endif %}
                 <th style="width: 100%">{% translate 'Name' %}</th>
               </tr>
             </thead>
@@ -33,9 +31,7 @@
               {% for obj in object_list %}
               <tr>
                 <td class="text-nowrap">{% include 'standard_action_dropdown.html' %}</td>
-                {% if is_supervisor %}
                 <td class="text-nowrap">{{ obj.created_by }}</td>
-                {% endif %}
                 <td class="text-nowrap"><a href="{{ obj.archive.url }}">{{ obj.name }}</a></td>
               </tr>
               {% empty %}
