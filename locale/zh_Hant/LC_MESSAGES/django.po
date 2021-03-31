@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-31 14:32+0800\n"
+"POT-Creation-Date: 2021-04-01 02:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,42 +60,75 @@ msgstr "主管"
 msgid "No user registering with this Email."
 msgstr "沒有以這個電子信箱註冊的使用者"
 
-# Variable translation
 #: .\accounts\i18n.py:8
+msgid "T00 member"
+msgstr "T00 成員"
+
+#: .\accounts\i18n.py:9
+msgid "T01 member"
+msgstr "T01 成員"
+
+#: .\accounts\i18n.py:10
+msgid "T02 member"
+msgstr "T02 成員"
+
+#: .\accounts\i18n.py:11
+msgid "T11 member"
+msgstr "T11 成員"
+
+#: .\accounts\i18n.py:12
+msgid "T12 member"
+msgstr "T12 成員"
+
+#: .\accounts\i18n.py:13
+msgid "T21 member"
+msgstr "T21 成員"
+
+#: .\accounts\i18n.py:14
+msgid "T22 member"
+msgstr "T22 成員"
+
+#: .\accounts\i18n.py:15
+msgid "T31 member"
+msgstr "T31 成員"
+
+#: .\accounts\i18n.py:16
+msgid "T32 member"
+msgstr "T32 成員"
+
+#: .\accounts\i18n.py:17
 msgid "T00 supervisor"
 msgstr "T00 主管"
 
-# Variable translation
-#: .\accounts\i18n.py:9
+#: .\accounts\i18n.py:18
 msgid "T01 supervisor"
 msgstr "T01 主管"
 
-# Variable translation
-#: .\accounts\i18n.py:10
+#: .\accounts\i18n.py:19
 msgid "T02 supervisor"
 msgstr "T02 主管"
 
-#: .\accounts\i18n.py:11
+#: .\accounts\i18n.py:20
 msgid "T11 supervisor"
 msgstr "T11 主管"
 
-#: .\accounts\i18n.py:12
+#: .\accounts\i18n.py:21
 msgid "T12 supervisor"
 msgstr "T12 主管"
 
-#: .\accounts\i18n.py:13
+#: .\accounts\i18n.py:22
 msgid "T21 supervisor"
 msgstr "T21 主管"
 
-#: .\accounts\i18n.py:14
+#: .\accounts\i18n.py:23
 msgid "T22 supervisor"
 msgstr "T22 主管"
 
-#: .\accounts\i18n.py:15
+#: .\accounts\i18n.py:24
 msgid "T31 supervisor"
 msgstr "T31 主管"
 
-#: .\accounts\i18n.py:16
+#: .\accounts\i18n.py:25
 msgid "T32 supervisor"
 msgstr "T32 主管"
 
@@ -111,41 +144,45 @@ msgstr "寫日記"
 msgid "Diary starting date"
 msgstr "日誌起始日"
 
-#: .\accounts\models.py:45
+#: .\accounts\models.py:48
 #: .\accounts\templates\registration\profile_change.html:11
 #: .\core\templates\standard_nav.html:131
 msgid "Profile"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:46
+#: .\accounts\models.py:49
 msgid "Profiles"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:54
+#: .\accounts\models.py:73
 msgid "Group"
 msgstr "群組"
 
-#: .\accounts\models.py:59
+#: .\accounts\models.py:78
 msgid "Is role"
 msgstr "是否為角色"
 
-#: .\accounts\models.py:63
+#: .\accounts\models.py:82
 msgid "Is displayed"
 msgstr "是否顯示"
 
-#: .\accounts\models.py:67
+#: .\accounts\models.py:86
+msgid "Supervise roles"
+msgstr ""
+
+#: .\accounts\models.py:93
 msgid "Is department"
 msgstr "是否為部門"
 
-#: .\accounts\models.py:71
+#: .\accounts\models.py:97
 msgid "Parent Department"
 msgstr "母部門"
 
-#: .\accounts\models.py:81
+#: .\accounts\models.py:107
 msgid "Group profile"
 msgstr "群組檔案"
 
-#: .\accounts\models.py:82
+#: .\accounts\models.py:108
 msgid "Group profiles"
 msgstr "群組檔案"
 
@@ -379,7 +416,7 @@ msgstr "新增"
 msgid "Action"
 msgstr "動作"
 
-#: .\archive\templates\archive\archive_list.html:27 .\diary\models.py:23
+#: .\archive\templates\archive\archive_list.html:26 .\diary\models.py:23
 #: .\diary\templates\diary\diary_list.html:26 .\log\models.py:13
 #: .\log\templates\log\diary_log_list.html:27 .\news\models.py:14
 #: .\reminder\models.py:44 .\reminder\templates\reminder\reminder_list.html:26
@@ -390,14 +427,14 @@ msgstr "動作"
 msgid "Created by"
 msgstr "建立者"
 
-#: .\archive\templates\archive\archive_list.html:29 .\telecom\models.py:11
+#: .\archive\templates\archive\archive_list.html:27 .\telecom\models.py:11
 #: .\telecom\models.py:43 .\telecom\templates\telecom\isp_list.html:27
 #: .\telecom\templates\telecom\ispgroup_list.html:27
 msgid "Name"
 msgstr "名稱"
 
-#: .\archive\templates\archive\archive_list.html:43
-#: .\diary\templates\diary\diary_list.html:49
+#: .\archive\templates\archive\archive_list.html:39
+#: .\diary\templates\diary\diary_list.html:47
 #: .\log\templates\log\diary_log_list.html:45
 #: .\news\templates\news\news_list.html:41
 #: .\reminder\templates\reminder\reminder_list.html:56
@@ -522,10 +559,8 @@ msgid "Logout"
 msgstr "登出"
 
 #: .\core\templates\standard_nav.html:146
-#, fuzzy
-#| msgid "No available group"
 msgid "No available roles"
-msgstr "沒有可用的群組"
+msgstr "沒有可用的角色"
 
 #: .\core\templates\standard_nav.html:154
 msgid "Guest"
