@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
+from django.contrib.auth.models import Group
 from core.utils import today
 
 
@@ -54,9 +54,18 @@ class Profile(models.Model):
 
 def get_role(session, user):
     role = session.get('role')
-    if role in user.profile.get_available_roles():
-        return role
-    return {}
+    pk = role.get('pk', 0)
+    try:
+        pk = int(role.get('pk', 0))
+    except ValueError:
+        return None
+    try:
+        role = Group.objects.get(pk=pk)
+    except Group.DoesNotExist:
+        return None
+    if role not in user.profile.get_available_roles():
+        return None
+    return role
 
 
 class GroupProfile(models.Model):
@@ -100,13 +109,3 @@ class GroupProfile(models.Model):
 
     def __str__(self):
         return f'Profile of {self.group}'
-
-    def get_final_child_deps(self):
-        deps = []
-        for dep in self.group.child_departments.all():
-            _deps = dep.get_final_child_deps()
-            if _deps:
-                deps.extend(_deps)
-            else:
-                deps.append(dep)
-        return deps

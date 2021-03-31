@@ -17,10 +17,10 @@ def get_diary_queryset(request):
     role = get_role(user=request.user, session=request.session)
     if not role:
         return queryset.filter(created_by=request.user)
-    supervise_roles = role.groupprofile.supervise_roles
+    supervise_roles = role.groupprofile.supervise_roles.all()
     if not supervise_roles:
         return queryset.filter(created_by=request.user)
-    return queryset.filter(created_by__groups__groupprofile__supervised_by_roles__in=supervise_roles)
+    return queryset.filter(created_by__groups__in=supervise_roles)
 
 
 @login_required
