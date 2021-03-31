@@ -108,12 +108,19 @@ class Command(BaseCommand):
         """
         cc = []
         while notification_level > 0:
-            boss = user.profile.boss
-            if boss:
-                email = boss.email
-                if email:
-                    cc.append(boss.email)
-                user = boss
+            supervised_by_roles = []
+            roles = user.groups.filter(groupprofile__is_role=True)
+            for role in roles:
+                _supervised_by_roles = role.group.supervised_by_roles.all()
+                if _supervised_by_roles:
+                    for role in _supervised_by_roles:
+                        if role not in supervised_by_roles:
+                            supervised_by_roles.append(role)
+            users = []
+            for role in supervised_by_roles:
+                users.append(role.group.user_set.all())
+            for user in users:
+                cc.append(user.email)
             notification_level = notification_level - 1
         return cc
 

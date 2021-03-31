@@ -35,9 +35,7 @@
               {% for obj in object_list %}
               <tr>
                 <td class="text-nowrap">{% include 'standard_action_dropdown.html' %}</td>
-                {% if is_supervisor %}
                 <td class="text-nowrap">{{ obj.created_by }}</td>
-                {% endif %}
                 <td class="text-nowrap">{{ obj.date|date:"Y-m-d" }}</td>
                 <td class="text-nowrap">{{ obj.get_daily_check_display }}</td>
                 <td>{{ obj.daily_record|safe|linebreaks }}</td>
