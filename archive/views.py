@@ -10,24 +10,33 @@ from .forms import ArchiveModelForm
 from .models import Archive
 
 
+def get_archive_queryset(request):
+    """
+    The queryset of model `Archive` with filter depending on user's role/identity/group.
+    The views below will use this as a basic queryset. This ensures that users won't
+    accidentally see or touch those they shouldn't.
+    """
+    model = Archive
+    queryset = model.objects.all()
+    return queryset
+
+
 @login_required
 @permission_required('archive.view_archive', raise_exception=True, exception=Http404)
 def archive_list(request):
     model = Archive
+    queryset = get_archive_queryset(request)
     paginate_by = 5
     template_name = 'archive/archive_list.html'
-    is_supervisor = request.user.profile.is_supervisor()
-    qs = model.objects.all()
     page_number = request.GET.get('page', '')
-    paginator = Paginator(qs, paginate_by)
+    paginator = Paginator(queryset, paginate_by)
     page_obj = paginator.get_page(page_number)
     is_paginated = page_number.lower() != 'all' and page_obj.has_other_pages()
     context = {
         'model': model,
         'page_obj': page_obj,
-        'object_list': page_obj if is_paginated else qs,
+        'object_list': page_obj if is_paginated else queryset,
         'is_paginated': is_paginated,
-        'is_supervisor': is_supervisor,
     }
     return render(request, template_name, context)
 
@@ -57,7 +66,8 @@ def archive_create(request):
 @permission_required('archive.change_archive', raise_exception=True, exception=Http404)
 def archive_update(request, pk):
     model = Archive
-    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
+    queryset = get_archive_queryset(request)
+    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     form_class = ArchiveModelForm
     success_url = reverse('archive:archive_list')
     form_buttons = ['update']
@@ -78,7 +88,8 @@ def archive_update(request, pk):
 @permission_required('archive.delete_archive', raise_exception=True, exception=Http404)
 def archive_delete(request, pk):
     model = Archive
-    instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
+    queryset = get_archive_queryset(request)
+    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     success_url = reverse('archive:archive_list')
     template_name = 'archive/archive_confirm_delete.html'
     if request.method == 'POST':
