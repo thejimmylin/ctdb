@@ -52,6 +52,13 @@ class Profile(models.Model):
         return f'Profile of {self.user}'
 
 
+def get_role(session, user):
+    role = session.get('role')
+    if role in user.profile.get_available_roles():
+        return role
+    return {}
+
+
 class GroupProfile(models.Model):
     group = models.OneToOneField(
         verbose_name=_('Group'),
@@ -67,7 +74,7 @@ class GroupProfile(models.Model):
         default=False
     )
     supervise_roles = models.ManyToManyField(
-        verbose_name=_('Supervis groups'),
+        verbose_name=_('Supervise roles'),
         to='auth.Group',
         blank=True,
         related_name='supervised_by_roles',
