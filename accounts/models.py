@@ -45,7 +45,7 @@ class Profile(models.Model):
     def get_default_role(self):
         return self.get_available_roles().first()
 
-    class Meta():
+    class Meta:
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
 
@@ -104,7 +104,7 @@ class GroupProfile(models.Model):
         limit_choices_to={'groupprofile__is_department': True},
     )
 
-    class Meta():
+    class Meta:
         verbose_name = _('Group profile')
         verbose_name_plural = _('Group profiles')
 

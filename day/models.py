@@ -14,7 +14,7 @@ class Day(models.Model):
         default=False,
     )
 
-    class Meta():
+    class Meta:
         ordering = ['date']
         verbose_name = _('Day')
         verbose_name_plural = _('Days')

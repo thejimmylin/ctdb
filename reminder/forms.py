@@ -5,7 +5,7 @@ from .models import Reminder
 
 
 class ReminderModelForm(forms.ModelForm):
-    class Meta():
+    class Meta:
         model = Reminder
         exclude = ['created_by']
         widgets = {

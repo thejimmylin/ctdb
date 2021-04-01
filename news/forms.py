@@ -4,7 +4,7 @@ from .models import News
 
 
 class NewsModelForm(forms.ModelForm):
-    class Meta():
+    class Meta:
         widgets = {
             'at': forms.DateTimeInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M',),
         }

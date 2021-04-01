@@ -13,7 +13,7 @@ class Archive(models.Model):
     name = models.CharField(max_length=255)
     created_by = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
-    class Meta():
+    class Meta:
         ordering = ['-id']
         verbose_name = _('Archive')
         verbose_name_plural = _('Archives')

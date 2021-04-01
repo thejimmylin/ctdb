@@ -13,7 +13,7 @@ class Log(models.Model):
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(verbose_name=_('Created at'), default=now)
 
-    class Meta():
+    class Meta:
         ordering = ['-id']
         verbose_name = _('Log')
         verbose_name_plural = _('Logs')

@@ -22,7 +22,7 @@ class Diary(models.Model):
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
-    class Meta():
+    class Meta:
         ordering = ['-date']
         verbose_name = _('Diary')
         verbose_name_plural = _('Diaries')

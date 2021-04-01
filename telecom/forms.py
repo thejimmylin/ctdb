@@ -51,14 +51,14 @@ class IspModelForm(forms.ModelForm):
         ),
     )
 
-    class Meta():
+    class Meta:
         model = Isp
         exclude = ['created_by', ]
 
 
 class IspGroupModelForm(forms.ModelForm):
 
-    class Meta():
+    class Meta:
         model = IspGroup
         exclude = ['created_by', ]
 
@@ -79,6 +79,6 @@ class PrefixListUpdateTaskModelForm(forms.ModelForm):
         ),
     )
 
-    class Meta():
+    class Meta:
         model = PrefixListUpdateTask
         exclude = ['created_by', ]

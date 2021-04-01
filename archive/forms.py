@@ -4,6 +4,6 @@ from .models import Archive
 
 
 class ArchiveModelForm(forms.ModelForm):
-    class Meta():
+    class Meta:
         model = Archive
         exclude = ['created_by']

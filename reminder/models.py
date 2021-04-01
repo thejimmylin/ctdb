@@ -43,7 +43,7 @@ class Reminder(models.Model):
     )
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
-    class Meta():
+    class Meta:
         ordering = ['-id']
         verbose_name = _('Reminder')
         verbose_name_plural = _('Reminders')

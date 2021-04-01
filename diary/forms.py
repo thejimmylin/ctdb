@@ -5,7 +5,7 @@ from .models import Diary
 
 
 class DiaryModelForm(forms.ModelForm):
-    class Meta():
+    class Meta:
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
             'daily_record': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4'}),
