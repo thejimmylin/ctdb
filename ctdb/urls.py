@@ -15,6 +15,7 @@ urlpatterns = [
     path('', include('news.urls')),
     path('log/', include('log.urls')),
     path('auth/', include('accounts.urls')),
+    path('api/', include('api.urls')),
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/news/'), name='index'),
 ]

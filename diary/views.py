@@ -19,6 +19,8 @@ def get_diary_queryset(request):
     """
     model = Diary
     queryset = model.objects.all()
+    deps = request.GET.getlist('deps')
+    print(deps)
     role = get_role(user=request.user, session=request.session)
     if not role:
         return queryset.filter(created_by=request.user)
@@ -32,7 +34,7 @@ def get_diary_queryset(request):
 @permission_required('diary.view_diary', raise_exception=True, exception=Http404)
 def diary_list(request):
     model = Diary
-    queryset = get_diary_queryset(request)
+    queryset = get_diary_queryset(request).filter(created_by__groups__name__in=['T32'])
     paginate_by = 5
     template_name = 'diary/diary_list.html'
     page_number = request.GET.get('page', '')

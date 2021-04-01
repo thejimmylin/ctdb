@@ -85,6 +85,7 @@ INSTALLED_APPS += [
     'reminder.apps.ReminderConfig',
     'telecom.apps.TelecomConfig',
     'log.apps.LogConfig',
+    'api.apps.ApiConfig',
 ]
 
 if DEBUG:
