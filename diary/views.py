@@ -20,7 +20,6 @@ def get_diary_queryset(request):
     model = Diary
     queryset = model.objects.all()
     deps = request.GET.getlist('deps')
-    print(deps)
     role = get_role(user=request.user, session=request.session)
     if not role:
         return queryset.filter(created_by=request.user)

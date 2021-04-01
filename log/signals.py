@@ -2,20 +2,11 @@ import json
 
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
-from rest_framework import serializers
 
+from api.serializers import DiaryModelSerializer
 from diary.models import Diary
 
 from .models import Log
-
-
-class DiarySerializer(serializers.ModelSerializer):
-    """
-    Using django-rest-framework's serializers is better than json.dumps with custom encoder.
-    """
-    class Meta:
-        model = Diary
-        fields = '__all__'
 
 
 @receiver(post_save, sender=Diary, dispatch_uid='post_save_diary')
@@ -28,7 +19,7 @@ def post_save_diary(sender, instance, created, **kwargs):
         action=action,
         app_label=app_label,
         model_name=model_name,
-        data=json.dumps(DiarySerializer(instance).data, ensure_ascii=False),
+        data=json.dumps(DiaryModelSerializer(instance).data, ensure_ascii=False),
         created_by=created_by,
     )
 
@@ -43,6 +34,6 @@ def post_delete_diary(sender, instance, **kwargs):
         action=action,
         app_label=app_label,
         model_name=model_name,
-        data=json.dumps(DiarySerializer(instance).data, ensure_ascii=False),
+        data=json.dumps(DiaryModelSerializer(instance).data, ensure_ascii=False),
         created_by=created_by,
     )
