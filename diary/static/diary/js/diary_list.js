@@ -1,0 +1,1 @@
+let docUrl = document.URL;

@@ -56,8 +56,8 @@
 
   {% block basejs %}
   <script>
-    const csrfmiddlewaretoken = "{{ csrf_token }}";
-    const url = "{% url 'set_language' %}";
+    const csrfMiddlewareToken = "{{ csrf_token }}";
+    const i18nUrl = "{% url 'set_language' %}";
   </script>
   <script src="{% static 'js/base.js' %}"></script>
   {% endblock %}
