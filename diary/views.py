@@ -33,7 +33,7 @@ def get_diary_queryset(request):
 @permission_required('diary.view_diary', raise_exception=True, exception=Http404)
 def diary_list(request):
     model = Diary
-    queryset = get_diary_queryset(request).filter(created_by__groups__name__in=['T32'])
+    queryset = get_diary_queryset(request)
     paginate_by = 5
     template_name = 'diary/diary_list.html'
     page_number = request.GET.get('page', '')
