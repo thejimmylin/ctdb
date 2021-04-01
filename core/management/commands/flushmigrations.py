@@ -13,13 +13,24 @@ class Command(BaseCommand):
 
     BASE_DIR = settings.BASE_DIR
 
-    def rm_rf(self, path):
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '-y', '--yes-all',
+            action='store_true',
+            default=False,
+            help='Reply "yes" to all checks.',
+        )
+
+    def rm_rf(self, path, yes_all):
         if path.is_file():
             print(path)
-            checked = input(
-                '\nThese files and directories will be permanently deleted!\n\n'
-                "Type 'yes' to continue, or 'no' to cancel: "
-            )
+            if yes_all:
+                checked = 'yes'
+            else:
+                checked = input(
+                    '\nThese files and directories will be permanently deleted!\n\n'
+                    "Type 'yes' to continue, or 'no' to cancel: "
+                )
             if checked == 'yes':
                 path.unlink(missing_ok=False)
             else:
@@ -35,19 +46,23 @@ class Command(BaseCommand):
         if files:
             for f in files:
                 print(f)
-            checked = input(
-                '\nThese files and directories will be permanently deleted!\n\n'
-                "Type 'yes' to continue, or 'no' to cancel: "
-            )
+            if yes_all:
+                checked = 'yes'
+            else:
+                checked = input(
+                    '\nThese files and directories will be permanently deleted!\n\n'
+                    "Type 'yes' to continue, or 'no' to cancel: "
+                )
             if checked == 'yes':
                 for f in files:
                     f.unlink(missing_ok=False)
             else:
                 raise CommandError('Flushing migration files cancelled.')
         for d in dirs:
-            self.rm_rf(d)
+            self.rm_rf(d, yes_all=yes_all)
 
     def handle(self, *app_labels, **options):
+        yes_all = options['yes_all']
         configs = apps.get_app_configs()
         paths = []
         for config in configs:
@@ -62,4 +77,4 @@ class Command(BaseCommand):
             targets = [subdir for subdir in subdirs if subdir.name != '__init__.py']
             paths.extend(targets)
         for f in paths:
-            self.rm_rf(f)
+            self.rm_rf(f, yes_all=yes_all)
