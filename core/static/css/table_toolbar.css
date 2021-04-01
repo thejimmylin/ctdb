@@ -1,0 +1,13 @@
+#blankTop, #blankButtom {
+    height: 48px;
+}
+#toolbar{
+    margin-bottom: 10px;
+}
+#searchInput {
+    width: 180px;
+    margin-right: 7px;
+}
+#addButton {
+    width: 90px;
+}

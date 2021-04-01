@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Function definition
-    const origin = window.location.origin;
-    const urlApiDiaryList = `${origin}/api/diaries/`;
-    fetch(urlApiDiaryList).then(r => r.json()).then(console.log);
-    }
-);
+    const pathname = window.location.pathname;
+    const selectRoles = document.querySelector('#rolesSelect');
+    selectRoles.addEventListener("change", function(e) {
+        const params = e.target.value ? {"dep": e.target.value} : {};
+        const queryString = new URLSearchParams(params).toString();
+        const url = queryString ? pathname + "?" + queryString : pathname;
+        window.location.replace(url);
+    })
+});

@@ -2,7 +2,8 @@
 {% load static i18n widget_tweaks custom_templatetags %}
 
 {% block extracss %}
-<link rel="stylesheet" href="{% static 'css/table_list_view.css' %}">
+<link rel="stylesheet" href="{% static 'css/table_toolbar.css' %}">
+<link rel="stylesheet" href="{% static 'css/table_toolbar.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -11,11 +12,22 @@
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col">
         <div id="blankTop"></div>
-        <div id="toolbar" class="d-flex justify-content-between">
-          <input type="text" id="searchInput" class="shadow-sm" placeholder={% translate 'Search..' %}>
+        <div id="toolbar" class="d-flex">
+          <input type="text" id="searchInput" class="form-control shadow-sm" placeholder={% translate 'Search..' %}>
+          {% if supervise_roles %}
+          <div class="mr-auto">
+            <select id="rolesSelect" class="form-control shadow-sm" name="roles">
+              <option value="">{% translate 'All' %}</option>
+              {% for role in supervise_roles %}
+              <option value="{{ role.name }}"{% if role.name == request.GET.dep %} selected{% endif %}>{{ role.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          {% endif %}
           {% name model|attr:'_meta'|get_perm_name:'add' as perm_name %}
           {% if user|has_perm:perm_name %}
-          <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% translate 'Add' %}</a>
+          <a id="addButton" class="form-control btn btn-light border shadow-sm"
+            href="{{ model.get_create_url }}">{% translate 'Add' %}</a>
           {% endif %}
         </div>
         <div class="table-responsive">

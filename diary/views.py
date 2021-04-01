@@ -36,6 +36,10 @@ def diary_list(request):
     paginate_by = 5
     template_name = 'diary/diary_list.html'
     page_number = request.GET.get('page', '')
+    dep = request.GET.get('dep')
+    queryset = queryset.filter(created_by__groups__name=dep) if dep else queryset
+    role = get_role(user=request.user, session=request.session)
+    supervise_roles = role.groupprofile.supervise_roles.all() if role else None
     paginator = Paginator(queryset, paginate_by)
     page_obj = paginator.get_page(page_number)
     is_paginated = page_number.lower() != 'all' and page_obj.has_other_pages()
@@ -44,6 +48,7 @@ def diary_list(request):
         'page_obj': page_obj,
         'object_list': page_obj if is_paginated else queryset,
         'is_paginated': is_paginated,
+        'supervise_roles': supervise_roles,
     }
     return render(request, template_name, context)
 
