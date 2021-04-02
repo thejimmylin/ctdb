@@ -1,18 +1,10 @@
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
+from rest_framework.permissions import IsAuthenticated
 
 from .serializers import DiaryModelSerializer
 from .models import Diary
 from accounts.models import get_role
-
-from rest_framework import permissions
-
-
-class IsOwnerOrReadOnly(permissions.BasePermission):
-    def has_object_permission(self, request, view, obj):
-        if request.method in SAFE_METHODS:
-            return True
-        return obj.created_by == request.user
+from core.permissions import IsOwnerOrReadOnly
 
 
 class DiaryModelViewSet(viewsets.ModelViewSet):
@@ -31,3 +23,6 @@ class DiaryModelViewSet(viewsets.ModelViewSet):
         if not supervise_roles:
             return queryset.filter(created_by=user)
         return queryset.filter(created_by__groups__in=supervise_roles).distinct()
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
