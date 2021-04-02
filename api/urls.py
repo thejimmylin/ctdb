@@ -1,9 +1,13 @@
-from django.urls import path
+from django.urls import path, include
 
-from .views import api_diary_list
+from rest_framework import routers
+from diary.viewsets import DiaryViewSet
+
+router = routers.DefaultRouter()
+router.register('daries', DiaryViewSet)
 
 app_name = 'api'
 
 urlpatterns = [
-    path('diaries/', api_diary_list, name='api_diary_list'),
+    path('', include(router.urls))
 ]

@@ -3,7 +3,7 @@ import json
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 
-from api.serializers import DiaryModelSerializer
+from diary.serializers import DiaryModelSerializer
 from diary.models import Diary
 
 from .models import Log
