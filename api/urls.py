@@ -4,10 +4,10 @@ from rest_framework import routers
 from diary.viewsets import DiaryModelViewSet
 
 router = routers.DefaultRouter()
-router.register('daries', DiaryModelViewSet)
+router.register('daries', DiaryModelViewSet, basename='diary')
 
-app_name = 'api'
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls')),
 ]
