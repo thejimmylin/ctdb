@@ -72,6 +72,7 @@ INSTALLED_APPS += [
 
 # Package Apps
 INSTALLED_APPS += [
+    'rest_framework',
     'widget_tweaks',
 ]
 
