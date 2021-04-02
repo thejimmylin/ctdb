@@ -8,9 +8,12 @@ class DiaryModelSerializer(serializers.ModelSerializer):
         model = Diary
         exclude = ['created_by']
 
-    # def validate(self, instance):
-    #     super().validate()
-    #     try:
-    #         instance.validate_unique()
-    #     except forms.ValidationError:
-    #         self.add_error(field='date', error=_('The diary with this date has already existed.'))
+    def validate(self, attrs):
+        print(dir(self))
+        print(self.instance.validate_unique())
+        print(attrs)
+        validated_data = super().validate(attrs)
+        created_by = validated_data['created_by']
+        print(created_by)
+        print(validated_data)
+        return validated_data
