@@ -15,7 +15,7 @@ class Diary(models.Model):
             ('yes', _('Yes')),
             ('no', _('No')),
         ),
-        default='no'
+        default='no',
     )
     daily_record = models.TextField(verbose_name=_('Daily record'))
     todo = models.TextField(verbose_name=_('To do'), blank=True)
