@@ -1,17 +1,20 @@
 from rest_framework import viewsets
+from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
+
+from accounts.models import get_role
+from core.permissions import IsOwnerOrReadOnly
 
 from .serializers import DiaryModelSerializer
 from .models import Diary
-from accounts.models import get_role
-from core.permissions import IsOwnerOrReadOnly
 
 
 class DiaryModelViewSet(viewsets.ModelViewSet):
     model = Diary
     queryset = model.objects.all()
     serializer_class = DiaryModelSerializer
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    authentication_classes = (SessionAuthentication, )
+    permission_classes = (IsAuthenticated, IsOwnerOrReadOnly, )
 
     def get_queryset(self):
         role = get_role(user=self.request.user, session=self.request.session)
