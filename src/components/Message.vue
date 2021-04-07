@@ -1,5 +1,5 @@
 <template>
-  <p class="text-3xl text-blue-500">{{ msg }}</p>
+  <p class="text-3xl text-green-500">{{ msg }}</p>
 </template>
 
 <script>
