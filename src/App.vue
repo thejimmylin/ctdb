@@ -1,8 +1,9 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/diary">Diary</router-link>
-  </div>
+  <nav class="text-center">
+    <router-link to="/" class="text-green-500 hover:text-green-400">Home</router-link>
+    <span class="text-green-600"> | </span>
+    <router-link to="/diary" class="text-green-500 hover:text-green-400">Diary</router-link>
+  </nav>
   <router-view/>
 </template>
 
