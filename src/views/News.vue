@@ -1,7 +1,7 @@
 <template>
   <section>
-    <h1>Diaries</h1>
-    <Table v-bind="{name: 'diary'}"/>
+    <h1>News</h1>
+    <Table v-bind="{name: 'news'}"/>
   </section>
 </template>
 
@@ -10,9 +10,9 @@
 import Table from "@/components/Table.vue";
 
 export default {
-  name: "Diary",
+  name: "News",
   components: {
     Table,
   },
-}
+};
 </script>
