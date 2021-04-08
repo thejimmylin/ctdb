@@ -4,6 +4,10 @@ import Diary from '../views/Diary.vue'
 
 const routes = [
   {
+    path: '',
+    redirect: '/news',
+  },
+  {
     path: '/news',
     name: 'News',
     component: News
