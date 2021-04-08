@@ -1,7 +1,7 @@
 <template>
   <section class="container max-w-full justify-center">
-    <h1 class="text-green-900">{{ model.verboseNamePlural }}</h1>
-    <ModelTable :model="model" :fields="fields" />
+    <h1 class="text-green-900">{{ tableTitle }}</h1>
+    <ModelTable :fields="fields" />
   </section>
 </template>
 
@@ -15,11 +15,7 @@ export default {
   },
   data() {
     return {
-      model: {
-        name: "news",
-        verboseName: "News",
-        verboseNamePlural: "News",
-      },
+      tableTitle: "News",
       fields: [
         {name: "id", verboseName: "ID"},
         {name: "title", verboseName: "Title"},
