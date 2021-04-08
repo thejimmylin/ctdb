@@ -4,7 +4,7 @@ from rest_framework import routers
 from diary.viewsets import DiaryModelViewSet
 
 router = routers.DefaultRouter()
-router.register('daries', DiaryModelViewSet, basename='diary')
+router.register('diaries', DiaryModelViewSet, basename='diary')
 
 
 urlpatterns = [
