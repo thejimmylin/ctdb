@@ -17,10 +17,10 @@ __pycache__/
 # Django things
 **/migrations/*
 !**/migrations/__init__.py
-/db.sqlite3
 /static/*
 /media/*
 /dumpdata/*
+/db.sqlite3
 
 # Nginx stuff
 /nginx/*
