@@ -34,6 +34,7 @@ class IspModelForm(forms.ModelForm):
                 'row': 10
             }
         ),
+        required=False
     )
     bcc = forms.CharField(
         label=_('BCC'),
@@ -49,6 +50,7 @@ class IspModelForm(forms.ModelForm):
                 'row': 10
             }
         ),
+        required=False
     )
 
     class Meta:
@@ -74,9 +76,20 @@ class PrefixListUpdateTaskModelForm(forms.ModelForm):
                     '100.100.100.100/24,\n'
                     '100.100.200.100/22 le 24,\n'
                 ),
-                'row': 16
+                'rows': 12
             }
         ),
+    )
+    related_ticket = forms.CharField(
+        label=_('Related ticket'),
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': _(
+                    'Please enter related tickets of this update task, if there is any.'
+                ),
+                'rows': 3
+            }
+        )
     )
 
     class Meta:

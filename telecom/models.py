@@ -69,8 +69,7 @@ class PrefixListUpdateTask(models.Model):
         max_length=63,
         choices=(
             ('add prefix-list', _('Add prefix-list')),
-            ('add as', _('Add AS')),
-            ('add route', _('Add Route')),
+            ('delete prefix-list', _('Delete prefix-list')),
         )
     )
     isps = models.ManyToManyField(verbose_name=_('ISPs'), to='telecom.Isp', blank=True)
@@ -78,6 +77,8 @@ class PrefixListUpdateTask(models.Model):
     origin_as = models.CharField(verbose_name=_('Origin AS'), max_length=63)
     as_path = models.CharField(verbose_name=_('AS path'), max_length=63)
     prefix_list = models.TextField(verbose_name=_('Prefix-list'), validators=[validate_comma_separated_prefix_list_string, ])
+    subject_warning = models.CharField(verbose_name=_('Subject warning'), max_length=63, blank=True)
+    related_ticket = models.CharField(verbose_name=_('Related ticket'), max_length=63, blank=True)
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
