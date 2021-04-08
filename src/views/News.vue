@@ -7,6 +7,7 @@
 
 <script>
 import ModelTable from "@/components/ModelTable.vue";
+import axios from 'axios';
 
 export default {
   name: "News",
@@ -24,6 +25,16 @@ export default {
         {name: "created_by", verboseName: "Created by"},
       ]
     }
+  },
+  methods: {
+    getResults() {
+      axios.get('http://localhost:8000/api/diaries/')
+      .then(response => {this.results = response.data;})
+      .then(console.log);
+    }
+  },
+  created() {
+    this.getResults();
   },
 };
 </script>
