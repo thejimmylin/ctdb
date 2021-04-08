@@ -18,22 +18,27 @@ export default {
     return {
       tableTitle: "News",
       fields: [
-        {name: "id", verboseName: "ID"},
-        {name: "title", verboseName: "Title"},
-        {name: "content", verboseName: "Content"},
-        {name: "at", verboseName: "At"},
-        {name: "created_by", verboseName: "Created by"},
+        {name: "id", verboseName: "ID", isDisplayed: false},
+        {name: "title", verboseName: "Title", isDisplayed: true},
+        {name: "content", verboseName: "Content", isDisplayed: true},
+        {name: "at", verboseName: "At", isDisplayed: true},
+        {name: "created_by", verboseName: "Created by", isDisplayed: false},
       ],
+      endpoint: "",
       results: [],
     }
   },
   methods: {
+    getEndpoint() {
+      this.endpoint = window.location.protocol + "//" + window.location.hostname + ":8000" + "/api/news/";
+    },
     getResults() {
-      axios.get('http://localhost:8000/api/news/')
+      axios.get(this.endpoint)
       .then(response => {this.results = response.data;})
     }
   },
   created() {
+    this.getEndpoint();
     this.getResults();
   },
 };
