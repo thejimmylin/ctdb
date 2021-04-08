@@ -39,3 +39,6 @@ class Diary(models.Model):
 
     def get_delete_url(self):
         return reverse('diary:diary_delete', kwargs={'pk': self.pk})
+
+    def get_clone_url(self):
+        return reverse('diary:diary_clone', kwargs={'pk': self.pk})

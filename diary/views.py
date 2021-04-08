@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from django.http.response import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from core.utils import today
 
 from accounts.models import get_role
 from core.decorators import permission_required
@@ -112,4 +113,28 @@ def diary_delete(request, pk):
         instance.delete()
         return redirect(success_url)
     context = {'model': model}
+    return render(request, template_name, context)
+
+
+@login_required
+@permission_required('diary.change_diary', raise_exception=True, exception=Http404)
+def diary_clone(request, pk):
+    model = Diary
+    queryset = get_diary_queryset(request)
+    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
+    instance.pk = None
+    instance.date = today()
+    form_class = DiaryModelForm
+    success_url = reverse('diary:diary_list')
+    form_buttons = ['create']
+    template_name = 'diary/diary_form.html'
+    if request.method == 'POST':
+        form = form_class(data=request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect(success_url)
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+        return render(request, template_name, context)
+    form = form_class(instance=instance)
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
