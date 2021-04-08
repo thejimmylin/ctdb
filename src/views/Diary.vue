@@ -1,12 +1,11 @@
 <template>
   <section>
     <h1>Diaries</h1>
-    <Table v-bind="{name: 'diary'}"/>
+    <Table v-bind:model="{name: 'diary'}"/>
   </section>
 </template>
 
 <script>
-// @ is an alias to /src
 import Table from "@/components/Table.vue";
 
 export default {
