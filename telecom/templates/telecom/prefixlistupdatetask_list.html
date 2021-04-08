@@ -36,7 +36,7 @@
               {% for obj in object_list %}
               <tr>
                 <td class="text-nowrap">
-                  {% include 'standard_action_dropdown.html' %}
+                  {% include 'telecom/prefixlistupdatetask_action_dropdown.html' %}
                 </td>
                 <td class="text-nowrap">{{ obj.created_by }}</td>
                 <td class="text-nowrap">{{ obj.get_update_type_display }}</td>

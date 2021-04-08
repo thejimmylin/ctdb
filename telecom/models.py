@@ -95,3 +95,6 @@ class PrefixListUpdateTask(models.Model):
 
     def get_delete_url(self):
         return reverse('telecom:prefixlistupdatetask_delete', kwargs={'pk': self.pk})
+
+    def get_clone_url(self):
+        return reverse('telecom:prefixlistupdatetask_clone', kwargs={'pk': self.pk})

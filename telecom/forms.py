@@ -89,7 +89,8 @@ class PrefixListUpdateTaskModelForm(forms.ModelForm):
                 ),
                 'rows': 3
             }
-        )
+        ),
+        required=False
     )
 
     class Meta:
