@@ -73,6 +73,7 @@ INSTALLED_APPS += [
 # Package Apps
 INSTALLED_APPS += [
     'rest_framework',
+    'corsheaders',
     'widget_tweaks',
 ]
 
@@ -100,6 +101,7 @@ MIDDLEWARE = [
     # To enables language selection based on data from the request. Reference:
     # https://docs.djangoproject.com/en/3.1/topics/i18n/translation/#how-django-discovers-language-preference
     'django.middleware.locale.LocaleMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -343,3 +345,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
+
+# Django-cors-headers
+# https://github.com/adamchainz/django-cors-headers
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080'
+]
