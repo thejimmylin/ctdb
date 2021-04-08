@@ -1,7 +1,7 @@
 <template>
-  <h1>{{ meta.verboseName }}</h1>
+  <h1 class="text-green-500">{{ model.verboseNamePlural }}</h1>
   <section>
-    <ModelTable v-bind:model="model" />
+    <ModelTable :model="model" :fields="fields" />
   </section>
 </template>
 
@@ -15,21 +15,19 @@ export default {
   },
   data() {
     return {
-      meta: {
-        model:{
-          name: "news",
-        },
-        fields: [
-         {name: "title"},
-         {name: "content"},
-        ]
-      }
+      model: {
+        name: "news",
+        verboseName: "News",
+        verboseNamePlural: "News",
+      },
+      fields: [
+        {name: "id"},
+        {name: "title"},
+        {name: "content"},
+        {name: "at"},
+        {name: "created_by"},
+      ]
     }
   },
-  computed: {
-    model() {
-      return {name: this.meta.model.name}
-    }
-  }
 };
 </script>
