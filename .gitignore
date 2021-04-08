@@ -1,35 +1,33 @@
-# VSCode things
-/.vscode/settings.json
-
 # Mac things
 .DS_Store
 
 # Credential things
 /secrets.json
 
+# VSCode things
+/.vscode/settings.json
+
 # Python
-/.venv/
 __pycache__/
+/.venv/
 
-# Django things
-/db.sqlite3
-**/migrations/*
-!**/migrations/__init__.py
-/static/*
-/media/*
-
-# Django manage.py dumpdata & loaddata directory
-/dumpdata/*
-
-# Logging
+# Logging stuff
 /logging/*
 
-# Nginx things
+# Django things
+**/migrations/*
+!**/migrations/__init__.py
+/db.sqlite3
+/static/*
+/media/*
+/dumpdata/*
+
+# Nginx stuff
 /nginx/*
 
-# UWSGI things
+# UWSGI stuff
 /uwsgi/*
 
-# NPM things
+# NPM stuff
 /node_modules/*
 /dist/*
