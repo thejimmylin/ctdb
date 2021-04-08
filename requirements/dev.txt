@@ -1,17 +1,18 @@
 asgiref==3.3.1
-autopep8==1.5.5
+autopep8==1.5.6
 Django==3.1.7
+django-cors-headers==3.7.0
 django-extensions==3.1.1
 -e git+https://github.com/ESSolutions/django-mssql-backend.git@79e421ad377204580b7fb89b7e126be0c04dca75#egg=django_mssql_backend
 django-widget-tweaks==1.4.8
-djangorestframework==3.12.2
-flake8==3.8.4
+djangorestframework==3.12.4
+flake8==3.9.0
 invoke==1.5.0
-isort==5.7.0
+isort==5.8.0
 mccabe==0.6.1
 mysqlclient==2.0.3
-pycodestyle==2.6.0
-pyflakes==2.2.0
+pycodestyle==2.7.0
+pyflakes==2.3.1
 pyodbc==4.0.30
 pytz==2021.1
 schedule==1.0.0
