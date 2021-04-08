@@ -1,6 +1,6 @@
 <template>
-  <h1 class="text-green-500">{{ model.verboseNamePlural }}</h1>
-  <section>
+  <section class="container max-w-full justify-center">
+    <h1 class="text-green-900">{{ model.verboseNamePlural }}</h1>
     <ModelTable :model="model" :fields="fields" />
   </section>
 </template>
@@ -21,11 +21,11 @@ export default {
         verboseNamePlural: "News",
       },
       fields: [
-        {name: "id"},
-        {name: "title"},
-        {name: "content"},
-        {name: "at"},
-        {name: "created_by"},
+        {name: "id", verboseName: "ID"},
+        {name: "title", verboseName: "Title"},
+        {name: "content", verboseName: "Content"},
+        {name: "at", verboseName: "At"},
+        {name: "created_by", verboseName: "Created by"},
       ]
     }
   },

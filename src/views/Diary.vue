@@ -1,6 +1,6 @@
 <template>
-  <section class="text-center container mx-auto p-5">
-    <h1 class="text-green-500">{{ model.verboseNamePlural }}</h1>
+  <section class="container max-w-full justify-center">
+    <h1 class="text-green-900">{{ model.verboseNamePlural }}</h1>
     <ModelTable :model="model" :fields="fields" />
   </section>
 </template>
