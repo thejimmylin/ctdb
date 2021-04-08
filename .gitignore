@@ -33,6 +33,3 @@ __pycache__/
 # NPM things
 /node_modules/*
 /dist/*
-
-# To commit empty directory
-!.gitkeep
