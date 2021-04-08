@@ -1,17 +1,35 @@
 <template>
+  <h1>{{ meta.verboseName }}</h1>
   <section>
-    <h1>News</h1>
-    <Table v-bind:model="{name: 'news'}"/>
+    <ModelTable v-bind:model="model" />
   </section>
 </template>
 
 <script>
-import Table from "@/components/Table.vue";
+import ModelTable from "@/components/ModelTable.vue";
 
 export default {
   name: "News",
   components: {
-    Table,
+    ModelTable,
   },
+  data() {
+    return {
+      meta: {
+        model:{
+          name: "news",
+        },
+        fields: [
+         {name: "title"},
+         {name: "content"},
+        ]
+      }
+    }
+  },
+  computed: {
+    model() {
+      return {name: this.meta.model.name}
+    }
+  }
 };
 </script>

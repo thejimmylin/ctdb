@@ -1,17 +1,17 @@
 <template>
   <section>
     <h1>Diaries</h1>
-    <Table v-bind:model="{name: 'diary'}"/>
+    <ModelTable v-bind:model="{name: 'diary'}"/>
   </section>
 </template>
 
 <script>
-import Table from "@/components/Table.vue";
+import ModelTable from "@/components/ModelTable.vue";
 
 export default {
   name: "Diary",
   components: {
-    Table,
+    ModelTable,
   },
 };
 </script>
