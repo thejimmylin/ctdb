@@ -8,6 +8,9 @@ from django.contrib.auth.forms import (AuthenticationForm, PasswordResetForm,
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import Group
+
+from .models import Profile
 
 User = get_user_model()
 
@@ -120,6 +123,21 @@ class LoginForm(AuthenticationForm):
 
 class ProfileForm(forms.ModelForm):
 
+    username = forms.CharField(
+        label=_('Username'),
+        max_length=63,
+        required=False,
+    )
+    email = forms.EmailField(
+        label=_('Email'),
+        max_length=63,
+        widget=forms.EmailInput(
+            attrs={
+                'placeholder': _('Email'),
+            }
+        ),
+        required=False,
+    )
     staff_code = forms.CharField(
         label=_('Staff code'),
         max_length=63,
@@ -130,49 +148,41 @@ class ProfileForm(forms.ModelForm):
         max_length=63,
         required=False,
     )
-    phone_number = forms.CharField(
-        label=_('Phone number'),
-        max_length=31,
+    activated_role = forms.ModelChoiceField(
+        label=_('Activated role'),
         required=False,
+        queryset=Group.objects.all(),
     )
-    email = forms.EmailField(
-        label=_('Email'),
+    keep_diary = forms.BooleanField(
+        label=_('Keep diary'),
         required=False,
-        max_length=63,
-        widget=forms.EmailInput(
-            attrs={
-                'placeholder': _('Email'),
-            }
-        ),
+        disabled=True,
     )
-    boss = forms.ModelChoiceField(
-        label=_('Boss'),
+    diary_starting_date = forms.DateField(
+        label=_('Diary starting date'),
         required=False,
-        queryset=User.objects.all(),
-        to_field_name='username',
+        disabled=True,
     )
 
     class Meta:
-        model = User
-        fields = ['first_name', 'last_name', 'email']
+        model = Profile
+        fields = ['username', 'email', 'staff_code', 'job_title', 'phone_number', 'activated_role', 'keep_diary', 'diary_starting_date', ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.instance.email:
+        self.fields['username'].initial = self.instance.user.username
+        self.fields['email'].initial = self.instance.user.email
+        self.fields['activated_role'].queryset = self.instance.user.groups.filter(groupprofile__is_role=True, groupprofile__is_displayed=True)
+        if self.instance.user.username:
+            self.fields['username'].disabled = True
+        if self.instance.user.email:
             self.fields['email'].disabled = True
-        self.fields['phone_number'].initial = self.instance.profile.phone_number
-        self.fields['staff_code'].initial = self.instance.profile.staff_code
-        self.fields['staff_code'].disabled = True
-        self.fields['job_title'].initial = self.instance.profile.job_title
-        self.fields['boss'].initial = self.instance.profile.boss
-        self.fields['boss'].disabled = True
 
     def save(self, commit=True):
         instance = super().save(commit=False)
-        instance.email = self.cleaned_data['email']
-        instance.profile.phone_number = self.cleaned_data['phone_number']
-        instance.profile.job_title = self.cleaned_data['job_title']
-        instance.profile.boss = self.cleaned_data['boss']
+        instance.user.username = self.cleaned_data['username']
+        instance.user.email = self.cleaned_data['email']
+        instance.user.phone_number = self.cleaned_data['phone_number']
         if commit:
             instance.save()
         return instance

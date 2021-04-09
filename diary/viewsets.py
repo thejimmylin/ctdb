@@ -3,7 +3,7 @@ from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 from accounts.models import get_role
-from core.permissions import IsOwnerOrReadOnly
+from accounts.permissions import IsOwnerOrReadOnly
 
 from .serializers import DiaryModelSerializer
 from .models import Diary

@@ -4,7 +4,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http.response import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.http.response import JsonResponse
 
+from .models import Profile
 from .forms import ProfileForm, SignUpWithEmailForm
 
 User = get_user_model()
@@ -62,13 +64,13 @@ def signup_with_email(request, email_endswith_strings=[], email_cant_endswith_st
     return render(request, 'registration/signup_with_email.html', context)
 
 
+@login_required
 def profile_change(request):
     """
     A profile change view.
     """
-    if not request.user.is_authenticated:
-        return redirect(reverse('accounts:login'))
-    instance = get_object_or_404(User, id=request.user.id)
+    model = Profile
+    instance = get_object_or_404(Profile, user=request.user)
     if request.method == 'POST':
         form = ProfileForm(request.POST, instance=instance)
         if form.is_valid():
@@ -77,23 +79,17 @@ def profile_change(request):
     else:
         form = ProfileForm(instance=instance)
     context = {
+        'model': model,
         'form': form,
+        'form_buttons': ('save_and_continue_editing', ),
     }
     return render(request, 'registration/profile_change.html', context)
 
 
 @login_required
-def set_role(request, pk):
-    """
-    A view let user set `group` in session.
-    """
-    try:
-        pk = int(pk)
-    except ValueError:
-        raise Http404
-    available_roles = request.user.profile.get_available_roles()
-    if not available_roles.filter(pk=pk).exists():
-        raise Http404
-    role = available_roles.get(pk=pk)
-    request.session['role'] = {'pk': role.pk, 'name': role.name}
+def role_change(request, pk):
+    queryset = request.user.groups.filter(groupprofile__is_role=True, groupprofile__is_displayed=True)
+    role = get_object_or_404(klass=queryset, pk=pk)
+    request.user.profile.activated_role = role
+    request.user.profile.save()
     return redirect(request.META.get('HTTP_REFERER', '/'))

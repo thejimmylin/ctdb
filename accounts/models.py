@@ -35,6 +35,12 @@ class Profile(models.Model):
         verbose_name=_('Diary starting date'),
         default=today,
     )
+    activated_role = models.ForeignKey(
+        to='auth.Group',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
 
     def get_roles(self):
         return self.user.groups.filter(groupprofile__is_role=True)

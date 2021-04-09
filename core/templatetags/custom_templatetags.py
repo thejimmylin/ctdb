@@ -43,6 +43,12 @@ def can_delete(user, obj):
     return user.has_perm(perm='delete', obj=obj)
 
 
+@register.simple_tag
+def role_list(user):
+    queryset = user.groups.filter(groupprofile__is_role=True, groupprofile__is_displayed=True)
+    return queryset
+
+
 # String
 @register.filter
 def nbsp(value):

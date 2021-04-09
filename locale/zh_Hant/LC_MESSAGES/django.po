@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-08 16:25+0800\n"
+"POT-Creation-Date: 2021-04-09 15:22+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,47 +16,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\accounts\forms.py:18 .\accounts\forms.py:23 .\accounts\forms.py:139
-#: .\accounts\forms.py:144
+#: .\accounts\forms.py:21 .\accounts\forms.py:26 .\accounts\forms.py:132
+#: .\accounts\forms.py:136
 msgid "Email"
 msgstr "電子信箱"
 
-#: .\accounts\forms.py:26
+#: .\accounts\forms.py:29
 msgid "Email cannot be changed after setting."
 msgstr "Email 設定後將無法變更"
 
-#: .\accounts\forms.py:54
+#: .\accounts\forms.py:57
 #, python-format
 msgid "The Email address must end with %(join_email_endswith_strings)s."
 msgstr "電子信箱必須以 %(join_email_endswith_strings)s 結尾。"
 
-#: .\accounts\forms.py:68
+#: .\accounts\forms.py:71
 #, python-format
 msgid ""
 "The Email address must not end with %(join_email_cant_endswith_strings)s."
 msgstr "電子信箱不能以 %(join_email_cant_endswith_strings)s 結尾。"
 
-#: .\accounts\forms.py:77
+#: .\accounts\forms.py:80
 msgid "A user with this Email already exists."
 msgstr "使用此 Email 的使用者已存在"
 
-#: .\accounts\forms.py:124 .\accounts\models.py:16
+#: .\accounts\forms.py:127
+msgid "Username"
+msgstr "使用者名稱"
+
+#: .\accounts\forms.py:142 .\accounts\models.py:16
 msgid "Staff code"
 msgstr "員工編號"
 
-#: .\accounts\forms.py:129 .\accounts\models.py:21
+#: .\accounts\forms.py:147 .\accounts\models.py:21
 msgid "Job title"
 msgstr "職稱"
 
-#: .\accounts\forms.py:134 .\accounts\models.py:26
-msgid "Phone number"
-msgstr "電話號碼"
+#: .\accounts\forms.py:152
+msgid "Activated role"
+msgstr "啟用角色"
 
-#: .\accounts\forms.py:149
-msgid "Boss"
-msgstr "主管"
+#: .\accounts\forms.py:157 .\accounts\models.py:31
+msgid "Keep diary"
+msgstr "寫日記"
 
-#: .\accounts\forms.py:189
+#: .\accounts\forms.py:162 .\accounts\models.py:35
+msgid "Diary starting date"
+msgstr "日誌起始日"
+
+#: .\accounts\forms.py:199
 msgid "No user registering with this Email."
 msgstr "沒有以這個電子信箱註冊的使用者"
 
@@ -136,53 +144,47 @@ msgstr "T32 主管"
 msgid "User"
 msgstr "使用者"
 
-#: .\accounts\models.py:31
-msgid "Keep diary"
-msgstr "寫日記"
+#: .\accounts\models.py:26
+msgid "Phone number"
+msgstr "電話號碼"
 
-#: .\accounts\models.py:35
-msgid "Diary starting date"
-msgstr "日誌起始日"
-
-#: .\accounts\models.py:49
-#: .\accounts\templates\registration\profile_change.html:11
-#: .\core\templates\standard_nav.html:131
+#: .\accounts\models.py:55 .\core\templates\standard_nav.html:131
 msgid "Profile"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:50
+#: .\accounts\models.py:56
 msgid "Profiles"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:74
+#: .\accounts\models.py:80
 msgid "Group"
 msgstr "群組"
 
-#: .\accounts\models.py:79
+#: .\accounts\models.py:85
 msgid "Is role"
 msgstr "是否為角色"
 
-#: .\accounts\models.py:83
+#: .\accounts\models.py:89
 msgid "Is displayed"
 msgstr "是否顯示"
 
-#: .\accounts\models.py:87
+#: .\accounts\models.py:93
 msgid "Supervise roles"
 msgstr "管理角色"
 
-#: .\accounts\models.py:94
+#: .\accounts\models.py:100
 msgid "Is department"
 msgstr "是否為部門"
 
-#: .\accounts\models.py:98
+#: .\accounts\models.py:104
 msgid "Parent Department"
 msgstr "母部門"
 
-#: .\accounts\models.py:108
+#: .\accounts\models.py:114
 msgid "Group profile"
 msgstr "群組檔案"
 
-#: .\accounts\models.py:109
+#: .\accounts\models.py:115
 msgid "Group profiles"
 msgstr "群組檔案"
 
@@ -218,7 +220,6 @@ msgstr "建立"
 #: .\accounts\templates\registration\password_change_form.html:15
 #: .\accounts\templates\registration\password_reset_confirm.html:20
 #: .\accounts\templates\registration\password_reset_form.html:15
-#: .\accounts\templates\registration\profile_change.html:15
 #: .\accounts\templates\registration\signup_with_account_and_password.html:18
 #: .\accounts\templates\registration\signup_with_email.html:18
 #: .\core\templates\standard_form.html:8
@@ -231,7 +232,6 @@ msgstr ""
 #: .\accounts\templates\registration\password_change_form.html:17
 #: .\accounts\templates\registration\password_reset_confirm.html:22
 #: .\accounts\templates\registration\password_reset_form.html:17
-#: .\accounts\templates\registration\profile_change.html:17
 #: .\accounts\templates\registration\signup_with_account_and_password.html:20
 #: .\accounts\templates\registration\signup_with_email.html:20
 #: .\core\templates\standard_form.html:10
@@ -315,16 +315,6 @@ msgstr "密碼重置"
 #: .\accounts\templates\registration\password_reset_form.html:39
 msgid "Reset"
 msgstr "重置"
-
-#: .\accounts\templates\registration\profile_change.html:42
-#: .\core\templates\standard_action_dropdown.html:10
-#: .\core\templates\standard_form.html:59
-#: .\core\templates\standard_form_with_file.html:68
-#: .\diary\templates\diary\diary_action_dropdown.html:10
-#: .\reminder\templates\reminder\reminder_action_dropdown.html:10
-#: .\reminder\templates\reminder\reminder_form.html:59
-msgid "Change"
-msgstr "變更"
 
 #: .\accounts\templates\registration\signup.html:11
 #: .\accounts\templates\registration\signup_with_account_and_password.html:11
@@ -488,19 +478,32 @@ msgstr ""
 #: .\core\templates\standard_action_dropdown.html:6
 #: .\diary\templates\diary\diary_action_dropdown.html:6
 #: .\reminder\templates\reminder\reminder_action_dropdown.html:6
+#: .\telecom\templates\telecom\prefixlistupdatetask_action_dropdown.html:6
 msgid "Choose"
 msgstr "選擇"
+
+#: .\core\templates\standard_action_dropdown.html:10
+#: .\core\templates\standard_form.html:59
+#: .\core\templates\standard_form_with_file.html:68
+#: .\diary\templates\diary\diary_action_dropdown.html:10
+#: .\reminder\templates\reminder\reminder_action_dropdown.html:10
+#: .\reminder\templates\reminder\reminder_form.html:59
+#: .\telecom\templates\telecom\prefixlistupdatetask_action_dropdown.html:10
+msgid "Change"
+msgstr "變更"
 
 #: .\core\templates\standard_action_dropdown.html:13
 #: .\core\templates\standard_confirm_delete_form.html:7
 #: .\diary\templates\diary\diary_action_dropdown.html:13
 #: .\reminder\templates\reminder\reminder_action_dropdown.html:13
+#: .\telecom\templates\telecom\prefixlistupdatetask_action_dropdown.html:13
 msgid "Delete"
 msgstr "刪除"
 
 #: .\core\templates\standard_action_dropdown.html:17
 #: .\diary\templates\diary\diary_action_dropdown.html:20
 #: .\reminder\templates\reminder\reminder_action_dropdown.html:23
+#: .\telecom\templates\telecom\prefixlistupdatetask_action_dropdown.html:20
 msgid "No available options"
 msgstr "沒有可用的選項"
 
@@ -705,6 +708,7 @@ msgstr "備註"
 
 #: .\diary\templates\diary\diary_action_dropdown.html:16
 #: .\reminder\templates\reminder\reminder_action_dropdown.html:16
+#: .\telecom\templates\telecom\prefixlistupdatetask_action_dropdown.html:16
 msgid "Clone"
 msgstr "複製"
 
@@ -993,3 +997,6 @@ msgstr "Prefix-list 更新任務"
 #: .\telecom\templates\telecom\isp_list.html:28
 msgid "Chinese name"
 msgstr "中文名稱"
+
+#~ msgid "Boss"
+#~ msgstr "主管"

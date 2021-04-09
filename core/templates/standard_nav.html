@@ -135,13 +135,13 @@
           </div>
         </li>
         <li class="nav-item dropdown">
-          {% name user.profile.get_available_roles as roles %}
+          {% role_list user as roles %}
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            {% translate request.session.role.name|default:roles.first|default:'------' %}
+            {% translate user.profile.activated_role.name|default:'------' %}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             {% for role in roles %}
-            <a class="dropdown-item" href="{% url 'accounts:set_role' pk=role.pk %}">{% translate role.name %}</a>
+            <a class="dropdown-item" href="{% url 'accounts:role_change' pk=role.pk %}">{% translate role.name %}</a>
             {% empty %}
             <a class="dropdown-item" href="">{% translate 'No available roles' %}</a>
             {% endfor %}
