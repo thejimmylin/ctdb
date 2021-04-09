@@ -14,4 +14,4 @@ class NewsModelViewSet(viewsets.ModelViewSet):
     queryset = model.objects.all()
     serializer_class = NewsModelSerializer
     authentication_classes = (TokenAuthentication, SessionAuthentication)
-    permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
+    permission_classes = (IsOwnerOrReadOnly, )

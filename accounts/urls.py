@@ -6,6 +6,7 @@ from django.contrib.auth.views import (LoginView, LogoutView,
                                        PasswordResetDoneView,
                                        PasswordResetView)
 from django.urls import path, reverse_lazy
+from rest_framework.authtoken.views import obtain_auth_token
 
 from .forms import EmailValidationOnForgotPasswordForm, LoginForm
 from .views import profile_change, role_change, signup, signup_with_email
@@ -45,4 +46,9 @@ urlpatterns += [
 urlpatterns += [
     path('profile/', profile_change, name='profile_change'),
     path('roles/<int:pk>/change/', role_change, name='role_change')
+]
+
+# DRF token
+urlpatterns += [
+    path('api-token-auth/', obtain_auth_token, name='obtain_auth_token')
 ]
