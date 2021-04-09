@@ -6,7 +6,6 @@ from django.http.response import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
-from accounts.models import get_role
 from core.decorators import permission_required
 from core.utils import remove_unnecessary_seperator
 
@@ -22,7 +21,7 @@ def get_reminder_queryset(request):
     """
     model = Reminder
     queryset = model.objects.all()
-    role = get_role(user=request.user, session=request.session)
+    role = request.user.profile.activated_role
     deps = request.user.groups.filter(groupprofile__is_department=True)
     if not role:
         return queryset.filter(created_by__groups__in=deps).distinct()

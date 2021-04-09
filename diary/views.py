@@ -3,10 +3,9 @@ from django.core.paginator import Paginator
 from django.http.response import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from core.utils import today
 
-from accounts.models import get_role
 from core.decorators import permission_required
+from core.utils import today
 
 from .forms import DiaryModelForm
 from .models import Diary
@@ -20,7 +19,7 @@ def get_diary_queryset(request):
     """
     model = Diary
     queryset = model.objects.all()
-    role = get_role(user=request.user, session=request.session)
+    role = request.user.profile.activated_role
     if not role:
         return queryset.filter(created_by=request.user)
     supervise_roles = role.groupprofile.supervise_roles.all()
@@ -39,7 +38,7 @@ def diary_list(request):
     page_number = request.GET.get('page', '')
     dep = request.GET.get('dep')
     queryset = queryset.filter(created_by__groups__name=dep) if dep else queryset
-    role = get_role(user=request.user, session=request.session)
+    role = request.user.profile.activated_role
     supervise_roles = role.groupprofile.supervise_roles.all() if role else None
     paginator = Paginator(queryset, paginate_by)
     page_obj = paginator.get_page(page_number)

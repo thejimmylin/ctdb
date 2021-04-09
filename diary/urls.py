@@ -1,6 +1,7 @@
 from django.urls import path
 
-from .views import diary_create, diary_delete, diary_list, diary_update, diary_clone
+from .views import (diary_clone, diary_create, diary_delete, diary_list,
+                    diary_update)
 
 app_name = 'diary'
 

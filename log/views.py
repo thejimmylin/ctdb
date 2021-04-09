@@ -4,7 +4,6 @@ from django.core.paginator import Paginator
 from django.http.response import Http404
 from django.shortcuts import render
 
-from accounts.models import get_role
 from core.decorators import permission_required
 
 from .models import Log
@@ -20,7 +19,7 @@ def get_log_queryset(request):
     """
     model = Log
     queryset = model.objects.all()
-    role = get_role(user=request.user, session=request.session)
+    role = request.user.profile.activated_role
     if not role:
         return queryset.filter(created_by=request.user)
     supervise_roles = role.groupprofile.supervise_roles.all()

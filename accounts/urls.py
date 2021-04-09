@@ -8,7 +8,7 @@ from django.contrib.auth.views import (LoginView, LogoutView,
 from django.urls import path, reverse_lazy
 
 from .forms import EmailValidationOnForgotPasswordForm, LoginForm
-from .views import profile_change, signup, signup_with_email, role_change
+from .views import profile_change, role_change, signup, signup_with_email
 
 app_name = 'accounts'
 

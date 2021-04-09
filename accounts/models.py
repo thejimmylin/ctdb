@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.contrib.auth.models import Group
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -42,37 +41,12 @@ class Profile(models.Model):
         null=True,
     )
 
-    def get_roles(self):
-        return self.user.groups.filter(groupprofile__is_role=True)
-
-    def get_available_roles(self):
-        return self.user.groups.filter(groupprofile__is_role=True, groupprofile__is_displayed=True)
-
-    def get_default_role(self):
-        return self.get_available_roles().first()
-
     class Meta:
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
 
     def __str__(self):
         return f'Profile of {self.user}'
-
-
-def get_role(session, user):
-    role = session.get('role', {})
-    pk = role.get('pk', 0)
-    try:
-        pk = int(role.get('pk', 0))
-    except ValueError:
-        return None
-    try:
-        role = Group.objects.get(pk=pk)
-    except Group.DoesNotExist:
-        return None
-    if role not in user.profile.get_available_roles():
-        return None
-    return role
 
 
 class GroupProfile(models.Model):
