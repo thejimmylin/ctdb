@@ -8,7 +8,7 @@ from rest_framework import status
 User = get_user_model()
 
 
-class UserCreateApiTestCase(TestCase):
+class TokenCreateApiTestCase(TestCase):
     """Test the users API (public)"""
 
     def setUp(self):
@@ -22,7 +22,7 @@ class UserCreateApiTestCase(TestCase):
             'password': 'password',
         }
         User.objects.create_user(**payload)
-        response = self.client.post(reverse('user:token'), payload)
+        response = self.client.post(reverse('user:tokens'), payload)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn('token', response.data)
 
@@ -39,7 +39,7 @@ class UserCreateApiTestCase(TestCase):
             'email': 'email@domain.com',
             'password': 'wrong_password',
         }
-        response = self.client.post(reverse('user:token'), payload)
+        response = self.client.post(reverse('user:tokens'), payload)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertNotIn('token', response.data)
 
@@ -50,7 +50,7 @@ class UserCreateApiTestCase(TestCase):
             'email': 'email@domain.com',
             'password': 'password',
         }
-        response = self.client.post(reverse('user:token'), payload)
+        response = self.client.post(reverse('user:tokens'), payload)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertNotIn('token', response.data)
 
@@ -60,6 +60,6 @@ class UserCreateApiTestCase(TestCase):
             'username': 'username',
             'password': '',
         }
-        response = self.client.post(reverse('user:token'), payload)
+        response = self.client.post(reverse('user:tokens'), payload)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertNotIn('token', response.data)

@@ -21,7 +21,7 @@ class UserCreateApiTestCase(TestCase):
             'email': 'email@domain.com',
             'password': 'password',
         }
-        response = self.client.post(reverse('user:create'), payload)
+        response = self.client.post(reverse('user:users'), payload)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data['username'], payload['username'])
         self.assertEqual(response.data['email'], payload['email'])
@@ -36,9 +36,9 @@ class UserCreateApiTestCase(TestCase):
             'email': 'email@domain.com',
             'password': 'password',
         }
-        first_response = self.client.post(reverse('user:create'), payload)
+        first_response = self.client.post(reverse('user:users'), payload)
         self.assertEqual(first_response.status_code, status.HTTP_201_CREATED)
-        seconad_response = self.client.post(reverse('user:create'), payload)
+        seconad_response = self.client.post(reverse('user:users'), payload)
         self.assertEqual(seconad_response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_password_too_short(self):
@@ -48,7 +48,12 @@ class UserCreateApiTestCase(TestCase):
             'email': 'email@domain.com',
             'password': 'abcde',
         }
-        response = self.client.post(reverse('user:create'), payload)
+        response = self.client.post(reverse('user:users'), payload)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         with self.assertRaises(User.DoesNotExist):
             User.objects.get(username=payload['username'])
+
+    def test_retrieving_a_user_without_auth_fails(self):
+        """Test that authentication required for users"""
+        res = self.client.get(reverse('user:me'))
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
