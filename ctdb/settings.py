@@ -89,6 +89,7 @@ INSTALLED_APPS += [
     'telecom.apps.TelecomConfig',
     'log.apps.LogConfig',
     'api.apps.ApiConfig',
+    'user.apps.UserConfig',
 ]
 
 if DEBUG:

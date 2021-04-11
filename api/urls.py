@@ -11,5 +11,6 @@ router.register('news', NewsModelViewSet, basename='news')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('', include('user.urls')),
     path('api-auth/', include('rest_framework.urls')),
 ]
