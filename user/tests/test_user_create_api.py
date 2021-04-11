@@ -8,7 +8,7 @@ from rest_framework import status
 User = get_user_model()
 
 
-class PublicUserApiTests(TestCase):
+class UserCreateApiTestCase(TestCase):
     """Test the users API (public)"""
 
     def setUp(self):
