@@ -1,6 +1,6 @@
-asgiref==3.3.1
-autopep8==1.5.6
-Django==3.1.7
+asgiref==3.3.4
+autopep8==1.5.5
+Django==3.2
 django-cors-headers==3.7.0
 django-extensions==3.1.1
 -e git+https://github.com/ESSolutions/django-mssql-backend.git@79e421ad377204580b7fb89b7e126be0c04dca75#egg=django_mssql_backend
