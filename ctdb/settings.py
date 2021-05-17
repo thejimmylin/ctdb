@@ -256,7 +256,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'node_modules'
 ]
 
-# Build-in auth system
+# Built-in auth system
 
 LOGIN_URL = reverse_lazy('accounts:login')
 
