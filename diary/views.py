@@ -7,7 +7,7 @@ from django.urls import reverse
 from core.decorators import permission_required
 from core.utils import today
 
-from .forms import DiaryModelForm
+from .forms import DiaryModelForm, DiaryCommentModelForm
 from .models import Diary
 
 
@@ -92,6 +92,28 @@ def diary_update(request, pk):
             instance = form.save()
             if request.POST.get('save_and_continue_editing'):
                 return redirect(reverse('diary:diary_update', kwargs={'pk': instance.pk}))
+            return redirect(success_url)
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+        return render(request, template_name, context)
+    form = form_class(instance=instance)
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+    return render(request, template_name, context)
+
+
+@login_required
+@permission_required('diary.change_diary', raise_exception=True, exception=Http404)
+def diary_comment(request, pk):
+    model = Diary
+    queryset = get_diary_queryset(request)
+    instance = get_object_or_404(klass=queryset, pk=pk)  # supervisor needed
+    form_class = DiaryCommentModelForm
+    success_url = reverse('diary:diary_list')
+    form_buttons = ['update']
+    template_name = 'diary/diary_form.html'
+    if request.method == 'POST':
+        form = form_class(data=request.POST, instance=instance)
+        if form.is_valid():
+            instance = form.save()
             return redirect(success_url)
         context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)

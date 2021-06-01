@@ -39,6 +39,13 @@ def can_change(user, obj):
 
 
 @register.filter
+def can_comment(user, obj):
+    # if user is is_superviosr_of(obj.created_by):
+    #     return True
+    return True
+
+
+@register.filter
 def can_delete(user, obj):
     return user.has_perm(perm='delete', obj=obj)
 

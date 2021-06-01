@@ -20,6 +20,7 @@ class Diary(models.Model):
     daily_record = models.TextField(verbose_name=_('Daily record'))
     todo = models.TextField(verbose_name=_('To do'), blank=True)
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
+    comment = models.TextField(verbose_name=_('Comment'), blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
@@ -42,3 +43,6 @@ class Diary(models.Model):
 
     def get_clone_url(self):
         return reverse('diary:diary_clone', kwargs={'pk': self.pk})
+
+    def get_comment_url(self):
+        return reverse('diary:diary_comment', kwargs={'pk': self.pk})

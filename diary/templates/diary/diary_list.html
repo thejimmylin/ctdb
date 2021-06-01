@@ -15,7 +15,7 @@
           <input type="text" id="searchInput" class="form-control shadow-sm{% if not supervise_roles %} mr-auto{% endif %}" placeholder={% translate 'Search..' %}>
           {% if supervise_roles %}
           <div class="mr-auto">
-            <select id="rolesSelect" class="form-control shadow-sm" name="roles">
+            <select id="rolesSelect" class="shadow-sm form-control" name="roles">
               <option value="">{% translate 'All' %}</option>
               {% for role in supervise_roles %}
               <option value="{{ role.name }}"{% if role.name == request.GET.dep %} selected{% endif %}>{{ role.name }}</option>
@@ -25,7 +25,7 @@
           {% endif %}
           {% name model|attr:'_meta'|get_perm_name:'add' as perm_name %}
           {% if user|has_perm:perm_name %}
-          <a id="addButton" class="form-control btn btn-light border shadow-sm"
+          <a id="addButton" class="border shadow-sm form-control btn btn-light"
             href="{{ model.get_create_url }}">{% translate 'Add' %}</a>
           {% endif %}
         </div>
@@ -39,7 +39,8 @@
                 <th style="width: 1px;">{% translate 'Daily check' %}</th>
                 <th style="width: 37.5%">{% translate 'Daily record' %}</th>
                 <th style="width: 37.5%">{% translate 'To do' %}</th>
-                <th style="width: 25%">{% translate 'Remark' %}</th>
+                <th style="width: 12.5%">{% translate 'Remark' %}</th>
+                <th style="width: 12.5%">{% translate 'Comment' %}</th>
               </tr>
             </thead>
             <tbody>
@@ -52,6 +53,7 @@
                 <td>{{ obj.daily_record|safe|linebreaks }}</td>
                 <td>{{ obj.todo|safe|linebreaks }}</td>
                 <td>{{ obj.remark|safe|linebreaks }}</td>
+                <td>{{ obj.comment|safe|linebreaks }}</td>
               </tr>
               {% empty %}
               <tr>

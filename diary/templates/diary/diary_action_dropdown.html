@@ -15,7 +15,10 @@
     {% if user|can_change:obj %}
     <a class="dropdown-item" href="{{ obj.get_clone_url }}">{% translate 'Clone' %}</a>
     {% endif %}
-    {% if user|can_change:obj or user|can_delete:obj %}
+    {% if user|can_comment:obj %}
+    <a class="dropdown-item" href="{{ obj.get_comment_url }}">{% translate 'Comment' %}</a>
+    {% endif %}
+    {% if user|can_change:obj or user|can_delete:obj or user|can_comment:obj %}
     {% else %}
     <a class="dropdown-item" href="">{% translate 'No available options' %}</a>
     {% endif %}
