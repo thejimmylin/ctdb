@@ -40,9 +40,11 @@ def can_change(user, obj):
 
 @register.filter
 def can_comment(user, obj):
-    # if user is is_superviosr_of(obj.created_by):
-    #     return True
-    return True
+    commenter = user
+    creator = obj.created_by
+    if commenter.profile.is_supervisor_of(creator):
+        return True
+    return False
 
 
 @register.filter

@@ -48,6 +48,21 @@ class Profile(models.Model):
     def __str__(self):
         return f'Profile of {self.user}'
 
+    def is_supervisor_of(self, another_user):
+        """
+        Given a `another_user`. If this user is supervisor of `another_user`, return True,
+        else return False.
+        """
+        role = self.activated_role
+        if not role:
+            return False
+        supervise_roles = role.groupprofile.supervise_roles.all()
+        if not supervise_roles:
+            return False
+        if not another_user.groups.filter(pk__in=supervise_roles):
+            return False
+        return True
+
 
 class GroupProfile(models.Model):
     group = models.OneToOneField(

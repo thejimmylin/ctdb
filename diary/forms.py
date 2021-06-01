@@ -27,10 +27,12 @@ class DiaryCommentModelForm(forms.ModelForm):
     class Meta:
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date', 'readonly': ''}),
-            'daily_check': forms.Select(attrs={'readonly': ''}),  # TODO: Make it readonly.
+            # Attrs readonly & style="pointer-events: none" make the <select> tag work like a readonly field.
+            'daily_check': forms.Select(attrs={'readonly': '', 'style': 'pointer-events: none'}),
             'daily_record': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4', 'readonly': ''}),
             'todo': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4', 'readonly': ''}),
             'remark': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4', 'readonly': ''}),
+            'comment': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4', 'readonly': ''}),  # TODO: # ckeditor4 or not?
         }
         model = Diary
         exclude = ['created_by']
