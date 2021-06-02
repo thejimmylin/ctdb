@@ -11,6 +11,7 @@ class DiaryModelForm(forms.ModelForm):
             'daily_record': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4'}),
             'todo': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4'}),
             'remark': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4'}),
+            'comment': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4', 'readonly': ''}),  # TODO: ckeditor4 or not?
         }
         model = Diary
         exclude = ['created_by']
@@ -32,7 +33,7 @@ class DiaryCommentModelForm(forms.ModelForm):
             'daily_record': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4', 'readonly': ''}),
             'todo': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4', 'readonly': ''}),
             'remark': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4', 'readonly': ''}),
-            'comment': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4', 'readonly': ''}),  # TODO: # ckeditor4 or not?
+            'comment': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4'}),  # TODO: ckeditor4 or not?
         }
         model = Diary
         exclude = ['created_by']

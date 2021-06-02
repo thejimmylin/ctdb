@@ -61,6 +61,9 @@ class Profile(models.Model):
             return False
         if not another_user.groups.filter(pk__in=supervise_roles):
             return False
+        # A dirty way to make superviosr not able to comment himself.
+        if self.user == another_user:
+            return False
         return True
 
 

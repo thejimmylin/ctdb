@@ -144,6 +144,7 @@ def diary_clone(request, pk):
     queryset = get_diary_queryset(request)
     instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     instance.pk = None
+    instance.comment = ''
     instance.date = today()
     form_class = DiaryModelForm
     success_url = reverse('diary:diary_list')

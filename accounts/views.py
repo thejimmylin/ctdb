@@ -86,6 +86,7 @@ def profile_change(request):
 
 @login_required
 def role_change(request, pk):
+    # TODO: Need to use another HTTP method to deal with it.
     queryset = request.user.groups.filter(groupprofile__is_role=True, groupprofile__is_displayed=True)
     role = get_object_or_404(klass=queryset, pk=pk)
     request.user.profile.activated_role = role
