@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-01 16:01+0800\n"
+"POT-Creation-Date: 2021-06-21 11:21+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,35 +156,35 @@ msgstr "個人檔案"
 msgid "Profiles"
 msgstr "個人檔案"
 
-#: .\accounts\models.py:54
+#: .\accounts\models.py:72
 msgid "Group"
 msgstr "群組"
 
-#: .\accounts\models.py:59
+#: .\accounts\models.py:77
 msgid "Is role"
 msgstr "是否為角色"
 
-#: .\accounts\models.py:63
+#: .\accounts\models.py:81
 msgid "Is displayed"
 msgstr "是否顯示"
 
-#: .\accounts\models.py:67
+#: .\accounts\models.py:85
 msgid "Supervise roles"
 msgstr "管理角色"
 
-#: .\accounts\models.py:74
+#: .\accounts\models.py:92
 msgid "Is department"
 msgstr "是否為部門"
 
-#: .\accounts\models.py:78
+#: .\accounts\models.py:96
 msgid "Parent Department"
 msgstr "母部門"
 
-#: .\accounts\models.py:88
+#: .\accounts\models.py:106
 msgid "Group profile"
 msgstr "群組檔案"
 
-#: .\accounts\models.py:89
+#: .\accounts\models.py:107
 msgid "Group profiles"
 msgstr "群組檔案"
 
@@ -409,7 +409,7 @@ msgstr "動作"
 
 #: .\archive\templates\archive\archive_list.html:26 .\diary\models.py:24
 #: .\diary\templates\diary\diary_list.html:37 .\log\models.py:13
-#: .\log\templates\log\diary_log_list.html:27 .\news\models.py:14
+#: .\log\templates\log\diary_log_list.html:27 .\news\models.py:15
 #: .\reminder\models.py:44 .\reminder\templates\reminder\reminder_list.html:26
 #: .\telecom\models.py:22 .\telecom\models.py:46 .\telecom\models.py:83
 #: .\telecom\templates\telecom\isp_list.html:26
@@ -518,7 +518,7 @@ msgstr ""
 msgid "Save and continue editing"
 msgstr ""
 
-#: .\core\templates\standard_nav.html:19 .\news\models.py:19
+#: .\core\templates\standard_nav.html:19 .\news\models.py:20
 #: .\news\templates\news\news_list.html:27
 msgid "News"
 msgstr "最新消息"
@@ -676,7 +676,7 @@ msgstr "日子"
 msgid "Days"
 msgstr "日子"
 
-#: .\diary\forms.py:23
+#: .\diary\forms.py:24 .\diary\forms.py:46
 msgid "The diary with this date has already existed."
 msgstr "這個日期的日誌已經存在。"
 
@@ -746,10 +746,14 @@ msgid "Content"
 msgstr "內容"
 
 #: .\news\models.py:13
+msgid "Is pinned"
+msgstr "置頂"
+
+#: .\news\models.py:14
 msgid "at"
 msgstr "於"
 
-#: .\news\models.py:18
+#: .\news\models.py:19
 msgid "New"
 msgstr "最新消息"
 

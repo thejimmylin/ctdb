@@ -10,11 +10,12 @@ class News(models.Model):
 
     title = models.TextField(verbose_name=_('Title'))
     content = models.TextField(verbose_name=_('Content'))
+    is_pinned = models.BooleanField(verbose_name=_('Is pinned'), default=False)
     at = models.DateTimeField(verbose_name=_('at'), default=now)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ['-at']
+        ordering = ['-is_pinned', '-at']
         verbose_name = _('New')
         verbose_name_plural = _('News')
 
