@@ -64,29 +64,7 @@
           </table>
         </div>
         {% if is_paginated %}
-        <ul class="pagination">
-          {% if page_obj.has_previous %}
-          <li class="page-item">
-            <a class="page-link" href="?dep={{request.GET.dep}}&page={{ page_obj.previous_page_number }}">{% translate 'Previous' %}</a>
-          </li>
-          {% else %}
-          <li class="page-item disabled">
-            <a class="page-link" href="#">{% translate 'Previous' %}</a>
-          </li>
-          {% endif %}
-          {% if page_obj.has_next %}
-          <li class="page-item">
-            <a class="page-link" href="?dep={{request.GET.dep}}&page={{ page_obj.next_page_number }}">{% translate 'Next' %}</a>
-          </li>
-          {% else %}
-          <li class="page-item disabled">
-            <a class="page-link" href="#">{% translate 'Next' %}</a>
-          </li>
-          {% endif %}
-          <li class="page-item">
-            <a class="page-link" href="?page=all">{% translate 'All' %}</a>
-          </li>
-        </ul>
+        {% include 'diary/diary_pagination.html' %}
         {% endif %}
         <div id="blankButtom"></div>
       </div>
