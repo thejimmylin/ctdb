@@ -1,4 +1,5 @@
 {% load i18n %}
+<!-- paginator by department -->
 <ul class="pagination">
     {% if page_obj.has_previous %}
     <li class="page-item">
@@ -22,3 +23,4 @@
       <a class="page-link" href="?dep={{request.GET.dep}}&page=all">{% translate 'All' %}</a>
     </li>
   </ul>
+  
