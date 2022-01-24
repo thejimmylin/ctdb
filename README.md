@@ -6,25 +6,25 @@ This repository includes many reusable Django apps.
 
 #### Clean & simple style
 
-<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/login.png" width="80%">
+<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/login.png" width="80%">
 
-<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/news.png" width="80%">
+<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/news.png" width="80%">
 
 #### with i18 & user-role system
 
-<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/i18n.png" width="80%">
+<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/i18n.png" width="80%">
 
 #### Diary app
 
-<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/diary.png" width="80%">
+<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/diary.png" width="80%">
 
 #### Reminder app
 
-<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/reminder.png" width="80%">
+<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/reminder.png" width="80%">
 
 #### Log app
 
-<img src="https://github.com/j3ygithub/ctdb/blob/main/docs/img/log.png" width="80%">
+<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/log.png" width="80%">
 
 ## Source code overview
 
@@ -85,7 +85,7 @@ There are other reusable source code like `flushmigrations`, `dumpdatautf8` Djan
 
 git clone this repo
 ```bash
-git clone https://github.com/j3ygithub/ctdb /Users/jimmy_lin/repos/ctdb
+git clone https://github.com/j3ygh/ctdb /Users/jimmy_lin/repos/ctdb
 ```
 
 build venv & install packages with pip
@@ -107,11 +107,11 @@ Jimmy Lin <b00502013@gmail.com>
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 
-[https://github.com/j3ygithub/](https://github.com/j3ygithub/)
+[https://github.com/j3ygh/](https://github.com/j3ygh/)
 
 ## Contributing
 
-1. Fork it (<https://github.com/j3ygithub/ctdb/fork>)
+1. Fork it (<https://github.com/j3ygh/ctdb/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
