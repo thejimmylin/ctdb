@@ -1,32 +1,26 @@
 # ctdb
  
-This repository includes many reusable Django apps.
+A web UI of many reusable applications, mainly built with Django.
 
 ## Overview
 
-#### Clean & simple style
+#### The login page.
 
-<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/login.png" width="80%">
+<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/ctdb-login-4704x2522-raw.png" width="80%">
 
-<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/news.png" width="80%">
+#### Reminder, one of the applications.
 
-#### with i18 & user-role system
+<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/ctdb-reminder-4704x2522-raw.png" width="80%">
 
-<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/i18n.png" width="80%">
+#### Every application works with i18n.
 
-#### Diary app
+<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/ctdb-diary-i18n-4704x2522-raw.png" width="80%">
 
-<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/diary.png" width="80%">
+#### Every data change will be logged.
 
-#### Reminder app
+<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/ctdb-log-4704x2522-raw.png" width="80%">
 
-<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/reminder.png" width="80%">
-
-#### Log app
-
-<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/log.png" width="80%">
-
-## Source code overview
+## Some snippets
 
 #### Auth backend `AuthWithUsernameOrEmailBackend`.
 
