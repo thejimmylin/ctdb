@@ -1,6 +1,6 @@
 # ctdb
  
-A web UI of many reusable applications, mainly built with Django.
+A Python web application containing many reusable modules.
 
 ## Overview
 
