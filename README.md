@@ -6,19 +6,19 @@ A Python web application containing many reusable modules.
 
 #### The login page.
 
-<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/ctdb-login-4704x2522-raw.png" width="80%">
+<img src="https://github.com/thejimmylin/ctdb/blob/main/docs/img/ctdb-login-4704x2522-raw.png" width="80%">
 
 #### Reminder, one of the applications.
 
-<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/ctdb-reminder-4704x2522-raw.png" width="80%">
+<img src="https://github.com/thejimmylin/ctdb/blob/main/docs/img/ctdb-reminder-4704x2522-raw.png" width="80%">
 
 #### Every application works with i18n.
 
-<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/ctdb-diary-i18n-4704x2522-raw.png" width="80%">
+<img src="https://github.com/thejimmylin/ctdb/blob/main/docs/img/ctdb-diary-i18n-4704x2522-raw.png" width="80%">
 
 #### Every data change will be logged.
 
-<img src="https://github.com/j3ygh/ctdb/blob/main/docs/img/ctdb-log-4704x2522-raw.png" width="80%">
+<img src="https://github.com/thejimmylin/ctdb/blob/main/docs/img/ctdb-log-4704x2522-raw.png" width="80%">
 
 ## Some snippets
 
@@ -79,7 +79,7 @@ There are other reusable source code like `flushmigrations`, `dumpdatautf8` Djan
 
 git clone this repo
 ```bash
-git clone https://github.com/j3ygh/ctdb /Users/jimmy_lin/repos/ctdb
+git clone https://github.com/thejimmylin/ctdb /Users/jimmy_lin/repos/ctdb
 ```
 
 build venv & install packages with pip
@@ -101,11 +101,11 @@ Jimmy Lin <b00502013@gmail.com>
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 
-[https://github.com/j3ygh/](https://github.com/j3ygh/)
+[https://github.com/thejimmylin/](https://github.com/thejimmylin/)
 
 ## Contributing
 
-1. Fork it (<https://github.com/j3ygh/ctdb/fork>)
+1. Fork it (<https://github.com/thejimmylin/ctdb/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
